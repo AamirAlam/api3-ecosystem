@@ -18,12 +18,12 @@ const ecosystem = useEcosystemStore();
       />
     </div> -->
 
-    <pre>
+    <!-- <pre>
 		{{ ecosystem.stats }}
-	 </pre
+	 </pre -->
     >
-    <button @click="ecosystem.serverPage += 1">Update list</button>
-    <p>{{ ecosystem.serverPage }}</p>
+    <button @click="ecosystem.filterQuery.page += 1">Update list</button>
+    <p>{{ ecosystem.filterQuery.page }}</p>
     <pre>{{ ecosystem.list }}</pre>
   </SectionColumn>
 </template>

@@ -6,19 +6,18 @@ import { watchDebounced } from "@vueuse/core";
 export const useEcosystemStore = defineStore("ecosystem", () => {
   //get projects, with dynamic pagination
   const baseServerUrl = ref("/api/projects/");
-  const serverPage = ref(1);
   const filterQuery = ref({
     chains: [],
     categories: [],
     productTypes: [],
     searchKey: "",
     years: [],
+    page: 1,
   });
 
   const serverURL = computed(() => {
-    const page = !serverPage.value ? 1 : serverPage.value;
+    let url = baseServerUrl.value + `?page=${filterQuery.value.page}`;
 
-    let url = baseServerUrl.value + `?page=${page}`;
     if (filterQuery.value.chains.length > 0) {
       url += `&chains=${filterQuery.value.chains.join(",")}`;
     }
@@ -134,7 +133,6 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     categoryToLabel,
     productTypeToLabel,
     filter,
-    serverPage,
     filterQuery,
     chainNames,
     addDapp,
