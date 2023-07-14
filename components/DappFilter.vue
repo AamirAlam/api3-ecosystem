@@ -27,9 +27,9 @@ const years = computed(() => {
 
 function clearFilters() {
   ecosystem.filter.search = "";
+  ecosystem.filter.productTypes = [];
   ecosystem.filter.chains = [];
   ecosystem.filter.category = [];
-  ecosystem.filter.productTypes = [];
   ecosystem.filter.years = [];
 }
 
@@ -75,6 +75,8 @@ onMounted(() => {
       </h3>
       <button class="button" @click="clearFilters">Clear</button>
     </header>
+
+    <!-- search bar -->
     <search-bar>
       <FormKit
         type="search"
@@ -83,16 +85,17 @@ onMounted(() => {
       />
     </search-bar>
 
+    <!-- chain filter -->
     <div class="chain filter">
       <h4 class="solid-voice">Chain</h4>
       <ul class="pills" v-auto-animate>
         <template v-for="(chain, index) in chains">
           <li
             class="pill"
-            :key="chain.id"
+            :key="chain.chainId"
             v-if="index < defaultPillCount || showAll.chains"
           >
-            <label :for="chain">
+            <label :for="'chain-' + chain?.chainId">
               <picture>
                 <ChainIcon
                   :chain="ecosystem.chainNames(chain?.chainId)"
@@ -103,8 +106,9 @@ onMounted(() => {
               </picture>
               {{ ecosystem.chainNames(chain?.chainId) }} ({{ chain.count }})
             </label>
+
             <input
-              :id="chain?.chainId"
+              :id="'chain-' + chain?.chainId"
               type="checkbox"
               :value="chain?.chainId"
               v-model="ecosystem.filter.chains"
@@ -112,6 +116,7 @@ onMounted(() => {
           </li>
         </template>
       </ul>
+
       <button
         class="text"
         @click="showAll.chains = !showAll.chains"
@@ -121,29 +126,35 @@ onMounted(() => {
       </button>
     </div>
 
+    <!-- category filter -->
     <div class="category filter">
       <h4 class="solid-voice">Category</h4>
 
       <ul class="pills" v-auto-animate>
-        <template v-for="(category, index) in categories" :key="category">
+        <template v-for="(category, index) in categories" :key="category.name">
           <li
             class="pill"
             v-if="index < defaultPillCount || showAll.categories"
           >
-            <label :for="category">
+            <label :for="'category-' + category.name">
+              <picture>
+                <img :src="`/images/icons/${category.name}.svg`" />
+              </picture>
               {{ ecosystem.categoryToLabel?.[category.name] }} ({{
                 category.count
               }})
             </label>
+
             <input
-              :id="category"
+              :id="'category-' + category.name"
               type="checkbox"
-              :value="category"
+              :value="category.name"
               v-model="ecosystem.filter.category"
             />
           </li>
         </template>
       </ul>
+
       <button
         class="text"
         @click="showAll.categories = !showAll.categories"
@@ -153,31 +164,37 @@ onMounted(() => {
       </button>
     </div>
 
+    <!-- product type -->
     <div class="productType filter">
       <h4 class="solid-voice">productType</h4>
       <ul class="pills" v-auto-animate>
         <template
           v-for="(productType, index) in productTypes"
-          :key="productType"
+          :key="productType.name"
         >
           <li
             class="pill"
             v-if="index < defaultPillCount || showAll.productTypes"
           >
-            <label :for="productType">
+            <label :for="'productType-' + productType.name">
+              <picture>
+                <img :src="`/images/icons/${productType.name}.svg`" />
+              </picture>
               {{ ecosystem?.productTypeToLabel?.[productType.name] }} ({{
                 productType.count
               }})
             </label>
+
             <input
-              :id="productType"
+              :id="'productType-' + productType.name"
               type="checkbox"
-              :value="productType"
+              :value="productType.name"
               v-model="ecosystem.filter.productTypes"
             />
           </li>
         </template>
       </ul>
+
       <button
         class="text"
         @click="showAll.productTypes = !showAll.productTypes"
@@ -187,22 +204,27 @@ onMounted(() => {
       </button>
     </div>
 
+    <!-- year filter -->
     <div class="year filter">
       <h4 class="solid-voice">Year</h4>
       <ul class="pills" v-auto-animate>
-        <template v-for="(year, index) in years" :key="year">
+        <template v-for="(year, index) in years" :key="year.name">
           <li class="pill" v-if="index < defaultPillCount || showAll.years">
-            <label :for="year"> {{ year.name }} ({{ year.count }}) </label>
+            <label :for="'year-' + year.name">
+              {{ year.name }} ({{ year.count }})
+            </label>
+
             <input
-              :id="year"
+              :id="'year-' + year.name"
               type="checkbox"
-              :value="year"
+              :value="year.name"
               v-model="ecosystem.filter.years"
               onclick="console.log('test', this.checked)"
             />
           </li>
         </template>
       </ul>
+
       <button
         class="text"
         @click="showAll.years = !showAll.years"
@@ -211,42 +233,6 @@ onMounted(() => {
         {{ !showAll.years ? "Show More" : "Show Less" }}
       </button>
     </div>
-
-    <!-- <div class="status filter">
-      <h4 class="solid-voice">Status</h4>
-      <div class="status-actions">
-        <input-field>
-          <label for="all">All</label>
-          <input
-            type="radio"
-            name="status"
-            id="all"
-            value="all"
-            v-model="ecosystem.filter.status"
-          />
-        </input-field>
-        <input-field>
-          <label for="live">Live</label>
-          <input
-            type="radio"
-            name="status"
-            id="live"
-            value="live"
-            v-model="ecosystem.filter.status"
-          />
-        </input-field>
-        <input-field>
-          <label for="beta">Beta</label>
-          <input
-            type="radio"
-            name="status"
-            id="beta"
-            value="beta"
-            v-model="ecosystem.filter.status"
-          />
-        </input-field>
-      </div>
-    </div> -->
   </dapp-filter>
 </template>
 

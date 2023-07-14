@@ -52,7 +52,7 @@ function filterBy(event) {
               @click="filterBy"
             >
               {{ ecosystem?.categoryToLabel?.[category] }}
-              <picture v-if="`/images/icons/${slug(category)}.svg`">
+              <picture>
                 <img :src="`/images/icons/${slug(category)}.svg`" alt="" />
               </picture>
             </li>
@@ -64,13 +64,14 @@ function filterBy(event) {
     <text-content>
       <h2 class="attention-voice">{{ dapp.name }}</h2>
 
-      <p class="calm-voice">{{ dapp.tagline }}</p>
+      <p class="whisper-voice">{{ dapp.tagline }}</p>
     </text-content>
 
     <footer>
-      <NuxtLink :to="`/ecosystem/${dapp._id}`" class="text card-link">
-        Read More
-      </NuxtLink>
+      <NuxtLink
+        :to="`/ecosystem/${dapp._id}`"
+        class="text card-link"
+      ></NuxtLink>
     </footer>
 
     <div class="background-wrapper">
@@ -109,7 +110,7 @@ dapp-card {
     font-size: 0.875rem;
   }
   .whisper-voice {
-    font-size: var(--step--2);
+    font-size: var(--step--1);
   }
 
   & :is(.lists, .status) {
@@ -117,11 +118,8 @@ dapp-card {
   }
 
   .card-link {
-    padding-left: 0;
-    position: unset;
-  }
-  .card-link::before {
     content: "";
+    padding-left: 0;
     position: absolute;
     inset: 0;
     z-index: 1;

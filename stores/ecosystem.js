@@ -82,13 +82,13 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     return chain ? chain.name : chainId;
   };
 
-  const filter = ref({
+  const filter = reactive({
     search: "",
-    productType: "",
+    productTypes: [],
     category: [],
     chains: [],
     years: [],
-    count: 0,
+    count: 0, //#todo filtered list count that is appended
   });
 
   return {
