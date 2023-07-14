@@ -1,7 +1,6 @@
 <script setup>
 import { useEcosystemStore } from "~/stores/ecosystem";
 import { gsap } from "gsap";
-import slug from "slug";
 
 const ecosystem = useEcosystemStore();
 

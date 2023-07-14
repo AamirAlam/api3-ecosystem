@@ -1,6 +1,4 @@
 import { defineStore } from "pinia";
-import data from "./ecosystem-data.json";
-import slug from "slug";
 import { useFetch } from "nuxt/app";
 import { CHAINS } from "@api3/chains";
 
@@ -45,7 +43,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     dex: "Dex",
     nft: "NFT",
     gaming: "Gaming",
-    dao: "Dao",
+    dao: "DAO",
     oracle: "Oracle",
     wallet: "Wallet",
     infrastructure: "Infrastructure",
@@ -86,9 +84,9 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
 
   const filter = ref({
     search: "",
+    productType: "",
     category: [],
     chains: [],
-    productTypes: [],
     years: [],
     count: 0,
   });

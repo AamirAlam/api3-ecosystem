@@ -1,5 +1,4 @@
 // useFilteredSearch.js
-import { computed } from "vue";
 
 export default function useFilteredSearch(ecosystem) {
   const searchLowerCase = computed(() =>
@@ -10,7 +9,7 @@ export default function useFilteredSearch(ecosystem) {
     if (
       !ecosystem.filter.category.length &&
       !ecosystem.filter.chains.length &&
-      !ecosystem.filter.productTypes.length &&
+      !ecosystem.filter.productType &&
       !ecosystem.filter.years.length
     ) {
       console.log("returned list", ecosystem.list);
@@ -26,9 +25,9 @@ export default function useFilteredSearch(ecosystem) {
         return dapp.chains.includes(chain);
       });
 
-      const filteredproductTypes = ecosystem.filter.productTypes.every(
+      const filteredproductTypes = ecosystem.filter.productType.every(
         (productType) => {
-          return dapp.productTypes.includes(productType);
+          return dapp.productType.includes(productType);
         }
       );
 

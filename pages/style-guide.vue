@@ -8,14 +8,19 @@ const ecosystem = useEcosystemStore();
 <template>
   <PageHeader heading="Style Guide" />
   <SectionColumn>
-    <div>
+    <!-- <div>
       <ChainIcon
         v-for="chain in ecosystem.chainOptions"
         :chain="chain.label"
         fill="none"
         stroke="var(--color)"
       />
-    </div>
+    </div> -->
+
+    <pre>
+		{{ ecosystem.stats }}
+	 </pre
+    >
   </SectionColumn>
 </template>
 
