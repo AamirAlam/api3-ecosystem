@@ -8,19 +8,29 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
   //get projects, with dynamic pagination
   const baseServerUrl = ref("/api/projects/");
   const serverPage = ref(1);
+  const filters = ref({});
+
   const serverURL = computed(() => {
     return serverPage.value
       ? baseServerUrl.value + `?page=${serverPage.value}`
       : baseServerUrl.value;
   });
 
-  const { data: list, error: listError, refresh } = useFetch(serverURL.value);
+  const {
+    data: list,
+    error: listError,
+    refresh,
+  } = useFetch(baseServerUrl.value, {
+    query: { page: serverPage.value },
+    watch: [serverPage],
+  });
   console.log("list", list);
 
   watch(serverPage, () => {
     console.log("serverPage changed", serverPage.value);
     console.log("serverURL changed", serverURL.value);
     console.log("list changed", list.value);
+    // console.log("list changed", serverURL.value);
     refresh(); //#todo, this isnt working
   });
 

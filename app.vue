@@ -10,6 +10,7 @@ nuxtApp.hook("page:finish", async () => {
   loading.value = false;
   await nextTick();
 });
+const {} = useWeb3();
 
 useHead({
   bodyAttrs: {

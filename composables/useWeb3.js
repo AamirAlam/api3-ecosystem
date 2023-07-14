@@ -41,6 +41,9 @@ export const useWeb3 = () => {
   ////////////////////////////////////
 
   const wallet = ref({});
+  const router = useRouter();
+  const currentUrl = router.currentRoute.value.path;
+
   const unwatch = watchAccount((acc) => {
     wallet.value = { ...acc };
   });
@@ -49,6 +52,16 @@ export const useWeb3 = () => {
 
   const account = computed(() => wallet.value.address);
   const isConnected = computed(() => wallet.value.isConnected);
+
+  watch(isConnected, (isConnected) => {
+    if (!isConnected && currentUrl === "/add-dapp") {
+      navigateTo("/login");
+    }
+
+    if (isConnected && currentUrl === "/login") {
+      navigateTo("/add-dapp");
+    }
+  });
 
   const openModal = async () => {
     await web3modal.value.openModal();

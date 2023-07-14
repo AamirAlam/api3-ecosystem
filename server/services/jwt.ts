@@ -5,7 +5,7 @@ const config = useRuntimeConfig();
 
 export const getToken = (
   payload: JwtPayload,
-  expiry: string = "10 days"
+  expiry: string = "2s"
 ): string | null => {
   try {
     const token = jwt.sign(payload, config.JWT_SECRET, {
