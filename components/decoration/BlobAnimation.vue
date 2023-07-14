@@ -7,6 +7,7 @@ onMounted(() => {
       {
         left: `${pageX}px`,
         top: `${pageY}px`,
+        backdropFilter,
       },
       {
         duration: 3000,

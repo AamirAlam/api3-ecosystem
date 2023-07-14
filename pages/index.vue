@@ -36,7 +36,7 @@ onMounted(() => {
   <MissionComponent />
 
   <SectionColumn class="home-article-grid">
-    <h2 class="loud-voice">Read About us</h2>
+    <h2 class="loud-voice">Learn About us</h2>
     <ArticleGrid layout="4" cardCount="4" />
   </SectionColumn>
 

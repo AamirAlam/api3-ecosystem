@@ -132,14 +132,16 @@ cta-module {
     position: absolute;
     top: 0;
     left: 50%;
-    //  transform: translateX(-50%);
+    transform: translateX(-50%);
     width: 100%;
     z-index: -1;
     //  background-color: green;
     //  mix-blend-mode: difference;
+    opacity: 0.5;
 
     @media (min-width: 768px) {
       position: static;
+      opacity: 1;
       // background-color: transparent;
     }
   }
