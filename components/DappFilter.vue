@@ -26,11 +26,11 @@ const years = computed(() => {
 });
 
 function clearFilters() {
-  ecosystem.filter.search = "";
-  ecosystem.filter.productTypes = [];
-  ecosystem.filter.chains = [];
-  ecosystem.filter.category = [];
-  ecosystem.filter.years = [];
+  ecosystem.filterQuery.searchKey = "";
+  ecosystem.filterQuery.productTypes = [];
+  ecosystem.filterQuery.chains = [];
+  ecosystem.filterQuery.categories = [];
+  ecosystem.filterQuery.years = [];
 }
 
 const showAll = ref({
@@ -81,7 +81,7 @@ onMounted(() => {
       <FormKit
         type="search"
         placeholder="Search..."
-        v-model="ecosystem.filter.search"
+        v-model="ecosystem.filterQuery.searchKey"
       />
     </search-bar>
 
@@ -111,7 +111,7 @@ onMounted(() => {
               :id="'chain-' + chain?.chainId"
               type="checkbox"
               :value="chain?.chainId"
-              v-model="ecosystem.filter.chains"
+              v-model="ecosystem.filterQuery.chains"
             />
           </li>
         </template>
@@ -147,7 +147,7 @@ onMounted(() => {
               :id="'category-' + category.name"
               type="checkbox"
               :value="category.name"
-              v-model="ecosystem.filter.category"
+              v-model="ecosystem.filterQuery.categories"
             />
           </li>
         </template>
@@ -186,7 +186,7 @@ onMounted(() => {
               :id="'productType-' + productType.name"
               type="checkbox"
               :value="productType.name"
-              v-model="ecosystem.filter.productTypes"
+              v-model="ecosystem.filterQuery.productTypes"
             />
           </li>
         </template>
@@ -215,7 +215,7 @@ onMounted(() => {
               :id="'year-' + year.name"
               type="checkbox"
               :value="year.name"
-              v-model="ecosystem.filter.years"
+              v-model="ecosystem.filterQuery.years"
               onclick="console.log('test', this.checked)"
             />
           </li>

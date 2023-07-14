@@ -71,7 +71,7 @@ export default defineEventHandler(async (event) => {
 
     if (categories?.split(",")?.length > 0) {
       const categoriesArray = categories?.split(",");
-      selectionFilters.categories = { $all: categoriesArray };
+      selectionFilters.categories = { $in: categoriesArray };
     }
 
     // filter all selected product types

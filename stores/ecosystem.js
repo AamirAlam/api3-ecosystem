@@ -1,38 +1,62 @@
 import { defineStore } from "pinia";
 import { useFetch } from "nuxt/app";
 import { CHAINS } from "@api3/chains";
+import { watchDebounced } from "@vueuse/core";
 
 export const useEcosystemStore = defineStore("ecosystem", () => {
-  const route = useRoute();
-
   //get projects, with dynamic pagination
   const baseServerUrl = ref("/api/projects/");
   const serverPage = ref(1);
-  const filters = ref({});
+  const filterQuery = ref({
+    chains: [],
+    categories: [],
+    productTypes: [],
+    searchKey: "",
+    years: [],
+  });
 
   const serverURL = computed(() => {
-    return serverPage.value
-      ? baseServerUrl.value + `?page=${serverPage.value}`
-      : baseServerUrl.value;
+    const page = !serverPage.value ? 1 : serverPage.value;
+
+    let url = baseServerUrl.value + `?page=${page}`;
+    if (filterQuery.value.chains.length > 0) {
+      url += `&chains=${filterQuery.value.chains.join(",")}`;
+    }
+
+    if (filterQuery.value.categories.length > 0) {
+      url += `&categories=${filterQuery.value.categories.join(",")}`;
+    }
+
+    if (filterQuery.value.productTypes.length > 0) {
+      url += `&productTypes=${filterQuery.value.productTypes.join(",")}`;
+    }
+
+    if (filterQuery.value.searchKey !== "") {
+      url += `&searchKey=${filterQuery.value.searchKey}`;
+    }
+
+    if (filterQuery.value.years.length > 0) {
+      url += `&years=${filterQuery.value.years.join(",")}`;
+    }
+
+    return url;
   });
+
+  const debouncedSearchQuery = serverURL;
+
+  watchDebounced(
+    serverURL,
+    () => {
+      debouncedSearchQuery.value = serverURL.value;
+    },
+    { debounce: 500, maxWait: 1000 }
+  );
 
   const {
     data: list,
     error: listError,
     refresh,
-  } = useFetch(baseServerUrl.value, {
-    query: { page: serverPage.value },
-    watch: [serverPage],
-  });
-  console.log("list", list);
-
-  watch(serverPage, () => {
-    console.log("serverPage changed", serverPage.value);
-    console.log("serverURL changed", serverURL.value);
-    console.log("list changed", list.value);
-    // console.log("list changed", serverURL.value);
-    refresh(); //#todo, this isnt working
-  });
+  } = useFetch(() => debouncedSearchQuery.value);
 
   //stats
   const { data: stats, error: statsError } = useFetch("/api/projects/stats/");
@@ -111,6 +135,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     productTypeToLabel,
     filter,
     serverPage,
+    filterQuery,
     chainNames,
     addDapp,
   };

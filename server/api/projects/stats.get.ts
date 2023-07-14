@@ -51,7 +51,7 @@ export default defineEventHandler(async (event) => {
     ]);
 
     const statsObject = stats?.[0];
-    console.log(statsObject);
+
     if (!statsObject) {
       event.res.statusCode = 400;
       return {
