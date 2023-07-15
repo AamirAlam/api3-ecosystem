@@ -69,10 +69,3 @@ onMounted(() => {
   pointer-events: none;
 }
 </style>
-
-<style lang="scss">
-html:has(main.index) #blob {
-  opacity: 0.4;
-  height: 24vmax;
-}
-</style>

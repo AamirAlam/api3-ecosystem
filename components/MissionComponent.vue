@@ -45,19 +45,6 @@ function animateBackground() {
       stagger: 0.05,
     }
   );
-  gsap.fromTo(
-    "mission-section .decorations path",
-    {
-      strokeDashoffset: "900",
-      strokeDasharray: "900",
-    },
-    {
-      duration: 3,
-      strokeDashoffset: 0,
-      ease: "power2.in",
-      // stagger: 0.05,
-    }
-  );
 }
 
 function animateParagraph() {
@@ -172,11 +159,6 @@ onMounted(() => {
           <DeveloperToolIcon v-else-if="cardIndex == 2" />
         </Transition>
       </picture>
-      <div class="decorations">
-        <picture v-for="i in 10" :class="'decoration-' + i">
-          <DecorationTriangle />
-        </picture>
-      </div>
     </mission-section>
   </SectionColumn>
 </template>
@@ -191,34 +173,6 @@ mission-section {
   gap: 100px;
   height: 100%;
   position: relative;
-
-  div.decorations {
-    position: absolute;
-    inset: 0;
-
-    z-index: -1;
-    picture {
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0.5;
-      stroke-width: 0.4;
-    }
-    display: none;
-
-    @media (min-width: 1000px) {
-      display: block;
-      $sizes: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
-      @each $size in $sizes {
-        picture.decoration-#{$size} {
-          width: random($limit: 100px) + 30px;
-          top: random($limit: 100px) + 25vh;
-          left: random($limit: 50px) + 20vw;
-          transform: rotate(random(360deg));
-        }
-      }
-    }
-  }
 
   heading-text {
     h2 {
