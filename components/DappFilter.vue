@@ -137,9 +137,7 @@ onMounted(() => {
             v-if="index < defaultPillCount || showAll.categories"
           >
             <label :for="'category-' + category.name">
-              <picture>
-                <img :src="`/images/icons/${category.name}.svg`" />
-              </picture>
+              <DynamicIcon :icon="category.name" />
               {{ ecosystem.categoryToLabel?.[category.name] }} ({{
                 category.count
               }})
@@ -177,9 +175,8 @@ onMounted(() => {
             v-if="index < defaultPillCount || showAll.productTypes"
           >
             <label :for="'productType-' + productType.name">
-              <picture>
-                <img :src="`/images/icons/${productType.name}.svg`" />
-              </picture>
+              <DynamicIcon :icon="productType.name" />
+
               {{ ecosystem?.productTypeToLabel?.[productType.name] }} ({{
                 productType.count
               }})

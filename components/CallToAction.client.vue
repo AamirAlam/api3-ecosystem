@@ -142,6 +142,8 @@ cta-module {
     @media (min-width: 768px) {
       position: static;
       opacity: 1;
+      transform: translateX(0);
+
       // background-color: transparent;
     }
   }

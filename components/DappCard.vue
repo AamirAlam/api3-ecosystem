@@ -35,13 +35,7 @@ function filterBy(event) {
           <ul class="productTypes-list productType">
             <li class="micro-voice productType" @click="filterBy">
               {{ ecosystem?.productTypeToLabel?.[dapp?.productType] }}
-
-              <picture v-if="`/images/icons/${slug(dapp?.productType)}.svg`">
-                <img
-                  :src="`/images/icons/${slug(dapp?.productType)}.svg`"
-                  alt=""
-                />
-              </picture>
+              <DynamicIcon :icon="dapp?.productType" />
             </li>
           </ul>
 
@@ -52,9 +46,7 @@ function filterBy(event) {
               @click="filterBy"
             >
               {{ ecosystem?.categoryToLabel?.[category] }}
-              <picture>
-                <img :src="`/images/icons/${slug(category)}.svg`" alt="" />
-              </picture>
+              <DynamicIcon :icon="category" />
             </li>
           </ul>
         </div>
@@ -188,7 +180,7 @@ header > div {
       gap: 0.25rem;
       white-space: nowrap;
 
-      picture {
+      :deep(picture) {
         max-width: 16px;
       }
     }

@@ -1,5 +1,6 @@
 <script setup>
 const props = defineProps(["dapp"]);
+const ecosystem = useEcosystemStore();
 
 const upvotes = ref(0);
 const showShareBox = ref(false);
@@ -51,7 +52,8 @@ const showShareBox = ref(false);
         <p>Category</p>
         <ul>
           <li v-for="category in dapp.categories" :key="category">
-            {{ category }}
+            <DynamicIcon :icon="category" />
+            {{ ecosystem.categoryToLabel?.[category] }}
           </li>
         </ul>
       </div>
@@ -60,7 +62,8 @@ const showShareBox = ref(false);
         <p>productTypes</p>
         <ul>
           <li>
-            {{ dapp.productType }}
+            <DynamicIcon :icon="dapp.productType" />
+            {{ ecosystem?.productTypeToLabel?.[dapp.productType] }}
           </li>
         </ul>
       </div>
@@ -70,7 +73,7 @@ const showShareBox = ref(false);
         <ul>
           <li v-for="social in dapp.links.socials" :key="social.id">
             <a :href="social.url" :target="social.name">
-              <SocialIcon :social="social.label" />
+              <!-- <SocialIcon :social="social.label" /> -->
             </a>
           </li>
         </ul>
@@ -127,6 +130,15 @@ aside {
   }
   div.row {
     border-bottom: 1px solid var(--gray-dark);
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+
+      :deep(picture) {
+        max-width: 1.25rem;
+      }
+    }
   }
 }
 

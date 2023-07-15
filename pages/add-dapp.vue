@@ -112,6 +112,7 @@ onMounted(() => {
       </div>
 
       <div class="actions">
+        <h2 class="loud-voice">Submit your project!</h2>
         <FormKit
           type="submit"
           label="Add Project"
@@ -123,6 +124,9 @@ onMounted(() => {
             <li v-for="message in messages">{{ message }}</li>
           </template>
         </ul>
+        <picture class="curves-decoration">
+          <CurvesDecoration />
+        </picture>
       </div>
     </FormKit>
   </SectionColumn>
@@ -131,13 +135,6 @@ onMounted(() => {
 <style lang="scss">
 body:has(main.add-dapp) {
   overflow: hidden;
-}
-
-main.add-dapp-2 {
-  display: grid;
-  align-items: center;
-
-  --fk-margin-outer: 0;
 }
 
 form {
@@ -184,6 +181,22 @@ form {
   }
   .valid {
     color: green;
+  }
+
+  div.actions {
+    position: relative;
+
+    .curves-decoration {
+      position: absolute;
+      bottom: -60px;
+      left: 100px;
+      transform: rotateY(180deg) rotate(-10deg) scaleX(1.4);
+      z-index: -1;
+
+      @media (min-width: 768px) {
+        bottom: 20px;
+      }
+    }
   }
 }
 

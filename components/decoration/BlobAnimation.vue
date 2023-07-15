@@ -7,7 +7,6 @@ onMounted(() => {
       {
         left: `${pageX}px`,
         top: `${pageY}px`,
-        backdropFilter,
       },
       {
         duration: 3000,
@@ -56,7 +55,7 @@ onMounted(() => {
   translate: -50% -50%;
   background: linear-gradient(to right, var(--color), var(--highlight));
   animation: rotate 20s infinite;
-  opacity: 0.15;
+  opacity: 0.1;
   pointer-events: none;
   z-index: -3;
 }
