@@ -4,15 +4,6 @@ import { gsap } from "gsap";
 
 const ecosystem = useEcosystemStore();
 
-const { searchResults } = useFilteredSearch(ecosystem);
-
-watch(
-  () => searchResults.value,
-  (newVal) => {
-    ecosystem.filter.count = newVal.length;
-  }
-);
-
 onMounted(() => {
   const pageLoad = gsap.timeline();
 
@@ -47,7 +38,7 @@ onMounted(() => {
 <template>
   <ul class="dapp-grid" v-auto-animate>
     <DappCard
-      v-for="(dapp, index) in searchResults"
+      v-for="(dapp, index) in ecosystem.list"
       :dapp="dapp"
       :key="dapp?.name"
       :data-index="index"

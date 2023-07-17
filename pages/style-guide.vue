@@ -1,6 +1,7 @@
 <script setup>
 import slug from "slug";
 slug.extend({ "/": "-" });
+// console.log(wallet);
 
 const ecosystem = useEcosystemStore();
 </script>
@@ -17,10 +18,13 @@ const ecosystem = useEcosystemStore();
       />
     </div> -->
 
-    <pre>
+    <!-- <pre>
 		{{ ecosystem.stats }}
-	 </pre
+	 </pre -->
     >
+    <button @click="ecosystem.filterQuery.page += 1">Update list</button>
+    <p>{{ ecosystem.filterQuery.page }}</p>
+    <pre>{{ ecosystem.list }}</pre>
   </SectionColumn>
 </template>
 

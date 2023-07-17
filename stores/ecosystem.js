@@ -1,28 +1,61 @@
 import { defineStore } from "pinia";
 import { useFetch } from "nuxt/app";
 import { CHAINS } from "@api3/chains";
+import { watchDebounced } from "@vueuse/core";
 
 export const useEcosystemStore = defineStore("ecosystem", () => {
-  const route = useRoute();
-
   //get projects, with dynamic pagination
   const baseServerUrl = ref("/api/projects/");
-  const serverPage = ref(1);
+  const filterQuery = ref({
+    chains: [],
+    categories: [],
+    productTypes: [],
+    searchKey: "",
+    years: [],
+    page: 1,
+  });
+
   const serverURL = computed(() => {
-    return serverPage.value
-      ? baseServerUrl.value + `?page=${serverPage.value}`
-      : baseServerUrl.value;
+    let url = baseServerUrl.value + `?page=${filterQuery.value.page}`;
+
+    if (filterQuery.value.chains.length > 0) {
+      url += `&chains=${filterQuery.value.chains.join(",")}`;
+    }
+
+    if (filterQuery.value.categories.length > 0) {
+      url += `&categories=${filterQuery.value.categories.join(",")}`;
+    }
+
+    if (filterQuery.value.productTypes.length > 0) {
+      url += `&productTypes=${filterQuery.value.productTypes.join(",")}`;
+    }
+
+    if (filterQuery.value.searchKey !== "") {
+      url += `&searchKey=${filterQuery.value.searchKey}`;
+    }
+
+    if (filterQuery.value.years.length > 0) {
+      url += `&years=${filterQuery.value.years.join(",")}`;
+    }
+
+    return url;
   });
 
-  const { data: list, error: listError, refresh } = useFetch(serverURL.value);
-  console.log("list", list);
+  const debouncedSearchQuery = serverURL;
 
-  watch(serverPage, () => {
-    console.log("serverPage changed", serverPage.value);
-    console.log("serverURL changed", serverURL.value);
-    console.log("list changed", list.value);
-    refresh(); //#todo, this isnt working
-  });
+  watchDebounced(
+    serverURL,
+    () => {
+      debouncedSearchQuery.value = serverURL.value;
+    },
+    { debounce: 500, maxWait: 1000 }
+  );
+
+  const {
+    data: list,
+    error: listError,
+    refresh,
+  } = useFetch(() => debouncedSearchQuery.value);
 
   //stats
   const { data: stats, error: statsError } = useFetch("/api/projects/stats/");
@@ -100,7 +133,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     categoryToLabel,
     productTypeToLabel,
     filter,
-    serverPage,
+    filterQuery,
     chainNames,
     addDapp,
   };

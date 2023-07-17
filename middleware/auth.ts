@@ -4,11 +4,8 @@ const { isConnected } = useWeb3();
 
 export default defineNuxtRouteMiddleware((to, from) => {
   // if not authenticated, redirect to home page
-
-  if (!isConnected.value) {
-    return navigateTo({
-      path: "/login",
-      query: { to: to.path },
-    });
+  console.log("Auth isConnected", isConnected?.value);
+  if (!isConnected?.value) {
+    return navigateTo("/login");
   }
 });

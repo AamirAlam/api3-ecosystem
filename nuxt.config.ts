@@ -89,6 +89,7 @@ export default defineNuxtConfig({
     IMAGE_UPLOAD_SIZE_LIMIT: process.env.IMAGE_UPLOAD_SIZE_LIMIT,
     GIT_ACCESS_TOKEN: process.env.GIT_ACCESS_TOKEN,
     JWT_SECRET: process.env.JWT_SECRET,
+    GITHUB_WEBHOOK_SECRET: process.env.GITHUB_WEBHOOK_SECRET,
     public: {
       WEB3MODAL_PROJECT_ID: process.env.WEB3MODAL_PROJECT_ID,
     },

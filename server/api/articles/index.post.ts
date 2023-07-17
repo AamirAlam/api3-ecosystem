@@ -1,24 +1,22 @@
 import { Article } from "~/server/models/Article";
 import { authenticated } from "../../utils/authenticated";
 import { ROLE } from "~/server/types";
+import { ArticleType } from "server/types/Article";
 
 export default authenticated(
   defineEventHandler(async (event: any) => {
     try {
       const articleData = await (event.node?.req?.body || readBody(event));
 
-      console.log("req body ", {
-        articleData,
-      });
       // extract article metadata
-
-      const arcitlePayload = {
+      const arcitlePayload: ArticleType = {
         title: articleData.title,
         subtitle: articleData.subtitle,
         description: articleData.description,
-        author: { name: articleData.author },
+        author: { name: articleData.author, bio: "" },
         content: articleData.body,
         category: articleData.category,
+        created_at: new Date(),
       };
 
       const article = await new Article(arcitlePayload).save();

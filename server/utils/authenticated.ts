@@ -12,7 +12,7 @@ export const authenticated = (
       const authToken = event.node.req.headers.authorization;
 
       if (!authToken) {
-        event.res.statusCode = 401;
+        event.node.res.statusCode = 401;
         return {
           error: "Unauthorized access",
         };
@@ -21,7 +21,7 @@ export const authenticated = (
       const decodedToken: DecodedToken | null = verifyToken(authToken);
 
       if (!decodedToken) {
-        event.res.statusCode = 401;
+        event.node.res.statusCode = 401;
         return {
           error: "Unauthorized",
         };
@@ -32,17 +32,19 @@ export const authenticated = (
 
       // if user is not present in db, return unauthorized
       if (!user) {
-        event.res.statusCode = 401;
+        event.node.res.statusCode = 401;
         return {
-          error: "Unauthorized access",
+          error: "Unauthorized access, wallet address not found",
         };
       }
 
-      // if role is not same as user role, return unauthorized
-      if (user?.role !== role) {
-        event.res.statusCode = 401;
+      //check token has correct role or not
+      // skip access check if role is USER
+
+      if (role !== ROLE.USER && user?.role !== role) {
+        event.node.res.statusCode = 401;
         return {
-          error: "Unauthorized access",
+          error: `Unauthorized access, ${role} role required`,
         };
       }
 
@@ -53,7 +55,7 @@ export const authenticated = (
       return { response };
     } catch (err) {
       console.log("auth middleware error ", err);
-      event.res.statusCode = 500;
+      event.node.res.statusCode = 500;
       return {
         error: "Something went wrong at server!",
       };

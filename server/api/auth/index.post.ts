@@ -1,7 +1,7 @@
 import { SiweMessage } from "siwe";
 import { User } from "~/server/models/User";
 import { getToken } from "~/server/services/jwt";
-import { JwtPayload } from "~/server/types";
+import { JwtPayload, ROLE } from "~/server/types";
 import { UserType } from "~/server/types/User";
 
 export default defineEventHandler(async (event: any) => {
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event: any) => {
     const siweMessage = new SiweMessage(JSON.parse(message));
     const verificationResult = await siweMessage.verify({ signature });
     const fields = verificationResult.data;
-    console.log("fields ", fields);
+
     if (fields.nonce !== nonce) {
       event.res.statusCode = 401;
       return {
@@ -28,23 +28,23 @@ export default defineEventHandler(async (event: any) => {
         message: "Wrong address!",
       };
     }
-    //:todo implement domain and uri check
-    // check for request origin and domain
-    // if(fields.domain !== event.node.req.headers.host) {
-    //   event.res.statusCode = 401;
-    //   return {
-    //     code: "AuthorizationFailed",
-    //     message: "Wrong domain!",
-    //   };
-    // }
 
-    // if(fields.uri !== event.node.req.headers.origin) {
-    //   event.res.statusCode = 401;
-    //   return {
-    //     code: "AuthorizationFailed",
-    //     message: "Wrong uri!",
-    //   };
-    // }
+    // check for request origin and domain
+    if (fields.domain !== event.node.req.headers.host) {
+      event.res.statusCode = 401;
+      return {
+        code: "AuthorizationFailed",
+        message: "Wrong domain!",
+      };
+    }
+
+    if (fields.uri !== event.node.req.headers.origin) {
+      event.res.statusCode = 401;
+      return {
+        code: "AuthorizationFailed",
+        message: "Wrong uri!",
+      };
+    }
 
     const existingUser = await User.findOne({ address: fields.address });
 
@@ -52,7 +52,7 @@ export default defineEventHandler(async (event: any) => {
       const userPayload: UserType = {
         address: fields.address,
         chainId: fields.chainId,
-        role: "user",
+        role: ROLE.USER,
         registered_at: new Date(),
       };
       const newUser = new User(userPayload);
@@ -73,7 +73,7 @@ export default defineEventHandler(async (event: any) => {
     const tokenPayload: JwtPayload = {
       address: fields.address,
       id: existingUser?.id,
-      role: "user",
+      role: existingUser?.role || ROLE.USER,
     };
 
     const token = getToken(tokenPayload);

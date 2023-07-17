@@ -1,7 +1,6 @@
 <script setup>
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 definePageMeta({
   layout: "home",
   meta: [
