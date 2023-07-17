@@ -37,16 +37,18 @@ aside {
   grid-row: 2 / 10;
   grid-column: 1 / -1;
   margin-bottom: 4rem;
+
   @media (min-width: 768px) {
     grid-column: 1 / 3;
-
     position: sticky;
     top: 5rem;
   }
 }
+
 h3 {
   margin-bottom: 1.5rem;
 }
+
 .toc-list {
   display: grid;
   gap: 0rem;
@@ -54,6 +56,7 @@ h3 {
 
   a {
     padding-left: 0;
+    white-space: nowrap;
   }
 }
 </style>

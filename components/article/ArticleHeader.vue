@@ -2,7 +2,7 @@
 const props = defineProps(["article"]);
 
 const datePublished = computed(() => {
-  const date = new Date(props.article.date_published);
+  const date = new Date(props.article?.created_at);
   return date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -12,12 +12,12 @@ const datePublished = computed(() => {
 </script>
 
 <template>
-  <header v-if="article">
-    <h1 class="loud-voice article-heading" :id="article.title">
-      {{ article.title }}
+  <header>
+    <h1 class="loud-voice article-heading" :id="article?.title">
+      {{ article?.title }}
     </h1>
-    <h2 class="notice-voice" v-if="article.subtitle">
-      {{ article.subtitle }}
+    <h2 class="notice-voice">
+      {{ article?.subtitle }}
     </h2>
     <article-meta>
       <div class="author">
@@ -25,7 +25,7 @@ const datePublished = computed(() => {
           <img src="@/assets/images/author.svg" alt="" />
         </picture>
         <p class="solid-voice">
-          {{ article.author }}
+          {{ article?.author?.name }}
         </p>
       </div>
       <div class="date">
@@ -41,7 +41,7 @@ const datePublished = computed(() => {
           <img src="@/assets/images/bookmark-icon.svg" alt="" />
         </picture>
         <p class="solid-voice">
-          {{ article.category }}
+          {{ article?.category }}
         </p>
       </div>
     </article-meta>
