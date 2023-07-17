@@ -11,7 +11,6 @@ export const authenticated = (
     try {
       const authToken = event.node.req.headers.authorization;
 
-      console.log("headers from webhook ", event.node.req.headers);
       if (!authToken) {
         event.node.res.statusCode = 401;
         return {
