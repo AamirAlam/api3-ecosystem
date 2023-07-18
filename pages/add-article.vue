@@ -11,6 +11,7 @@ async function submitHandler(event) {
   reader.onload = async function (e) {
     const content = e.target.result;
     const parsed = await parseMarkdown({ content });
+    parsed.content = content;
     console.log("parsed", parsed);
 
     const {
@@ -41,8 +42,6 @@ async function submitHandler(event) {
       //:todo handle error
       console.log("The server didn’t like our request.", submitResult);
     }
-
-    // #todo POST parsed to db
   };
 
   reader.readAsText(file);

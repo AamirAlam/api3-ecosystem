@@ -13,6 +13,8 @@ const { data, error } = await useFetch(
       // Process the response data
 
       article.value = response._data;
+      const parsed = await parseMarkdown(article.value);
+      article.value.content = parsed;
       console.log(article.value);
 
       useServerSeoMeta({
@@ -100,11 +102,17 @@ const { data, error } = await useFetch(
 <template>
   <SectionColumn innerClass="article">
     <article>
-      <ArticleSide :toc="article?.content?.toc" :title="article?.title" />
+      <ArticleSide :toc="article?.content?.body.toc" :title="article?.title" />
 
       <ArticleHeader :article="article" />
 
-      <ContentRendererMarkdown :value="article" tag="article" class="body" />
+      <!-- <ContentRendererMarkdown
+        v-if="article.content"
+        :value="article.content"
+        tag="article"
+        class="body"
+      /> -->
+
       <!--
 
       <ArticleSection
