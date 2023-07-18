@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 import { useFetch } from "nuxt/app";
 import { CHAINS } from "@api3/chains";
 import { watchDebounced } from "@vueuse/core";
-import { useInfiniteScroll } from "@vueuse/core";
 
 export const useEcosystemStore = defineStore("ecosystem", () => {
   //get projects, with dynamic pagination
@@ -59,22 +58,40 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     error: listError,
     refresh,
   } = useFetch(() => debouncedSearchQuery.value, {
-    onResponse({ request, response }) {
-      //only push when page changes otherwise overwrite list
+    // onResponse({ request, response }) {
+    //   list.value = response._data;
+    // },
+  });
 
-      list.value = response._data;
+  watch(
+    [data, filterQuery],
+    ([newList, newFilterQuery], [prevList, prevFilterQuery]) => {
+      // do whatever you want
+      // append list if page changes
+      // console.log("newFilterQuery", { prevPage: newFilterQuery.page });
+      // console.log("prevFilterQuery", { newPage: prevFilterQuery.page });
+      if (prevFilterQuery.page !== newFilterQuery.page) {
+        console.log("append");
+      } else {
+        list.value = [...prevList, ...newList];
+        console.log("replace");
+        // list.value = newList;
+      }
+    }
+  );
 
-      watch(filterQuery, (newVal, oldVal) => {
-        console.log(newVal);
-        if (newVal.page != oldVal.page) {
-          console.log("watch page changed");
-          // list.value.push(...response._data);
-        } else {
-          console.log("watch filter changed");
-          //  list.value = response._data
-        }
-      });
-    },
+  watch(filterQuery.value.page, (newFilterQuery, prevFilterQuery) => {
+    // do whatever you want
+    // append list if page changes
+    console.log("newFilterQuery", { prevPage: newFilterQuery });
+    console.log("prevFilterQuery", { newPage: prevFilterQuery });
+    // if (prevFilterQuery.page !== newFilterQuery.page) {
+    //   console.log("append");
+    //   list.value = [...prevList, ...newList];
+    // } else {
+    //   console.log("replace");
+    //   list.value = newList;
+    // }
   });
 
   //stats
