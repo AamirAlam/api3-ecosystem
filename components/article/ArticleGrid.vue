@@ -19,6 +19,8 @@ const layoutIndex = ref(props.layout ?? 0);
 function cardType(index, layout = layouts[0]) {
   return layout[index % layout.length];
 }
+
+console.log(blog.list);
 </script>
 
 <template>

@@ -12,9 +12,7 @@ const { data, error } = await useFetch(
     async onResponse({ request, response, options }) {
       // Process the response data
 
-      const data = response._data;
-      console.log(data);
-      article.value = data;
+      article.value = response._data;
       console.log(article.value);
 
       useServerSeoMeta({
@@ -106,7 +104,7 @@ const { data, error } = await useFetch(
 
       <ArticleHeader :article="article" />
 
-      <!-- <ContentRendererMarkdown :value="article" tag="article" class="body" /> -->
+      <ContentRendererMarkdown :value="article" tag="article" class="body" />
       <!--
 
       <ArticleSection
