@@ -21,7 +21,7 @@ useHead({
 
 <template>
   <NuxtLayout>
-    <NuxtLoadingIndicator color="var(--gradient-color)" />
+    <!-- <NuxtLoadingIndicator color="var(--gradient-color)" /> -->
     <!-- <LoadingScreen v-if="loading" /> -->
     <NuxtPage />
   </NuxtLayout>

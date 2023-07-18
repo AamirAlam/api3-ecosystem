@@ -70,7 +70,7 @@ onMounted(() => {
   <dapp-filter>
     <header>
       <h3 class="solid-voice">
-        Displaying {{ ecosystem.filter.count }} of
+        Displaying {{ ecosystem?.list?.length }} of
         {{ ecosystem?.list?.length }} results
       </h3>
       <button class="button" @click="clearFilters">Clear</button>

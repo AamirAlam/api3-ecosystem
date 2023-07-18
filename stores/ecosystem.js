@@ -2,15 +2,16 @@ import { defineStore } from "pinia";
 import { useFetch } from "nuxt/app";
 import { CHAINS } from "@api3/chains";
 import { watchDebounced } from "@vueuse/core";
+import { useInfiniteScroll } from "@vueuse/core";
 
 export const useEcosystemStore = defineStore("ecosystem", () => {
   //get projects, with dynamic pagination
   const baseServerUrl = ref("/api/projects/");
   const filterQuery = ref({
+    searchKey: "",
     chains: [],
     categories: [],
     productTypes: [],
-    searchKey: "",
     years: [],
     page: 1,
   });
@@ -51,11 +52,30 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     { debounce: 500, maxWait: 1000 }
   );
 
+  const list = ref([]);
+
   const {
-    data: list,
+    data,
     error: listError,
     refresh,
-  } = useFetch(() => debouncedSearchQuery.value);
+  } = useFetch(() => debouncedSearchQuery.value, {
+    onResponse({ request, response }) {
+      //only push when page changes otherwise overwrite list
+
+      list.value = response._data;
+
+      watch(filterQuery, (newVal, oldVal) => {
+        console.log(newVal);
+        if (newVal.page != oldVal.page) {
+          console.log("watch page changed");
+          // list.value.push(...response._data);
+        } else {
+          console.log("watch filter changed");
+          //  list.value = response._data
+        }
+      });
+    },
+  });
 
   //stats
   const { data: stats, error: statsError } = useFetch("/api/projects/stats/");
