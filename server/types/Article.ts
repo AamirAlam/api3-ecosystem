@@ -1,14 +1,14 @@
 import { z } from "zod";
 
 const AuthorSchema = z.object({
-  name: z.string(),
-  bio: z.string(),
+  name: z.string().nonempty("Name is required"),
+  bio: z.string().optional(),
 });
 
 const ArticleSchema = z.object({
   title: z.string().nonempty("Title is required"),
-  subtitle: z.string().nonempty("Subtitle is required"),
-  description: z.string().nonempty("Description is required"),
+  subtitle: z.string().optional(),
+  description: z.string().optional(),
   author: AuthorSchema,
   content: z.string().nonempty("Content is required"),
   category: z.string().nonempty("Category is required"),

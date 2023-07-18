@@ -13,7 +13,7 @@ export default authenticated(
         title: articleData.title,
         subtitle: articleData.subtitle,
         description: articleData.description,
-        author: { name: articleData.author, bio: "" },
+        author: { name: articleData.author, bio: articleData?.bio },
         content: articleData.body,
         category: articleData.category,
         created_at: new Date(),
