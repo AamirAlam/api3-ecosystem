@@ -14,11 +14,9 @@ const ArticleSchema = new Schema<ArticleType>({
   },
   subtitle: {
     type: String,
-    required: true,
   },
   description: {
     type: String,
-    required: true,
   },
   author: {
     type: AuthorSchema,
