@@ -31,6 +31,7 @@ function clearFilters() {
   ecosystem.filterQuery.chains = [];
   ecosystem.filterQuery.categories = [];
   ecosystem.filterQuery.years = [];
+  ecosystem.filterQuery.page = 1;
 }
 
 const showAll = ref({

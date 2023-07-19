@@ -85,7 +85,7 @@ onMounted(() => {
             <h2 class="attention-voice">Screenshots</h2>
             <ul class="image-grid">
               <li v-for="image in dapp?.images.screenshots" :key="image">
-                <img src="@/assets/images/landscape.jpg" alt="" />
+                <img :src="image" :alt="image" />
               </li>
             </ul>
           </section>
