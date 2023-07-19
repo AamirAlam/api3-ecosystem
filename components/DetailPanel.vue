@@ -33,7 +33,7 @@ const showShareBox = ref(false);
             <!-- {{ chain }} -->
             <picture class="chain">
               <ChainIcon
-                :chain="chain.name"
+                :chain="ecosystem.chainNames(chain)"
                 fill="var(--color)"
                 stroke="var(--paper)"
                 strokeWidth="15%"
@@ -73,7 +73,7 @@ const showShareBox = ref(false);
         <ul>
           <li v-for="social in dapp.links.socials" :key="social.id">
             <a :href="social.url" :target="social.name">
-              <!-- <SocialIcon :social="social.label" /> -->
+              <SocialIcon :social="social.label" />
             </a>
           </li>
         </ul>

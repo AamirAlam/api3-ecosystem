@@ -1,5 +1,6 @@
 <script setup>
 const props = defineProps(["dapp"]);
+const ecosystem = useEcosystemStore();
 </script>
 
 <template>
@@ -16,11 +17,11 @@ const props = defineProps(["dapp"]);
       <li class="table-row" v-for="proxy in dapp.proxies">
         <div class="chain">
           <picture>
+            {{ proxy.chainId }}
+            {{ ecosystem.chainNames(proxy.chainId) }}
             <ChainIcon
               v-if="false"
-              :chain="
-                dapp.chains.find((chain) => chain.chainId == proxy.chainId).name
-              "
+              :chain="ecosystem.chainNames(proxy.chainId)"
               fill="var(--color)"
               stroke="var(--paper)"
               strokeWidth="15%"
@@ -64,6 +65,10 @@ section.proxy-table {
 
     & + .table-row {
       // border-top: 1px solid var(--white);
+    }
+
+    .is-oev picture {
+      max-width: 20px;
     }
   }
 }

@@ -106,12 +106,12 @@ const { data, error } = await useFetch(
 
       <ArticleHeader :article="article" />
 
-      <!-- <ContentRendererMarkdown
+      <ContentRendererMarkdown
         v-if="article.content"
         :value="article.content"
         tag="article"
         class="body"
-      /> -->
+      />
 
       <!--
 

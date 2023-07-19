@@ -18,7 +18,6 @@ function buttonHandle(valid, direction) {
   >
     <section class="form-socials">
       <h2 class="solid-voice">More Socials</h2>
-
       <form-field>
         <FormKit
           type="url"

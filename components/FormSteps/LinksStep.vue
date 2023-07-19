@@ -84,9 +84,14 @@ function buttonHandle(valid, direction) {
   </FormKit>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .form-links {
-  display: inherit;
-  gap: inherit;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  h2 {
+    grid-column: 1 / -1;
+  }
 }
 </style>

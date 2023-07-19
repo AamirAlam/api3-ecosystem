@@ -127,6 +127,7 @@ onMounted(() => {
         <picture class="curves-decoration">
           <CurvesDecoration />
         </picture>
+        <div class="success-indicator" v-show="false"></div>
       </div>
     </FormKit>
   </SectionColumn>

@@ -181,16 +181,15 @@ mission-section {
   }
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(12, 1fr);
-
+    //  grid-template-columns: repeat(12, 1fr);
     heading-text {
-      grid-column: 2 / span 8;
+      grid-column: 2 / span 6;
     }
-    article {
-      grid-column: 1/-1;
-      @media (min-width: 768px) {
-        grid-column: 2 / span 5;
-      }
+  }
+  article {
+    grid-column: 1/-1;
+    @media (min-width: 768px) {
+      grid-column: 2 / span 5;
     }
   }
 
