@@ -95,12 +95,14 @@ export default defineEventHandler(async (event) => {
 
     const finalFilter = { $and: [searchFilters, selectionFilters] };
 
+    const totalProjects = await Project.countDocuments(finalFilter);
+
     let projects = await Project.find(finalFilter)
       .skip(skips)
       .limit(limit)
       .sort({ year: -1 });
 
-    return projects;
+    return { projects, total: totalProjects };
   } catch (err: any) {
     event.res.statusCode = 500;
     return {

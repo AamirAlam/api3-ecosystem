@@ -51,47 +51,23 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     { debounce: 500, maxWait: 1000 }
   );
 
-  const list = ref([]);
+  const projectList = ref([]);
+  const totalProjects = ref(0);
 
-  const {
-    data,
-    error: listError,
-    refresh,
-  } = useFetch(() => debouncedSearchQuery.value, {
-    // onResponse({ request, response }) {
-    //   list.value = response._data;
-    // },
-  });
-
-  watch(
-    [data, filterQuery],
-    ([newList, newFilterQuery], [prevList, prevFilterQuery]) => {
-      // do whatever you want
-      // append list if page changes
-      // console.log("newFilterQuery", { prevPage: newFilterQuery.page });
-      // console.log("prevFilterQuery", { newPage: prevFilterQuery.page });
-      if (prevFilterQuery.page !== newFilterQuery.page) {
-        console.log("append");
-      } else {
-        list.value = [...prevList, ...newList];
-        console.log("replace");
-        // list.value = newList;
-      }
+  const { data, error: listError } = useFetch(
+    () => debouncedSearchQuery.value,
+    {
+      key: `ecosystem-list-${filterQuery.value.page}`,
     }
   );
 
-  watch(filterQuery.value.page, (newFilterQuery, prevFilterQuery) => {
-    // do whatever you want
-    // append list if page changes
-    console.log("newFilterQuery", { prevPage: newFilterQuery });
-    console.log("prevFilterQuery", { newPage: prevFilterQuery });
-    // if (prevFilterQuery.page !== newFilterQuery.page) {
-    //   console.log("append");
-    //   list.value = [...prevList, ...newList];
-    // } else {
-    //   console.log("replace");
-    //   list.value = newList;
-    // }
+  watch([filterQuery, data], ([newQuery, newData], [oldQuery, prevData]) => {
+    totalProjects.value = newData.total;
+    if (newQuery.page === 1) {
+      projectList.value = newData.projects;
+    } else {
+      projectList.value = [...projectList.value, ...newData.projects];
+    }
   });
 
   //stats
@@ -152,24 +128,15 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     return chain ? chain.name : chainId;
   };
 
-  const filter = reactive({
-    search: "",
-    productTypes: [],
-    category: [],
-    chains: [],
-    years: [],
-    count: 0, //#todo filtered list count that is appended
-  });
-
   return {
-    list,
+    list: projectList,
+    totalProjects,
     stats,
     categoryOptions,
     productTypeOptions,
     chainOptions,
     categoryToLabel,
     productTypeToLabel,
-    filter,
     filterQuery,
     chainNames,
     addDapp,
