@@ -1,7 +1,6 @@
 <script setup>
 import { gsap } from "gsap";
 import { useInterfaceStore } from "@/stores/interface";
-import { useInfiniteScroll } from "@vueuse/core";
 
 const ui = useInterfaceStore();
 
@@ -33,21 +32,6 @@ onMounted(() => {
 });
 
 const ecosystem = useEcosystemStore();
-
-const listRef = ref(null);
-
-useInfiniteScroll(
-  listRef,
-  () => {
-    if (
-      ecosystem.list.length < ecosystem.totalProjects ||
-      ecosystem.list.length >= 10
-    ) {
-      ecosystem.filterQuery.page += 1;
-    }
-  },
-  { distance: 20 }
-);
 </script>
 
 <template>
@@ -71,9 +55,7 @@ useInfiniteScroll(
       </div>
     </ClientOnly>
 
-    <div class="project-list" ref="listRef">
-      <DappGrid />
-    </div>
+    <DappGrid />
   </SectionColumn>
 </template>
 

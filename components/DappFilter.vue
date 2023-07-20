@@ -72,7 +72,7 @@ onMounted(() => {
     <header>
       <h3 class="solid-voice">
         Displaying {{ ecosystem?.list?.length }} of
-        {{ ecosystem?.list?.length }} results
+        {{ ecosystem.totalProjects }} results
       </h3>
       <button class="button" @click="clearFilters">Clear</button>
     </header>

@@ -1,8 +1,25 @@
 <script setup>
 import { useEcosystemStore } from "~/stores/ecosystem";
+import { useInfiniteScroll } from "@vueuse/core";
 import { gsap } from "gsap";
 
 const ecosystem = useEcosystemStore();
+
+const listRef = ref(null);
+
+useInfiniteScroll(
+  listRef,
+  () => {
+    console.log("scroll");
+    if (
+      ecosystem.list.length < ecosystem.totalProjects ||
+      ecosystem.list.length >= 10
+    ) {
+      ecosystem.filterQuery.page += 1;
+    }
+  },
+  { distance: 20 }
+);
 
 onMounted(() => {
   const pageLoad = gsap.timeline();
@@ -36,14 +53,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <ul class="dapp-grid" v-auto-animate>
+  <div class="dapp-grid" ref="listRef" v-auto-animate>
     <DappCard
       v-for="(dapp, index) in ecosystem.list"
       :dapp="dapp"
       :key="dapp?.name"
       :data-index="index"
     />
-  </ul>
+  </div>
 </template>
 
 <style scoped>

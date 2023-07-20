@@ -138,7 +138,7 @@ hero-landing {
 
     grid-template-columns: repeat(12, 1fr);
 
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
   }
 
   .line-decoration {
