@@ -102,7 +102,7 @@ const { data, error } = await useFetch(
 <template>
   <SectionColumn innerClass="article">
     <article>
-      <ArticleSide :toc="article?.content?.body.toc" :title="article?.title" />
+      <ArticleSide :toc="article?.content?.body?.toc" :title="article?.title" />
 
       <ArticleHeader :article="article" />
 

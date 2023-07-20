@@ -89,11 +89,4 @@ const ecosystem = useEcosystemStore();
     }
   }
 }
-body {
-  margin: 0; /* remove body margin to prevent double scrollbars */
-}
-.project-list {
-  height: 100vh;
-  overflow: auto;
-}
 </style>

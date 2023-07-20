@@ -71,6 +71,7 @@ onMounted(() => {
   align-items: start;
   position: relative;
   opacity: 0;
+  overflow: auto;
 }
 
 .list-move {

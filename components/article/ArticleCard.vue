@@ -3,6 +3,8 @@ import slug from "slug";
 import { gsap } from "gsap";
 const props = defineProps(["article"]);
 
+console.log(props.article);
+
 onMounted(() => {
   const pageLoad = gsap.timeline();
   pageLoad.fromTo(
