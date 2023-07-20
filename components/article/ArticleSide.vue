@@ -56,7 +56,7 @@ h3 {
 
   a {
     padding-left: 0;
-    white-space: nowrap;
+    //  white-space: nowrap;
   }
 }
 </style>
