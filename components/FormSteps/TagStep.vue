@@ -46,7 +46,6 @@ function buttonHandle(valid, direction) {
       />
     </form-field>
 
-    <!-- //: todo change this single select value -->
     <form-field>
       <label class="notice-voice" for="productType">
         select the service used
