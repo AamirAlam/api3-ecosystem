@@ -1,5 +1,3 @@
-import { SiweMessage } from "siwe";
-
 export const useSiwe = () => {
   const { sign, account, chainId } = useWeb3();
   async function verifyWallet() {
@@ -28,7 +26,7 @@ export const useSiwe = () => {
 
       const address = account.value;
 
-      const message = new SiweMessage({
+      const message = {
         domain: window.location.host,
         chainId: chainId.value,
         address: address,
@@ -36,9 +34,13 @@ export const useSiwe = () => {
         uri: window.location.origin,
         version: "1",
         nonce: nonce,
+      };
+
+      const messageToSign = await $fetch("/api/auth/sign-message", {
+        method: "GET",
+        query: message,
       });
 
-      const messageToSign = message.prepareMessage();
       const signature = await sign({ message: messageToSign });
 
       if (!signature) {
@@ -54,7 +56,7 @@ export const useSiwe = () => {
         body: {
           signature: signature,
           address: address,
-          message: JSON.stringify(message),
+          message: JSON.stringify(messageToSign),
           nonce: nonce,
         },
       });
