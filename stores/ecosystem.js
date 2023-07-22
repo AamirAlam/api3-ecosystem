@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { useFetch } from "nuxt/app";
 import { CHAINS } from "@api3/chains";
 import { watchDebounced } from "@vueuse/core";
+import feedNames from "./feedNames.json";
 
 export const useEcosystemStore = defineStore("ecosystem", () => {
   //get projects, with dynamic pagination
@@ -135,6 +136,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     chainOptions,
     categoryToLabel,
     productTypeToLabel,
+    feedNameOptions: feedNames,
     filterQuery,
     chainNames,
     addDapp,

@@ -18,10 +18,16 @@ async function handleUpdateProxy() {
     return;
   }
 
+  if (!props.dappForm?.feedName) {
+    console.log("invalid feed name selected");
+    return;
+  }
+
   try {
     const info = await fetchProxyInformation(
       props.dappForm?.proxyAddress,
-      parseInt(props.dappForm?.proxyChain)
+      parseInt(props.dappForm?.proxyChain),
+      props.dappForm?.feedName
     );
 
     console.log("info ", info);
@@ -31,6 +37,7 @@ async function handleUpdateProxy() {
       chainId: props.dappForm?.proxyChain,
       type: info?.type,
       dataFeedId: info?.dataFeedId,
+      feedName: props.dappForm?.feedName,
       dApiNameHash: info?.dapiNameHash,
       api3ServerV1: info?.api3ServerV1,
       oevBeneficiary: info?.oevBeneficiary,
@@ -86,28 +93,28 @@ function buttonHandle(valid, direction) {
         </form-field>
 
         <form-field>
-          <label class="notice-voice" for="proxy-chain"> Chain </label>
-          <Multiselect
-            id="proxy-chain"
+          <FormKit
+            type="text"
+            label="Proxy Chain"
+            label-class="$reset notice-voice"
+            name="Proxy Chain"
+            placeholder="Proxy Chain"
+            disabled="true"
+            id="proxy-chainId"
             v-model="proxy.chainId"
-            mode="single"
-            :close-on-select="true"
-            :searchable="true"
-            :create-option="false"
-            :options="ecosystem.chainOptions"
           />
         </form-field>
 
         <form-field>
           <FormKit
             type="text"
-            label="api3ServerV1"
+            label="feedName"
             label-class="$reset notice-voice"
-            name="api3ServerV1"
-            placeholder="api3ServerV1"
+            name="feedName"
+            placeholder="Feed Name"
             disabled="true"
-            id="api3ServerV1"
-            v-model="proxy.api3ServerV1"
+            id="feedName"
+            v-model="proxy.feedName"
           />
         </form-field>
 
@@ -187,6 +194,19 @@ function buttonHandle(valid, direction) {
             :searchable="true"
             :create-option="false"
             :options="ecosystem.chainOptions"
+          />
+        </form-field>
+
+        <form-field>
+          <label class="notice-voice" for="feed-name"> Select Feed Name </label>
+          <Multiselect
+            id="feed-name"
+            v-model="dappForm.feedName"
+            mode="single"
+            :close-on-select="true"
+            :searchable="true"
+            :create-option="false"
+            :options="ecosystem.feedNameOptions"
           />
         </form-field>
 
