@@ -124,7 +124,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
 
   // chain id to chain name mapping
   const chainNames = (chainId) => {
-    const chain = CHAINS.find((chain) => chain.id === chainId);
+    const chain = CHAINS.find((chain) => chain.id == chainId);
     return chain ? chain.name : chainId;
   };
 

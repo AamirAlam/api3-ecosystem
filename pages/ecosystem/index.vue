@@ -1,6 +1,7 @@
 <script setup>
 import { gsap } from "gsap";
 import { useInterfaceStore } from "@/stores/interface";
+import { useEcosystemStore } from "@/stores/ecosystem";
 
 const ui = useInterfaceStore();
 

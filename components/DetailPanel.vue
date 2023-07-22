@@ -1,4 +1,6 @@
 <script setup>
+import { useEcosystemStore } from "@/stores/ecosystem";
+
 const props = defineProps(["dapp"]);
 const ecosystem = useEcosystemStore();
 

@@ -1,5 +1,7 @@
 <script setup>
 import slug from "slug";
+import { useEcosystemStore } from "@/stores/ecosystem";
+
 slug.extend({ "/": "-" });
 
 const ecosystem = useEcosystemStore();
