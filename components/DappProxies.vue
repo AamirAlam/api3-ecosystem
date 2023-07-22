@@ -1,4 +1,6 @@
 <script setup>
+import { useEcosystemStore } from "@/stores/ecosystem";
+
 const props = defineProps(["dapp"]);
 const ecosystem = useEcosystemStore();
 </script>
@@ -17,10 +19,7 @@ const ecosystem = useEcosystemStore();
       <li class="table-row" v-for="proxy in dapp.proxies">
         <div class="chain">
           <picture>
-            {{ proxy.chainId }}
-            {{ ecosystem.chainNames(proxy.chainId) }}
             <ChainIcon
-              v-if="false"
               :chain="ecosystem.chainNames(proxy.chainId)"
               fill="var(--color)"
               stroke="var(--paper)"

@@ -1,5 +1,6 @@
 <script setup>
 import Multiselect from "@vueform/multiselect";
+import { useEcosystemStore } from "@/stores/ecosystem";
 
 const ecosystem = useEcosystemStore();
 
