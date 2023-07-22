@@ -1,7 +1,7 @@
 <script setup>
 import { useEcosystemStore } from "@/stores/ecosystem";
 
-const props = defineProps(["dapp"]);
+const props = defineProps(["dapp", "isForm"]);
 const ecosystem = useEcosystemStore();
 </script>
 
@@ -15,6 +15,7 @@ const ecosystem = useEcosystemStore();
         <div class="solid-voice type">Feed Name</div>
         <div class="solid-voice type">Type</div>
         <div class="solid-voice type">Address</div>
+        <div class="" v-if="!isForm"></div>
       </li>
       <li class="table-row" v-for="proxy in dapp.proxies">
         <div class="chain">
@@ -33,13 +34,23 @@ const ecosystem = useEcosystemStore();
           </picture>
         </div>
         <div class="type">
-          {{ proxy.proxyType.includes("datafeed") ? "datafeed" : "dAPI" }}
-        </div>
-        <div class="type">
           {{ proxy.feedName }}
         </div>
         <div class="type">
-          {{ proxy.proxyAddress }}
+          {{ proxy.proxyType.includes("datafeed") ? "data Feed" : "dAPI" }}
+        </div>
+        <div class="type">
+          {{ proxy.proxyAddress.slice(0, 10) }}
+        </div>
+        <div class="cross" v-if="!isForm">
+          <button
+            class="icon button"
+            @click.prevent="dapp.proxies.splice(index, 1)"
+          >
+            <picture>
+              <img src="@/assets/images/icon-cross.svg" />
+            </picture>
+          </button>
         </div>
       </li>
     </ul>
