@@ -63,19 +63,19 @@ main.index {
     gap: 8rem;
   }
   @media (min-width: 1024px) {
-    max-height: 100vh;
+    max-height: calc(100vh - 100px);
     overflow-y: scroll;
-    scroll-snap-type: mandatory;
-    scroll-snap-type: y mandatory;
-    scroll-snap-points-y: repeat(calc(100vh - 100px));
+    //  scroll-snap-type: mandatory;
+    //  scroll-snap-type: y mandatory;
+    //  scroll-snap-points-y: repeat(calc(100vh - 100px));
 
     display: grid;
 
     & > section:not(.scrolling-stats) {
-      scroll-snap-align: start;
-      scroll-padding-top: 15rem;
+      // scroll-snap-align: start;
+      // scroll-padding-top: 15rem;
       inner-column {
-        height: calc(100vh - 100px);
+        //   height: calc(100vh - 100px);
       }
       // padding-bottom: 5rem 0;
     }

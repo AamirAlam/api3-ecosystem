@@ -73,6 +73,12 @@ onMounted(() => {
     top: 0,
     left: 0,
   });
+
+  //   const $form = document.querySelector("form");
+  //   const $main = document.querySelector("main.add-dapp");
+  //   console.log($form.scrollHeight);
+  //   const scrollHeight = computed(() => $form.scrollHeight);
+  //   $main.style.setProperty("--after-height", scrollHeight);
 });
 </script>
 
@@ -137,18 +143,32 @@ onMounted(() => {
 body:has(main.add-dapp) {
   overflow: hidden;
 }
+main.add-dapp {
+  position: relative;
+
+  //   &::after { #todo scroll indicator
+  //     content: "";
+  //     position: absolute;
+  //     width: 1px;
+  //     height: var(--after-height);
+  //     right: 10px;
+  //     top: 0px;
+  //     background: var(--gradient-color);
+  //     z-index: 1;
+  //   }
+}
 
 form {
   max-height: 100vh;
   overflow-y: scroll;
-  scroll-snap-type: mandatory;
-  scroll-snap-type: y mandatory;
-  scroll-snap-points-y: repeat(calc(100vh - 100px));
+  //   scroll-snap-type: mandatory;
+  //   scroll-snap-type: y mandatory;
+  //   scroll-snap-points-y: repeat(calc(100vh - 100px));
   scroll-behavior: smooth;
 
   & > :is(.step, .actions) {
     scroll-snap-align: start;
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
     display: grid;
     gap: 3rem;
     align-content: center;
@@ -160,7 +180,6 @@ form {
     max-width: unset;
     display: grid;
     align-items: center;
-
     gap: 1rem;
   }
 

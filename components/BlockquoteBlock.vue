@@ -53,7 +53,7 @@ blockquote {
     position: absolute;
     inset: -1px;
     z-index: -2;
-    background: var(--gradient-color);
+    background: var(--gradient-dark);
     border-radius: calc(var(--corners) + 3rem);
   }
 }

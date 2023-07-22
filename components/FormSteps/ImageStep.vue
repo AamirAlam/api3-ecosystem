@@ -86,14 +86,14 @@ const fileSize = function (node) {
         />
       </file-upload>
     </div>
-    <div class="actions">
+    <!-- <div class="actions">
       <button class="button previous" @click.prevent="buttonHandle(valid, -1)">
         Previous
       </button>
       <button class="button next" @click.prevent="buttonHandle(valid, 1)">
         Next
       </button>
-    </div>
+    </div> -->
     <template v-if="buttonClick">
       <p v-if="!valid" class="not-valid">
         Your account details are not complete!
