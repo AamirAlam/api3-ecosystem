@@ -73,6 +73,12 @@ onMounted(() => {
     top: 0,
     left: 0,
   });
+
+  //   const $form = document.querySelector("form");
+  //   const $main = document.querySelector("main.add-dapp");
+  //   console.log($form.scrollHeight);
+  //   const scrollHeight = computed(() => $form.scrollHeight);
+  //   $main.style.setProperty("--after-height", scrollHeight);
 });
 </script>
 
@@ -136,6 +142,20 @@ onMounted(() => {
 <style lang="scss">
 body:has(main.add-dapp) {
   overflow: hidden;
+}
+main.add-dapp {
+  position: relative;
+
+  //   &::after { #todo scroll indicator
+  //     content: "";
+  //     position: absolute;
+  //     width: 1px;
+  //     height: var(--after-height);
+  //     right: 10px;
+  //     top: 0px;
+  //     background: var(--gradient-color);
+  //     z-index: 1;
+  //   }
 }
 
 form {
