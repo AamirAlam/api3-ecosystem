@@ -16,6 +16,7 @@ useServerSeoMeta({
 
 //
 const dappForm = useStorage("dapp-form", {});
+dappForm.value.proxies = [];
 const complete = ref(false);
 const messages = ref([]);
 const { verifyWallet } = useSiwe();
@@ -34,6 +35,7 @@ function showErrors(node) {
 }
 
 const submitHandler = async () => {
+  console.log("dapp form ", dappForm);
   const {
     success: verificationSuccess,
     data: verificationData,
@@ -100,7 +102,7 @@ onMounted(() => {
       <div class="step">
         <TagStep :dappForm="dappForm" />
       </div>
-      <div class="step">
+      <div class="step" v-if="dappForm.productType === 'datafeed'">
         <ProxyStep :dappForm="dappForm" />
       </div>
       <div class="step">

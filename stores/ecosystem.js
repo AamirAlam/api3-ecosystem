@@ -78,10 +78,8 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
   }
 
   const productTypeToLabel = {
-    dapi: "dAPI",
     qrng: "QRNG",
     datafeed: "Data Feed",
-    airnode: "Airnode",
   };
 
   const categoryToLabel = {

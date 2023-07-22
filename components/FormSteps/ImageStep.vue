@@ -1,6 +1,5 @@
 <script setup>
 const props = defineProps(["dappForm"]);
-props.dappForm.images = props.dappForm.images ?? {};
 
 const buttonClick = ref(false);
 function buttonHandle(valid, direction) {

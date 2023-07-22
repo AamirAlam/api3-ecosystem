@@ -88,18 +88,36 @@ export const useHttpCalls = () => {
 
       body.append("links", JSON.stringify(links));
 
-      // todo: fix proxies selection
-      const testProxies = [
-        {
-          proxyType: "OEV dAPI Proxy",
-          feedName: "BTC/USD",
-          dapiName: "BTC/USD",
-          proxyAddress: "0x",
-          oevBeneficiary: "0x",
-          chainId: 137,
-        },
-      ];
-      body.append("proxies", JSON.stringify(testProxies));
+      const proxies = dappForm.value.proxies;
+
+      const proxyPayload = {};
+      proxies?.forEach((el) => {
+        if (!proxyPayload[el?.chainId]) {
+          proxyPayload[el?.chainId] = [];
+        }
+
+        if (el.type === "datafeedId") {
+          proxyPayload[el?.chainId]?.push({
+            proxyType: el?.type,
+            feedName: !el?.feedName ? "ETH/USD" : el?.feedName,
+            datafeedId: el?.dataFeedId,
+            proxyAddress: el?.proxyAddress,
+            oev: { enabled: el?.isOEV, beneficiary: el?.oevBeneficiary },
+          });
+        } else {
+          proxyPayload[el?.chainId]?.push({
+            proxyType: el?.type,
+            feedName: !el?.feedName ? "ETH/USD" : el?.feedName,
+            dapiNameHash: el?.dApiNameHash,
+            proxyAddress: el?.proxyAddress,
+            oev: { enabled: el?.isOEV, beneficiary: el?.oevBeneficiary },
+          });
+        }
+      });
+
+      console.log("proxy payload ", proxyPayload);
+
+      body.append("proxies", JSON.stringify(proxyPayload));
 
       // images
       body.append("logo", dappForm.value.images.logo);

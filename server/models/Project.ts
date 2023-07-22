@@ -64,7 +64,7 @@ const ProjectSchema = new Schema<ProjectType>({
   },
   productType: {
     type: String,
-    enum: ["dapi", "qrng", "datafeed"],
+    enum: ["qrng", "datafeed"],
     required: true,
   },
   chains: {
@@ -74,7 +74,7 @@ const ProjectSchema = new Schema<ProjectType>({
   },
   proxies: {
     type: Schema.Types.Mixed,
-    // required: true,
+    required: true,
   },
   year: {
     type: Number,

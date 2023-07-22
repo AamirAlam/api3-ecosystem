@@ -33,7 +33,18 @@ async function handleUpdateProxy() {
       dataFeedId: info?.dataFeedId,
       dApiNameHash: info?.dapiNameHash,
       api3ServerV1: info?.api3ServerV1,
+      oevBeneficiary: info?.oevBeneficiary,
     };
+
+    const index = props.dappForm?.proxies?.findIndex(
+      (el) => el?.proxyAddress === finalProxyEntry.proxyAddress
+    );
+
+    if (index >= 0) {
+      console.log("proxy already added");
+      //todo: show error in ui
+      return;
+    }
 
     props.dappForm?.proxies?.push(finalProxyEntry);
     props.dappForm.proxyChain = null;
@@ -160,7 +171,7 @@ function buttonHandle(valid, direction) {
             label-class="$reset notice-voice"
             name="proxyAddress"
             placeholder="Proxy Address"
-            validation="required"
+            validation="optional"
             id="proxyAddress"
             v-model="dappForm.proxyAddress"
           />
