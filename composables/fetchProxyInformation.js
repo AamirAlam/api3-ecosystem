@@ -133,8 +133,14 @@ export async function fetchProxyInformation(address, chainId, feedName) {
       const dapiInfo = await fetch(
         `https://db-api-prod.api3.org/api/dapi-info?chain=${chainName}&name=${encodeURIComponent(feedName)}`
       );
-      const datafeedId = dapiInfo.dapi.beaconSetId || dapiInfo.dapi.beaconId;
-      if(dataFeedIdResult.result !== datafeedId) throw new Error(`dataFeedId mismatch: ${dataFeedIdResult.result} !== ${datafeedId}`)
+      let possibleDatafeedIds = [];
+      if(dapiInfo.dapi.beaconId) possibleDatafeedIds.push(dapiInfo.dapi.beaconId);
+      if(dapiInfo.dapi.beaconSetId){
+        possibleDatafeedIds.push(dapiInfo.dapi.beaconSetId);
+        const beaconIds = dapiInfo.dapi.beaconSet.beacons.map((beacon) => beacon.beaconId);
+        possibleDatafeedIds = possibleDatafeedIds.concat(beaconIds);
+      }
+      if(!possibleDatafeedIds.includes(dataFeedIdResult.result)) throw new Error(`dataFeedId mismatch: ${dataFeedIdResult.result} not in ${possibleDatafeedIds}`)
       proxyInformation.type = "datafeedId";
       proxyInformation.dataFeedId = dataFeedIdResult.result;
     }
