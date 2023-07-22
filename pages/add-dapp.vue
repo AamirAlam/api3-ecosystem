@@ -141,14 +141,14 @@ body:has(main.add-dapp) {
 form {
   max-height: 100vh;
   overflow-y: scroll;
-  scroll-snap-type: mandatory;
-  scroll-snap-type: y mandatory;
-  scroll-snap-points-y: repeat(calc(100vh - 100px));
+  //   scroll-snap-type: mandatory;
+  //   scroll-snap-type: y mandatory;
+  //   scroll-snap-points-y: repeat(calc(100vh - 100px));
   scroll-behavior: smooth;
 
   & > :is(.step, .actions) {
     scroll-snap-align: start;
-    height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
     display: grid;
     gap: 3rem;
     align-content: center;
@@ -160,7 +160,6 @@ form {
     max-width: unset;
     display: grid;
     align-items: center;
-
     gap: 1rem;
   }
 
