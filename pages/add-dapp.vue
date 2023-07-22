@@ -39,13 +39,11 @@ const submitHandler = async () => {
     data: verificationData,
     message: verificationError,
   } = await verifyWallet();
-
   console.log("verificationStatus", {
     verificationSuccess,
     verificationData,
     verificationError,
   });
-
   if (!verificationSuccess) {
     console.log(
       "verificationStatus signature verification failed",
@@ -53,9 +51,7 @@ const submitHandler = async () => {
     );
     return;
   }
-
   const submitResult = await submitProject(dappForm, verificationData?.token);
-
   if (submitResult.success) {
     console.log("api response", submitResult);
     complete.value = true;
