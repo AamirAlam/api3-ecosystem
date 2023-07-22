@@ -19,6 +19,7 @@ const dappForm = useStorage("dapp-form", {});
 dappForm.value.proxies = [];
 const complete = ref(false);
 const messages = ref([]);
+const successMessage = ref("");
 const { verifyWallet } = useSiwe();
 const { submitProject } = useHttpCalls();
 
@@ -36,6 +37,9 @@ function showErrors(node) {
 
 const submitHandler = async () => {
   console.log("dapp form ", dappForm);
+  setErrors("add-form", []);
+  successMessage.value = "";
+
   const {
     success: verificationSuccess,
     data: verificationData,
@@ -53,15 +57,17 @@ const submitHandler = async () => {
     );
     return;
   }
+
   const submitResult = await submitProject(dappForm, verificationData?.token);
   if (submitResult.success) {
     console.log("api response", submitResult);
     complete.value = true;
     delete dappForm.value;
+    messages.value = ["Project added successfully."];
     // dappForm.value = {};
     // setErrors("add-form", ["Project added successfully."]); ??
   } else {
-    setErrors("add-form", ["The server didn’t like our request."]);
+    setErrors("add-form", [submitResult?.message]);
   }
 };
 
@@ -131,7 +137,11 @@ onMounted(() => {
         <picture class="curves-decoration">
           <CurvesDecoration />
         </picture>
-        <div class="success-indicator" v-show="false"></div>
+        <!-- <template v-if="isValid"> -->
+        <div class="success-indicator" v-if="successMessage">
+          {{ successMessage }}
+        </div>
+        <!-- </template> -->
       </div>
     </FormKit>
   </SectionColumn>

@@ -12,7 +12,7 @@ export const useHttpCalls = () => {
       body.append("chains", JSON.stringify(dappForm.value.chains));
       body.append("categories", JSON.stringify(dappForm.value.categories));
       body.append("productType", dappForm.value?.productType);
-      body.append("proxies", dappForm.value.proxies);
+
       body.append("year", 2021); //: todo fix year  productType form fix
 
       const links = {
@@ -135,7 +135,11 @@ export const useHttpCalls = () => {
       });
 
       if (response.status === 201) {
-        return { success: true, message: "Project submitted" };
+        return {
+          success: true,
+          message: "Project submitted",
+          data: response?.data?.response?.response?.data,
+        };
       } else {
         return { success: false, message: "Failed at server" };
       }
@@ -143,7 +147,8 @@ export const useHttpCalls = () => {
       console.log("submit response error ", {
         error: error,
       });
-      return { success: false, message: "Something went wrong" };
+      const errorMessage = error?.response?.data?.response?.response?.message;
+      return { success: false, message: errorMessage };
     }
   };
 

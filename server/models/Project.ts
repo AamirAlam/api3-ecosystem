@@ -74,7 +74,6 @@ const ProjectSchema = new Schema<ProjectType>({
   },
   proxies: {
     type: Schema.Types.Mixed,
-    required: true,
   },
   year: {
     type: Number,

@@ -17,6 +17,18 @@ const fileSize = function (node) {
     return fileSize <= maxSize;
   });
 };
+
+const handleLogoSelect = (event) => {
+  props.dappForm.images.logo = event.target.files[0];
+};
+
+const handleBannerSelect = (event) => {
+  props.dappForm.images.banner = event.target.files[0];
+};
+
+const handleScreenshotSelect = (event) => {
+  props.dappForm.images.screenshots = [...event.target.files];
+};
 </script>
 
 <template>
@@ -36,7 +48,7 @@ const fileSize = function (node) {
           label-class="$reset notice-voice"
           name="logo"
           help="This image should be a square and at least 512px wide."
-          @change="dappForm.images.logo = $event.target.files[0]"
+          @change="handleLogoSelect"
           accept="*"
           validation="required|fileSize"
           :validation-rules="{ fileSize }"
@@ -54,7 +66,7 @@ const fileSize = function (node) {
           name="banner"
           help="This image should be at least 1024px wide."
           accept="*"
-          @change="dappForm.images.banner = $event.target.files[0]"
+          @change="handleBannerSelect"
           v-auto-animate
           validation="required|fileSize"
           :validation-rules="{ fileSize }"
@@ -75,7 +87,7 @@ const fileSize = function (node) {
           label-class="$reset notice-voice"
           name="screenshots"
           help="Screenshots of your dApp in action."
-          @change="dappForm.images.screenshots = [...$event.target.files]"
+          @change="handleScreenshotSelect"
           accept="*"
           validation="fileSize"
           :validation-rules="{ fileSize }"
