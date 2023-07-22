@@ -1,4 +1,6 @@
 import { readContracts } from "@wagmi/core";
+import { ethers } from ethers;
+import { CHAINS } from "@api3/chains";
 
 const abiInterface = [
   {
@@ -59,19 +61,15 @@ const abiInterface = [
   },
 ];
 
-export async function fetchProxyInformation(address, chainId) {
+export async function fetchProxyInformation(address, chainId, feedName) {
+  const chainName = CHAINS.filter((chain) => chain.chainId === chainId)[0].alias;
   console.log("fetching for ", { address, chainId });
   const proxyContract = {
     address: address,
     abi: abiInterface,
   };
 
-  const [
-    api3ServerV1Result,
-    dapiNameHashResult,
-    dataFeedIdResult,
-    oevBeneficiaryResult,
-  ] = await readContracts({
+  const [api3ServerV1Result, dapiNameHashResult, dataFeedIdResult, oevBeneficiaryResult] = await readContracts({
     contracts: [
       {
         ...proxyContract,
@@ -118,23 +116,25 @@ export async function fetchProxyInformation(address, chainId) {
     proxyInformation.isOev = false;
   }
 
-  if (
-    dapiNameHashResult.status === "failure" &&
-    dataFeedIdResult.status === "failure"
-  ) {
+  if (dapiNameHashResult.status === "failure" && dataFeedIdResult.status === "failure") {
     let errorMsg = "Error getting ";
-    if (dapiNameHashResult.status === "failure")
-      errorMsg += `dapiNameHash: ${dapiNameHashResult.reason}. `;
-    if (dataFeedIdResult.status === "failure")
-      errorMsg += `dataFeedId: ${dataFeedIdResult.reason}.`;
+    if (dapiNameHashResult.status === "failure") errorMsg += `dapiNameHash: ${dapiNameHashResult.reason}. `;
+    if (dataFeedIdResult.status === "failure") errorMsg += `dataFeedId: ${dataFeedIdResult.reason}.`;
     throw new Error(errorMsg);
   } else {
     if (dapiNameHashResult.result) {
-      proxyInformation.type = "dAPI";
+      const dapiNameHash = ethers.utils.keccak256(ethers.utils.formatBytes32String(feedName));
+      if(dapiNameHashResult.result !== dapiNameHash) throw new Error(`dapiNameHash mismatch: ${dapiNameHashResult.result} !== ${dapiNameHash}`)
+      proxyInformation.type = "dapi";
       proxyInformation.dapiNameHash = dapiNameHashResult.result;
     }
 
     if (dataFeedIdResult.result) {
+      const dapiInfo = await fetch(
+        `https://db-api-prod.api3.org/api/dapi-info?chain=${chainName}&name=${encodeURIComponent(feedName)}`
+      );
+      const datafeedId = dapiInfo.dapi.beaconSetId || dapiInfo.dapi.beaconId;
+      if(dataFeedIdResult.result !== datafeedId) throw new Error(`dataFeedId mismatch: ${dataFeedIdResult.result} !== ${datafeedId}`)
       proxyInformation.type = "datafeedId";
       proxyInformation.dataFeedId = dataFeedIdResult.result;
     }
