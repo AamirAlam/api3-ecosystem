@@ -1,21 +1,48 @@
 <script setup>
-// import { useEcosystemStore } from "~/stores/ecosystem";
+import Multiselect from "@vueform/multiselect";
 
-// const ecosystem = useEcosystemStore();
+const ecosystem = useEcosystemStore();
 
 const props = defineProps(["dappForm"]);
 
-props.dappForm.proxies = props.dappForm.proxies ?? [
-  {
-    proxyAddress: "",
-    isOEV: false,
-  },
-];
+async function handleUpdateProxy() {
+  if (!props.dappForm?.proxyAddress) {
+    console.log("invalid proxy address added");
+    //:todo show error on frontend
+    return;
+  }
 
-const proxyTemplate = {
-  proxyAddress: "",
-  isOEV: false,
-};
+  if (!props.dappForm?.proxyChain) {
+    console.log("invalid chain selected");
+    return;
+  }
+
+  try {
+    const info = await fetchProxyInformation(
+      props.dappForm?.proxyAddress,
+      parseInt(props.dappForm?.proxyChain)
+    );
+
+    console.log("info ", info);
+    const finalProxyEntry = {
+      proxyAddress: props.dappForm?.proxyAddress,
+      isOEV: info?.isOev,
+      chainId: props.dappForm?.proxyChain,
+      type: info?.type,
+      dataFeedId: info?.dataFeedId,
+      dApiNameHash: info?.dapiNameHash,
+      api3ServerV1: info?.api3ServerV1,
+    };
+
+    props.dappForm?.proxies?.push(finalProxyEntry);
+    props.dappForm.proxyChain = null;
+    props.dappForm.proxyAddress = "";
+
+    console.log("fetched info ", props.dappForm.proxies);
+  } catch (error) {
+    console.log("failed to fetch proxy info ", error);
+  }
+}
 
 const buttonClick = ref(false);
 function buttonHandle(valid, direction) {
@@ -30,87 +57,140 @@ function buttonHandle(valid, direction) {
     v-auto-animate
     name="proxy"
   >
-    <!-- <ul class="proxy-table" v-auto-animate>
-        <button
-          class="icon"
-          @click.prevent="dappForm.proxies.push({ ...proxyTemplate })"
-        >
-          +
-        </button>
-        <li class="row" v-for="(proxy, index) in dappForm.proxies">
+    <!-- show added proxies -->
+    <ul class="proxy-table" v-auto-animate>
+      <li class="row" v-for="(proxy, index) in dappForm.proxies">
+        <form-field>
+          <FormKit
+            type="text"
+            label="Proxy Address"
+            label-class="$reset notice-voice"
+            name="proxyAddress"
+            placeholder="Proxy Address"
+            disabled="true"
+            id="proxyAddress"
+            v-model="proxy.proxyAddress"
+          />
+        </form-field>
+
+        <form-field>
+          <label class="notice-voice" for="proxy-chain"> Chain </label>
+          <Multiselect
+            id="proxy-chain"
+            v-model="proxy.chainId"
+            mode="single"
+            :close-on-select="true"
+            :searchable="true"
+            :create-option="false"
+            :options="ecosystem.chainOptions"
+          />
+        </form-field>
+
+        <form-field>
+          <FormKit
+            type="text"
+            label="api3ServerV1"
+            label-class="$reset notice-voice"
+            name="api3ServerV1"
+            placeholder="api3ServerV1"
+            disabled="true"
+            id="api3ServerV1"
+            v-model="proxy.api3ServerV1"
+          />
+        </form-field>
+
+        <div v-if="proxy.type === 'datafeedId'">
           <form-field>
-            <FormKit
-              type="checkbox"
-              label="Is it OEV?"
-              label-class="$reset notice-voice"
-              name="oevBeneficiary"
-              placeholder="OEV Beneficiary"
-              validation="required"
-              id="oevBeneficiary"
-              v-model="proxy.isOEV"
-            />
-          </form-field>
-          <form-field>
+            <label class="notice-voice" for="proxy-chain"> DataFeedId </label>
             <FormKit
               type="text"
-              label="Proxy Address"
               label-class="$reset notice-voice"
-              name="proxyAddress"
-              placeholder="Proxy Address"
-              validation="required"
-              id="proxyAddress"
-              v-model="proxy.proxyAddress"
+              placeholder="DataFeedId"
+              name="DatafeedId"
+              disabled="true"
+              id="datafeedId"
+              v-model="proxy.dataFeedId"
             />
           </form-field>
-          <button
-            class="icon"
-            @click.prevent="dappForm.proxies.splice(index, 1)"
-          >
-            <picture>
-              <img src="@/assets/images/icon-cross.svg" alt="" />
-            </picture>
-          </button>
-        </li>
-      </ul> -->
-    <FormKit
-      id="repeater"
-      name="proxy"
-      type="repeater"
-      label="Proxy"
-      :insert-control="true"
-      :add-button="false"
-      #default="{ index }"
-    >
-      <form-field>
-        <FormKit
-          type="checkbox"
-          label="Are you capturing OEV?"
-          label-class="$reset notice-voice"
-          name="oevBeneficiary"
-          placeholder="OEV Beneficiary"
-          validation="required"
-          id="oevBeneficiary"
-        />
-      </form-field>
-      <form-field>
-        <FormKit
-          type="text"
-          label="Insert Proxy Address"
-          label-class="$reset notice-voice"
-          name="proxyAddress"
-          validation="required"
-          id="proxyAddress"
-        />
-      </form-field>
-    </FormKit>
-    <!-- <div class="actions">
+        </div>
+        <div v-else>
+          <form-field>
+            <label class="notice-voice" for="proxy-chain"> dApiNameHash </label>
+            <FormKit
+              type="text"
+              label-class="$reset notice-voice"
+              name="dApiNameHash"
+              placeholder="dApiNameHash"
+              disabled="true"
+              id="dApiNameHash"
+              v-model="proxy.dApiNameHash"
+            />
+          </form-field>
+        </div>
+
+        <form-field>
+          <label class="notice-voice" for="proxy-chain"> OEV </label>
+          <FormKit
+            type="checkbox"
+            label-class="$reset notice-voice"
+            name="isOev"
+            placeholder="isOev"
+            disabled="true"
+            id="oev"
+            v-model="proxy.isOEV"
+          />
+        </form-field>
+
+        <button class="icon" @click.prevent="dappForm.proxies.splice(index, 1)">
+          <picture>
+            <img src="@/assets/images/icon-cross.svg" alt="" />
+          </picture>
+        </button>
+      </li>
+    </ul>
+
+    <!-- show fetch proxy form -->
+    <div class="proxy-table" v-auto-animate>
+      <li class="row">
+        <form-field>
+          <FormKit
+            type="text"
+            label="Add Proxy Info"
+            label-class="$reset notice-voice"
+            name="proxyAddress"
+            placeholder="Proxy Address"
+            validation="required"
+            id="proxyAddress"
+            v-model="dappForm.proxyAddress"
+          />
+        </form-field>
+
+        <form-field>
+          <label class="notice-voice" for="proxy-chain"> Select chain </label>
+          <Multiselect
+            id="proxy-chain"
+            v-model="dappForm.proxyChain"
+            mode="single"
+            :close-on-select="true"
+            :searchable="true"
+            :create-option="false"
+            :options="ecosystem.chainOptions"
+          />
+        </form-field>
+
+        <button class="icon" @click.prevent="handleUpdateProxy">+</button>
+      </li>
+    </div>
+
+    <div class="actions">
       <button class="button previous" @click.prevent="buttonHandle(valid, -1)">
         Previous
       </button>
       <button class="button next" @click.prevent="buttonHandle(valid, 1)">
         Next
       </button>
-    </div> -->
+    </div>
+
     <template v-if="buttonClick">
       <p v-if="!valid" class="not-valid">
         Your account details are not complete!
@@ -124,17 +204,19 @@ function buttonHandle(valid, direction) {
 .proxy-table {
   display: grid;
   gap: 1rem;
-  align-items: end;
+  align-items: center;
 
   li.row {
     display: grid;
-    grid-template-columns: 0.5fr 1fr 0.1fr;
+    grid-template-columns: 0.7fr 0.4fr 0.4fr;
     gap: 1rem;
   }
 
   button {
-    justify-self: end;
+    justify-self: start;
     align-self: center;
+    width: 50px;
+    height: 50px;
     background-color: var(--paper);
   }
 
