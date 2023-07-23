@@ -39,15 +39,15 @@ async function handleUpdateProxy() {
       props.dappForm?.feedName
     );
 
-    console.log("info ", info);
+    // console.log("info ", info);
     const finalProxyEntry = {
       proxyAddress: props.dappForm?.proxyAddress,
       isOEV: info?.isOev,
       chainId: props.dappForm?.proxyChain,
-      type: info?.type,
-      dataFeedId: info?.dataFeedId,
+      proxyType: info?.type,
+      datafeedId: info?.dataFeedId,
       feedName: props.dappForm?.feedName,
-      dApiNameHash: info?.dapiNameHash,
+      dapiNameHash: info?.dapiNameHash,
       api3ServerV1: info?.api3ServerV1,
       oevBeneficiary: info?.oevBeneficiary,
     };
@@ -90,7 +90,7 @@ function buttonHandle(valid, direction) {
   >
     <div class="proxy-step">
       <!-- show fetch proxy form -->
-      <div class="proxy-form" v-auto-animate>
+      <div class="proxy-form grid-item" v-auto-animate>
         <form-field>
           <FormKit
             type="text"
@@ -145,7 +145,13 @@ function buttonHandle(valid, direction) {
 
       <!-- </div> -->
       <!-- show added proxies -->
-      <DappProxies :dapp="dappForm" :isForm="true" />
+      <div class="grid-item">
+        <DappProxies
+          :proxies="dappForm?.proxies"
+          :dappForm="dappForm"
+          :isForm="true"
+        />
+      </div>
     </div>
   </FormKit>
 </template>
@@ -154,13 +160,14 @@ function buttonHandle(valid, direction) {
 .proxy-step {
   display: grid;
   gap: 4rem;
+
   @media (min-width: 726px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.5fr;
   }
 
   :deep(.proxy-table) {
     .table-row {
-      grid-template-columns: 0.75fr 1fr 1fr 1fr 1fr 0.1fr;
+      grid-template-columns: 0.5fr 0.5fr 0.75fr 0.75fr 0.75fr 0.5fr 0.2fr;
     }
   }
 }
