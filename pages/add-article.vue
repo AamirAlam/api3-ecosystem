@@ -6,6 +6,9 @@ const { submitArticle } = useHttpCalls();
 
 async function submitHandler(event) {
   const file = event.article[0].file;
+
+  const imageFile = event.image[0].file;
+
   const reader = new FileReader();
 
   reader.onload = async function (e) {
@@ -34,7 +37,11 @@ async function submitHandler(event) {
       return;
     }
 
-    const submitResult = await submitArticle(parsed, verificationData?.token);
+    const formData = new FormData();
+    formData.append("article", JSON.stringify(parsed));
+    formData.append("cover", imageFile);
+
+    const submitResult = await submitArticle(formData, verificationData?.token);
 
     if (submitResult.success) {
       console.log("Article submitted successfully.", submitResult);
@@ -57,11 +64,23 @@ async function submitHandler(event) {
           v-auto-animate
           id="article-form"
           type="file"
-          label="upload article"
+          label="Article markdown"
           label-class="$reset notice-voice"
           name="article"
           help="Upload a markdown formatted file"
           accept=".md"
+          validation="required"
+        />
+
+        <FormKit
+          v-auto-animate
+          id="article-form"
+          type="file"
+          label="Cover image"
+          label-class="$reset notice-voice"
+          name="image"
+          help="Upload cover image for article"
+          accept="*"
           validation="required"
         />
       </FormKit>

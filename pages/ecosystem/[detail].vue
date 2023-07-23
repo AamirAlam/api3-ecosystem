@@ -56,6 +56,22 @@ onMounted(() => {
     }
   );
 });
+
+const formattedProxies = (dappData) => {
+  if (!dappData?.proxies) {
+    return [];
+  }
+
+  const formattedProxyItems = [];
+  Object.keys(dappData?.proxies).forEach((chain) => {
+    let chainItems = dappData?.proxies?.[chain]?.map((el) => {
+      return { ...el, chainId: chain };
+    });
+    formattedProxyItems.push(...chainItems);
+  });
+
+  return formattedProxyItems;
+};
 </script>
 
 <template>
@@ -79,7 +95,7 @@ onMounted(() => {
             </p>
           </section>
 
-          <DappProxies :dapp="dapp" v-if="dapp" />
+          <DappProxies :proxies="formattedProxies(dapp)" v-if="dapp" />
 
           <section class="screenshots">
             <h2 class="attention-voice">Screenshots</h2>

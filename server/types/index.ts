@@ -7,3 +7,8 @@ export const ROLE = {
   MODERATOR: "moderator",
   USER: "user",
 } as const;
+
+export const UPLOAD_TYPE = {
+  article: "article",
+  project: "project",
+};

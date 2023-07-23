@@ -96,19 +96,19 @@ export const useHttpCalls = () => {
           proxyPayload[el?.chainId] = [];
         }
 
-        if (el.type === "datafeedId") {
+        if (el.proxyType === "datafeedId") {
           proxyPayload[el?.chainId]?.push({
-            proxyType: el?.type,
+            proxyType: el?.proxyType,
             feedName: !el?.feedName ? "ETH/USD" : el?.feedName,
-            datafeedId: el?.dataFeedId,
+            datafeedId: el?.datafeedId,
             proxyAddress: el?.proxyAddress,
             oev: { enabled: el?.isOEV, beneficiary: el?.oevBeneficiary },
           });
         } else {
           proxyPayload[el?.chainId]?.push({
-            proxyType: el?.type,
+            proxyType: el?.proxyType,
             feedName: !el?.feedName ? "ETH/USD" : el?.feedName,
-            dapiNameHash: el?.dApiNameHash,
+            dapiNameHash: el?.dapiNameHash,
             proxyAddress: el?.proxyAddress,
             oev: { enabled: el?.isOEV, beneficiary: el?.oevBeneficiary },
           });
@@ -137,7 +137,7 @@ export const useHttpCalls = () => {
       if (response.status === 201) {
         return {
           success: true,
-          message: "Project submitted",
+          message: "Project submitted for review",
           data: response?.data?.response?.response?.data,
         };
       } else {
@@ -152,9 +152,9 @@ export const useHttpCalls = () => {
     }
   };
 
-  const submitArticle = async (parsedArticle, token) => {
+  const submitArticle = async (articleForm, token) => {
     try {
-      const res = await axios.post("/api/articles", parsedArticle, {
+      const res = await axios.post("/api/articles", articleForm, {
         headers: {
           Authorization: token,
         },

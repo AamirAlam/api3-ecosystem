@@ -26,6 +26,10 @@ const ArticleSchema = new Schema<ArticleType>({
     type: Schema.Types.Mixed,
     required: true,
   },
+  cover: {
+    type: String,
+    required: true,
+  },
   category: {
     type: String,
     required: true,

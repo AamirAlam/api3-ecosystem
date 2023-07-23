@@ -7,19 +7,28 @@ const ecosystem = useEcosystemStore();
 
 const listRef = ref(null);
 
-useInfiniteScroll(
-  listRef,
-  () => {
-    console.log("scroll");
-    if (
-      ecosystem.list.length < ecosystem.totalProjects ||
-      ecosystem.list.length >= 10
-    ) {
-      ecosystem.filterQuery.page += 1;
-    }
-  },
-  { distance: 20 }
-);
+// useInfiniteScroll(
+//   listRef,
+//   () => {
+//     console.log("scroll");
+//     if (
+//       ecosystem.list.length < ecosystem.totalProjects ||
+//       ecosystem.list.length >= 10
+//     ) {
+//       ecosystem.filterQuery.page += 1;
+//     }
+//   },
+//   { distance: 20 }
+// );
+
+const handleLoadMore = () => {
+  if (
+    ecosystem.list.length < ecosystem.totalProjects ||
+    ecosystem.list.length >= 10
+  ) {
+    ecosystem.filterQuery.page += 1;
+  }
+};
 
 onMounted(() => {
   const pageLoad = gsap.timeline();
@@ -60,6 +69,13 @@ onMounted(() => {
       :key="dapp?.name"
       :data-index="index"
     />
+    <button
+      class="text show-more"
+      @click="handleLoadMore"
+      v-if="ecosystem.hasMoreItems"
+    >
+      {{ "Show More" }}
+    </button>
   </div>
 </template>
 
@@ -71,7 +87,11 @@ onMounted(() => {
   align-items: start;
   position: relative;
   opacity: 0;
-  overflow: auto;
+  /* overflow: auto; */
+}
+
+.show-more {
+  align-self: flex-end;
 }
 
 .list-move {
