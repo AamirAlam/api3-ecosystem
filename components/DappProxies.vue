@@ -3,6 +3,7 @@ import { useEcosystemStore } from "@/stores/ecosystem";
 
 const props = defineProps(["dapp", "isForm"]);
 const ecosystem = useEcosystemStore();
+console.log(props.isForm);
 </script>
 
 <template>
@@ -15,7 +16,7 @@ const ecosystem = useEcosystemStore();
         <div class="solid-voice type">Feed Name</div>
         <div class="solid-voice type">Type</div>
         <div class="solid-voice type">Address</div>
-        <div class="" v-if="!isForm"></div>
+        <div class="" v-if="isForm"></div>
       </li>
       <li class="table-row" v-for="proxy in dapp.proxies">
         <div class="chain">
@@ -42,7 +43,7 @@ const ecosystem = useEcosystemStore();
         <div class="type">
           {{ proxy.proxyAddress.slice(0, 10) }}
         </div>
-        <div class="cross" v-if="!isForm">
+        <div class="cross" v-if="isForm">
           <button
             class="icon button"
             @click.prevent="dapp.proxies.splice(index, 1)"

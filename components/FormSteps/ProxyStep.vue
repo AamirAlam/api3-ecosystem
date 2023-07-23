@@ -142,6 +142,8 @@ function buttonHandle(valid, direction) {
           {{ message }}
         </div>
       </li>
+      <!-- show added proxies -->
+      <DappProxies :dapp="dappForm" :isForm="true" />
     </div>
   </FormKit>
 </template>
@@ -151,7 +153,7 @@ function buttonHandle(valid, direction) {
   display: grid;
   gap: 4rem;
   @media (min-width: 726px) {
-     grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   :deep(.proxy-table) {
