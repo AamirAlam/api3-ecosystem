@@ -30,7 +30,7 @@ console.log(props.isForm);
           </picture>
         </div>
         <div class="is-oev">
-          <picture v-if="proxy.proxyType.includes('OEV')">
+          <picture v-if="proxy.isOEV">
             <img src="/images/icons/oev.svg" alt="" />
           </picture>
         </div>
@@ -38,7 +38,7 @@ console.log(props.isForm);
           {{ proxy.feedName }}
         </div>
         <div class="type">
-          {{ proxy.proxyType.includes("datafeed") ? "data Feed" : "dAPI" }}
+          {{ proxy.type.includes("datafeedId") ? "data Feed" : "dAPI" }}
         </div>
         <div class="type">
           {{ proxy.proxyAddress.slice(0, 10) }}

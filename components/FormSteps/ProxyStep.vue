@@ -116,8 +116,6 @@ function buttonHandle(valid, direction) {
             :options="ecosystem.chainOptions"
           />
         </form-field>
-        <button class="button" @click.prevent="handleUpdateProxy">Fetch</button>
-      </div>
 
         <form-field class="feed-option">
           <label class="notice-voice" for="feed-name"> Select Feed Name </label>
@@ -138,10 +136,14 @@ function buttonHandle(valid, direction) {
         <div v-else>
           <button class="icon" @click.prevent="handleUpdateProxy">+</button>
         </div>
+
         <div class="error-message">
           {{ message }}
         </div>
-      </li>
+        <!-- <button class="button" @click.prevent="handleUpdateProxy">Fetch</button> -->
+      </div>
+
+      <!-- </div> -->
       <!-- show added proxies -->
       <DappProxies :dapp="dappForm" :isForm="true" />
     </div>
