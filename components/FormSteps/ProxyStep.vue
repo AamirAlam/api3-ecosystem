@@ -88,101 +88,9 @@ function buttonHandle(valid, direction) {
     v-auto-animate
     name="proxy"
   >
-    <!-- show added proxies -->
-    <ul class="proxy-table" v-auto-animate>
-      <li class="row" v-for="(proxy, index) in dappForm.proxies">
-        <form-field>
-          <FormKit
-            type="text"
-            label="Proxy Address"
-            label-class="$reset notice-voice"
-            name="proxyAddress"
-            placeholder="Proxy Address"
-            disabled="true"
-            id="proxyAddress"
-            v-model="proxy.proxyAddress"
-          />
-        </form-field>
-
-        <form-field>
-          <FormKit
-            type="text"
-            label="Proxy Chain"
-            label-class="$reset notice-voice"
-            name="Proxy Chain"
-            placeholder="Proxy Chain"
-            disabled="true"
-            id="proxy-chainId"
-            v-model="proxy.chainId"
-          />
-        </form-field>
-
-        <form-field>
-          <FormKit
-            type="text"
-            label="feedName"
-            label-class="$reset notice-voice"
-            name="feedName"
-            placeholder="Feed Name"
-            disabled="true"
-            id="feedName"
-            v-model="proxy.feedName"
-          />
-        </form-field>
-
-        <div v-if="proxy.type === 'datafeedId'">
-          <form-field>
-            <label class="notice-voice" for="proxy-chain"> DataFeedId </label>
-            <FormKit
-              type="text"
-              label-class="$reset notice-voice"
-              placeholder="DataFeedId"
-              name="DatafeedId"
-              disabled="true"
-              id="datafeedId"
-              v-model="proxy.dataFeedId"
-            />
-          </form-field>
-        </div>
-        <div v-else>
-          <form-field>
-            <label class="notice-voice" for="proxy-chain"> dApiNameHash </label>
-            <FormKit
-              type="text"
-              label-class="$reset notice-voice"
-              name="dApiNameHash"
-              placeholder="dApiNameHash"
-              disabled="true"
-              id="dApiNameHash"
-              v-model="proxy.dApiNameHash"
-            />
-          </form-field>
-        </div>
-
-        <form-field>
-          <label class="notice-voice" for="proxy-chain"> OEV </label>
-          <FormKit
-            type="checkbox"
-            label-class="$reset notice-voice"
-            name="isOev"
-            placeholder="isOev"
-            disabled="true"
-            id="oev"
-            v-model="proxy.isOEV"
-          />
-        </form-field>
-
-        <button class="icon" @click.prevent="dappForm.proxies.splice(index, 1)">
-          <picture>
-            <img src="@/assets/images/icon-cross.svg" alt="" />
-          </picture>
-        </button>
-      </li>
-    </ul>
-
-    <!-- show fetch proxy form -->
-    <div class="proxy-table" v-auto-animate>
-      <li class="row">
+    <div class="proxy-step">
+      <!-- show fetch proxy form -->
+      <div class="proxy-form" v-auto-animate>
         <form-field>
           <FormKit
             type="text"
@@ -196,8 +104,8 @@ function buttonHandle(valid, direction) {
           />
         </form-field>
 
-        <form-field class="chain-option">
-          <label class="notice-voice" for="proxy-chain"> Select chain </label>
+        <form-field>
+          <label class="notice-voice" for="proxy-chain"> Select Chain </label>
           <Multiselect
             id="proxy-chain"
             v-model="dappForm.proxyChain"
@@ -228,43 +136,41 @@ function buttonHandle(valid, direction) {
         <div v-else>
           <button class="icon" @click.prevent="handleUpdateProxy">+</button>
         </div>
+
         <div class="error-message">
           {{ message }}
         </div>
-      </li>
+        <!-- <button class="button" @click.prevent="handleUpdateProxy">Fetch</button> -->
+      </div>
+
+      <!-- </div> -->
+      <!-- show added proxies -->
+      <DappProxies :dapp="dappForm" :isForm="true" />
     </div>
   </FormKit>
 </template>
 
 <style scoped lang="scss">
-.proxy-table {
-  list-style: none;
+.proxy-step {
+  display: grid;
+  gap: 4rem;
+  @media (min-width: 726px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  :deep(.proxy-table) {
+    .table-row {
+      grid-template-columns: 0.75fr 1fr 1fr 1fr 1fr 0.1fr;
+    }
+  }
+}
+.proxy-form {
   display: grid;
   gap: 1rem;
   align-items: center;
 
-  /* The grid for desktop screens */
-  li.row {
-    grid-template-columns: 0.7fr 0.4fr 0.4fr;
-  }
-
-  /* Mobile responsiveness */
-  @media screen and (max-width: 768px) {
-    li.row {
-      grid-template-columns: 1fr; /* Change to a single column layout for mobile */
-    }
-  }
-
   button {
     justify-self: start;
-    align-self: center;
-    width: 50px;
-    height: 50px;
-    background-color: var(--paper);
-  }
-
-  img {
-    width: 25px;
   }
 
   .feed-option {

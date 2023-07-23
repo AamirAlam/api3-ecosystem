@@ -193,8 +193,8 @@ form {
   scroll-behavior: smooth;
 
   & > :is(.step, .actions) {
-    scroll-snap-align: start;
-    min-height: calc(100vh - 100px);
+    //  scroll-snap-align: start;
+    min-height: calc(80vh);
     display: grid;
     gap: 3rem;
     align-content: center;
