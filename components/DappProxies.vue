@@ -35,18 +35,18 @@ console.log(props.isForm);
           </picture>
         </div>
         <div class="type">
-          {{ proxy.feedName }}
+          {{ proxy?.feedName }}
         </div>
         <div class="type">
-          {{ proxy.type.includes("datafeedId") ? "data Feed" : "dAPI" }}
+          {{ proxy?.type?.includes("datafeedId") ? "data Feed" : "dAPI" }}
         </div>
         <div class="type">
-          {{ proxy.proxyAddress.slice(0, 10) }}
+          {{ proxy?.proxyAddress?.slice(0, 10) }}
         </div>
         <div class="cross" v-if="isForm">
           <button
             class="icon button"
-            @click.prevent="dapp.proxies.splice(index, 1)"
+            @click.prevent="dapp?.proxies?.splice(index, 1)"
           >
             <picture>
               <img src="@/assets/images/icon-cross.svg" />

@@ -15,6 +15,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     years: [],
     page: 1,
   });
+  const hasMoreItems = ref(true);
 
   const serverURL = computed(() => {
     let url = baseServerUrl.value + `?page=${filterQuery.value.page}`;
@@ -68,6 +69,12 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
       projectList.value = newData.projects;
     } else {
       projectList.value = [...projectList.value, ...newData.projects];
+    }
+
+    if (newData.projects?.length < 10) {
+      hasMoreItems.value = false;
+    } else {
+      hasMoreItems.value = true;
     }
   });
 
@@ -133,6 +140,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     stats,
     categoryOptions,
     productTypeOptions,
+    hasMoreItems: hasMoreItems,
     chainOptions,
     categoryToLabel,
     productTypeToLabel,
