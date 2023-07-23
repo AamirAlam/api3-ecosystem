@@ -3,6 +3,7 @@ import multer from "multer";
 import { callNodeListener } from "h3";
 import multerS3 from "multer-s3";
 import { S3Client } from "@aws-sdk/client-s3";
+import { UPLOAD_TYPE } from "../types/index";
 
 const config = useRuntimeConfig();
 
@@ -39,22 +40,35 @@ const upload = multer({
   },
 });
 
-export const imageUploadHandler = (handler: EventHandler) =>
+export const imageUploadHandler = (
+  handler: EventHandler,
+  uploadType: string = UPLOAD_TYPE.project
+) =>
   defineEventHandler(async (event) => {
     try {
-      await callNodeListener(
-        // @ts-expect-error: Nuxt 3
-        upload.fields([
-          { name: "logo", maxCount: 1 },
-          { name: "banner", maxCount: 1 },
-          { name: "screenshot1", maxCount: 1 },
-          { name: "screenshot2", maxCount: 1 },
-          { name: "screenshot3", maxCount: 1 },
-          { name: "screenshot4", maxCount: 1 },
-        ]),
-        event.node.req,
-        event.node.res
-      );
+      if (uploadType === UPLOAD_TYPE.project) {
+        await callNodeListener(
+          // @ts-expect-error: Nuxt 3
+          upload.fields([
+            { name: "logo", maxCount: 1 },
+            { name: "banner", maxCount: 1 },
+            { name: "screenshot1", maxCount: 1 },
+            { name: "screenshot2", maxCount: 1 },
+            { name: "screenshot3", maxCount: 1 },
+            { name: "screenshot4", maxCount: 1 },
+          ]),
+          event.node.req,
+          event.node.res
+        );
+      } else {
+        await callNodeListener(
+          // @ts-expect-error: Nuxt 3
+          upload.fields([{ name: "cover", maxCount: 1 }]),
+          event.node.req,
+          event.node.res
+        );
+      }
+
       const response = await handler(event);
 
       return { response };

@@ -152,9 +152,9 @@ export const useHttpCalls = () => {
     }
   };
 
-  const submitArticle = async (parsedArticle, token) => {
+  const submitArticle = async (articleForm, token) => {
     try {
-      const res = await axios.post("/api/articles", parsedArticle, {
+      const res = await axios.post("/api/articles", articleForm, {
         headers: {
           Authorization: token,
         },
