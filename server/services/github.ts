@@ -3,6 +3,7 @@ import { Octokit } from "@octokit/rest";
 interface PrStatus {
   success: boolean;
   message: string;
+  data?: any | undefined;
 }
 
 const config = useRuntimeConfig();
@@ -98,7 +99,11 @@ export async function createPR(
       head: branch,
       base,
     });
-    return { success: true, message: "Pull request created for review" };
+    return {
+      success: true,
+      message: "Pull request created for review",
+      data: prData?.html_url,
+    };
   } catch (err) {
     // delete created branch if something went wrong
 

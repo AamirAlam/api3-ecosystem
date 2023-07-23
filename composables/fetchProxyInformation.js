@@ -1,4 +1,6 @@
+import { keccak256, stringToHex } from "viem";
 import { readContracts } from "@wagmi/core";
+import { CHAINS } from "@api3/chains";
 
 const abiInterface = [
   {
@@ -59,8 +61,13 @@ const abiInterface = [
   },
 ];
 
-export async function fetchProxyInformation(address, chainId) {
-  console.log("fetching for ", { address, chainId });
+export async function fetchProxyInformation(address, chainId, feedName) {
+  let chainName = CHAINS.find(
+    (chain) => chain.id.toString() === chainId.toString()
+  )?.name;
+
+  chainName = chainName.toLowerCase().split(" ").join("-");
+
   const proxyContract = {
     address: address,
     abi: abiInterface,
@@ -130,11 +137,37 @@ export async function fetchProxyInformation(address, chainId) {
     throw new Error(errorMsg);
   } else {
     if (dapiNameHashResult.result) {
-      proxyInformation.type = "dAPI";
+      const dapiNameHash = keccak256(stringToHex(feedName, { size: 32 }));
+      if (dapiNameHashResult.result !== dapiNameHash)
+        throw new Error(
+          `dapiNameHash mismatch: ${dapiNameHashResult.result} !== ${dapiNameHash}`
+        );
+      proxyInformation.type = "dapi";
       proxyInformation.dapiNameHash = dapiNameHashResult.result;
     }
 
     if (dataFeedIdResult.result) {
+      let dapiInfo = await fetch(
+        `https://db-api-prod.api3.org/api/dapi-info?chain=${chainName}&name=${encodeURIComponent(
+          feedName
+        )}`
+      );
+      dapiInfo = await dapiInfo.json();
+
+      let possibleDatafeedIds = [];
+      if (dapiInfo.dapi.beaconId)
+        possibleDatafeedIds.push(dapiInfo.dapi.beaconId);
+      if (dapiInfo.dapi.beaconSetId) {
+        possibleDatafeedIds.push(dapiInfo.dapi.beaconSetId);
+        const beaconIds = dapiInfo.dapi.beaconSet.beacons.map(
+          (beacon) => beacon.beaconId
+        );
+        possibleDatafeedIds = possibleDatafeedIds.concat(beaconIds);
+      }
+      if (!possibleDatafeedIds.includes(dataFeedIdResult.result))
+        throw new Error(
+          `dataFeedId mismatch: ${dataFeedIdResult.result} not in ${possibleDatafeedIds}`
+        );
       proxyInformation.type = "datafeedId";
       proxyInformation.dataFeedId = dataFeedIdResult.result;
     }

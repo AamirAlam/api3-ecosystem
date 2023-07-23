@@ -5,23 +5,38 @@ import { useEcosystemStore } from "@/stores/ecosystem";
 const ecosystem = useEcosystemStore();
 
 const props = defineProps(["dappForm"]);
+const loading = ref(false);
+const message = ref("");
 
 async function handleUpdateProxy() {
+  message.value = "";
+  loading.value = false;
+
   if (!props.dappForm?.proxyAddress) {
+    message.value = "Please add valid proxy address!";
     console.log("invalid proxy address added");
     //:todo show error on frontend
     return;
   }
 
   if (!props.dappForm?.proxyChain) {
+    message.value = "Please select proxy chain!";
     console.log("invalid chain selected");
     return;
   }
 
+  if (!props.dappForm?.feedName) {
+    message.value = "Please select feed name!";
+    console.log("invalid feed name selected");
+    return;
+  }
+
+  loading.value = true;
   try {
     const info = await fetchProxyInformation(
       props.dappForm?.proxyAddress,
-      parseInt(props.dappForm?.proxyChain)
+      parseInt(props.dappForm?.proxyChain),
+      props.dappForm?.feedName
     );
 
     console.log("info ", info);
@@ -31,9 +46,21 @@ async function handleUpdateProxy() {
       chainId: props.dappForm?.proxyChain,
       type: info?.type,
       dataFeedId: info?.dataFeedId,
+      feedName: props.dappForm?.feedName,
       dApiNameHash: info?.dapiNameHash,
       api3ServerV1: info?.api3ServerV1,
+      oevBeneficiary: info?.oevBeneficiary,
     };
+
+    const index = props.dappForm?.proxies?.findIndex(
+      (el) => el?.proxyAddress === finalProxyEntry.proxyAddress
+    );
+
+    if (index >= 0) {
+      console.log("proxy already added");
+      //todo: show error in ui
+      return;
+    }
 
     props.dappForm?.proxies?.push(finalProxyEntry);
     props.dappForm.proxyChain = null;
@@ -41,7 +68,10 @@ async function handleUpdateProxy() {
 
     console.log("fetched info ", props.dappForm.proxies);
   } catch (error) {
+    message.value = "Unable to fetch proxy info";
     console.log("failed to fetch proxy info ", error);
+  } finally {
+    loading.value = false;
   }
 }
 
@@ -75,28 +105,28 @@ function buttonHandle(valid, direction) {
         </form-field>
 
         <form-field>
-          <label class="notice-voice" for="proxy-chain"> Chain </label>
-          <Multiselect
-            id="proxy-chain"
+          <FormKit
+            type="text"
+            label="Proxy Chain"
+            label-class="$reset notice-voice"
+            name="Proxy Chain"
+            placeholder="Proxy Chain"
+            disabled="true"
+            id="proxy-chainId"
             v-model="proxy.chainId"
-            mode="single"
-            :close-on-select="true"
-            :searchable="true"
-            :create-option="false"
-            :options="ecosystem.chainOptions"
           />
         </form-field>
 
         <form-field>
           <FormKit
             type="text"
-            label="api3ServerV1"
+            label="feedName"
             label-class="$reset notice-voice"
-            name="api3ServerV1"
-            placeholder="api3ServerV1"
+            name="feedName"
+            placeholder="Feed Name"
             disabled="true"
-            id="api3ServerV1"
-            v-model="proxy.api3ServerV1"
+            id="feedName"
+            v-model="proxy.feedName"
           />
         </form-field>
 
@@ -160,13 +190,13 @@ function buttonHandle(valid, direction) {
             label-class="$reset notice-voice"
             name="proxyAddress"
             placeholder="Proxy Address"
-            validation="required"
+            validation="optional"
             id="proxyAddress"
             v-model="dappForm.proxyAddress"
           />
         </form-field>
 
-        <form-field>
+        <form-field class="chain-option">
           <label class="notice-voice" for="proxy-chain"> Select chain </label>
           <Multiselect
             id="proxy-chain"
@@ -179,38 +209,50 @@ function buttonHandle(valid, direction) {
           />
         </form-field>
 
-        <button class="icon" @click.prevent="handleUpdateProxy">+</button>
+        <form-field class="feed-option">
+          <label class="notice-voice" for="feed-name"> Select Feed Name </label>
+          <Multiselect
+            id="feed-name"
+            v-model="dappForm.feedName"
+            mode="single"
+            :close-on-select="true"
+            :searchable="true"
+            :create-option="false"
+            :options="ecosystem.feedNameOptions"
+          />
+        </form-field>
+
+        <div v-if="loading">
+          <LoadingSpinner />
+        </div>
+        <div v-else>
+          <button class="icon" @click.prevent="handleUpdateProxy">+</button>
+        </div>
+        <div class="error-message">
+          {{ message }}
+        </div>
       </li>
     </div>
-
-    <div class="actions">
-      <button class="button previous" @click.prevent="buttonHandle(valid, -1)">
-        Previous
-      </button>
-      <button class="button next" @click.prevent="buttonHandle(valid, 1)">
-        Next
-      </button>
-    </div>
-
-    <template v-if="buttonClick">
-      <p v-if="!valid" class="not-valid">
-        Your account details are not complete!
-      </p>
-      <p v-else class="valid">It all looks good 👍</p>
-    </template>
   </FormKit>
 </template>
 
 <style scoped lang="scss">
 .proxy-table {
+  list-style: none;
   display: grid;
   gap: 1rem;
   align-items: center;
 
+  /* The grid for desktop screens */
   li.row {
-    display: grid;
     grid-template-columns: 0.7fr 0.4fr 0.4fr;
-    gap: 1rem;
+  }
+
+  /* Mobile responsiveness */
+  @media screen and (max-width: 768px) {
+    li.row {
+      grid-template-columns: 1fr; /* Change to a single column layout for mobile */
+    }
   }
 
   button {
@@ -223,6 +265,18 @@ function buttonHandle(valid, direction) {
 
   img {
     width: 25px;
+  }
+
+  .feed-option {
+    margin-bottom: 50px;
+  }
+  .error-message {
+    margin-top: 20px;
+    color: red;
+    font-size: 12px;
+
+    // justify-self: flex-start;
+    // align-items: start;
   }
 }
 </style>

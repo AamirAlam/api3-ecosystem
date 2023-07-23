@@ -16,8 +16,11 @@ useServerSeoMeta({
 
 //
 const dappForm = useStorage("dapp-form", {});
-const complete = ref(false);
+dappForm.value.proxies = [];
+const loading = ref(false);
 const messages = ref([]);
+const successData = ref({ message: "", pr_url: "" });
+const submitSuccess = ref(false);
 const { verifyWallet } = useSiwe();
 const { submitProject } = useHttpCalls();
 
@@ -34,33 +37,50 @@ function showErrors(node) {
 }
 
 const submitHandler = async () => {
+  // console.log("dapp form ", dappForm);
+  setErrors("add-form", []);
+  submitSuccess.value = false;
+  successData.value.message = "";
+  successData.value.pr_url = "";
+
   const {
     success: verificationSuccess,
     data: verificationData,
     message: verificationError,
   } = await verifyWallet();
-  console.log("verificationStatus", {
-    verificationSuccess,
-    verificationData,
-    verificationError,
-  });
+  // console.log("verificationStatus", {
+  //   verificationSuccess,
+  //   verificationData,
+  //   verificationError,
+  // });
   if (!verificationSuccess) {
-    console.log(
-      "verificationStatus signature verification failed",
-      verificationSuccess
-    );
+    setErrors("add-form", ["Signature verification failed!"]);
+    // console.log(
+    //   "verificationStatus signature verification failed",
+    //   verificationSuccess
+    // );
+
     return;
   }
+
+  loading.value = true;
+
   const submitResult = await submitProject(dappForm, verificationData?.token);
   if (submitResult.success) {
     console.log("api response", submitResult);
-    complete.value = true;
+
+    successData.value.message = submitResult.message;
+    successData.value.pr_url = submitResult.data;
+    submitSuccess.value = true;
+
     delete dappForm.value;
+    // messages.value = ["Project added successfully."];
     // dappForm.value = {};
     // setErrors("add-form", ["Project added successfully."]); ??
   } else {
-    setErrors("add-form", ["The server didn’t like our request."]);
+    setErrors("add-form", [submitResult?.message]);
   }
+  loading.value = false;
 };
 
 ///
@@ -100,7 +120,7 @@ onMounted(() => {
       <div class="step">
         <TagStep :dappForm="dappForm" />
       </div>
-      <div class="step">
+      <div class="step" v-if="dappForm.productType === 'datafeed'">
         <ProxyStep :dappForm="dappForm" />
       </div>
       <div class="step">
@@ -129,7 +149,17 @@ onMounted(() => {
         <picture class="curves-decoration">
           <CurvesDecoration />
         </picture>
-        <div class="success-indicator" v-show="false"></div>
+        <!-- <div v-if="complete"> -->
+        <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
+        <!-- </div> -->
+
+        <div class="success-indicator" v-if="submitSuccess">
+          {{ successData.message }}
+        </div>
+
+        <a :href="successData.pr_url" target="_blank" v-if="submitSuccess">
+          View Pull request
+        </a>
       </div>
     </FormKit>
   </SectionColumn>

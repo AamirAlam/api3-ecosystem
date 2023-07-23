@@ -65,11 +65,11 @@ export default authenticated(
           screenshots.push(event.node.req?.files?.screenshot4?.[0]?.location);
         }
 
-        if (screenshots.length < 4) {
+        if (screenshots.length < 2) {
           event.res.statusCode = 400;
           return {
             code: "REQ_FAILED",
-            message: "Failed to upload all screenshots! Please try again",
+            message: "Please upload atleast 2 screenshots",
           };
         }
 
@@ -79,19 +79,33 @@ export default authenticated(
           screenshots: screenshots,
         };
 
-        const payload: ProjectType = {
-          name,
-          tagline,
-          description,
-          status: "inactive",
-          images: uploadedImages,
-          categories: JSON.parse(categories),
-          productType: productType,
-          chains: JSON.parse(chains),
-          // proxies: JSON.parse(proxies),
-          links: JSON.parse(links),
-          year: parseInt(year),
-        };
+        const payload: ProjectType =
+          productType === "qrng"
+            ? {
+                name,
+                tagline,
+                description,
+                status: "inactive",
+                images: uploadedImages,
+                categories: JSON.parse(categories),
+                productType: productType,
+                chains: JSON.parse(chains),
+                links: JSON.parse(links),
+                year: parseInt(year),
+              }
+            : {
+                name,
+                tagline,
+                description,
+                status: "inactive",
+                images: uploadedImages,
+                categories: JSON.parse(categories),
+                productType: productType,
+                chains: JSON.parse(chains),
+                proxies: JSON.parse(proxies),
+                links: JSON.parse(links),
+                year: parseInt(year),
+              };
 
         console.log("final project paylaod ", payload);
 
@@ -129,7 +143,11 @@ export default authenticated(
         }
 
         event.res.statusCode = 201;
-        return { code: "OK", message: "Project submitted successfully!" };
+        return {
+          code: "OK",
+          message: "Project submitted successfully!",
+          data: prResult?.data,
+        };
       } catch (err: any) {
         console.log("create project error ", err);
         event.res.statusCode = 500;
