@@ -1,5 +1,6 @@
 <script setup>
-import slug from "slug";
+import { useEcosystemStore } from "@/stores/ecosystem";
+
 const props = defineProps(["dapp"]);
 const ecosystem = useEcosystemStore();
 const logo = props?.dapp?.images?.logo ?? "@/assets/images/square.jpg";
@@ -194,17 +195,5 @@ header > div {
 }
 :is(.category, .productType, .status):hover {
   filter: brightness(1.2);
-}
-
-.status {
-  font-size: 0.75rem;
-  text-align: right;
-  font-weight: 700;
-}
-.status.Live {
-  color: var(--success);
-}
-.status.Beta {
-  color: var(--warning);
 }
 </style>

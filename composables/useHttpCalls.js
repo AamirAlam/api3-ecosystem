@@ -12,7 +12,7 @@ export const useHttpCalls = () => {
       body.append("chains", JSON.stringify(dappForm.value.chains));
       body.append("categories", JSON.stringify(dappForm.value.categories));
       body.append("productType", dappForm.value?.productType);
-      body.append("proxies", dappForm.value.proxies);
+
       body.append("year", 2021); //: todo fix year  productType form fix
 
       const links = {
@@ -88,18 +88,36 @@ export const useHttpCalls = () => {
 
       body.append("links", JSON.stringify(links));
 
-      // todo: fix proxies selection
-      const testProxies = [
-        {
-          proxyType: "OEV dAPI Proxy",
-          feedName: "BTC/USD",
-          dapiName: "BTC/USD",
-          proxyAddress: "0x",
-          oevBeneficiary: "0x",
-          chainId: 137,
-        },
-      ];
-      body.append("proxies", JSON.stringify(testProxies));
+      const proxies = dappForm.value.proxies;
+
+      const proxyPayload = {};
+      proxies?.forEach((el) => {
+        if (!proxyPayload[el?.chainId]) {
+          proxyPayload[el?.chainId] = [];
+        }
+
+        if (el.type === "datafeedId") {
+          proxyPayload[el?.chainId]?.push({
+            proxyType: el?.type,
+            feedName: !el?.feedName ? "ETH/USD" : el?.feedName,
+            datafeedId: el?.dataFeedId,
+            proxyAddress: el?.proxyAddress,
+            oev: { enabled: el?.isOEV, beneficiary: el?.oevBeneficiary },
+          });
+        } else {
+          proxyPayload[el?.chainId]?.push({
+            proxyType: el?.type,
+            feedName: !el?.feedName ? "ETH/USD" : el?.feedName,
+            dapiNameHash: el?.dApiNameHash,
+            proxyAddress: el?.proxyAddress,
+            oev: { enabled: el?.isOEV, beneficiary: el?.oevBeneficiary },
+          });
+        }
+      });
+
+      console.log("proxy payload ", proxyPayload);
+
+      body.append("proxies", JSON.stringify(proxyPayload));
 
       // images
       body.append("logo", dappForm.value.images.logo);
@@ -117,7 +135,11 @@ export const useHttpCalls = () => {
       });
 
       if (response.status === 201) {
-        return { success: true, message: "Project submitted" };
+        return {
+          success: true,
+          message: "Project submitted",
+          data: response?.data?.response?.response?.data,
+        };
       } else {
         return { success: false, message: "Failed at server" };
       }
@@ -125,7 +147,8 @@ export const useHttpCalls = () => {
       console.log("submit response error ", {
         error: error,
       });
-      return { success: false, message: "Something went wrong" };
+      const errorMessage = error?.response?.data?.response?.response?.message;
+      return { success: false, message: errorMessage };
     }
   };
 

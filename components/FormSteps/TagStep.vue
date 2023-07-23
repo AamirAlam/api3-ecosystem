@@ -46,7 +46,6 @@ function buttonHandle(valid, direction) {
       />
     </form-field>
 
-    <!-- //: todo change this single select value -->
     <form-field>
       <label class="notice-voice" for="productType">
         select the service used
@@ -61,14 +60,14 @@ function buttonHandle(valid, direction) {
         :options="ecosystem.productTypeOptions"
       />
     </form-field>
-    <div class="actions">
+    <!-- <div class="actions">
       <button class="button previous" @click.prevent="buttonHandle(valid, -1)">
         Previous
       </button>
       <button class="button next" @click.prevent="buttonHandle(valid, 1)">
         Next
       </button>
-    </div>
+    </div> -->
     <template v-if="buttonClick">
       <p v-if="!valid" class="not-valid">
         Your account details are not complete!

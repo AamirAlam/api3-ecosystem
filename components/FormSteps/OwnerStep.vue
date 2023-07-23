@@ -41,7 +41,7 @@ function buttonHandle(valid, direction) {
       />
     </form-field>
 
-    <div class="actions">
+    <!-- <div class="actions">
       <button
         v-show="false"
         class="button previous"
@@ -52,7 +52,7 @@ function buttonHandle(valid, direction) {
       <button class="button next" @click.prevent="buttonHandle(valid, 1)">
         Next
       </button>
-    </div>
+    </div> -->
     <template v-if="buttonClick">
       <p v-if="!valid" class="not-valid">
         Your account details are not complete!

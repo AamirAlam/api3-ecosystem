@@ -7,12 +7,33 @@ import { Web3Modal } from "@web3modal/html";
 import {
   configureChains,
   createConfig,
-  getAccount,
   watchAccount,
   signMessage,
   getNetwork,
 } from "@wagmi/core";
-import { arbitrum, mainnet, polygon } from "@wagmi/core/chains";
+import {
+  arbitrum,
+  mainnet,
+  polygon,
+  polygonZkEvm,
+  avalanche,
+  avalancheFuji,
+  boba,
+  bsc,
+  canto,
+  celo,
+  dogechain,
+  fantom,
+  moonbeam,
+  moonriver,
+  aurora,
+  gnosis,
+  metis,
+  optimism,
+  zkSync,
+  skaleExorde,
+  mantle,
+} from "@wagmi/core/chains";
 
 export const useWeb3 = () => {
   //get env variable for project id
@@ -20,7 +41,29 @@ export const useWeb3 = () => {
   const projectId = config.public.WEB3MODAL_PROJECT_ID;
 
   //configure chains
-  const chains = [arbitrum, mainnet, polygon];
+  const chains = [
+    arbitrum,
+    mainnet,
+    polygon,
+    polygonZkEvm,
+    aurora,
+    avalanche,
+    avalancheFuji,
+    boba,
+    bsc,
+    canto,
+    celo,
+    dogechain,
+    fantom,
+    moonbeam,
+    moonriver,
+    gnosis,
+    metis,
+    optimism,
+    zkSync,
+    skaleExorde,
+    mantle,
+  ];
   const { publicClient } = configureChains(chains, [
     w3mProvider({ projectId }),
   ]);

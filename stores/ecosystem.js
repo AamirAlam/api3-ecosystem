@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { useFetch } from "nuxt/app";
 import { CHAINS } from "@api3/chains";
 import { watchDebounced } from "@vueuse/core";
+import feedNames from "./feedNames.json";
 
 export const useEcosystemStore = defineStore("ecosystem", () => {
   //get projects, with dynamic pagination
@@ -78,10 +79,8 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
   }
 
   const productTypeToLabel = {
-    dapi: "dAPI",
     qrng: "QRNG",
     datafeed: "Data Feed",
-    airnode: "Airnode",
   };
 
   const categoryToLabel = {
@@ -124,7 +123,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
 
   // chain id to chain name mapping
   const chainNames = (chainId) => {
-    const chain = CHAINS.find((chain) => chain.id === chainId);
+    const chain = CHAINS.find((chain) => chain.id == chainId);
     return chain ? chain.name : chainId;
   };
 
@@ -137,6 +136,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     chainOptions,
     categoryToLabel,
     productTypeToLabel,
+    feedNameOptions: feedNames,
     filterQuery,
     chainNames,
     addDapp,

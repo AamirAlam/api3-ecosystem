@@ -16,8 +16,11 @@ useServerSeoMeta({
 
 //
 const dappForm = useStorage("dapp-form", {});
-const complete = ref(false);
+dappForm.value.proxies = [];
+const loading = ref(false);
 const messages = ref([]);
+const successData = ref({ message: "", pr_url: "" });
+const submitSuccess = ref(false);
 const { verifyWallet } = useSiwe();
 const { submitProject } = useHttpCalls();
 
@@ -34,37 +37,50 @@ function showErrors(node) {
 }
 
 const submitHandler = async () => {
+  // console.log("dapp form ", dappForm);
+  setErrors("add-form", []);
+  submitSuccess.value = false;
+  successData.value.message = "";
+  successData.value.pr_url = "";
+
   const {
     success: verificationSuccess,
     data: verificationData,
     message: verificationError,
   } = await verifyWallet();
-
-  console.log("verificationStatus", {
-    verificationSuccess,
-    verificationData,
-    verificationError,
-  });
-
+  // console.log("verificationStatus", {
+  //   verificationSuccess,
+  //   verificationData,
+  //   verificationError,
+  // });
   if (!verificationSuccess) {
-    console.log(
-      "verificationStatus signature verification failed",
-      verificationSuccess
-    );
+    setErrors("add-form", ["Signature verification failed!"]);
+    // console.log(
+    //   "verificationStatus signature verification failed",
+    //   verificationSuccess
+    // );
+
     return;
   }
 
-  const submitResult = await submitProject(dappForm, verificationData?.token);
+  loading.value = true;
 
+  const submitResult = await submitProject(dappForm, verificationData?.token);
   if (submitResult.success) {
     console.log("api response", submitResult);
-    complete.value = true;
+
+    successData.value.message = submitResult.message;
+    successData.value.pr_url = submitResult.data;
+    submitSuccess.value = true;
+
     delete dappForm.value;
+    // messages.value = ["Project added successfully."];
     // dappForm.value = {};
     // setErrors("add-form", ["Project added successfully."]); ??
   } else {
-    setErrors("add-form", ["The server didn’t like our request."]);
+    setErrors("add-form", [submitResult?.message]);
   }
+  loading.value = false;
 };
 
 ///
@@ -73,6 +89,12 @@ onMounted(() => {
     top: 0,
     left: 0,
   });
+
+  //   const $form = document.querySelector("form");
+  //   const $main = document.querySelector("main.add-dapp");
+  //   console.log($form.scrollHeight);
+  //   const scrollHeight = computed(() => $form.scrollHeight);
+  //   $main.style.setProperty("--after-height", scrollHeight);
 });
 </script>
 
@@ -98,7 +120,7 @@ onMounted(() => {
       <div class="step">
         <TagStep :dappForm="dappForm" />
       </div>
-      <div class="step">
+      <div class="step" v-if="dappForm.productType === 'datafeed'">
         <ProxyStep :dappForm="dappForm" />
       </div>
       <div class="step">
@@ -127,7 +149,17 @@ onMounted(() => {
         <picture class="curves-decoration">
           <CurvesDecoration />
         </picture>
-        <div class="success-indicator" v-show="false"></div>
+        <!-- <div v-if="complete"> -->
+        <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
+        <!-- </div> -->
+
+        <div class="success-indicator" v-if="submitSuccess">
+          {{ successData.message }}
+        </div>
+
+        <a :href="successData.pr_url" target="_blank" v-if="submitSuccess">
+          View Pull request
+        </a>
       </div>
     </FormKit>
   </SectionColumn>
@@ -137,18 +169,32 @@ onMounted(() => {
 body:has(main.add-dapp) {
   overflow: hidden;
 }
+main.add-dapp {
+  position: relative;
+
+  //   &::after { #todo scroll indicator
+  //     content: "";
+  //     position: absolute;
+  //     width: 1px;
+  //     height: var(--after-height);
+  //     right: 10px;
+  //     top: 0px;
+  //     background: var(--gradient-color);
+  //     z-index: 1;
+  //   }
+}
 
 form {
   max-height: 100vh;
   overflow-y: scroll;
-  scroll-snap-type: mandatory;
-  scroll-snap-type: y mandatory;
-  scroll-snap-points-y: repeat(calc(100vh - 100px));
+  //   scroll-snap-type: mandatory;
+  //   scroll-snap-type: y mandatory;
+  //   scroll-snap-points-y: repeat(calc(100vh - 100px));
   scroll-behavior: smooth;
 
   & > :is(.step, .actions) {
-    scroll-snap-align: start;
-    height: calc(100vh - 100px);
+    //  scroll-snap-align: start;
+    min-height: calc(80vh);
     display: grid;
     gap: 3rem;
     align-content: center;
@@ -160,7 +206,6 @@ form {
     max-width: unset;
     display: grid;
     align-items: center;
-
     gap: 1rem;
   }
 

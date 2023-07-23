@@ -1,6 +1,5 @@
 <script setup>
 const props = defineProps(["dappForm"]);
-props.dappForm.images = props.dappForm.images ?? {};
 
 const buttonClick = ref(false);
 function buttonHandle(valid, direction) {
@@ -17,6 +16,18 @@ const fileSize = function (node) {
   return fileSizes.every((fileSize) => {
     return fileSize <= maxSize;
   });
+};
+
+const handleLogoSelect = (event) => {
+  props.dappForm.images.logo = event.target.files[0];
+};
+
+const handleBannerSelect = (event) => {
+  props.dappForm.images.banner = event.target.files[0];
+};
+
+const handleScreenshotSelect = (event) => {
+  props.dappForm.images.screenshots = [...event.target.files];
 };
 </script>
 
@@ -37,7 +48,7 @@ const fileSize = function (node) {
           label-class="$reset notice-voice"
           name="logo"
           help="This image should be a square and at least 512px wide."
-          @change="dappForm.images.logo = $event.target.files[0]"
+          @change="handleLogoSelect"
           accept="*"
           validation="required|fileSize"
           :validation-rules="{ fileSize }"
@@ -55,7 +66,7 @@ const fileSize = function (node) {
           name="banner"
           help="This image should be at least 1024px wide."
           accept="*"
-          @change="dappForm.images.banner = $event.target.files[0]"
+          @change="handleBannerSelect"
           v-auto-animate
           validation="required|fileSize"
           :validation-rules="{ fileSize }"
@@ -76,7 +87,7 @@ const fileSize = function (node) {
           label-class="$reset notice-voice"
           name="screenshots"
           help="Screenshots of your dApp in action."
-          @change="dappForm.images.screenshots = [...$event.target.files]"
+          @change="handleScreenshotSelect"
           accept="*"
           validation="fileSize"
           :validation-rules="{ fileSize }"
@@ -86,14 +97,14 @@ const fileSize = function (node) {
         />
       </file-upload>
     </div>
-    <div class="actions">
+    <!-- <div class="actions">
       <button class="button previous" @click.prevent="buttonHandle(valid, -1)">
         Previous
       </button>
       <button class="button next" @click.prevent="buttonHandle(valid, 1)">
         Next
       </button>
-    </div>
+    </div> -->
     <template v-if="buttonClick">
       <p v-if="!valid" class="not-valid">
         Your account details are not complete!
