@@ -17,9 +17,10 @@ useServerSeoMeta({
 //
 const dappForm = useStorage("dapp-form", {});
 dappForm.value.proxies = [];
-const complete = ref(false);
+const loading = ref(false);
 const messages = ref([]);
-const successMessage = ref("");
+const successData = ref({ message: "", pr_url: "" });
+const submitSuccess = ref(false);
 const { verifyWallet } = useSiwe();
 const { submitProject } = useHttpCalls();
 
@@ -36,39 +37,50 @@ function showErrors(node) {
 }
 
 const submitHandler = async () => {
-  console.log("dapp form ", dappForm);
+  // console.log("dapp form ", dappForm);
   setErrors("add-form", []);
-  successMessage.value = "";
+  submitSuccess.value = false;
+  successData.value.message = "";
+  successData.value.pr_url = "";
 
   const {
     success: verificationSuccess,
     data: verificationData,
     message: verificationError,
   } = await verifyWallet();
-  console.log("verificationStatus", {
-    verificationSuccess,
-    verificationData,
-    verificationError,
-  });
+  // console.log("verificationStatus", {
+  //   verificationSuccess,
+  //   verificationData,
+  //   verificationError,
+  // });
   if (!verificationSuccess) {
-    console.log(
-      "verificationStatus signature verification failed",
-      verificationSuccess
-    );
+    setErrors("add-form", ["Signature verification failed!"]);
+    // console.log(
+    //   "verificationStatus signature verification failed",
+    //   verificationSuccess
+    // );
+
     return;
   }
+
+  loading.value = true;
 
   const submitResult = await submitProject(dappForm, verificationData?.token);
   if (submitResult.success) {
     console.log("api response", submitResult);
-    complete.value = true;
+
+    successData.value.message = submitResult.message;
+    successData.value.pr_url = submitResult.data;
+    submitSuccess.value = true;
+
     delete dappForm.value;
-    messages.value = ["Project added successfully."];
+    // messages.value = ["Project added successfully."];
     // dappForm.value = {};
     // setErrors("add-form", ["Project added successfully."]); ??
   } else {
     setErrors("add-form", [submitResult?.message]);
   }
+  loading.value = false;
 };
 
 ///
@@ -137,11 +149,17 @@ onMounted(() => {
         <picture class="curves-decoration">
           <CurvesDecoration />
         </picture>
-        <!-- <template v-if="isValid"> -->
-        <div class="success-indicator" v-if="successMessage">
-          {{ successMessage }}
+        <!-- <div v-if="complete"> -->
+        <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
+        <!-- </div> -->
+
+        <div class="success-indicator" v-if="submitSuccess">
+          {{ successData.message }}
         </div>
-        <!-- </template> -->
+
+        <a :href="successData.pr_url" target="_blank" v-if="submitSuccess">
+          View Pull request
+        </a>
       </div>
     </FormKit>
   </SectionColumn>
