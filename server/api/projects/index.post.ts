@@ -75,7 +75,7 @@ export default authenticated(
 
         const uploadedImages = {
           logo: event.node.req?.files?.logo?.[0]?.location,
-          banner: event.node.req?.files?.banner?.[0]?.location,
+          cover: event.node.req?.files?.banner?.[0]?.location,
           screenshots: screenshots,
         };
 

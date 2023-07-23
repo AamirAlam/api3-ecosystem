@@ -137,7 +137,7 @@ export const useHttpCalls = () => {
       if (response.status === 201) {
         return {
           success: true,
-          message: "Project submitted",
+          message: "Project submitted for review",
           data: response?.data?.response?.response?.data,
         };
       } else {

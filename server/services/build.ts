@@ -33,7 +33,7 @@ async function verifyBuild(
     // append new project and run build
 
     const isBuildChecked =
-      shelljs.exec(`cd dapp-registry && git pull && yarn`).code === 0;
+      shelljs.exec(`cd dapp-registry && git pull --rebase && yarn`).code === 0;
 
     if (!isBuildChecked) {
       reject({ success: false, message: "Git pull failed" });
