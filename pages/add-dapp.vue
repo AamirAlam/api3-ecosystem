@@ -36,35 +36,37 @@ function showErrors(node) {
   });
 }
 
-const submitHandler = async () => {
+const submitHandler = async (event) => {
   setErrors("add-form", []);
   submitSuccess.value = false;
   successData.value.message = "";
   successData.value.pr_url = "";
+
+  // prepare images selected
+  const logo = event?.images?.logo?.[0]?.file;
+  const cover = event?.images?.cover?.[0]?.file;
+  const screenshots = event?.images?.screenshots?.map((el) => el?.file);
+  const images = { logo, cover, screenshots };
 
   const {
     success: verificationSuccess,
     data: verificationData,
     message: verificationError,
   } = await verifyWallet();
-  // console.log("verificationStatus", {
-  //   verificationSuccess,
-  //   verificationData,
-  //   verificationError,
-  // });
+
   if (!verificationSuccess) {
     setErrors("add-form", ["Signature verification failed!"]);
-    // console.log(
-    //   "verificationStatus signature verification failed",
-    //   verificationSuccess
-    // );
 
     return;
   }
 
   loading.value = true;
 
-  const submitResult = await submitProject(dappForm, verificationData?.token);
+  const submitResult = await submitProject(
+    dappForm,
+    images,
+    verificationData?.token
+  );
   if (submitResult.success) {
     console.log("api response", submitResult);
 
@@ -73,9 +75,6 @@ const submitHandler = async () => {
     submitSuccess.value = true;
 
     delete dappForm.value;
-    // messages.value = ["Project added successfully."];
-    // dappForm.value = {};
-    // setErrors("add-form", ["Project added successfully."]); ??
   } else {
     setErrors("add-form", [submitResult?.message]);
   }

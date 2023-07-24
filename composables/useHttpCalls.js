@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const useHttpCalls = () => {
-  const submitProject = async (dappForm, token) => {
+  const submitProject = async (dappForm, images, token) => {
     try {
       const body = new FormData();
 
@@ -120,11 +120,10 @@ export const useHttpCalls = () => {
       body.append("proxies", JSON.stringify(proxyPayload));
 
       // images
-      body.append("logo", dappForm.value.images.logo);
-      body.append("banner", dappForm.value.images.banner);
+      body.append("logo", images.logo);
+      body.append("cover", images.cover);
 
-      dappForm.value.images?.screenshots.forEach((fileItem, index) => {
-        console.log(fileItem);
+      images?.screenshots.forEach((fileItem, index) => {
         body.append(`screenshot${index + 1}`, fileItem);
       });
 

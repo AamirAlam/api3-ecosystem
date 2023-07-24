@@ -1,11 +1,6 @@
 <script setup>
 const props = defineProps(["dappForm"]);
 
-const buttonClick = ref(false);
-function buttonHandle(valid, direction) {
-  formStepButtonHandle(valid, direction, buttonClick);
-}
-
 const fileSize = function (node) {
   if (!node.value) return true;
 
@@ -16,18 +11,6 @@ const fileSize = function (node) {
   return fileSizes.every((fileSize) => {
     return fileSize <= maxSize;
   });
-};
-
-const handleLogoSelect = (event) => {
-  props.dappForm.images.logo = event.target.files[0];
-};
-
-const handleBannerSelect = (event) => {
-  props.dappForm.images.banner = event.target.files[0];
-};
-
-const handleScreenshotSelect = (event) => {
-  props.dappForm.images.screenshots = [...event.target.files];
 };
 </script>
 
@@ -48,8 +31,7 @@ const handleScreenshotSelect = (event) => {
           label-class="$reset notice-voice"
           name="logo"
           help="This image should be a square and at least 512px wide."
-          @change="handleLogoSelect"
-          accept="*"
+          accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP, .gif, .GIF"
           validation="required|fileSize"
           :validation-rules="{ fileSize }"
           :validation-messages="{
@@ -59,14 +41,13 @@ const handleScreenshotSelect = (event) => {
       </file-upload>
       <file-upload>
         <FormKit
-          id="bannerForm"
+          id="coverForm"
           type="file"
-          label="Upload a branded banner"
+          label="Upload a branded cover"
           label-class="$reset notice-voice"
-          name="banner"
+          name="cover"
           help="This image should be at least 1024px wide."
-          accept="*"
-          @change="handleBannerSelect"
+          accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP, .gif, .GIF"
           v-auto-animate
           validation="required|fileSize"
           :validation-rules="{ fileSize }"
@@ -87,8 +68,7 @@ const handleScreenshotSelect = (event) => {
           label-class="$reset notice-voice"
           name="screenshots"
           help="Screenshots of your dApp in action."
-          @change="handleScreenshotSelect"
-          accept="*"
+          accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP, .gif, .GIF"
           validation="fileSize"
           :validation-rules="{ fileSize }"
           :validation-messages="{
@@ -97,20 +77,6 @@ const handleScreenshotSelect = (event) => {
         />
       </file-upload>
     </div>
-    <!-- <div class="actions">
-      <button class="button previous" @click.prevent="buttonHandle(valid, -1)">
-        Previous
-      </button>
-      <button class="button next" @click.prevent="buttonHandle(valid, 1)">
-        Next
-      </button>
-    </div> -->
-    <template v-if="buttonClick">
-      <p v-if="!valid" class="not-valid">
-        Your account details are not complete!
-      </p>
-      <p v-else class="valid">It all looks good 👍</p>
-    </template>
   </FormKit>
 </template>
 
