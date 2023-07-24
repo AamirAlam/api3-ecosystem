@@ -58,7 +58,7 @@ async function submitHandler(event) {
       status.value.success = false;
       status.value.message = submitResult.message;
       status.value.loading = false;
-      //:todo handle error
+
       console.log("The server didn’t like our request.", submitResult);
     }
   };

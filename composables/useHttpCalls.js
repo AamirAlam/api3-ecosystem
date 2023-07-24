@@ -13,7 +13,7 @@ export const useHttpCalls = () => {
       body.append("categories", JSON.stringify(dappForm.value.categories));
       body.append("productType", dappForm.value?.productType);
 
-      body.append("year", 2021); //: todo fix year  productType form fix
+      body.append("year", dappForm?.value?.year);
 
       const links = {
         website: dappForm.value.links.website,

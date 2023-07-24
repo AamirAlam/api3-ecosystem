@@ -37,6 +37,7 @@ function showErrors(node) {
 }
 
 const submitHandler = async (event) => {
+  console.log("dapp form ", dappForm);
   setErrors("add-form", []);
   submitSuccess.value = false;
   successData.value.message = "";

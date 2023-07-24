@@ -15,7 +15,6 @@ async function handleUpdateProxy() {
   if (!props.dappForm?.proxyAddress) {
     message.value = "Please add valid proxy address!";
     console.log("invalid proxy address added");
-    //:todo show error on frontend
     return;
   }
 
@@ -39,7 +38,6 @@ async function handleUpdateProxy() {
       props.dappForm?.feedName
     );
 
-    // console.log("info ", info);
     const finalProxyEntry = {
       proxyAddress: props.dappForm?.proxyAddress,
       isOEV: info?.isOev,
