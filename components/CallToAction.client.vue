@@ -62,7 +62,7 @@ onMounted(() => {
         >
           Join the Web3 API revolution and publish your dapp on our site today!
         </h2>
-        <button class="button filled" @click="navigateTo('/add-dapp')">
+        <button class="button filled" @click="navigateTo('/ecosystem')">
           Join Now
         </button>
       </text-content>
