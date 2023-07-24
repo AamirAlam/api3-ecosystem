@@ -5,7 +5,7 @@ import { watchDebounced } from "@vueuse/core";
 import feedNames from "./feedNames.json";
 
 export const useEcosystemStore = defineStore("ecosystem", () => {
-  //get projects, with dynamic pagination
+  // store states
   const baseServerUrl = ref("/api/projects/");
   const filterQuery = ref({
     searchKey: "",
@@ -16,6 +16,8 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     page: 1,
   });
   const hasMoreItems = ref(true);
+  const projectList = ref([]);
+  const totalProjects = ref(0);
 
   const serverURL = computed(() => {
     let url = baseServerUrl.value + `?page=${filterQuery.value.page}`;
@@ -52,9 +54,6 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     },
     { debounce: 500, maxWait: 1000 }
   );
-
-  const projectList = ref([]);
-  const totalProjects = ref(0);
 
   const { data, error: listError } = useFetch(
     () => debouncedSearchQuery.value,

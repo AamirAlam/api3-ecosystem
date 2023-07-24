@@ -68,7 +68,7 @@ async function handleUpdateProxy() {
 
     console.log("fetched info ", props.dappForm.proxies);
   } catch (error) {
-    message.value = "Unable to fetch proxy info";
+    message.value = "Unable fetch proxy info! Incorrect input";
     console.log("failed to fetch proxy info ", error);
   } finally {
     loading.value = false;

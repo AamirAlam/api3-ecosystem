@@ -7,7 +7,6 @@ import { getValidationMessages } from "@formkit/validation";
 definePageMeta({
   title: "Add Dapp",
   layout: "home",
-  middleware: "auth",
 });
 
 useServerSeoMeta({
@@ -23,6 +22,7 @@ const successData = ref({ message: "", pr_url: "" });
 const submitSuccess = ref(false);
 const { verifyWallet } = useSiwe();
 const { submitProject } = useHttpCalls();
+const { isConnected } = useWeb3();
 
 ///
 
@@ -83,6 +83,9 @@ const submitHandler = async (event) => {
 
 ///
 onMounted(() => {
+  if (!isConnected) {
+    navigateTo("/login");
+  }
   window.scroll({
     top: 0,
     left: 0,

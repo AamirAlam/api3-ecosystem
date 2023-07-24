@@ -65,6 +65,10 @@ onMounted(() => {
     }
   );
 });
+
+const handleFilter = (event) => {
+  ecosystem.filterQuery.page = 1;
+};
 </script>
 
 <template>
@@ -113,6 +117,7 @@ onMounted(() => {
               type="checkbox"
               :value="chain?.chainId"
               v-model="ecosystem.filterQuery.chains"
+              @change="handleFilter"
             />
           </li>
         </template>
@@ -149,6 +154,7 @@ onMounted(() => {
               type="checkbox"
               :value="category.name"
               v-model="ecosystem.filterQuery.categories"
+              @change="handleFilter"
             />
           </li>
         </template>
@@ -188,6 +194,7 @@ onMounted(() => {
               type="checkbox"
               :value="productType.name"
               v-model="ecosystem.filterQuery.productTypes"
+              @change="handleFilter"
             />
           </li>
         </template>
@@ -217,7 +224,7 @@ onMounted(() => {
               type="checkbox"
               :value="year.name"
               v-model="ecosystem.filterQuery.years"
-              onclick="console.log('test', this.checked)"
+              @change="handleFilter"
             />
           </li>
         </template>
