@@ -7,7 +7,7 @@ const socials = ref([
   },
   {
     name: "Discord",
-    link: "https://discord.gg/8uWxnRF",
+    link: "https://discord.com/invite/qnRrcfnm5W",
     icon: "Discord",
   },
   {
@@ -27,12 +27,12 @@ const socials = ref([
   },
   {
     name: "Youtube",
-    link: "https://www.youtube.com/channel/UCS8FZlXJWq_9m7Z9jV8e-kA",
+    link: "https://www.youtube.com/@API3DAO",
     icon: "YouTube",
   },
   {
     name: "Github",
-    link: "",
+    link: "https://github.com/api3dao",
     icon: "Github",
   },
 ]);
@@ -41,53 +41,49 @@ const footerLinks = [
   {
     title: "For Developers",
     links: [
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
+      { label: "Documentation", path: "https://api3.org/goto/docs?source=ao-menu" },
+      { label: "Github", path: "https://github.com/API3DAO" },
+      { label: "API3 Market", path: "https://market.api3.org/dapis" },
       // Add more links here
     ],
   },
   {
-    title: "For data providers",
+    title: "Solutions",
     links: [
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-      // Add more links here
-    ],
-  },
-  {
-    title: "DAO",
-    links: [
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
+      { label: "Airnode", path: "https://api3.org/airnode" },
+      { label: "Data feeds", path: "https://api3.org/dapis" },
+      { label: "OEV", path: "https://api3.org/oev" },
+      { label: "QRNG", path: "https://api3.org/QRNG"}
       // Add more links here
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-
+      { label: "Guides", path: "https://docs.api3.org/guides/" },
+      { label: "Articles", path: "https://api3.org/goto/medium?source=ao-menu" },
       // Add more links here
     ],
   },
   {
     title: "Participate",
     links: [
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-      { label: "Contact", path: "/contact" },
-
+      { label: "DAO", path: "https://api3.org/dao" },
+      { label: "Open Positions", path: "https://api3.org/positions/Core-Tech-Team-Positions" },
       // Add more links here
     ],
   },
+  {
+    title: "Whitepaper",
+    links: [
+      { label: "English", path: "https://drive.google.com/file/d/1b8QsGPCJJC1pQOcg83-knD1IAOIgCtZZ/view?usp=sharing" },
+      { label: "Chinese", path: "https://drive.google.com/file/d/1f2Kad5CUgbr7plyGBtWnK-Shfm3XowWy/view?usp=sharing" },
+      { label: "Korean", path: "https://drive.google.com/file/d/1JMHwdNibJf5g_bBaG8Sx9cCg5_14ZIvE/view?usp=sharing" },
+      { label: "Spanish", path: "https://drive.google.com/file/d/1C_HEQ41TBE-W2IKqMZTaVR9pND6hes8S/view?usp=sharing" },
+      { label: "Vietnamese", path: "https://drive.google.com/file/d/1ELcBjb8nO_4S4jhhZnFMeSo2BHrznONj/view?usp=sharing"}
+      // Add more links here
+    ],
+  }
 ];
 
 //#todo do the same for the other links
@@ -123,11 +119,11 @@ const footerLinks = [
     <section class="other">
       <inner-column>
         <nav class="misc-links">
-          <NuxtLink to="/" class="calm-voice text"> Privacy & Terms </NuxtLink>
+          <NuxtLink to="https://api3.org/privacy-policy" class="calm-voice text"> Privacy Policy </NuxtLink>
 
-          <NuxtLink to="/" class="calm-voice text"> Privacy & Terms </NuxtLink>
+          <NuxtLink to="https://api3.org/cookies" class="calm-voice text"> Privacy & Cookies </NuxtLink>
 
-          <NuxtLink to="/" class="calm-voice text"> Privacy & Terms </NuxtLink>
+          <NuxtLink to="https://api3.org/terms-and-conditions" class="calm-voice text"> Terms & Conditions </NuxtLink>
           <!-- #todo -->
         </nav>
         <nav class="social-icons">
