@@ -4,7 +4,11 @@ import { parseMarkdown } from "@/utils/parseMarkdown";
 const { verifyWallet } = useSiwe();
 const { submitArticle } = useHttpCalls();
 
+const status = ref({ loading: false, success: false, message: "" });
+
 async function submitHandler(event) {
+  status.value = { loading: false, success: false, message: "" };
+
   const file = event.article[0].file;
 
   const imageFile = event.image[0].file;
@@ -41,11 +45,19 @@ async function submitHandler(event) {
     formData.append("article", JSON.stringify(parsed));
     formData.append("cover", imageFile);
 
+    status.value.loading = true;
     const submitResult = await submitArticle(formData, verificationData?.token);
 
     if (submitResult.success) {
       console.log("Article submitted successfully.", submitResult);
+
+      status.value.success = true;
+      status.value.message = "Article submitted successfully.";
+      status.value.loading = false;
     } else {
+      status.value.success = false;
+      status.value.message = submitResult.message;
+      status.value.loading = false;
       //:todo handle error
       console.log("The server didn’t like our request.", submitResult);
     }
@@ -80,9 +92,12 @@ async function submitHandler(event) {
           label-class="$reset notice-voice"
           name="image"
           help="Upload cover image for article"
-          accept="*"
+          accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP, .gif, .GIF"
           validation="required"
         />
+
+        <div v-if="status.loading">Uploading...</div>
+        <div>{{ status.message }}</div>
       </FormKit>
     </file-upload>
   </SectionColumn>
