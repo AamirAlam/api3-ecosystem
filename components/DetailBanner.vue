@@ -7,7 +7,7 @@ const props = defineProps(["dapp"]);
 <template>
   <SectionColumn v-if="dapp" class="banner" innerClass="none">
     <picture>
-      <img :src="dapp.images.banner" alt="" />
+      <img :src="dapp.images.cover" alt="" />
     </picture>
   </SectionColumn>
 </template>
