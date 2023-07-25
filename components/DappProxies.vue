@@ -10,7 +10,7 @@ console.log("props data ", props.proxies);
   <section class="proxy-table">
     <h2 class="attention-voice">Proxies</h2>
     <ul>
-      <li class="table-row">
+      <li class="table-row table-head">
         <div class="solid-voice chain">Chain</div>
         <div class="solid-voice chain">is OEV?</div>
         <div class="solid-voice type">Feed Name</div>
@@ -72,11 +72,21 @@ console.log("props data ", props.proxies);
 section.proxy-table {
   ul {
     margin-top: 0.5rem;
+    max-height: 400px;
+    overflow-y: scroll;
+    position: relative;
+
+    .table-head {
+      position: sticky;
+      top: 0;
+      background-color: var(--paper);
+      z-index: 1;
+    }
   }
   .table-row {
     display: grid;
     grid-template-columns: 0.75fr 1fr 1fr 1fr 1fr 1fr;
-    padding: 1rem 0;
+    padding: 1rem;
     border-bottom: 1px solid var(--gray-dark);
     align-items: center;
 
