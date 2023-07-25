@@ -30,6 +30,9 @@ function buttonHandle(valid, direction) {
         :searchable="true"
         :create-option="false"
         :options="ecosystem.categoryOptions"
+        :classes="{
+          tag: 'calm-voice multiselect-tag',
+        }"
       />
     </form-field>
 
@@ -43,6 +46,9 @@ function buttonHandle(valid, direction) {
         :searchable="true"
         :create-option="false"
         :options="ecosystem.chainOptions"
+        :classes="{
+          tag: 'calm-voice multiselect-tag',
+        }"
       />
     </form-field>
 
@@ -58,6 +64,9 @@ function buttonHandle(valid, direction) {
         :searchable="true"
         :create-option="false"
         :options="ecosystem.productTypeOptions"
+        :classes="{
+          singleLabelText: 'calm-voice multiselect-single-label-text',
+        }"
       />
     </form-field>
     <!-- <div class="actions">
