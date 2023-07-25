@@ -63,6 +63,7 @@ const submitHandler = async (event) => {
 
   loading.value = true;
 
+  successData.value.message = "Please wait for this to process — Max 30 secs!";
   const submitResult = await submitProject(
     dappForm,
     images,
@@ -134,7 +135,6 @@ onMounted(() => {
       <!-- <div class="step">
         <SocialsStep2 :dappForm="dappForm" />
       </div> -->
-
       <div class="actions">
         <h2 class="loud-voice">Submit your project!</h2>
         <FormKit
@@ -155,7 +155,7 @@ onMounted(() => {
         <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
         <!-- </div> -->
 
-        <div class="success-indicator" v-if="submitSuccess">
+        <div class="success-indicator">
           {{ successData.message }}
         </div>
 

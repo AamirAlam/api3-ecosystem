@@ -31,7 +31,7 @@ onMounted(() => {
     <form-field>
       <FormKit
         type="text"
-        label="dApp Name"
+        label="Dapp name"
         label-class="$reset notice-voice"
         name="dappName"
         placeholder="Insert your dApp name"
@@ -73,11 +73,12 @@ onMounted(() => {
     </form-field>
 
     <form-field>
-      <label class="notice-voice" for="year"> Select release year </label>
+      <label class="notice-voice" for="year"> Select release year* </label>
       <Multiselect
         id="year"
         v-model="dappForm.year"
         mode="single"
+        :required="true"
         :close-on-select="true"
         :searchable="true"
         :create-option="false"
