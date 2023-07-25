@@ -33,7 +33,7 @@ onMounted(() => {
     <picture>
       <img
         :src="
-          article?.image ??
+          article?.cover ??
           'https://source.unsplash.com/random/1000x600/?article'
         "
       />

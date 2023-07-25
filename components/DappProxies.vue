@@ -19,7 +19,7 @@ console.log("props data ", props.proxies);
         <div class="solid-voice type">ID / dAPI</div>
         <div class="" v-if="isForm"></div>
       </li>
-      <li class="table-row" v-for="proxy in proxies">
+      <li class="table-row" v-for="(proxy, index) in proxies">
         <div class="chain">
           <picture>
             <ChainIcon

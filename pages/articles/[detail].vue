@@ -172,7 +172,10 @@ inner-column.article {
     p {
       margin-top: 1rem;
     }
-
+    p a {
+      color: var(--highlight);
+      text-decoration: underline;
+    }
     li,
     p {
       letter-spacing: 0.02em;
@@ -256,7 +259,6 @@ inner-column.article {
         position: absolute;
         inset: -1px;
         z-index: -2;
-        background: var(--gradient-color);
         border-radius: calc(var(--corners) + 3rem);
       }
     }

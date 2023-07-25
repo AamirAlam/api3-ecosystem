@@ -62,7 +62,9 @@ onMounted(() => {
         >
           Join the Web3 API revolution and publish your dapp on our site today!
         </h2>
-        <button class="button filled">Join Now</button>
+        <button class="button filled" @click="navigateTo('/ecosystem')">
+          Join Now
+        </button>
       </text-content>
       <picture class="graphic">
         <img src="@/assets/images/partner-logos.png" alt="" />

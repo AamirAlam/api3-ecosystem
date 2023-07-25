@@ -7,7 +7,6 @@ import { getValidationMessages } from "@formkit/validation";
 definePageMeta({
   title: "Add Dapp",
   layout: "home",
-  middleware: "auth",
 });
 
 useServerSeoMeta({
@@ -23,6 +22,7 @@ const successData = ref({ message: "", pr_url: "" });
 const submitSuccess = ref(false);
 const { verifyWallet } = useSiwe();
 const { submitProject } = useHttpCalls();
+const { isConnected } = useWeb3();
 
 ///
 
@@ -36,35 +36,38 @@ function showErrors(node) {
   });
 }
 
-const submitHandler = async () => {
+const submitHandler = async (event) => {
+  console.log("dapp form ", dappForm);
   setErrors("add-form", []);
   submitSuccess.value = false;
   successData.value.message = "";
   successData.value.pr_url = "";
+
+  // prepare images selected
+  const logo = event?.images?.logo?.[0]?.file;
+  const cover = event?.images?.cover?.[0]?.file;
+  const screenshots = event?.images?.screenshots?.map((el) => el?.file);
+  const images = { logo, cover, screenshots };
 
   const {
     success: verificationSuccess,
     data: verificationData,
     message: verificationError,
   } = await verifyWallet();
-  // console.log("verificationStatus", {
-  //   verificationSuccess,
-  //   verificationData,
-  //   verificationError,
-  // });
+
   if (!verificationSuccess) {
     setErrors("add-form", ["Signature verification failed!"]);
-    // console.log(
-    //   "verificationStatus signature verification failed",
-    //   verificationSuccess
-    // );
 
     return;
   }
 
   loading.value = true;
 
-  const submitResult = await submitProject(dappForm, verificationData?.token);
+  const submitResult = await submitProject(
+    dappForm,
+    images,
+    verificationData?.token
+  );
   if (submitResult.success) {
     console.log("api response", submitResult);
 
@@ -73,9 +76,6 @@ const submitHandler = async () => {
     submitSuccess.value = true;
 
     delete dappForm.value;
-    // messages.value = ["Project added successfully."];
-    // dappForm.value = {};
-    // setErrors("add-form", ["Project added successfully."]); ??
   } else {
     setErrors("add-form", [submitResult?.message]);
   }
@@ -84,6 +84,9 @@ const submitHandler = async () => {
 
 ///
 onMounted(() => {
+  if (!isConnected) {
+    navigateTo("/login");
+  }
   window.scroll({
     top: 0,
     left: 0,
@@ -128,9 +131,9 @@ onMounted(() => {
       <div class="step">
         <SocialsStep :dappForm="dappForm" />
       </div>
-      <div class="step">
+      <!-- <div class="step">
         <SocialsStep2 :dappForm="dappForm" />
-      </div>
+      </div> -->
 
       <div class="actions">
         <h2 class="loud-voice">Submit your project!</h2>

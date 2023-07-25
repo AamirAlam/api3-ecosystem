@@ -10,7 +10,7 @@
   height: 4px;
   border: 0.5px solid #ccc;
   border-radius: 2px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* Media query for small screens (max-width: 640px) */

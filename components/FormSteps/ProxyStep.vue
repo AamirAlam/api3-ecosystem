@@ -15,7 +15,6 @@ async function handleUpdateProxy() {
   if (!props.dappForm?.proxyAddress) {
     message.value = "Please add valid proxy address!";
     console.log("invalid proxy address added");
-    //:todo show error on frontend
     return;
   }
 
@@ -39,7 +38,6 @@ async function handleUpdateProxy() {
       props.dappForm?.feedName
     );
 
-    // console.log("info ", info);
     const finalProxyEntry = {
       proxyAddress: props.dappForm?.proxyAddress,
       isOEV: info?.isOev,
@@ -58,7 +56,7 @@ async function handleUpdateProxy() {
 
     if (index >= 0) {
       console.log("proxy already added");
-      //todo: show error in ui
+      message.value = "Proxy already added!";
       return;
     }
 
@@ -68,7 +66,7 @@ async function handleUpdateProxy() {
 
     console.log("fetched info ", props.dappForm.proxies);
   } catch (error) {
-    message.value = "Unable to fetch proxy info";
+    message.value = "Unable fetch proxy info! Incorrect input";
     console.log("failed to fetch proxy info ", error);
   } finally {
     loading.value = false;
@@ -130,15 +128,19 @@ function buttonHandle(valid, direction) {
           />
         </form-field>
 
-        <div v-if="loading">
-          <LoadingSpinner />
-        </div>
-        <div v-else>
-          <button class="icon" @click.prevent="handleUpdateProxy">+</button>
-        </div>
+        <div class="button-group">
+          <div class="add-button" v-if="loading">
+            <LoadingSpinner />
+          </div>
+          <div v-else>
+            <button class="icon add-button" @click.prevent="handleUpdateProxy">
+              +
+            </button>
+          </div>
 
-        <div class="error-message">
-          {{ message }}
+          <div class="error-message">
+            {{ message }}
+          </div>
         </div>
         <!-- <button class="button" @click.prevent="handleUpdateProxy">Fetch</button> -->
       </div>
@@ -171,6 +173,18 @@ function buttonHandle(valid, direction) {
     }
   }
 }
+
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  width: 100%;
+  justify-content: start;
+}
+.add-button {
+  width: 50px;
+  height: 50px;
+}
 .proxy-form {
   display: grid;
   gap: 1rem;
@@ -184,7 +198,8 @@ function buttonHandle(valid, direction) {
     margin-bottom: 50px;
   }
   .error-message {
-    margin-top: 20px;
+    margin-left: 20px;
+    // margin-top: 20px;
     color: red;
     font-size: 12px;
 

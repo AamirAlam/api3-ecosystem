@@ -43,11 +43,11 @@ export default authenticated(
             message: "Failed to upload logo",
           };
         }
-        if (!event.node.req?.files?.banner?.[0]?.location) {
+        if (!event.node.req?.files?.cover?.[0]?.location) {
           event.res.statusCode = 400;
           return {
             code: "REQ_FAILED",
-            message: "Failed to upload banner image",
+            message: "Failed to upload cover image",
           };
         }
 
@@ -75,9 +75,20 @@ export default authenticated(
 
         const uploadedImages = {
           logo: event.node.req?.files?.logo?.[0]?.location,
-          cover: event.node.req?.files?.banner?.[0]?.location,
+          cover: event.node.req?.files?.cover?.[0]?.location,
           screenshots: screenshots,
         };
+
+        if (
+          productType === "datafeed" &&
+          Object.keys(JSON.parse(proxies)).length === 0
+        ) {
+          event.res.statusCode = 400;
+          return {
+            code: "REQ_FAILED",
+            message: "Please add valid proxy information!",
+          };
+        }
 
         const payload: ProjectType =
           productType === "qrng"
