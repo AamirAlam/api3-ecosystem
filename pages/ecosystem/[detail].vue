@@ -95,7 +95,10 @@ const formattedProxies = (dappData) => {
             </p>
           </section>
 
-          <DappProxies :proxies="formattedProxies(dapp)" v-if="dapp" />
+          <DappProxies
+            :proxies="formattedProxies(dapp)"
+            v-if="dapp.productType != 'qrng'"
+          />
 
           <section class="screenshots">
             <h2 class="attention-voice">Screenshots</h2>
