@@ -112,6 +112,9 @@ function buttonHandle(valid, direction) {
             :searchable="true"
             :create-option="false"
             :options="ecosystem.chainOptions"
+            :classes="{
+              singleLabelText: 'calm-voice multiselect-single-label-text',
+            }"
           />
         </form-field>
 
@@ -125,6 +128,9 @@ function buttonHandle(valid, direction) {
             :searchable="true"
             :create-option="false"
             :options="ecosystem.feedNameOptions"
+            :classes="{
+              singleLabelText: 'calm-voice multiselect-single-label-text',
+            }"
           />
         </form-field>
 
