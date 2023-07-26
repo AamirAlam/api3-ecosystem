@@ -31,12 +31,7 @@ onMounted(() => {
 <template>
   <article-card>
     <picture>
-      <img
-        :src="
-          article?.cover ??
-          'https://source.unsplash.com/random/1000x600/?article'
-        "
-      />
+      <img :src="article?.cover ?? '/images/article-placeholder.jpg'" />
     </picture>
     <text-content>
       <h3 class="firm-voice">

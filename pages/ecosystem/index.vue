@@ -9,7 +9,11 @@ const showFilter = ref(false);
 
 useServerSeoMeta({
   title: "Ecosystems",
-  description: "Search API3's Ecosystem",
+  description:
+    "Welcome to the API3 ecosystem. Easily list your dApp or service and join our thriving community",
+  ogDescription:
+    "Welcome to the API3 ecosystem. Easily list your dApp or service and join our thriving community",
+  ogImage: "/images/article-placeholder.jpg",
 });
 
 onMounted(() => {
