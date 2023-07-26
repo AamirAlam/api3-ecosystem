@@ -3,9 +3,6 @@ const selected = ref("");
 
 const content = reactive({
   buttons: ["Testers", "DAO Members", "Developers"],
-  panelHeading: computed(
-    () => `Join the ${selected.value} by minting this NFT`
-  ),
 });
 </script>
 
@@ -21,7 +18,10 @@ const content = reactive({
       </button>
     </aside>
     <div class="panel">
-      <h1 class="loud-voice">{{ content.panelHeading }}</h1>
+      <h2 class="loud-voice">
+        Join the <span class="gradient-text">{{ selected }}</span> by minting
+        this NFT
+      </h2>
       <button class="button text">Mint</button>
     </div>
   </SectionColumn>
@@ -32,8 +32,12 @@ section {
   :deep(inner-column) {
     display: grid;
     gap: 3rem;
-    grid-template-columns: 0.5fr 1fr;
+
     height: 80vh;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 0.5fr 1fr;
+    }
   }
 
   aside {
