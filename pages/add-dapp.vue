@@ -111,9 +111,9 @@ onMounted(() => {
       :actions="false"
       #default="{ state: { valid: isValid } }"
     >
-      <div class="step">
+      <!-- <div class="step">
         <OwnerStep :dappForm="dappForm" />
-      </div>
+      </div> -->
       <div class="step">
         <ContentStep :dappForm="dappForm" />
       </div>
