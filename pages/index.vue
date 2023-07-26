@@ -11,6 +11,14 @@ definePageMeta({
   ],
 });
 
+useServerSeoMeta({
+  title: "Home",
+  description:
+    "Discover the API3 ecosystem and learn more about utilizing real-world data in your smart contracts",
+  ogDescription:
+    "Discover the API3 ecosystem and learn more about utilizing real-world data in your smart contracts",
+});
+
 onMounted(() => {
   //   document.body.scrollTop = document.documentElement.scrollTop = 0;
   window.scroll({
