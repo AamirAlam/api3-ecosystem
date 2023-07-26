@@ -41,7 +41,10 @@ const footerLinks = [
   {
     title: "For Developers",
     links: [
-      { label: "Documentation", path: "https://api3.org/goto/docs?source=ao-menu" },
+      {
+        label: "Documentation",
+        path: "https://api3.org/goto/docs?source=ao-menu",
+      },
       { label: "Github", path: "https://github.com/API3DAO" },
       { label: "API3 Market", path: "https://market.api3.org/dapis" },
       // Add more links here
@@ -53,7 +56,7 @@ const footerLinks = [
       { label: "Airnode", path: "https://api3.org/airnode" },
       { label: "Data feeds", path: "https://api3.org/dapis" },
       { label: "OEV", path: "https://api3.org/oev" },
-      { label: "QRNG", path: "https://api3.org/QRNG"}
+      { label: "QRNG", path: "https://api3.org/QRNG" },
       // Add more links here
     ],
   },
@@ -61,7 +64,10 @@ const footerLinks = [
     title: "Resources",
     links: [
       { label: "Guides", path: "https://docs.api3.org/guides/" },
-      { label: "Articles", path: "https://api3.org/goto/medium?source=ao-menu" },
+      {
+        label: "Articles",
+        path: "https://api3.org/goto/medium?source=ao-menu",
+      },
       // Add more links here
     ],
   },
@@ -69,21 +75,39 @@ const footerLinks = [
     title: "Participate",
     links: [
       { label: "DAO", path: "https://api3.org/dao" },
-      { label: "Open Positions", path: "https://api3.org/positions/Core-Tech-Team-Positions" },
+      {
+        label: "Open Positions",
+        path: "https://api3.org/positions/Core-Tech-Team-Positions",
+      },
       // Add more links here
     ],
   },
   {
     title: "Whitepaper",
     links: [
-      { label: "English", path: "https://drive.google.com/file/d/1b8QsGPCJJC1pQOcg83-knD1IAOIgCtZZ/view?usp=sharing" },
-      { label: "Chinese", path: "https://drive.google.com/file/d/1f2Kad5CUgbr7plyGBtWnK-Shfm3XowWy/view?usp=sharing" },
-      { label: "Korean", path: "https://drive.google.com/file/d/1JMHwdNibJf5g_bBaG8Sx9cCg5_14ZIvE/view?usp=sharing" },
-      { label: "Spanish", path: "https://drive.google.com/file/d/1C_HEQ41TBE-W2IKqMZTaVR9pND6hes8S/view?usp=sharing" },
-      { label: "Vietnamese", path: "https://drive.google.com/file/d/1ELcBjb8nO_4S4jhhZnFMeSo2BHrznONj/view?usp=sharing"}
+      {
+        label: "English",
+        path: "https://drive.google.com/file/d/1b8QsGPCJJC1pQOcg83-knD1IAOIgCtZZ/view?usp=sharing",
+      },
+      {
+        label: "Chinese",
+        path: "https://drive.google.com/file/d/1f2Kad5CUgbr7plyGBtWnK-Shfm3XowWy/view?usp=sharing",
+      },
+      {
+        label: "Korean",
+        path: "https://drive.google.com/file/d/1JMHwdNibJf5g_bBaG8Sx9cCg5_14ZIvE/view?usp=sharing",
+      },
+      {
+        label: "Spanish",
+        path: "https://drive.google.com/file/d/1C_HEQ41TBE-W2IKqMZTaVR9pND6hes8S/view?usp=sharing",
+      },
+      {
+        label: "Vietnamese",
+        path: "https://drive.google.com/file/d/1ELcBjb8nO_4S4jhhZnFMeSo2BHrznONj/view?usp=sharing",
+      },
       // Add more links here
     ],
-  }
+  },
 ];
 
 //#todo do the same for the other links
@@ -119,11 +143,23 @@ const footerLinks = [
     <section class="other">
       <inner-column>
         <nav class="misc-links">
-          <NuxtLink to="https://api3.org/privacy-policy" class="calm-voice text"> Privacy Policy </NuxtLink>
+          <NuxtLink
+            to="https://api3.org/privacy-policy"
+            class="calm-voice text"
+          >
+            Privacy Policy
+          </NuxtLink>
 
-          <NuxtLink to="https://api3.org/cookies" class="calm-voice text"> Privacy & Cookies </NuxtLink>
+          <NuxtLink to="https://api3.org/cookies" class="calm-voice text">
+            Privacy & Cookies
+          </NuxtLink>
 
-          <NuxtLink to="https://api3.org/terms-and-conditions" class="calm-voice text"> Terms & Conditions </NuxtLink>
+          <NuxtLink
+            to="https://api3.org/terms-and-conditions"
+            class="calm-voice text"
+          >
+            Terms & Conditions
+          </NuxtLink>
           <!-- #todo -->
         </nav>
         <nav class="social-icons">
@@ -150,7 +186,7 @@ footer {
     padding-right: 30px;
   }
 }
-a.calm-voice {
+.calm-voice {
   font-size: var(--step-0);
   padding: 0.5rem 0;
   color: var(--ink);
@@ -201,7 +237,7 @@ section.other inner-column {
   border-top: 1px solid var(--gray-dark);
 
   @media (min-width: 1024px) {
-    grid-template-columns: 0.6fr 1fr 1fr;
+    grid-template-columns: 0.6fr 1.2fr 1fr;
     grid-template-rows: 1fr;
     justify-items: unset;
     justify-content: space-between;
