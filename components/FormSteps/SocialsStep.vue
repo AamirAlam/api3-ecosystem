@@ -21,7 +21,6 @@ function buttonHandle(valid, direction) {
       <form-field>
         <FormKit
           type="url"
-          validation="url"
           id="twitter"
           v-model="dappForm.links.socials.twitter"
           label="Twitter"
@@ -33,7 +32,6 @@ function buttonHandle(valid, direction) {
       <form-field>
         <FormKit
           type="url"
-          validation="url"
           id="discord"
           v-model="dappForm.links.socials.discord"
           label="Discord"
@@ -45,7 +43,6 @@ function buttonHandle(valid, direction) {
       <form-field>
         <FormKit
           type="url"
-          validation="url"
           id="github"
           v-model="dappForm.links.socials.github"
           label="Github"
@@ -57,7 +54,6 @@ function buttonHandle(valid, direction) {
       <form-field>
         <FormKit
           type="url"
-          validation="url"
           id="reddit"
           v-model="dappForm.links.socials.reddit"
           label="Reddit"
@@ -69,7 +65,7 @@ function buttonHandle(valid, direction) {
       <form-field>
         <FormKit
           type="url"
-          validation="url"
+          validation="optional"
           id="telegram"
           v-model="dappForm.links.socials.telegram"
           label="Telegram"

@@ -171,7 +171,7 @@ const handleFilter = (event) => {
 
     <!-- product type -->
     <div class="productType filter">
-      <h4 class="solid-voice">productType</h4>
+      <h4 class="solid-voice">Product Type</h4>
       <ul class="pills" v-auto-animate>
         <template
           v-for="(productType, index) in productTypes"

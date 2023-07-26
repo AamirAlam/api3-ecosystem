@@ -92,10 +92,9 @@ function buttonHandle(valid, direction) {
         <form-field>
           <FormKit
             type="text"
-            label="Add Proxy Info"
+            label="Proxy address"
             label-class="$reset notice-voice"
             name="proxyAddress"
-            placeholder="Proxy Address"
             validation="optional"
             id="proxyAddress"
             v-model="dappForm.proxyAddress"
@@ -103,7 +102,7 @@ function buttonHandle(valid, direction) {
         </form-field>
 
         <form-field>
-          <label class="notice-voice" for="proxy-chain"> Select Chain </label>
+          <label class="notice-voice" for="proxy-chain"> Proxy chain </label>
           <Multiselect
             id="proxy-chain"
             v-model="dappForm.proxyChain"
@@ -119,7 +118,7 @@ function buttonHandle(valid, direction) {
         </form-field>
 
         <form-field class="feed-option">
-          <label class="notice-voice" for="feed-name"> Select Feed Name </label>
+          <label class="notice-voice" for="feed-name"> Proxy feed name </label>
           <Multiselect
             id="feed-name"
             v-model="dappForm.feedName"
