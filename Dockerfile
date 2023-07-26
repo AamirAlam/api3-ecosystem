@@ -26,6 +26,19 @@ RUN apt-get -y install git
 RUN git config --global user.email "aamiralam1991@gmail.com" && \
     git config --global user.name "Aamir Alam"
 
+## clone dapp registory repo
+
+RUN git clone "https://github.com/AamirAlam/dapp-registry.git"
+ARG APP_PATH=/ecosystem-app/dapp-registry
+WORKDIR ${APP_PATH}
+RUN yarn
+RUN yarn build
+
+
+ARG APP_PATH=/ecosystem-app
+WORKDIR ${APP_PATH}
+
+
 RUN yarn build
 
 EXPOSE  3000 80
@@ -33,7 +46,7 @@ EXPOSE  3000 80
 
 
 ##development
-CMD ["yarn", "dev"]
+# CMD ["yarn", "dev"]
 
 ##production
-## CMD ["node", ".output/server/index.mjs"]
+CMD ["node", ".output/server/index.mjs"]

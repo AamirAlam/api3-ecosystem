@@ -54,7 +54,7 @@ function buttonHandle(valid, direction) {
 
     <form-field>
       <label class="notice-voice" for="productType">
-        select the service used
+        Select the service used
       </label>
       <Multiselect
         id="productType"
