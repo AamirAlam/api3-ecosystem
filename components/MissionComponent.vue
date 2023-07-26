@@ -214,7 +214,7 @@ mission-section {
     //  transform: rotate(20deg);
 
     @media (min-width: 768px) {
-      top: 10%;
+      top: -20%;
       bottom: unset;
     }
   }
