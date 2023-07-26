@@ -237,7 +237,7 @@ form {
     .curves-decoration {
       position: absolute;
       bottom: -60px;
-      left: 100px;
+      left: 220px;
       transform: rotateY(180deg) rotate(-10deg) scaleX(1.4);
       z-index: -1;
 
