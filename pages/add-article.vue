@@ -93,7 +93,6 @@ async function submitHandler(event) {
           name="image"
           help="Upload cover image for article"
           accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP, .gif, .GIF"
-          validation="required"
         />
 
         <div v-if="status.loading">Uploading...</div>
