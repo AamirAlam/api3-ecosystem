@@ -50,7 +50,7 @@ onMounted(() => {
         name="shortDescription"
         placeholder="Insert a quater-tweet sized description of your dApp"
         help="You will see this on your card"
-        validation="required|length:0,60"
+        validation="required|length:0,100"
         id="shortDescription"
         v-model="dappForm.tagline"
       />
