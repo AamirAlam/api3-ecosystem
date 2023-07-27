@@ -1,24 +1,4 @@
-<script setup>
-// import { Howl } from "howler";
-
-// const guitar = {
-//   A: new Howl({
-//     src: ["/sounds/guitar-A.wav"],
-//     volume: 0.04,
-//   }),
-// };
-
-// const strum = (note) => {
-//   console.log(note);
-//   guitar[note].play();
-// };
-
-// const stopGuitar = () => {
-//   Object.keys(guitar).forEach((note) => {
-//     guitar[note].stop();
-//   });
-// };
-</script>
+<script setup></script>
 
 <template>
   <svg width="292" height="292" viewBox="0 0 292 292" fill="none">

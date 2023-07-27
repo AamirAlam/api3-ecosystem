@@ -66,7 +66,6 @@ async function verifyBuild(
       shelljs.exec(`cd dapp-registry && git reset --hard && git clean -fd`)
         .code === 0;
 
-    console.log("Repo cleaned after test ", isCleaned);
     if (!isBuildSuccess) {
       reject({ success: false, message: "Build failed with new project" });
       return;

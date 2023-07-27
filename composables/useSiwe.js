@@ -44,7 +44,6 @@ export const useSiwe = () => {
       const signature = await sign({ message: messageToSign });
 
       if (!signature) {
-        console.log("verificationStatus: signature error");
         return {
           success: false,
           message: "Failed to sign message!",

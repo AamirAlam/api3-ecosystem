@@ -2,7 +2,7 @@
   <div
     @click="copyToClipboard"
     class="short-wallet"
-    :title="showCopyTooltip ? 'Copied!' : 'Click to Copy'"
+    :title="showCopyTooltip ? 'Copied!' : 'Copy'"
   >
     {{ shortWallet }}
   </div>

@@ -3,7 +3,6 @@ import { useStorage } from "@vueuse/core";
 import { setErrors, FormKitMessages } from "@formkit/vue";
 import { getValidationMessages } from "@formkit/validation";
 
-//
 definePageMeta({
   title: "Add Dapp",
   layout: "home",
@@ -13,7 +12,6 @@ useServerSeoMeta({
   title: "Add Dapp",
 });
 
-//
 const dappForm = useStorage("dapp-form", {});
 dappForm.value.proxies = [];
 const loading = ref(false);
@@ -23,8 +21,6 @@ const submitSuccess = ref(false);
 const { verifyWallet } = useSiwe();
 const { submitProject } = useHttpCalls();
 const { isConnected } = useWeb3();
-
-///
 
 function showErrors(node) {
   messages.value = [];
@@ -37,7 +33,6 @@ function showErrors(node) {
 }
 
 const submitHandler = async (event) => {
-  console.log("dapp form ", dappForm);
   setErrors("add-form", []);
   submitSuccess.value = false;
   successData.value.message = "";
@@ -70,8 +65,6 @@ const submitHandler = async (event) => {
     verificationData?.token
   );
   if (submitResult.success) {
-    console.log("api response", submitResult);
-
     successData.value.message = submitResult.message;
     successData.value.pr_url = submitResult.data;
     submitSuccess.value = true;
@@ -83,7 +76,6 @@ const submitHandler = async (event) => {
   loading.value = false;
 };
 
-///
 onMounted(() => {
   if (!isConnected) {
     navigateTo("/login");
@@ -92,12 +84,6 @@ onMounted(() => {
     top: 0,
     left: 0,
   });
-
-  //   const $form = document.querySelector("form");
-  //   const $main = document.querySelector("main.add-dapp");
-  //   console.log($form.scrollHeight);
-  //   const scrollHeight = computed(() => $form.scrollHeight);
-  //   $main.style.setProperty("--after-height", scrollHeight);
 });
 </script>
 
@@ -129,9 +115,7 @@ onMounted(() => {
       <div class="step">
         <SocialsStep :dappForm="dappForm" />
       </div>
-      <!-- <div class="step">
-        <SocialsStep2 :dappForm="dappForm" />
-      </div> -->
+
       <div class="actions">
         <h2 class="loud-voice">Submit your project!</h2>
         <FormKit

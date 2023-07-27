@@ -19,7 +19,6 @@ async function submitHandler(event) {
     const content = e.target.result;
     const parsed = await parseMarkdown({ content });
     parsed.content = content;
-    console.log("parsed", parsed);
 
     const {
       success: verificationSuccess,
@@ -27,17 +26,8 @@ async function submitHandler(event) {
       message: verificationError,
     } = await verifyWallet();
 
-    console.log("verificationStatus", {
-      verificationSuccess,
-      verificationData,
-      verificationError,
-    });
-
     if (!verificationSuccess) {
-      console.log(
-        "verificationStatus signature verification failed",
-        verificationSuccess
-      );
+      status.value.message = "verificationStatus signature verification failed";
       return;
     }
 
@@ -51,8 +41,6 @@ async function submitHandler(event) {
     const submitResult = await submitArticle(formData, verificationData?.token);
 
     if (submitResult.success) {
-      console.log("Article submitted successfully.", submitResult);
-
       status.value.success = true;
       status.value.message = "Article submitted successfully.";
       status.value.loading = false;
@@ -60,8 +48,6 @@ async function submitHandler(event) {
       status.value.success = false;
       status.value.message = submitResult.message;
       status.value.loading = false;
-
-      console.log("The server didn’t like our request.", submitResult);
     }
   };
 

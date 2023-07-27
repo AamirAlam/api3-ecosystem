@@ -11,8 +11,6 @@ export default function formStepButtonHandle(valid, direction, buttonClick) {
     const targetScrollPosition =
       window.innerHeight * direction + $form.scrollTop;
 
-    console.log(targetScrollPosition);
-
     $form.scroll({
       top: targetScrollPosition,
       left: 0,

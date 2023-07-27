@@ -14,19 +14,16 @@ async function handleUpdateProxy() {
 
   if (!props.dappForm?.proxyAddress) {
     message.value = "Please add valid proxy address!";
-    console.log("invalid proxy address added");
     return;
   }
 
   if (!props.dappForm?.proxyChain) {
     message.value = "Please select proxy chain!";
-    console.log("invalid chain selected");
     return;
   }
 
   if (!props.dappForm?.feedName) {
     message.value = "Please select feed name!";
-    console.log("invalid feed name selected");
     return;
   }
 
@@ -55,7 +52,6 @@ async function handleUpdateProxy() {
     );
 
     if (index >= 0) {
-      console.log("proxy already added");
       message.value = "Proxy already added!";
       return;
     }
@@ -63,11 +59,8 @@ async function handleUpdateProxy() {
     props.dappForm?.proxies?.push(finalProxyEntry);
     props.dappForm.proxyChain = null;
     props.dappForm.proxyAddress = "";
-
-    console.log("fetched info ", props.dappForm.proxies);
   } catch (error) {
     message.value = "Unable fetch proxy info! Incorrect input";
-    console.log("failed to fetch proxy info ", error);
   } finally {
     loading.value = false;
   }
@@ -87,7 +80,6 @@ function buttonHandle(valid, direction) {
     name="proxy"
   >
     <div class="proxy-step">
-      <!-- show fetch proxy form -->
       <div class="proxy-form grid-item" v-auto-animate>
         <form-field>
           <FormKit
@@ -147,11 +139,8 @@ function buttonHandle(valid, direction) {
             {{ message }}
           </div>
         </div>
-        <!-- <button class="button" @click.prevent="handleUpdateProxy">Fetch</button> -->
       </div>
 
-      <!-- </div> -->
-      <!-- show added proxies -->
       <div class="grid-item">
         <DappProxies
           :proxies="dappForm?.proxies"
@@ -204,12 +193,8 @@ function buttonHandle(valid, direction) {
   }
   .error-message {
     margin-left: 20px;
-    // margin-top: 20px;
     color: red;
     font-size: 12px;
-
-    // justify-self: flex-start;
-    // align-items: start;
   }
 }
 </style>

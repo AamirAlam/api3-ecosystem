@@ -115,8 +115,6 @@ export const useHttpCalls = () => {
         }
       });
 
-      console.log("proxy payload ", proxyPayload);
-
       body.append("proxies", JSON.stringify(proxyPayload));
 
       // images

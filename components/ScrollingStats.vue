@@ -23,7 +23,6 @@ const cards = [
 
 const changeImage = (card, index) => {
   const triggerElement = ref(document.querySelector(card.triggerClass));
-  //   console.log(triggerElement.value);
 
   gsap.to("scrolling-stats .graph", {
     scrollTrigger: {
