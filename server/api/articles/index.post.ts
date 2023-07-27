@@ -10,15 +10,15 @@ export default authenticated(
       try {
         const { article } = await (event.node?.req?.body || readBody(event));
 
-        if (!event.node.req?.files?.cover?.[0]?.location) {
-          event.res.statusCode = 400;
-          return {
-            code: "REQ_FAILED",
-            message: "Failed to cover image",
-          };
-        }
-
         const articleData = JSON.parse(article);
+
+        let coverImage;
+        if (!event.node.req?.files?.cover?.[0]?.location) {
+          // check cover image is available in parsed markdown
+          coverImage = articleData?.image;
+        } else {
+          coverImage = event.node.req?.files?.cover?.[0]?.location;
+        }
 
         // extract article metadata
         const arcitlePayload: ArticleType = {
@@ -27,7 +27,7 @@ export default authenticated(
           description: articleData.description,
           author: { name: articleData.author, bio: articleData?.bio },
           content: articleData.body,
-          cover: event.node.req?.files?.cover?.[0]?.location,
+          cover: coverImage,
           category: articleData.category,
           created_at: new Date(),
         };

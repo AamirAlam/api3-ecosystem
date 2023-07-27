@@ -29,11 +29,7 @@ const upload = multer({
     fileSize: parseInt(config.IMAGE_UPLOAD_SIZE_LIMIT),
   },
   fileFilter(req, file, cb) {
-    if (
-      !file.originalname.match(
-        /\.(jpeg|JPEG|png|PNG|webp|WEBP|jpg|JPG|gif|GIF)$/
-      )
-    ) {
+    if (!file.originalname.match(/\.(jpeg|JPEG|png|PNG|webp|WEBP|jpg|JPG)$/)) {
       return cb(new Error("Please upload image file only"));
     }
     cb(null, true);

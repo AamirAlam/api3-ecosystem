@@ -11,7 +11,7 @@ async function submitHandler(event) {
 
   const file = event.article[0].file;
 
-  const imageFile = event.image[0].file;
+  const imageFile = event?.image?.[0]?.file;
 
   const reader = new FileReader();
 
@@ -43,7 +43,9 @@ async function submitHandler(event) {
 
     const formData = new FormData();
     formData.append("article", JSON.stringify(parsed));
-    formData.append("cover", imageFile);
+    if (imageFile) {
+      formData.append("cover", imageFile);
+    }
 
     status.value.loading = true;
     const submitResult = await submitArticle(formData, verificationData?.token);
@@ -91,6 +93,7 @@ async function submitHandler(event) {
           label="Cover image"
           label-class="$reset notice-voice"
           name="image"
+          validation="optional"
           help="Upload cover image for article"
           accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP, .gif, .GIF"
         />

@@ -28,7 +28,6 @@ const ArticleSchema = new Schema<ArticleType>({
   },
   cover: {
     type: String,
-    required: true,
   },
   category: {
     type: String,
