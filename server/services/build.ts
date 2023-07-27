@@ -1,15 +1,15 @@
-import { ProjectType } from "server/types";
-import shelljs from "shelljs";
+import { ProjectType } from 'server/types';
+import shelljs from 'shelljs';
 
 interface BuildStatus {
   success: boolean;
   message: string;
 }
-const DAPP_REPO_URL = "https://github.com/AamirAlam/dapp-registry.git";
+const DAPP_REPO_URL = 'https://github.com/AamirAlam/dapp-registry.git';
 
 async function verifyBuild(
   projectData: ProjectType,
-  projectId: string
+  projectId: string,
 ): Promise<BuildStatus> {
   // chenge dir to dapp-registry
   return new Promise((resolve, reject) => {
@@ -19,28 +19,29 @@ async function verifyBuild(
       const isGitInstalled = shelljs.exec(`git --version`).code === 0;
 
       if (!isGitInstalled) {
-        reject({ success: false, message: "Git installation failed" });
+        reject({ success: false, message: 'Git installation failed' });
         return;
       }
 
       const isCloned = shelljs.exec(` git clone ${DAPP_REPO_URL}`).code === 0;
 
       if (!isCloned) {
-        reject({ success: false, message: "Git clone failed" });
+        reject({ success: false, message: 'Git clone failed' });
         return;
       }
     }
     // append new project and run build
 
     const isBuildChecked =
-      shelljs.exec(`cd dapp-registry && git pull --rebase && yarn`).code === 0;
+      shelljs.exec(`cd dapp-registry && git stash && git pull --rebase && yarn`)
+        .code === 0;
 
     if (!isBuildChecked) {
-      reject({ success: false, message: "Git pull failed" });
+      reject({ success: false, message: 'Git pull failed' });
       return;
     }
 
-    const prTitle = projectData.name?.split(" ")?.join("-");
+    const prTitle = projectData.name?.split(' ')?.join('-');
     const branch = `${prTitle}-${projectId}`;
     const path = `projects/${branch}.json`;
 
@@ -49,12 +50,12 @@ async function verifyBuild(
         `cd dapp-registry && echo '${JSON.stringify(
           projectData,
           null,
-          2
-        )}' > ${path}`
+          2,
+        )}' > ${path}`,
       ).code === 0;
 
     if (!isProjectAdded) {
-      reject({ success: false, message: "Failed to add project data to repo" });
+      reject({ success: false, message: 'Failed to add project data to repo' });
       return;
     }
 
@@ -67,25 +68,25 @@ async function verifyBuild(
         .code === 0;
 
     if (!isBuildSuccess) {
-      reject({ success: false, message: "Build failed with new project" });
+      reject({ success: false, message: 'Build failed with new project' });
       return;
     }
 
-    resolve({ success: true, message: "Build success with new project data" });
+    resolve({ success: true, message: 'Build success with new project data' });
   });
 }
 
 export async function checkBuildStatus(
   projectData: ProjectType,
-  projectId: string
+  projectId: string,
 ): Promise<BuildStatus> {
   try {
     const buildStatus = await verifyBuild(projectData, projectId);
 
-    console.log("buildStatus", buildStatus);
+    console.log('buildStatus', buildStatus);
     return buildStatus;
   } catch (error: any) {
-    console.log("build failed", error);
+    console.log('build failed', error);
     return error;
   }
 }
