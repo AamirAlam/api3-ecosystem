@@ -14,6 +14,6 @@ useServerSeoMeta({
 <template>
   <PageHeader heading="Articles/Blog" />
   <SectionColumn>
-    <ArticleGrid :layout="random" />
+    <ArticleGrid :layout="4" />
   </SectionColumn>
 </template>
