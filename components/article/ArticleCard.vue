@@ -38,15 +38,7 @@ onMounted(() => {
       <h4 class="whisper-voice">
         {{ article.author.name }}
       </h4>
-      <p class="calm-voice">
-        {{
-          // only displays a short snipper of the paragraph
-          (article.description ?? article.sections[0].content[0].text).slice(
-            0,
-            100
-          ) + "..."
-        }}
-      </p>
+
       <NuxtLink :to="`/articles/${slug(article._id)}`" class="text">
         Read more
       </NuxtLink>
