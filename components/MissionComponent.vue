@@ -175,6 +175,7 @@ mission-section {
   position: relative;
 
   heading-text {
+    max-width: 100ch;
     h2 {
       margin-bottom: 1rem;
     }
@@ -207,14 +208,14 @@ mission-section {
 
     bottom: -10%;
     right: 0%;
-    width: 80vmin;
+    width: 60vmin;
     z-index: -1;
     opacity: 0.25;
     stroke-width: 0.2 !important;
     //  transform: rotate(20deg);
 
     @media (min-width: 768px) {
-      top: -20%;
+      top: 0%;
       bottom: unset;
     }
   }
