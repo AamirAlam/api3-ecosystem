@@ -12,7 +12,7 @@ useServerSeoMeta({
 </script>
 
 <template>
-  <PageHeader heading="Articles/Blog" />
+  <PageHeader heading="Articles" />
   <SectionColumn>
     <ArticleGrid :layout="4" />
   </SectionColumn>

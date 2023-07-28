@@ -106,7 +106,7 @@ const { data, error } = await useFetch(
 
       <ArticleHeader :article="article" />
 
-      <picture class="cover">
+      <picture class="cover" v-if="article.cover">
         <img :src="article.cover" alt="" />
       </picture>
 
