@@ -33,6 +33,8 @@ async function submitHandler(event) {
 
     const formData = new FormData();
     formData.append("article", JSON.stringify(parsed));
+    formData.append("cover", parsed.image);
+
     if (imageFile) {
       formData.append("cover", imageFile);
     }
@@ -84,8 +86,8 @@ async function submitHandler(event) {
           accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP, .gif, .GIF"
         />
 
-        <div v-if="status.loading">Uploading...</div>
-        <div>{{ status.message }}</div>
+        <p v-if="status.loading">Uploading...</p>
+        <p>{{ status.message }}</p>
       </FormKit>
     </file-upload>
   </SectionColumn>
