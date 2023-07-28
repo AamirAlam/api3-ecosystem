@@ -1,41 +1,35 @@
 html {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 *,
 *:before,
 *:after {
-	box-sizing: inherit;
+  box-sizing: inherit;
 } /* https://www.paulirish.com/2012/box-sizing-border-box-ftw */
 
 a {
-	display: block;
-	text-decoration: none;
-	color: inherit;
-}
-
-p a {
-	display: inline;
-	color: blue;
-	text-decoration: underline;
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 picture {
-	display: block;
-	overflow: hidden;
+  display: block;
+  overflow: hidden;
 }
 
 img {
-	display: block;
-	width: 100%;
-	height: auto;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 svg {
-	display: block;
-	width: 100%;
+  display: block;
+  width: 100%;
 }
 
 /*// selects for custom elements*/
 :where(:not(:defined)) {
-	display: block;
+  display: block;
 }
