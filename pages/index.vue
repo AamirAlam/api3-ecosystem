@@ -68,7 +68,7 @@ main.index {
     margin-bottom: 2rem;
   }
   @media (min-width: 768px) {
-    gap: 8rem;
+    gap: 10rem;
   }
   @media (min-width: 1024px) {
     max-height: calc(100vh - 100px);
