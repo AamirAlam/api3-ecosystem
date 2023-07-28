@@ -72,6 +72,15 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["stores"],
   },
+
+  content: {
+    highlight: {
+      // Theme used in all color schemes.
+      theme: "github-dark",
+      preload: ["c", "shell", "solidity"],
+    },
+  },
+
   nitro: {
     plugins: ["~/server/index.ts"],
     serverAssets: [
