@@ -11,7 +11,7 @@ async function submitHandler(event) {
 
   const file = event.article[0].file;
 
-  const imageFile = event.image[0].file;
+  const imageFile = event?.image?.[0]?.file;
 
   const reader = new FileReader();
 
@@ -19,7 +19,6 @@ async function submitHandler(event) {
     const content = e.target.result;
     const parsed = await parseMarkdown({ content });
     parsed.content = content;
-    console.log("parsed", parsed);
 
     const {
       success: verificationSuccess,
@@ -27,30 +26,21 @@ async function submitHandler(event) {
       message: verificationError,
     } = await verifyWallet();
 
-    console.log("verificationStatus", {
-      verificationSuccess,
-      verificationData,
-      verificationError,
-    });
-
     if (!verificationSuccess) {
-      console.log(
-        "verificationStatus signature verification failed",
-        verificationSuccess
-      );
+      status.value.message = "verificationStatus signature verification failed";
       return;
     }
 
     const formData = new FormData();
     formData.append("article", JSON.stringify(parsed));
-    formData.append("cover", imageFile);
+    if (imageFile) {
+      formData.append("cover", imageFile);
+    }
 
     status.value.loading = true;
     const submitResult = await submitArticle(formData, verificationData?.token);
 
     if (submitResult.success) {
-      console.log("Article submitted successfully.", submitResult);
-
       status.value.success = true;
       status.value.message = "Article submitted successfully.";
       status.value.loading = false;
@@ -58,8 +48,6 @@ async function submitHandler(event) {
       status.value.success = false;
       status.value.message = submitResult.message;
       status.value.loading = false;
-
-      console.log("The server didn’t like our request.", submitResult);
     }
   };
 
@@ -91,6 +79,7 @@ async function submitHandler(event) {
           label="Cover image"
           label-class="$reset notice-voice"
           name="image"
+          validation="optional"
           help="Upload cover image for article"
           accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP, .gif, .GIF"
         />

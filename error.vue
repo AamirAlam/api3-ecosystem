@@ -6,8 +6,6 @@ const router = useRouter();
 useHead({
   title: error.statusCode,
 });
-
-console.log(props.error);
 </script>
 
 <template>
@@ -59,8 +57,5 @@ console.log(props.error);
 }
 summary {
   text-align: center;
-}
-code {
-  //   font-size: 12px;
 }
 </style>

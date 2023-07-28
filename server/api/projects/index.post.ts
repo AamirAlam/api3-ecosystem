@@ -21,21 +21,6 @@ export default authenticated(
           year,
         } = await (event.node?.req?.body || readBody(event));
 
-        console.log("req body ", {
-          name,
-          tagline,
-          categories,
-          productType,
-          description,
-          chains,
-          links,
-          proxies,
-          year,
-        });
-        // check if all files are uploaded
-
-        console.log("uplaoded files ", event.node.req?.files);
-
         if (!event.node.req?.files?.logo?.[0]?.location) {
           event.res.statusCode = 400;
           return {
@@ -118,14 +103,10 @@ export default authenticated(
                 year: parseInt(year),
               };
 
-        console.log("final project paylaod ", payload);
-
         const createdProject = await new Project(payload).save();
 
         // // verify build with new project
         const buildResult = await checkBuildStatus(payload, createdProject.id);
-
-        console.log("build result ", buildResult);
 
         if (!buildResult.success) {
           // remove project data from db when build failed

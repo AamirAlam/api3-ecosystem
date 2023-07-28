@@ -17,9 +17,6 @@ export const useBlogStore = defineStore("blog", () => {
   const { data: list, error: listError, refresh } = useFetch(serverURL.value);
 
   watch(serverPage, () => {
-    console.log("serverPage changed", serverPage.value);
-    console.log("serverURL changed", serverURL.value);
-    console.log("list changed", list.value);
     refresh(); //#todo, this isnt working
   });
 

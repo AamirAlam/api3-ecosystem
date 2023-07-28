@@ -103,13 +103,6 @@ export async function fetchProxyInformation(address, chainId, feedName) {
     ],
   });
 
-  console.log("info fetched ", {
-    api3ServerV1Result,
-    dapiNameHashResult,
-    dataFeedIdResult,
-    oevBeneficiaryResult,
-  });
-
   let proxyInformation = {};
 
   if (api3ServerV1Result.status === "failure") {

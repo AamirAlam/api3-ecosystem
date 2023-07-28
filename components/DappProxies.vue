@@ -3,7 +3,6 @@ import { useEcosystemStore } from "@/stores/ecosystem";
 
 const props = defineProps(["proxies", "isForm", "dappForm"]);
 const ecosystem = useEcosystemStore();
-console.log("props data ", props.proxies);
 </script>
 
 <template>
