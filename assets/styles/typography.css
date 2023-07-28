@@ -88,6 +88,12 @@ button {
   font-weight: var(--weight-light);
 }
 
+:is(li, p) a {
+  color: var(--color);
+  /* text-decoration: underline; */
+  display: inline;
+}
+
 em {
   font-style: italic;
 }
@@ -133,8 +139,8 @@ h2 + p {
 
 code {
   font-family: monospace;
-  font-size: 1.1em;
-  color: green;
+  font-size: 1em;
+  /* color: green; */
   border: unset;
 }
 

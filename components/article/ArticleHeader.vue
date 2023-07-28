@@ -52,10 +52,9 @@ const datePublished = computed(() => {
 header {
   grid-column: 1 / -1;
   @media (min-width: 768px) {
-    grid-column: 5 / -1;
+    grid-column: 3 / -1;
   }
   display: grid;
-  grid-template-columns: auto auto;
   align-items: start;
   justify-content: start;
   position: relative;
@@ -63,6 +62,7 @@ header {
 
   h1 {
     position: relative;
+    text-wrap: balance;
 
     padding: 5px 0;
     background: linear-gradient(
@@ -96,6 +96,7 @@ header {
     gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 0.5rem;
+    justify-self: start;
     .solid-voice {
       font-size: var(--step--1);
     }

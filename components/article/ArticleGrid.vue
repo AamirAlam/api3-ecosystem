@@ -16,7 +16,8 @@ const layouts = [
 
 const layoutIndex = ref(props.layout ?? 0);
 
-function cardType(index, layout = layouts[0]) {
+function cardType(index, layout = layoutIndex.value, article) {
+  if (!article.cover) return "text";
   return layout[index % layout.length];
 }
 </script>
@@ -26,7 +27,7 @@ function cardType(index, layout = layouts[0]) {
     <template v-for="(article, index) in blog.list">
       <ArticleCard
         :article="article"
-        :class="cardType(index, layouts[layoutIndex])"
+        :class="cardType(index, layouts[layoutIndex], article)"
         v-if="index < (props.cardCount ?? blog.list.length)"
       />
     </template>

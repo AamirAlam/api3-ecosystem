@@ -102,9 +102,13 @@ const { data, error } = await useFetch(
 <template>
   <SectionColumn innerClass="article">
     <article>
-      <ArticleSide :toc="article?.content?.body?.toc" :title="article?.title" />
+      <ArticleSide :toc="article.content.toc" :title="article?.title" />
 
       <ArticleHeader :article="article" />
+
+      <picture class="cover">
+        <img :src="article.cover" alt="" />
+      </picture>
 
       <ContentRendererMarkdown
         v-if="article.content"
@@ -171,15 +175,15 @@ inner-column.article {
 
     p {
       margin-top: 1rem;
+
+      &:has(img) {
+        margin-top: 2rem;
+      }
     }
-    p a {
-      color: var(--highlight);
-      text-decoration: underline;
-    }
+
     li,
     p {
       letter-spacing: 0.02em;
-      max-width: 70ch;
     }
 
     figure {
@@ -190,7 +194,6 @@ inner-column.article {
       justify-items: start;
 
       position: relative;
-      //   left: -10%;
 
       &::after {
         position: absolute;
@@ -201,29 +204,12 @@ inner-column.article {
       }
     }
 
-    code {
-      margin: 2rem 0;
-      padding: 2rem;
-      background: var(--gradient-dark);
-      border-radius: var(--corners);
-      display: block;
-      max-width: 70ch;
-      color: var(--ink);
-      position: relative;
-      span {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        font-size: var(--step--2);
-        cursor: pointer;
-      }
-    }
     & > blockquote {
       margin: 2rem 0;
       padding: 4rem;
       background: var(--gradient-dark);
       display: block;
-      max-width: 70ch;
+      // max-width: 70ch;
       color: var(--ink);
       position: relative;
       border-radius: var(--corners);
@@ -235,8 +221,7 @@ inner-column.article {
         padding: 0;
         font-style: italic;
       }
-      blockquote,
-      p:last-child {
+      blockquote {
         margin-top: 1rem;
         color: var(--color);
         text-align: right;
@@ -288,33 +273,25 @@ inner-column.article {
     }
   }
 
-  article > :not(aside) {
-    grid-column: 1 / -1;
-    @media (min-width: 768px) {
-      grid-column: 4 / 10;
-      //     padding: 2rem;
-      //     gap: 2rem;
-    }
-  }
-}
-</style>
+  & > article {
+    display: grid;
+    column-gap: 1rem;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: start;
 
-<style scoped lang="scss">
-.article > article {
-  //   opacity: 0;
-  display: grid;
-  column-gap: 1rem;
-  grid-template-columns: repeat(12, 1fr);
-  align-items: start;
-  //   background-color: var(--black);
-  //   max-width: 80ch;
-  //   padding: 1rem;
-  & > * > :not(aside) {
-    grid-column: 1 / -1;
-    @media (min-width: 768px) {
-      //     padding: 2rem;
-      //     gap: 2rem;
-      grid-column: 4 / 10;
+    & > :not(aside, header) {
+      grid-column: 1 / -1;
+      @media (min-width: 768px) {
+        grid-column: 4 / 11;
+        //     padding: 2rem;
+        //     gap: 2rem;
+      }
+
+      &.cover {
+        @media (min-width: 768px) {
+          grid-column: 3 / -1;
+        }
+      }
     }
   }
 }

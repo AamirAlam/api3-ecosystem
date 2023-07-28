@@ -56,6 +56,8 @@ h3 {
 
   a {
     padding-left: 0;
+    font-size: var(--step--1);
+    display: block;
     // white-space: nowrap;
   }
 }
