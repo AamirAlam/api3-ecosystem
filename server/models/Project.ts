@@ -26,7 +26,7 @@ const ImageSchema = new Schema({
   screenshots: { type: [String], required: true },
 });
 
-const ProjectSchema = new Schema<ProjectType>({
+const ProjectSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -82,6 +82,10 @@ const ProjectSchema = new Schema<ProjectType>({
   links: {
     type: ProjectLinkSchema,
   },
+  upvotes: {
+    type: Number,
+    default: 0,
+  },
 });
 
-export const Project = mongoose.model<ProjectType>("projects", ProjectSchema);
+export const Project = mongoose.model("projects", ProjectSchema);

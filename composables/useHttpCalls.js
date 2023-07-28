@@ -170,5 +170,31 @@ export const useHttpCalls = () => {
     }
   };
 
-  return { submitProject, submitArticle };
+  const submitUpvote = async (projectId, payload, token) => {
+    try {
+      const res = await axios.post(
+        `/api/projects/project/${projectId}`,
+        payload,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      if (res.status === 201) {
+        return { success: true, message: "Upvote success" };
+      }
+
+      return { success: false, message: "Failed to perform upvote" };
+    } catch (error) {
+      console.log("upvote response error ", {
+        error: error,
+      });
+      const errorMessage = error?.response?.data?.response?.response?.message;
+      return { success: false, message: errorMessage };
+    }
+  };
+
+  return { submitProject, submitArticle, submitUpvote };
 };

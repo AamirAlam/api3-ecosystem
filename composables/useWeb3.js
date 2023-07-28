@@ -95,14 +95,13 @@ export const useWeb3 = () => {
 
   const account = computed(() => wallet.value.address);
   const isConnected = computed(() => wallet.value.isConnected);
-
   watch(isConnected, (isConnected) => {
     if (!isConnected && currentUrl === "/add-dapp") {
       navigateTo("/login");
     }
 
     if (isConnected && currentUrl === "/login") {
-      navigateTo("/add-dapp");
+      router.back();
     }
   });
 
