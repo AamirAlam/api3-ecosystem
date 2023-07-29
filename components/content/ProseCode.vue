@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useClipboard } from "@vueuse/core";
+
 const props = withDefaults(
   defineProps<{
     code?: string;
@@ -8,12 +10,16 @@ const props = withDefaults(
   }>(),
   { code: "", language: null, filename: null, highlights: [] }
 );
+
+const { copy, copied, text } = useClipboard();
 </script>
 
 <template>
   <div>
-    <span>
-      {{ language }}
+    <span class="calm-voice" @click="copy(code)" v-tooltip="'Copy code'">
+      <template v-if="copied">{{ language }}</template>
+
+      <template v-else> Copied! </template>
     </span>
     <slot />
   </div>
@@ -41,6 +47,10 @@ div {
 
   &:hover {
     overflow: visible;
+  }
+
+  :deep(pre) {
+    white-space: pre-wrap;
   }
 }
 </style>
