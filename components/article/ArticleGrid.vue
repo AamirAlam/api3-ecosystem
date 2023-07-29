@@ -20,6 +20,12 @@ function cardType(index, layout = layoutIndex.value, article) {
   if (!article.cover) return "text";
   return layout[index % layout.length];
 }
+
+function handleLoadMore() {
+  if (blog.list.length < blog.totalArticles || blog.list.length >= 10) {
+    blog.filterQuery.page += 1;
+  }
+}
 </script>
 
 <template>
@@ -30,6 +36,14 @@ function cardType(index, layout = layoutIndex.value, article) {
         :class="cardType(index, layouts[layoutIndex], article)"
         v-if="index < (props.cardCount ?? blog.list.length)"
       />
+
+      <button
+        class="text show-more"
+        @click="handleLoadMore"
+        v-if="blog.hasMoreItems"
+      >
+        {{ "Show More" }}
+      </button>
     </template>
   </ul>
 </template>

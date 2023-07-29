@@ -1,23 +1,80 @@
 import { defineStore } from "pinia";
-import data from "./articles-data.json";
 import slug from "slug";
+import { watchDebounced } from "@vueuse/core";
 
 export const useBlogStore = defineStore("blog", () => {
   const route = useRoute();
 
   //get articles, with dynamic pagination
   const baseServerUrl = ref("/api/articles/");
-  const serverPage = ref(1);
+  const filterQuery = ref({
+    searchKey: "",
+    categories: [],
+    authors: [],
+    years: [],
+    page: 1,
+  });
+  const hasMoreItems = ref(true);
+  const articlesList = ref([]);
+  const totalArticles = ref(0);
+
   const serverURL = computed(() => {
-    return serverPage.value
-      ? baseServerUrl.value + `?page=${serverPage.value}`
-      : baseServerUrl.value;
+    //page
+    let url = baseServerUrl.value + `?page=${filterQuery.value.page}`;
+
+    //categories
+    if (filterQuery.value.categories) {
+      url += `&categories=${filterQuery.value.categories.join(",")}`;
+    }
+
+    //authors
+    if (filterQuery.value.authors) {
+      url += `&authors=${filterQuery.value.authors.join(",")}`;
+    }
+
+    //  search field
+    if (filterQuery.value.searchKey !== "") {
+      url += `&searchKey=${filterQuery.value.searchKey}`;
+    }
+
+    //year published
+    if (filterQuery.value.years) {
+      url += `&years=${filterQuery.value.years.join(",")}`;
+    }
+
+    return url;
   });
 
-  const { data: list, error: listError, refresh } = useFetch(serverURL.value);
+  const debouncedSearchQuery = serverURL;
 
-  watch(serverPage, () => {
-    refresh(); //#todo, this isnt working
+  watchDebounced(
+    serverURL,
+    () => {
+      debouncedSearchQuery.value = serverURL.value;
+    },
+    { debounce: 500, maxWait: 1000 }
+  );
+
+  const { data, error: listError } = useFetch(
+    () => debouncedSearchQuery.value,
+    {
+      key: `articles-list-${filterQuery.value.page}`,
+    }
+  );
+
+  watch([filterQuery, data], ([newQuery, newData], [oldQuery, prevData]) => {
+    totalArticles.value = newData.total;
+    if (newQuery.page === 1) {
+      articlesList.value = newData.articles;
+    } else {
+      articlesList.value = [...articlesList.value, ...newData.articles];
+    }
+
+    if (newData.articles?.length < 10) {
+      hasMoreItems.value = false;
+    } else {
+      hasMoreItems.value = true;
+    }
   });
 
   const currentArticle = computed(() => {
@@ -29,8 +86,10 @@ export const useBlogStore = defineStore("blog", () => {
   });
 
   return {
-    list,
+    list: articlesList,
+    totalArticles,
     currentArticle,
-    serverPage,
+    hasMoreItems: hasMoreItems,
+    filterQuery,
   };
 });
