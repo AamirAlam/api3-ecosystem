@@ -142,6 +142,16 @@ article-card {
   &.big-card {
     grid-column: 1/-1;
 
+    picture {
+      height: 100%;
+      aspect-ratio: 16/9;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
     @media (min-width: 768px) {
       grid-column: span 6;
       grid-row: span 3;

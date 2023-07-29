@@ -51,7 +51,7 @@ h3 {
 
 .toc-list {
   display: grid;
-  gap: 0rem;
+  gap: 1rem;
   justify-content: start;
 
   a {
