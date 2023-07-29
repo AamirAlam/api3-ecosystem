@@ -12,6 +12,8 @@ useServerSeoMeta({
   title: "Add Dapp",
 });
 
+const ui = useInterfaceStore();
+
 const dappForm = useStorage("dapp-form", {});
 dappForm.value.proxies = [];
 const loading = ref(false);
@@ -80,10 +82,13 @@ onMounted(() => {
   if (!isConnected) {
     navigateTo("/login");
   }
+
   window.scroll({
     top: 0,
     left: 0,
   });
+
+  ui.scrollIndicator("#add-form");
 });
 </script>
 
@@ -100,6 +105,7 @@ onMounted(() => {
       <div class="step">
         <ContentStep :dappForm="dappForm" />
       </div>
+      {{ scrollPosition }}
       <div class="step">
         <ImageStep :dappForm="dappForm" />
       </div>
@@ -154,17 +160,6 @@ body:has(main.add-dapp) {
 }
 main.add-dapp {
   position: relative;
-
-  //   &::after { #todo scroll indicator
-  //     content: "";
-  //     position: absolute;
-  //     width: 1px;
-  //     height: var(--after-height);
-  //     right: 10px;
-  //     top: 0px;
-  //     background: var(--gradient-color);
-  //     z-index: 1;
-  //   }
 }
 
 form {
@@ -176,13 +171,10 @@ form {
   scroll-behavior: smooth;
 
   & > :is(.step, .actions) {
-    //  scroll-snap-align: start;
     min-height: calc(80vh);
     display: grid;
     gap: 3rem;
     align-content: center;
-    padding: 0 2rem;
-    //  padding-top: 4rem;
   }
 
   .formkit-wrapper {
@@ -197,7 +189,7 @@ form {
   }
 
   input.formkit-input {
-    font-size: var(--step-1);
+    font-size: var(--step-0);
     border-radius: var(--corners);
   }
 
