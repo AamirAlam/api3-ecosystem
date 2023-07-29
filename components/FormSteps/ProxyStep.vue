@@ -125,17 +125,19 @@ function buttonHandle(valid, direction) {
           />
         </form-field>
 
-        <div class="button-group">
+        <div class="actions">
           <div class="add-button" v-if="loading">
             <LoadingSpinner />
           </div>
           <div v-else>
             <button class="icon add-button" @click.prevent="handleUpdateProxy">
-              +
+              <picture>
+                <img src="@/assets/images/interface/plus.svg" alt="" />
+              </picture>
             </button>
           </div>
 
-          <div class="error-message">
+          <div class="error-message whisper-voice">
             {{ message }}
           </div>
         </div>
@@ -175,10 +177,7 @@ function buttonHandle(valid, direction) {
   width: 100%;
   justify-content: start;
 }
-.add-button {
-  width: 50px;
-  height: 50px;
-}
+
 .proxy-form {
   display: grid;
   gap: 1rem;
@@ -191,10 +190,20 @@ function buttonHandle(valid, direction) {
   .feed-option {
     margin-bottom: 50px;
   }
+
+  .actions {
+    align-items: center;
+
+    .add-button {
+      max-width: 50px;
+    }
+
+    .icon {
+      padding: 1rem;
+    }
+  }
   .error-message {
-    margin-left: 20px;
     color: red;
-    font-size: 12px;
   }
 }
 </style>
