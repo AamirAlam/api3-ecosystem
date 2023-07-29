@@ -1,4 +1,3 @@
-import { ref, computed, onUpdated } from "vue";
 import { defineStore } from "pinia";
 import { gsap } from "gsap";
 

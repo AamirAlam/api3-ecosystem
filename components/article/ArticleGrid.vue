@@ -31,6 +31,7 @@ function handleLoadMore() {
 <template>
   <ul class="article-grid" v-auto-animate>
     <template v-for="(article, index) in blog.list">
+      {{ blog }}
       <ArticleCard
         :article="article"
         :class="cardType(index, layouts[layoutIndex], article)"

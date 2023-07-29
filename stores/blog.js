@@ -23,12 +23,12 @@ export const useBlogStore = defineStore("blog", () => {
     let url = baseServerUrl.value + `?page=${filterQuery.value.page}`;
 
     //categories
-    if (filterQuery.value.categories) {
+    if (filterQuery.value.categories.length > 0) {
       url += `&categories=${filterQuery.value.categories.join(",")}`;
     }
 
     //authors
-    if (filterQuery.value.authors) {
+    if (filterQuery.value.authors.length > 0) {
       url += `&authors=${filterQuery.value.authors.join(",")}`;
     }
 
@@ -38,7 +38,7 @@ export const useBlogStore = defineStore("blog", () => {
     }
 
     //year published
-    if (filterQuery.value.years) {
+    if (filterQuery.value.years.length > 0) {
       url += `&years=${filterQuery.value.years.join(",")}`;
     }
 

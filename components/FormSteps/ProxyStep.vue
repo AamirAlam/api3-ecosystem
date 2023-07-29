@@ -67,9 +67,6 @@ async function handleUpdateProxy() {
 }
 
 const buttonClick = ref(false);
-function buttonHandle(valid, direction) {
-  formStepButtonHandle(valid, direction, buttonClick);
-}
 </script>
 
 <template>
