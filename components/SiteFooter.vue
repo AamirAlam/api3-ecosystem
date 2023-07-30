@@ -44,29 +44,43 @@ const footerLinks = [
       {
         label: "Documentation",
         path: "https://api3.org/goto/docs?source=ao-menu",
+        external: true,
       },
-      { label: "Github", path: "https://github.com/API3DAO" },
-      { label: "API3 Market", path: "https://market.api3.org/dapis" },
+      {
+        label: "Github",
+        path: "https://github.com/API3DAO",
+        external: true,
+      },
+      {
+        label: "API3 Market",
+        path: "https://market.api3.org/dapis",
+        external: true,
+      },
       // Add more links here
     ],
   },
   {
     title: "Solutions",
     links: [
-      { label: "Airnode", path: "https://api3.org/airnode" },
-      { label: "Data feeds", path: "https://api3.org/dapis" },
-      { label: "OEV", path: "https://api3.org/oev" },
-      { label: "QRNG", path: "https://api3.org/QRNG" },
+      { label: "Airnode", external: true, path: "https://api3.org/airnode" },
+      { label: "Data feeds", external: true, path: "https://api3.org/dapis" },
+      { label: "OEV", external: true, path: "https://api3.org/oev" },
+      { label: "QRNG", external: true, path: "https://api3.org/QRNG" },
       // Add more links here
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Guides", path: "https://docs.api3.org/guides/" },
+      {
+        label: "Guides",
+        path: "https://docs.api3.org/guides/",
+        external: true,
+      },
       {
         label: "Articles",
         path: "https://api3.org/goto/medium?source=ao-menu",
+        external: true,
       },
       // Add more links here
     ],
@@ -74,10 +88,11 @@ const footerLinks = [
   {
     title: "Participate",
     links: [
-      { label: "DAO", path: "https://api3.org/dao" },
+      { label: "DAO", path: "https://api3.org/dao", external: true },
       {
         label: "Open Positions",
         path: "https://api3.org/positions/Core-Tech-Team-Positions",
+        external: true,
       },
       // Add more links here
     ],
@@ -88,22 +103,27 @@ const footerLinks = [
       {
         label: "English",
         path: "https://drive.google.com/file/d/1b8QsGPCJJC1pQOcg83-knD1IAOIgCtZZ/view?usp=sharing",
+        external: true,
       },
       {
         label: "Chinese",
         path: "https://drive.google.com/file/d/1f2Kad5CUgbr7plyGBtWnK-Shfm3XowWy/view?usp=sharing",
+        external: true,
       },
       {
         label: "Korean",
         path: "https://drive.google.com/file/d/1JMHwdNibJf5g_bBaG8Sx9cCg5_14ZIvE/view?usp=sharing",
+        external: true,
       },
       {
         label: "Spanish",
         path: "https://drive.google.com/file/d/1C_HEQ41TBE-W2IKqMZTaVR9pND6hes8S/view?usp=sharing",
+        external: true,
       },
       {
         label: "Vietnamese",
         path: "https://drive.google.com/file/d/1ELcBjb8nO_4S4jhhZnFMeSo2BHrznONj/view?usp=sharing",
+        external: true,
       },
       // Add more links here
     ],
@@ -131,9 +151,15 @@ const footerLinks = [
               v-for="(link, linkIndex) in footerMenu.links"
               :key="linkIndex"
               :to="link.path"
-              class="calm-voice text"
+              class="calm-voice text footer-link"
             >
-              {{ link.label }}
+              <span>{{ link.label }}</span>
+              <picture class="external-link" v-if="link.external">
+                <img
+                  src="@/assets/images/interface/diagonal-arrow.svg"
+                  alt=""
+                />
+              </picture>
             </NuxtLink>
           </nav>
         </section>
@@ -190,6 +216,15 @@ footer {
   font-size: var(--step-0);
   padding: 0.5rem 0;
   color: var(--ink);
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  picture {
+    max-width: 8px;
+  }
 }
 
 .footer-navigation inner-column {
