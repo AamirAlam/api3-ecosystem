@@ -6,17 +6,19 @@ const selected = ref("");
 const selectedProductId = ref(0);
 const mintInfo = ref({ hash: null });
 
-const { switchChain, isConnected } = useWeb3();
-const { mintNft } = useMint();
+const { switchChain, isConnected, account } = useWeb3();
+const { mintNft, isAlreadyMinted } = useMint();
 const loading = ref(false);
+const isMintChecking = ref(false);
 const chainId = ref(null);
+const isMinted = ref(false);
 
 const unwatchNetwork = watchNetwork((network) => {
   chainId.value = network.chain.id;
 });
 
 const content = reactive({
-  buttons: ["Testers", "DAO Members", "Developers"],
+  buttons: ["Developers", "DAO Members", "Testers"],
   unselectedHeading: "Select The NFT type to Mint",
   paragraph: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora quis
         nihil, sunt vitae labore nam fuga, vero adipisci minus blanditiis,
@@ -41,6 +43,17 @@ function buttonHandle(event, text, index) {
 
   animateHeading();
 }
+
+watch(
+  [selectedProductId, account],
+  async ([pruductId, account], [prevProductId, prevAccount]) => {
+    isMintChecking.value = true;
+
+    const check = await isAlreadyMinted(pruductId, account);
+    isMintChecking.value = false;
+    isMinted.value = check;
+  }
+);
 
 function animateHeading() {
   gsap.fromTo(
@@ -75,6 +88,12 @@ const handleAction = async () => {
   }
 
   const mintData = await mintNft(selectedProductId.value, chainId);
+
+  isMintChecking.value = true;
+
+  const check = await isAlreadyMinted(selectedProductId.value, account.value);
+  isMintChecking.value = false;
+  isMinted.value = check;
 
   mintInfo.value.hash = mintData?.data?.blockHash;
 
@@ -128,14 +147,17 @@ const buttonText = computed(() => {
         {{ content.paragraph }}
       </p>
 
-      <Transition name="fade" mode="out-in">
-        <button
-          class="loud-button"
-          v-if="selected"
-          :disabled="loading"
-          @click="handleAction"
-        >
+      <Transition name="fade" mode="out-in" v-if="selected && !isMinted">
+        <button class="loud-button" :disabled="loading" @click="handleAction">
           {{ buttonText }}
+        </button>
+      </Transition>
+
+      <Transition name="fade" mode="out-in" v-if="selected && isMinted">
+        <button class="loud-button" :disabled="loading">
+          <a href="https://opensea.io/collection/api3-guild" target="_blank">
+            {{ isMintChecking ? "Fetching NFT..." : "Visit OpenSea" }}</a
+          >
         </button>
       </Transition>
     </div>
