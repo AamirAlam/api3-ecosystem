@@ -92,6 +92,7 @@ button {
   color: var(--color);
   /* text-decoration: underline; */
   display: inline;
+  font-size: inherit;
 }
 
 em {
@@ -140,7 +141,7 @@ h2 + p {
 code {
   font-family: monospace;
   font-size: 1em;
-  /* color: green; */
+  color: green;
   border: unset;
 }
 

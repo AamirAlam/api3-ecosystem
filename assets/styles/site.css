@@ -63,6 +63,7 @@ body {
 .hide {
   display: none;
 }
+
 body:has(main.home) #blob {
   opacity: 0.5;
   /* #fixme */
