@@ -1,4 +1,5 @@
 <script setup>
+import getCSSCustomProperties from "@/composables/getCSSCustomProperties";
 const fonts = ref(["--font"]);
 
 const fontWeights = ref(["light", "medium", "semibold"]);
@@ -13,11 +14,23 @@ const fontSizes = ref([
   "step-4",
   "step-5",
 ]);
+
+const typeProps = ref([]);
+
+onMounted(() => {
+  typeProps.value = getCSSCustomProperties()["--typography"];
+});
+
+//
 </script>
 
 <template>
   <h2 class="attention-voice">Typography</h2>
   <ul>
+    <pre>
+		{{ typeProps }}
+	 </pre
+    >
     <li>
       <voice-card>
         <h3>Font Families</h3>

@@ -1,15 +1,15 @@
 const isSameDomain = (styleSheet) => {
-  if (!styleSheet.href) {
+  if (styleSheet.href) {
     return true;
   }
 
-  return styleSheet.href.indexOf(window.location.origin) === 0;
+  return styleSheet.ownerNode.dataset.viteDevId.includes("site.css");
 };
 
 const isStyleRule = (rule) => rule.type === 1;
 
-const getCSSCustomProperties = () =>
-  [...document.styleSheets].filter(isSameDomain).reduce(
+function getCSSCustomProperties() {
+  const allProps = [...document.styleSheets].filter(isSameDomain).reduce(
     (finalArr, sheet) =>
       finalArr.concat(
         [...sheet.cssRules].filter(isStyleRule).reduce((propValArr, rule) => {
@@ -25,5 +25,28 @@ const getCSSCustomProperties = () =>
       ),
     []
   );
+
+  const important = [];
+  allProps.forEach((prop, index) => {
+    if (prop[1].indexOf("!") > -1) {
+      important.push({ index: index, family: prop[1] });
+    }
+  });
+
+  const cssProps = {};
+
+  //using the important array as start and end, we can splice the allProps array
+
+  important.forEach((prop, index) => {
+    if (index !== 0) {
+      cssProps[allProps[important[index - 1].index][0]] = allProps.slice(
+        important[index - 1].index + 1,
+        important[index].index
+      );
+    }
+  });
+
+  return cssProps;
+}
 
 export default getCSSCustomProperties;
