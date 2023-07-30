@@ -34,6 +34,7 @@ import {
   skaleExorde,
   mantle,
 } from "@wagmi/core/chains";
+import { switchNetwork } from "@wagmi/core";
 
 export const useWeb3 = () => {
   //get env variable for project id
@@ -87,7 +88,7 @@ export const useWeb3 = () => {
   const router = useRouter();
   const currentUrl = router.currentRoute.value.path;
 
-  const unwatch = watchAccount((acc) => {
+  const unwatchAccount = watchAccount((acc) => {
     wallet.value = { ...acc };
   });
 
@@ -119,6 +120,16 @@ export const useWeb3 = () => {
     }
   };
 
+  const switchChain = async (targetChain) => {
+    try {
+      await switchNetwork({
+        chainId: targetChain,
+      });
+    } catch (error) {
+      console.log("chain switch error ", error);
+    }
+  };
+
   return {
     wallet,
     openModal,
@@ -127,5 +138,6 @@ export const useWeb3 = () => {
     isConnected,
     chainId,
     wagmiConfig,
+    switchChain,
   };
 };
