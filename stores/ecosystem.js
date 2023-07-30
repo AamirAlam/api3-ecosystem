@@ -80,10 +80,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
   //stats
   const { data: stats, error: statsError } = useFetch("/api/projects/stats/");
 
-  function addDapp(dapp) {
-    list.value.push(dapp);
-  }
-
+  //   helpers
   const productTypeToLabel = {
     qrng: "QRNG",
     datafeed: "Data Feed",
@@ -146,6 +143,5 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     feedNameOptions: feedNames,
     filterQuery,
     chainNames,
-    addDapp,
   };
 });

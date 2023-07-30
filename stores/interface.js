@@ -1,4 +1,3 @@
-import { ref, computed, onUpdated } from "vue";
 import { defineStore } from "pinia";
 import { gsap } from "gsap";
 
@@ -43,6 +42,16 @@ export const useInterfaceStore = defineStore("interface", function () {
     );
   }
 
+  function scrollIndicator(selector) {
+    const element = document.querySelector(selector);
+    element.addEventListener("scroll", () => {
+      const scrollPosition = (element.scrollTop / element.scrollHeight) * 100;
+      element.classList.add("scroll-indicator");
+      element.style.setProperty("--scroll-position", scrollPosition + "%");
+      //add pseduoelement styling to element
+    });
+  }
+
   function notify(message) {
     toast(message, {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -59,6 +68,7 @@ export const useInterfaceStore = defineStore("interface", function () {
     isDesktop,
     firstLoad,
     heroImage,
+    scrollIndicator,
 
     changeHeroImage,
   };

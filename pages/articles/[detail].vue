@@ -288,6 +288,14 @@ inner-column.article {
       }
 
       &.cover {
+        height: 100%;
+        aspect-ratio: 16/10;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
         @media (min-width: 768px) {
           grid-column: 3 / -1;
         }

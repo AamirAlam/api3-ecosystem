@@ -250,3 +250,14 @@ button:disabled {
 .v-popper--theme-tooltip .v-popper__arrow-inner {
   visibility: hidden;
 }
+
+.scroll-indicator::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: var(--scroll-position, 50px);
+  right: 10px;
+  top: 0px;
+  background: var(--gradient-color);
+  z-index: 1;
+}
