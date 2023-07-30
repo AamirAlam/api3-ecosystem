@@ -31,21 +31,19 @@ function handleLoadMore() {
 <template>
   <ul class="article-grid" v-auto-animate>
     <template v-for="(article, index) in blog.list">
-      {{ blog }}
       <ArticleCard
         :article="article"
         :class="cardType(index, layouts[layoutIndex], article)"
         v-if="index < (props.cardCount ?? blog.list.length)"
       />
-
-      <button
-        class="text show-more"
-        @click="handleLoadMore"
-        v-if="blog.hasMoreItems"
-      >
-        {{ "Show More" }}
-      </button>
     </template>
+    <button
+      class="text show-more"
+      @click="handleLoadMore"
+      v-if="blog.hasMoreItems"
+    >
+      {{ "Show More" }}
+    </button>
   </ul>
 </template>
 
