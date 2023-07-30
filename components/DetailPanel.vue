@@ -11,7 +11,7 @@ const loading = ref(false);
 
 const { verifyWallet } = useSiwe();
 const { submitUpvote } = useHttpCalls();
-const { isConnected, openModal } = useWeb3();
+const { isConnected } = useWeb3();
 
 onMounted(() => {
   upvotes.value = !props?.dapp?.upvotes ? 0 : props?.dapp?.upvotes;
@@ -160,7 +160,7 @@ const handleUpvote = async () => {
         v-if="loading"
         @click="handleUpvote"
       >
-        Pending ...
+        Voting ...
       </button>
       <button
         class="button share-button"

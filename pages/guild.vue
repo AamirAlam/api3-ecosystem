@@ -1,7 +1,19 @@
 <script setup>
+import { watchNetwork } from "@wagmi/core";
 import { gsap } from "gsap";
 
 const selected = ref("");
+const selectedProductId = ref(0);
+const mintInfo = ref({ hash: null });
+
+const { switchChain, isConnected } = useWeb3();
+const { mintNft } = useMint();
+const loading = ref(false);
+const chainId = ref(null);
+
+const unwatchNetwork = watchNetwork((network) => {
+  chainId.value = network.chain.id;
+});
 
 const content = reactive({
   buttons: ["Testers", "DAO Members", "Developers"],
@@ -14,6 +26,8 @@ const content = reactive({
 
 function buttonHandle(event, text, index) {
   selected.value = text;
+
+  selectedProductId.value = index;
 
   const buttons = document.querySelectorAll("aside button");
 
@@ -43,6 +57,49 @@ function animateHeading() {
     }
   );
 }
+
+const isPolygonChain = computed(() => chainId.value === 137);
+
+const handleAction = async () => {
+  if (!isConnected.value) {
+    navigateTo("/login");
+    return;
+  }
+
+  loading.value = true;
+
+  if (chainId.value !== 137) {
+    await switchChain(137);
+    loading.value = false;
+    return;
+  }
+
+  const mintData = await mintNft(selectedProductId.value, chainId);
+
+  mintInfo.value.hash = mintData?.data?.blockHash;
+
+  loading.value = false;
+};
+
+const buttonText = computed(() => {
+  if (loading.value && !isPolygonChain.value) {
+    return "Switching...";
+  }
+
+  if (loading.value) {
+    return "Minting...";
+  }
+
+  if (!isConnected.value) {
+    return "Connect Wallet";
+  }
+
+  if (!isPolygonChain.value) {
+    return "Switch to Polygon";
+  }
+
+  return "Mint it Now";
+});
 </script>
 
 <template>
@@ -72,7 +129,14 @@ function animateHeading() {
       </p>
 
       <Transition name="fade" mode="out-in">
-        <button class="loud-button" v-if="selected">Mint it Now</button>
+        <button
+          class="loud-button"
+          v-if="selected"
+          :disabled="loading"
+          @click="handleAction"
+        >
+          {{ buttonText }}
+        </button>
       </Transition>
     </div>
   </SectionColumn>

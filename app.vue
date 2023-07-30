@@ -12,8 +12,6 @@ nuxtApp.hook("page:finish", async () => {
   await nextTick();
 });
 
-const {} = useWeb3();
-
 useHead({
   bodyAttrs: {
     class: route.name,
