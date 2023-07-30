@@ -40,7 +40,7 @@ a {
 
   padding: 0.5em 2em;
   text-align: center;
-  border: 0.5px solid var(--gray);
+  border: 1px solid var(--gray);
   border-radius: var(--corners);
 
   font-size: 0.875rem;
@@ -100,7 +100,7 @@ a {
   /* border: 1px solid var(--gray); */
   border-radius: 50%;
   aspect-ratio: 1 / 1;
-  border: 0.5px solid var(--gray);
+  border: 1px solid var(--gray);
 }
 
 /*  */
@@ -133,26 +133,6 @@ picture.logo {
 .hover-underline:is(:hover, :focus)::after,
 a.router-link-exact-active::after {
   --underline-width: 100%;
-}
-
-/* tooltip.css */
-[data-tooltip] {
-  position: absolute;
-  background-color: #333;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 3px;
-  font-size: 12px;
-  font-weight: bold;
-  z-index: 1000;
-}
-
-[data-tooltip]:before {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .button.filled {
@@ -237,7 +217,7 @@ button:disabled {
 .v-popper--theme-tooltip .v-popper__inner {
   background: var(--gradient-dark-color) !important;
   font-family: var(--font);
-  color: #ffffff;
+  color: var(--ink);
   padding: 12px;
   border-radius: var(--corners);
   box-shadow: var(--shadow);

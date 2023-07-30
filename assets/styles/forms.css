@@ -1,25 +1,3 @@
-form {
-  --multistep-radius: var(--corners);
-  --multistep-color-success: var(--color);
-  --fk-color-help: var(--ink);
-  fill: black !important;
-
-  /* vueform/multistep */
-
-  --ms-bg: var(--paper);
-  --ms-border-color: var(--ink);
-  --ms-radius: var(--corners);
-
-  --ms-tag-bg: var(--color);
-  --ms-tag-color: var(--paper);
-  --ms-tag-radius: var(--corners);
-
-  --ms-dropdown-bg: var(--paper);
-  --ms-dropdown-border-color: var(--ink);
-  --ms-dropdown-color: var(--ink);
-  --ms-dropdown-radius: var(--corners);
-}
-
 form,
 .formkit-step-inner,
 .step-transition-wrapper {
