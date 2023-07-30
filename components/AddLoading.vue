@@ -8,7 +8,7 @@
 .loading-progress {
   width: 250px;
   height: 4px;
-  border: 0.5px solid #ccc;
+  border: 1px solid var(--gray);
   border-radius: 2px;
   /* overflow: hidden; */
 }

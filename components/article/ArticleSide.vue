@@ -1,4 +1,5 @@
 <script setup>
+import getCSSCustomProperties from "@/composables/getCSSCustomProperties";
 const props = defineProps(["toc", "title"]);
 
 function noHeading(section) {

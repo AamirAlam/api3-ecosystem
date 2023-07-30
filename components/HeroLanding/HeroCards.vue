@@ -15,7 +15,7 @@ const showcaseCards = ref([
     paragraph:
       "Learn how to utilize oracles while building your own blockchain applications.",
     cta: "Get Started",
-    link: "/ecosystem#todo",
+    link: "http://docs.api3.org",
     image: "/images/hero-ecosystem-gears.svg",
   },
 

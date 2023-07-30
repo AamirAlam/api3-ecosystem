@@ -5,9 +5,9 @@ watch(
   () => props.showModal,
   (newVal) => {
     if (newVal) {
-      document.body.style.overflow = "hidden";
+      // document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      // document.body.style.overflow = "auto";
     }
   }
 );
@@ -44,18 +44,18 @@ watch(
 .modal-mask {
   position: fixed;
   z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.8);
   transition: opacity 0.3s ease;
   overflow-y: auto;
 
   display: grid;
-  place-items: center;
+  align-content: start;
 }
 .modal-mask > * {
+  position: sticky;
+  top: 1rem;
+
   width: clamp(300px, 90vw, 500px);
   margin: auto;
 
