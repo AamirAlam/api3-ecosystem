@@ -142,9 +142,9 @@ onMounted(() => {
         <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
         <!-- </div> -->
 
-        <div class="success-indicator">
+        <p class="success-indicator">
           {{ successData.message }}
-        </div>
+        </p>
 
         <a :href="successData.pr_url" target="_blank" v-if="submitSuccess">
           View Pull request
@@ -201,7 +201,7 @@ form {
     color: red;
   }
   .valid {
-    color: green;
+    color: var(--success);
   }
 
   div.actions {
