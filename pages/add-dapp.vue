@@ -165,6 +165,7 @@ main.add-dapp {
 form {
   max-height: 100vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   //   scroll-snap-type: mandatory;
   //   scroll-snap-type: y mandatory;
   //   scroll-snap-points-y: repeat(calc(100vh - 100px));
