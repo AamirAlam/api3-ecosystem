@@ -110,7 +110,7 @@ const handleUpvote = async () => {
       </div>
 
       <div class="row product-list">
-        <p>productTypes</p>
+        <p>Product</p>
         <ul>
           <li>
             <DynamicIcon :icon="dapp.productType" />

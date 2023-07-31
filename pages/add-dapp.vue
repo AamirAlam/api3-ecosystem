@@ -142,9 +142,9 @@ onMounted(() => {
         <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
         <!-- </div> -->
 
-        <div class="success-indicator">
+        <p class="success-indicator">
           {{ successData.message }}
-        </div>
+        </p>
 
         <a :href="successData.pr_url" target="_blank" v-if="submitSuccess">
           View Pull request
@@ -165,6 +165,7 @@ main.add-dapp {
 form {
   max-height: 100vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   //   scroll-snap-type: mandatory;
   //   scroll-snap-type: y mandatory;
   //   scroll-snap-points-y: repeat(calc(100vh - 100px));
@@ -201,7 +202,7 @@ form {
     color: red;
   }
   .valid {
-    color: green;
+    color: var(--success);
   }
 
   div.actions {

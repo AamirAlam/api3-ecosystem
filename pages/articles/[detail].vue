@@ -12,6 +12,7 @@ const { data, error } = await useFetch(
 
       article.value = response._data;
 
+
       useServerSeoMeta({
         title: () => article.value.title,
         ogTitle: () => article.value.title,
@@ -97,12 +98,16 @@ const { data, error } = await useFetch(
 <template>
   <SectionColumn innerClass="article">
     <article>
+
       <ArticleSide :toc="data?.content?.toc" :title="data?.title" />
+
 
       <ArticleHeader :article="data" />
 
+
       <picture class="cover" v-if="data?.cover">
         <img :src="article?.cover" alt="" />
+
       </picture>
 
       <ContentRendererMarkdown

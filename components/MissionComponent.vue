@@ -39,7 +39,7 @@ function animateBackground() {
       strokeDasharray: "900",
     },
     {
-      duration: 3,
+      duration: 1,
       strokeDashoffset: 0,
       ease: "power2.in",
       stagger: 0.05,

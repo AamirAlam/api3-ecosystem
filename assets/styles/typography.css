@@ -3,23 +3,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-html {
-  --font: Inter, sans-serif;
-
-  --step--2: clamp(0.39rem, calc(0.36rem + 0.15vw), 0.5rem);
-  --step--1: clamp(0.58rem, calc(0.54rem + 0.23vw), 0.75rem);
-  --step-0: clamp(0.88rem, calc(0.81rem + 0.34vw), 1.13rem);
-  --step-1: clamp(1.31rem, calc(1.21rem + 0.51vw), 1.69rem);
-  --step-2: clamp(1.97rem, calc(1.82rem + 0.76vw), 2.53rem);
-  --step-3: clamp(2.95rem, calc(2.72rem + 1.14vw), 3.8rem);
-  --step-4: clamp(4.43rem, calc(4.09rem + 1.72vw), 5.7rem);
-  --step-5: clamp(6.64rem, calc(6.13rem + 2.57vw), 8.54rem);
-
-  --weight-semibold: 600;
-  --weight-medium: 500;
-  --weight-light: 300;
-}
-
 .booming-voice {
   font-family: var(--font);
 
@@ -92,6 +75,7 @@ button {
   color: var(--color);
   /* text-decoration: underline; */
   display: inline;
+  font-size: inherit;
 }
 
 em {
@@ -140,16 +124,8 @@ h2 + p {
 code {
   font-family: monospace;
   font-size: 1em;
-  /* color: green; */
+  color: green;
   border: unset;
-}
-
-html * {
-  --fk-font-family: var(--font);
-  --fk-font-size: 1rem;
-  --fk-font-weight: 400;
-  --fk-line-height: 1.4;
-  --fk-color-input: var(--ink);
 }
 
 .validation-warn {

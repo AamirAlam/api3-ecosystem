@@ -52,7 +52,7 @@ const ecosystem = useEcosystemStore();
     <ClientOnly>
       <DappFilter v-if="!ui.isMobile" />
       <div v-else>
-        <button class="button" @click="showFilter = !showFilter">Open</button>
+        <button class="button" @click="showFilter = !showFilter">Filter</button>
 
         <ModalSlot :showModal="showFilter" @toggle="showFilter = !showFilter">
           <DappFilter />
@@ -83,7 +83,8 @@ const ecosystem = useEcosystemStore();
   opacity: 0;
   inner-column {
     display: grid;
-    grid-template-columns: 1fr 0.5fr;
+    gap: 1rem;
+
     align-items: center;
     justify-content: space-between;
     justify-items: start;
@@ -91,6 +92,10 @@ const ecosystem = useEcosystemStore();
 
     .button {
       justify-self: center;
+    }
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 0.5fr;
     }
   }
 }

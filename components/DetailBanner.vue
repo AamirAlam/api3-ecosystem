@@ -20,7 +20,7 @@ const props = defineProps(["dapp"]);
   margin-top: 5rem;
   picture {
     overflow: hidden;
-    aspect-ratio: 8 / 2;
+    aspect-ratio: 16 / 6;
     @media (min-width: 1400px) {
       border-radius: var(--corners);
     }
@@ -29,6 +29,7 @@ const props = defineProps(["dapp"]);
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center center;
     }
   }
 }

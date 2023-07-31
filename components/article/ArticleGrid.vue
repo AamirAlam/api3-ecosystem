@@ -2,6 +2,7 @@
 import { useBlogStore } from "@/stores/blog";
 
 const blog = useBlogStore();
+const ui = useInterfaceStore();
 const props = defineProps(["layout", "cardCount"]);
 
 const layouts = [
@@ -18,7 +19,11 @@ const layoutIndex = ref(props.layout ?? 0);
 
 function cardType(index, layout = layoutIndex.value, article) {
   if (!article.cover) return "text";
-  return layout[index % layout.length];
+  const cardType = layout[index % layout.length];
+
+  if (cardType === "slide" && ui.isMobile) return "big-card";
+
+  return cardType;
 }
 
 function handleLoadMore() {
@@ -40,7 +45,7 @@ function handleLoadMore() {
     <button
       class="text show-more"
       @click="handleLoadMore"
-      v-if="blog.hasMoreItems"
+      v-if="blog.hasMoreItems && cardCount"
     >
       {{ "Show More" }}
     </button>

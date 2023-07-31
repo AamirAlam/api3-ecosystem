@@ -155,11 +155,18 @@ const buttonText = computed(() => {
       </Transition>
 
       <Transition name="fade" mode="out-in" v-if="selected && isMinted">
-        <button class="loud-button" :disabled="loading">
-          <a href="https://opensea.io/collection/api3-guild" target="_blank">
-            {{ isMintChecking ? "Fetching NFT..." : "Visit OpenSea" }}</a
-          >
-        </button>
+        <a
+          href="https://opensea.io/collection/api3-guild"
+          target="_blank"
+          class=""
+        >
+          <span>
+            {{ isMintChecking ? "Fetching NFT..." : "Visit OpenSea" }}
+          </span>
+          <picture class="external-link" v-if="link.external">
+            <img src="@/assets/images/interface/diagonal-arrow.svg" alt="" />
+          </picture>
+        </a>
       </Transition>
     </div>
   </SectionColumn>
@@ -197,5 +204,9 @@ section {
       justify-self: center;
     }
   }
+}
+
+.external-link {
+  max-width: 10px;
 }
 </style>
