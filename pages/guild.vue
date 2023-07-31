@@ -6,16 +6,10 @@ const selected = ref("");
 const selectedProductId = ref(0);
 const mintInfo = ref({ hash: null });
 
-const { switchChain, isConnected, account } = useWeb3();
-const { mintNft, isAlreadyMinted } = useMint();
 const loading = ref(false);
 const isMintChecking = ref(false);
 const chainId = ref(null);
 const isMinted = ref(false);
-
-const unwatchNetwork = watchNetwork((network) => {
-  chainId.value = network.chain.id;
-});
 
 const content = reactive({
   buttons: ["Developers", "DAO Members", "Testers"],
@@ -44,17 +38,6 @@ function buttonHandle(event, text, index) {
   animateHeading();
 }
 
-watch(
-  [selectedProductId, account],
-  async ([pruductId, account], [prevProductId, prevAccount]) => {
-    isMintChecking.value = true;
-
-    const check = await isAlreadyMinted(pruductId, account);
-    isMintChecking.value = false;
-    isMinted.value = check;
-  }
-);
-
 function animateHeading() {
   gsap.fromTo(
     "div.panel h2",
@@ -70,6 +53,24 @@ function animateHeading() {
     }
   );
 }
+
+const { switchChain, isConnected, account } = useWeb3();
+const { mintNft, isAlreadyMinted } = useMint();
+
+const unwatchNetwork = watchNetwork((network) => {
+  chainId.value = network.chain.id;
+});
+
+watch(
+  [selectedProductId, account],
+  async ([pruductId, account], [prevProductId, prevAccount]) => {
+    isMintChecking.value = true;
+
+    const check = await isAlreadyMinted(pruductId, account);
+    isMintChecking.value = false;
+    isMinted.value = check;
+  }
+);
 
 const isPolygonChain = computed(() => chainId.value === 137);
 

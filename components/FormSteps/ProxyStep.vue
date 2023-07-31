@@ -86,6 +86,7 @@ const buttonClick = ref(false);
             name="proxyAddress"
             validation="optional"
             id="proxyAddress"
+            help="You can get proxy address from market.api3.org"
             v-model="dappForm.proxyAddress"
           />
         </form-field>
