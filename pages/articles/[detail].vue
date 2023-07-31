@@ -102,17 +102,17 @@ const { data, error } = await useFetch(
 <template>
   <SectionColumn innerClass="article">
     <article>
-      <ArticleSide :toc="article.content.toc" :title="article?.title" />
+      <ArticleSide :toc="article?.content?.toc" :title="article?.title" />
 
       <ArticleHeader :article="article" />
 
-      <picture class="cover" v-if="article.cover">
-        <img :src="article.cover" alt="" />
+      <picture class="cover" v-if="article?.cover">
+        <img :src="article?.cover" alt="" />
       </picture>
 
       <ContentRendererMarkdown
-        v-if="article.content"
-        :value="article.content"
+        v-if="article?.content"
+        :value="article?.content"
         tag="article"
         class="body"
       />
