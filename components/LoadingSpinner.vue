@@ -8,20 +8,17 @@
 <style>
 .loading-spinner {
   position: relative;
-  display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  aspect-ratio: 1 / 1;
 }
 
 .spinner {
-  border: 4px solid var(--ink);
-  border-top: 1px solid #ffffff;
+  border-top: 2px solid var(--color);
+
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 2s linear infinite;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {

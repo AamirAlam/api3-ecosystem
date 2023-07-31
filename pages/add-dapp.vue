@@ -13,16 +13,16 @@ useServerSeoMeta({
 });
 
 const ui = useInterfaceStore();
+const { verifyWallet } = useSiwe();
+const { submitProject } = useHttpCalls();
+const { isConnected } = useWeb3();
 
 const dappForm = useStorage("dapp-form", {});
-dappForm.value.proxies = [];
+
 const loading = ref(false);
 const messages = ref([]);
 const successData = ref({ message: "", pr_url: "" });
 const submitSuccess = ref(false);
-const { verifyWallet } = useSiwe();
-const { submitProject } = useHttpCalls();
-const { isConnected } = useWeb3();
 
 function showErrors(node) {
   messages.value = [];
