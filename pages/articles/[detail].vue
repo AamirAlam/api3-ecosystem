@@ -19,8 +19,8 @@ const { data, error } = await useFetch(
         ogUrl: () => `#todo/articles/${article.value._id}`,
         description: () => article.value.description,
         ogDescription: () => article.value.description,
-        image: () => article.value.image,
-        ogImage: () => article.value.image,
+        image: () => article.value.cover,
+        ogImage: () => article.value.cover,
         ogArticlePublishedTime: () => article.value.date,
       });
     },
