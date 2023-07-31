@@ -58,7 +58,8 @@ const submitHandler = async (event) => {
 
   loading.value = true;
 
-  successData.value.message = "Please wait for this to process — Max 30 secs!";
+  successData.value.message =
+    "Please wait for this to process — it will take about 1-2 mins!";
   const submitResult = await submitProject(
     dappForm,
     images,
@@ -71,6 +72,7 @@ const submitHandler = async (event) => {
 
     delete dappForm.value;
   } else {
+    successData.value = "";
     setErrors("add-form", [submitResult?.message]);
   }
   loading.value = false;
