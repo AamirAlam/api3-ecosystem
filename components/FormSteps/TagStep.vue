@@ -32,6 +32,8 @@ function buttonHandle(valid, direction) {
         :options="ecosystem.categoryOptions"
         :classes="{
           tag: 'calm-voice multiselect-tag',
+          dropdown: 'calm-voice multiselect-dropdown',
+          tagsSearch: 'calm-voice multiselect-tags-search',
         }"
       />
     </form-field>
@@ -48,6 +50,8 @@ function buttonHandle(valid, direction) {
         :options="ecosystem.chainOptions"
         :classes="{
           tag: 'calm-voice multiselect-tag',
+          dropdown: 'calm-voice multiselect-dropdown',
+          tagsSearch: 'calm-voice multiselect-tags-search',
         }"
       />
     </form-field>
@@ -66,6 +70,8 @@ function buttonHandle(valid, direction) {
         :options="ecosystem.productTypeOptions"
         :classes="{
           singleLabelText: 'calm-voice multiselect-single-label-text',
+          dropdown: 'calm-voice multiselect-dropdown',
+          search: 'calm-voice multiselect-search',
         }"
       />
     </form-field>

@@ -54,11 +54,11 @@ const ecosystem = useEcosystemStore();
         </div>
         <div class="cross" v-if="isForm">
           <button
-            class="icon button"
+            class="icon"
             @click.prevent="dappForm?.proxies?.splice(index, 1)"
           >
             <picture>
-              <img src="@/assets/images/icon-cross.svg" />
+              <img src="@/assets/images/interface/cross.svg" />
             </picture>
           </button>
         </div>

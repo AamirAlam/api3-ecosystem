@@ -5,6 +5,8 @@ import { useEcosystemStore } from "@/stores/ecosystem";
 const ecosystem = useEcosystemStore();
 
 const props = defineProps(["dappForm"]);
+props.dappForm.proxies = props.dappForm.proxies ?? [];
+
 const loading = ref(false);
 const message = ref("");
 
@@ -103,6 +105,8 @@ const buttonClick = ref(false);
             :options="ecosystem.chainOptions"
             :classes="{
               singleLabelText: 'calm-voice multiselect-single-label-text',
+              dropdown: 'calm-voice multiselect-dropdown',
+              search: 'calm-voice multiselect-search',
             }"
           />
         </form-field>
@@ -119,16 +123,16 @@ const buttonClick = ref(false);
             :options="ecosystem.feedNameOptions"
             :classes="{
               singleLabelText: 'calm-voice multiselect-single-label-text',
+              search: 'calm-voice multiselect-search',
+              dropdown: 'calm-voice multiselect-dropdown',
             }"
           />
         </form-field>
 
         <div class="actions">
-          <div class="add-button" v-if="loading">
-            <LoadingSpinner />
-          </div>
-          <div v-else>
-            <button class="icon add-button" @click.prevent="handleUpdateProxy">
+          <div class="add-button">
+            <LoadingSpinner v-if="loading" />
+            <button v-else class="icon" @click.prevent="handleUpdateProxy">
               <picture>
                 <img src="@/assets/images/interface/plus.svg" alt="" />
               </picture>
@@ -153,6 +157,8 @@ const buttonClick = ref(false);
 </template>
 
 <style scoped lang="scss">
+:deep(.multiselect-search) {
+}
 .proxy-step {
   display: grid;
   gap: 4rem;
@@ -164,6 +170,7 @@ const buttonClick = ref(false);
   :deep(.proxy-table) {
     .table-row {
       grid-template-columns: 0.5fr 0.5fr 0.75fr 0.75fr 0.75fr 0.5fr 0.2fr;
+      gap: 1rem;
     }
   }
 }
