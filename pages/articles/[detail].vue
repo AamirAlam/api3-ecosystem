@@ -1,9 +1,7 @@
 <script setup>
-import { parseMarkdown } from "~/utils/parseMarkdown";
-
 const route = useRoute();
 
-const article = ref(null);
+const article = useState("article", () => null);
 
 const { data, error } = await useFetch(
   `/api/articles/article/${route.params.detail}`,
@@ -13,8 +11,7 @@ const { data, error } = await useFetch(
       // Process the response data
 
       article.value = response._data;
-      const parsed = await parseMarkdown(article.value);
-      article.value.content = parsed;
+
 
       useServerSeoMeta({
         title: () => article.value.title,
@@ -23,8 +20,8 @@ const { data, error } = await useFetch(
         ogUrl: () => `#todo/articles/${article.value._id}`,
         description: () => article.value.description,
         ogDescription: () => article.value.description,
-        image: () => article.value.image,
-        ogImage: () => article.value.image,
+        image: () => article.value.cover,
+        ogImage: () => article.value.cover,
         ogArticlePublishedTime: () => article.value.date,
       });
     },
@@ -101,17 +98,21 @@ const { data, error } = await useFetch(
 <template>
   <SectionColumn innerClass="article">
     <article>
-      <ArticleSide :toc="article?.content.toc" :title="article?.title" />
 
-      <ArticleHeader :article="article" />
+      <ArticleSide :toc="data?.content?.toc" :title="data?.title" />
 
-      <picture class="cover" v-if="article?.cover">
-        <img :src="article.cover" alt="" />
+
+      <ArticleHeader :article="data" />
+
+
+      <picture class="cover" v-if="data?.cover">
+        <img :src="article?.cover" alt="" />
+
       </picture>
 
       <ContentRendererMarkdown
-        v-if="article.content"
-        :value="article.content"
+        v-if="data?.content"
+        :value="data?.content"
         tag="article"
         class="body"
       />
