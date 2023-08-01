@@ -9,9 +9,9 @@ interface BuildStatus {
 const config = useRuntimeConfig();
 
 const DAPP_REPO_URL =
-  config.NODE_ENV === "production"
-    ? config.DAPP_REGISTRY_PROD
-    : config.DAPP_REGISTRY_DEV;
+  config.nodeEnv === "production"
+    ? config.dappRegistryProd
+    : config.dappRegistryDev;
 
 async function verifyBuild(
   projectData: ProjectType,

@@ -10,13 +10,13 @@ const config = useRuntimeConfig();
 let s3 = new S3Client({
   region: "us-east-2",
   credentials: {
-    accessKeyId: config.AWS_ACCESS_KEY_ID,
-    secretAccessKey: config.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: config.awsAccessKeyId,
+    secretAccessKey: config.awsSecretAccessKey,
   },
 });
 const awsStorage = multerS3({
   s3: s3,
-  bucket: config.ROOT_BUCKET,
+  bucket: config.rootBucket,
   key: function (request, file, cb) {
     const fullPath = Date.now() + "_" + file.originalname;
     cb(null, fullPath);
@@ -26,7 +26,7 @@ const awsStorage = multerS3({
 const upload = multer({
   storage: awsStorage,
   limits: {
-    fileSize: parseInt(config.IMAGE_UPLOAD_SIZE_LIMIT),
+    fileSize: parseInt(config.imageUploadSizeLimit),
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpeg|JPEG|png|PNG|webp|WEBP|jpg|JPG)$/)) {

@@ -70,7 +70,10 @@ export const useBlogStore = defineStore("blog", () => {
       articlesList.value = [...articlesList.value, ...newData.articles];
     }
 
-    if (newData.articles?.length < 10) {
+    if (
+      newData.articles?.length < 10 ||
+      newData?.articles?.length === totalArticles.value
+    ) {
       hasMoreItems.value = false;
     } else {
       hasMoreItems.value = true;

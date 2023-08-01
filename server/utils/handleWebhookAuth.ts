@@ -18,7 +18,7 @@ export const handleWebhookAuth = (handler: EventHandler) =>
       const webhookReqBody = await (event.node?.req?.body || readBody(event));
 
       const signature = crypto
-        .createHmac("sha256", config.GITHUB_WEBHOOK_SECRET)
+        .createHmac("sha256", config.githubWebhookSecret)
         .update(JSON.stringify(webhookReqBody))
         .digest("hex");
 

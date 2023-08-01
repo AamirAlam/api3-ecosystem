@@ -39,7 +39,7 @@ import { switchNetwork } from "@wagmi/core";
 export const useWeb3 = () => {
   //get env variable for project id
   const config = useRuntimeConfig();
-  const projectId = config.public.WEB3MODAL_PROJECT_ID;
+  const projectId = config.public.walletConnectProjectId;
 
   //configure chains
   const chains = [
