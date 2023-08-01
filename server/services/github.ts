@@ -8,7 +8,7 @@ interface PrStatus {
 
 const config = useRuntimeConfig();
 const octokit = new Octokit({
-  auth: config.GIT_ACCESS_TOKEN,
+  auth: config.gitAccessToken,
 });
 
 const owner = "AamirAlam";

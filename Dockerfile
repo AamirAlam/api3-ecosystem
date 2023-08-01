@@ -13,7 +13,7 @@ FROM node:18.16.0 AS APP_IMAGE
 ARG APP_PATH=/ecosystem-app
 WORKDIR ${APP_PATH}
 RUN mkdir -p $APP_PATH/node_modules
-ENV ENV_FILE_PATH=/.env
+
 COPY --from=BUILD_IMAGE $APP_PATH/node_modules ./node_modules
 COPY . .
 

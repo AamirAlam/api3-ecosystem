@@ -6,7 +6,7 @@ export default async (_nitroApp: Nitro) => {
   const config = useRuntimeConfig();
 
   try {
-    await mongoose.connect(config.mongodbURI);
+    await mongoose.connect(config.mongodbUri);
 
     // sync projects on server startup
     console.log("db connected:");

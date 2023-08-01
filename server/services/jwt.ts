@@ -8,7 +8,7 @@ export const getToken = (
   expiry: string = "40s"
 ): string | null => {
   try {
-    const token = jwt.sign(payload, config.JWT_SECRET, {
+    const token = jwt.sign(payload, config.jwtSecret, {
       expiresIn: expiry,
     });
 
@@ -21,7 +21,7 @@ export const getToken = (
 
 export const verifyToken = (token: string): DecodedToken | null => {
   try {
-    const decoded = jwt.verify(token, config.JWT_SECRET);
+    const decoded = jwt.verify(token, config.jwtSecret);
 
     if (!decoded) {
       console.log("token verification failed");
