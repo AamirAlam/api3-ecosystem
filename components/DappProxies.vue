@@ -1,8 +1,9 @@
 <script setup>
 import { useEcosystemStore } from "@/stores/ecosystem";
 
-const props = defineProps(["proxies", "isForm", "dappForm"]);
 const ecosystem = useEcosystemStore();
+
+const props = defineProps(["proxies", "isForm", "dappForm"]);
 </script>
 
 <template>
@@ -70,10 +71,14 @@ const ecosystem = useEcosystemStore();
 <style scoped lang="scss">
 section.proxy-table {
   ul {
+    ::-webkit-scrollbar {
+      display: unset !important;
+    }
     margin-top: 0.5rem;
     max-height: 400px;
     overflow-y: scroll;
     position: relative;
+    scroll-behavior: smooth;
 
     .table-head {
       position: sticky;
