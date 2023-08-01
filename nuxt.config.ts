@@ -109,7 +109,7 @@ export default defineNuxtConfig({
     dappRegistryProd: process.env.NUXT_DAPP_REGISTRY_PROD,
     dappRegistryDev: process.env.NUXT_DAPP_REGISTRY_DEV,
     public: {
-      projectId: process.env.NUXT_PUBLIC_PROJECT_ID,
+      walletConnectProjectId: process.env.NUXT_PUBLIC_WALLET_CONNECT_PROJECT_ID,
     },
   },
 });

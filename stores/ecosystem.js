@@ -70,7 +70,10 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
       projectList.value = [...projectList.value, ...newData.projects];
     }
 
-    if (newData.projects?.length < 10) {
+    if (
+      newData.projects?.length < 10 ||
+      newData.projects?.length === totalProjects.value
+    ) {
       hasMoreItems.value = false;
     } else {
       hasMoreItems.value = true;
