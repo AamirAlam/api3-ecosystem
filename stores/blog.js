@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import slug from "slug";
 import { watchDebounced } from "@vueuse/core";
+import { useFetch } from "nuxt/app";
 
 export const useBlogStore = defineStore("blog", () => {
   const route = useRoute();
