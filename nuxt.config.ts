@@ -98,8 +98,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     mongodbUri: process.env.NUXT_MONGODB_URI,
-    awsAccessKeyIdEcho: process.env.NUXT_AWS_ACCESS_KEY_ID_ECO,
-    awsSecretAccessKeyEcho: process.env.NUXT_AWS_SECRET_ACCESS_KEY_ECO,
+    awsAccessKeyId: process.env.NUXT_AWS_ACCESS_KEY_ID,
+    awsSecretAccessKey: process.env.NUXT_AWS_SECRET_ACCESS_KEY,
     rootBucket: process.env.NUXT_ROOT_BUCKET,
     imageUploadSizeLimit: process.env.NUXT_IMAGE_UPLOAD_SIZE_LIMIT,
     gitAccessToken: process.env.NUXT_GIT_ACCESS_TOKEN,

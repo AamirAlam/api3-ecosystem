@@ -10,8 +10,8 @@ const config = useRuntimeConfig();
 let s3 = new S3Client({
   region: "us-east-2",
   credentials: {
-    accessKeyId: config.awsAccessKeyIdEcho,
-    secretAccessKey: config.awsSecretAccessKeyEcho,
+    accessKeyId: config.awsAccessKeyId,
+    secretAccessKey: config.awsSecretAccessKey,
   },
 });
 const awsStorage = multerS3({
