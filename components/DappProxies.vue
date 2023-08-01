@@ -71,9 +71,6 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
 <style scoped lang="scss">
 section.proxy-table {
   ul {
-    ::-webkit-scrollbar {
-      display: unset !important;
-    }
     margin-top: 0.5rem;
     max-height: 400px;
     overflow-y: scroll;
