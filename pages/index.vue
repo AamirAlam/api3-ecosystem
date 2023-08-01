@@ -42,12 +42,12 @@ onMounted(() => {
 
   <MissionComponent />
 
+  <CallToAction />
+
   <SectionColumn class="home-article-grid">
     <h2 class="loud-voice">Learn About us</h2>
     <ArticleGrid layout="4" cardCount="4" />
   </SectionColumn>
-
-  <CallToAction />
 
   <SiteFooter />
 </template>

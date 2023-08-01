@@ -37,7 +37,7 @@ function buttonHandle(valid, direction) {
           validation="url"
           id="dapp"
           v-model="dappForm.links.dapp"
-          label="App"
+          label="dApp"
           label-class="$reset notice-voice"
           placeholder="https://yourdapp.com"
         />

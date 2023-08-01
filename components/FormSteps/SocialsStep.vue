@@ -2,11 +2,6 @@
 const props = defineProps(["dappForm"]);
 
 props.dappForm.links.socials = props.dappForm.links.socials ?? {};
-
-const buttonClick = ref(false);
-function buttonHandle(valid, direction) {
-  formStepButtonHandle(valid, direction, buttonClick);
-}
 </script>
 
 <template>
@@ -82,12 +77,12 @@ function buttonHandle(valid, direction) {
         Next
       </button>
     </div> -->
-    <template v-if="buttonClick">
+    <!-- <template v-if="buttonClick">
       <p v-if="!valid" class="not-valid">
         Your account details are not complete!
       </p>
       <p v-else class="valid">It all looks good 👍</p>
-    </template>
+    </template> -->
   </FormKit>
 </template>
 
