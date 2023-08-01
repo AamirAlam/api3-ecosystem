@@ -102,7 +102,7 @@ onMounted(() => {
 
       <div class="intro-paragraph">
         <picture>
-          <LogoWhite />
+          <LogoWithLines />
         </picture>
         <p class="notice-voice">
           Welcome to the API3 ecosystem a space for blockchain enthusiasts,
@@ -132,6 +132,7 @@ hero-landing {
   display: grid;
   row-gap: 3rem;
   position: relative;
+  //   overflow-x: hidden;
 
   @media (min-width: 768px) {
     row-gap: 5rem;
@@ -142,8 +143,8 @@ hero-landing {
 
   .line-decoration {
     position: absolute;
-    top: -1rem;
-    right: -1rem;
+    top: -15px;
+    right: -15px;
     scale: 0.6;
     transform-origin: top right;
 
@@ -189,18 +190,22 @@ hero-landing {
     picture {
       // aspect-ratio: 1 / 1;
       max-width: 50px;
-      background-image: url("@/assets/images/dual-lines.svg");
-      background-size: cover;
-      background-position: center;
+      // background-image: url("@/assets/images/dual-lines.svg");
+      // background-size: cover;
+      // background-position: center;
+      height: 100%;
+      // aspect-ratio: 16/9;
 
       @media (min-width: 768px) {
         max-width: 200px;
       }
 
       svg {
-        filter: invert(1);
         mix-blend-mode: multiply;
-        opacity: 0;
+        opacity: 0.5;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
       }
     }
 

@@ -138,7 +138,7 @@ const footerLinks = [
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
-          <LogoText />
+          <LogoFull />
         </picture>
         <section
           v-for="(footerMenu, index) in footerLinks"

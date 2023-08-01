@@ -32,6 +32,7 @@ body {
   background-color: var(--paper);
   color: var(--ink);
   position: relative;
+  overflow-x: hidden;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
