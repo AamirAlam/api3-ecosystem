@@ -11,7 +11,7 @@ const octokit = new Octokit({
   auth: config.gitAccessToken,
 });
 
-const owner = "AamirAlam";
+const owner = config.nodeEnv === "production" ? "api3dao" : "AamirAlam";
 const repo = "dapp-registry";
 
 export async function createPR(
