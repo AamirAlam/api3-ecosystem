@@ -105,11 +105,11 @@ export default defineNuxtConfig({
     gitAccessToken: process.env.NUXT_GIT_ACCESS_TOKEN,
     jwtSecret: process.env.NUXT_JWT_SECRET,
     githubWebhookSecret: process.env.NUXT_GITHUB_WEBHOOK_SECRET,
-    public: {
-      web3modalProjectId: process.env.NUXT_WEB3MODAL_PROJECT_ID,
-    },
     nodeEnv: process.env.NUXT_NODE_ENV,
     dappRegistryProd: process.env.NUXT_DAPP_REGISTRY_PROD,
     dappRegistryDev: process.env.NUXT_DAPP_REGISTRY_DEV,
+    public: {
+      projectId: process.env.NUXT_PUBLIC_PROJECT_ID,
+    },
   },
 });
