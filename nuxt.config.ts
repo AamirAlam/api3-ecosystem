@@ -108,5 +108,8 @@ export default defineNuxtConfig({
     public: {
       WEB3MODAL_PROJECT_ID: process.env.WEB3MODAL_PROJECT_ID,
     },
+    NODE_ENV: process.env.NODE_ENV,
+    DAPP_REGISTRY_PROD: process.env.DAPP_REGISTRY_PROD,
+    DAPP_REGISTRY_DEV: process.env.DAPP_REGISTRY_DEV,
   },
 });
