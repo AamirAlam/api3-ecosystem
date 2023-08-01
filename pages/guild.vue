@@ -14,10 +14,7 @@ const isMinted = ref(false);
 const content = reactive({
   buttons: ["Developers", "DAO Members", "Testers"],
   unselectedHeading: "Select The NFT type to Mint",
-  paragraph: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora quis
-        nihil, sunt vitae labore nam fuga, vero adipisci minus blanditiis,
-        inventore voluptatum dolor placeat corporis debitis ullam reiciendis
-        distinctio quia.`,
+  paragraph: ``,
 });
 
 function buttonHandle(event, text, index) {
@@ -63,10 +60,13 @@ const unwatchNetwork = watchNetwork((network) => {
 
 watch(
   [selectedProductId, account],
-  async ([pruductId, account], [prevProductId, prevAccount]) => {
+  async ([productId, account], [prevProductId, prevAccount]) => {
+    console.log("check ", { productId, account });
+    if (productId === undefined || !account) {
+      return;
+    }
     isMintChecking.value = true;
-
-    const check = await isAlreadyMinted(pruductId, account);
+    const check = await isAlreadyMinted(productId, account);
     isMintChecking.value = false;
     isMinted.value = check;
   }
@@ -155,18 +155,20 @@ const buttonText = computed(() => {
       </Transition>
 
       <Transition name="fade" mode="out-in" v-if="selected && isMinted">
-        <a
-          href="https://opensea.io/collection/api3-guild"
-          target="_blank"
-          class=""
-        >
-          <span>
-            {{ isMintChecking ? "Fetching NFT..." : "Visit OpenSea" }}
-          </span>
-          <picture class="external-link" v-if="link.external">
-            <img src="@/assets/images/interface/diagonal-arrow.svg" alt="" />
-          </picture>
-        </a>
+        <button class="loud-button" :disabled="loading">
+          <a
+            href="https://opensea.io/collection/api3-guild"
+            target="_blank"
+            class="group"
+          >
+            <span>
+              {{ isMintChecking ? "Fetching NFT..." : "Visit OpenSea" }}
+            </span>
+            <picture class="external-link" v-if="!isMintChecking">
+              <img src="@/assets/images/interface/diagonal-arrow.svg" alt="" />
+            </picture>
+          </a>
+        </button>
       </Transition>
     </div>
   </SectionColumn>
@@ -208,5 +210,10 @@ section {
 
 .external-link {
   max-width: 10px;
+  margin-left: 10px;
+}
+.group {
+  display: flex;
+  align-items: center;
 }
 </style>
