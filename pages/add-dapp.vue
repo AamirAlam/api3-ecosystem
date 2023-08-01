@@ -90,7 +90,7 @@ onMounted(() => {
     left: 0,
   });
 
-  ui.scrollIndicator("#add-form");
+  //   ui.scrollIndicator("#add-form");
 });
 </script>
 
@@ -158,20 +158,21 @@ onMounted(() => {
 
 <style lang="scss">
 body:has(main.add-dapp) {
-  overflow: hidden;
+  //   overflow: hidden;
+  overflow-x: hidden;
 }
 main.add-dapp {
   position: relative;
 }
 
 form {
-  max-height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  //   max-height: 100vh;
+  //   overflow-y: scroll;
+  //   overflow-x: hidden;
   //   scroll-snap-type: mandatory;
   //   scroll-snap-type: y mandatory;
   //   scroll-snap-points-y: repeat(calc(100vh - 100px));
-  scroll-behavior: smooth;
+  //   scroll-behavior: smooth;
 
   & > :is(.step, .actions) {
     min-height: calc(80vh);
@@ -212,8 +213,8 @@ form {
 
     .curves-decoration {
       position: absolute;
-      bottom: -60px;
-      left: 220px;
+      bottom: 0px;
+      left: 0px;
       transform: rotateY(180deg) rotate(-10deg) scaleX(1.4);
       z-index: -1;
 

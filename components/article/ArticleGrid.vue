@@ -45,9 +45,10 @@ function handleLoadMore() {
     <button
       class="text show-more"
       @click="handleLoadMore"
-      v-if="blog.hasMoreItems && cardCount"
+      v-if="blog.hasMoreItems && !cardCount"
     >
-      {{ "Show More" }}
+      {{ blog.hasMoreItems }}
+      Show More
     </button>
   </ul>
 </template>

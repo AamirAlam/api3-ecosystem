@@ -100,14 +100,7 @@ const formattedProxies = (dappData) => {
             v-if="dapp.productType != 'qrng'"
           />
 
-          <section class="screenshots">
-            <h2 class="attention-voice">Screenshots</h2>
-            <ul class="image-grid">
-              <li v-for="image in dapp?.images.screenshots" :key="image">
-                <img :src="image" :alt="image" />
-              </li>
-            </ul>
-          </section>
+          <DappScreenshots :dapp="dapp" />
         </detail-content>
       </article>
     </SectionColumn>
@@ -146,13 +139,6 @@ article.main detail-content {
       color: var(--gray);
     }
   }
-}
-
-article.main .image-grid {
-  display: grid;
-  gap: 0.3125rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-template-rows: auto auto;
 }
 
 :deep(.dapp-title) {
