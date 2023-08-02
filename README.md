@@ -1,6 +1,6 @@
 # API3 Ecosystem with Nuxt3
 
-https://api3-ecosystem.netlify.app/
+https://ecosystem.api3.org/
 
 ## Setup with docker
 
