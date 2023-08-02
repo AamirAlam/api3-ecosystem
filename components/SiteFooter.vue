@@ -130,6 +130,24 @@ const footerLinks = [
   },
 ];
 
+const miscLinks = [
+  {
+    label: "Privacy Policy",
+    path: "https://api3.org/privacy-policy",
+    external: true,
+  },
+  {
+    label: "Privacy & Cookies",
+    path: "https://api3.org/cookies",
+    external: true,
+  },
+  {
+    label: "Terms & Conditions",
+    path: "https://api3.org/terms-and-conditions",
+    external: true,
+  },
+];
+
 //#todo do the same for the other links
 </script>
 
@@ -138,7 +156,7 @@ const footerLinks = [
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
-          <LogoFull />
+          <LogoIcon />
         </picture>
         <section
           v-for="(footerMenu, index) in footerLinks"
@@ -170,23 +188,18 @@ const footerLinks = [
       <inner-column>
         <nav class="misc-links">
           <NuxtLink
-            to="https://api3.org/privacy-policy"
-            class="calm-voice text"
+            v-for="(link, index) in miscLinks"
+            :key="index"
+            :to="link.path"
+            class="calm-voice text footer-link"
           >
-            Privacy Policy
+            <span>
+              {{ link.label }}
+            </span>
+            <picture class="external-link" v-if="link.external">
+              <img src="@/assets/images/interface/diagonal-arrow.svg" alt="" />
+            </picture>
           </NuxtLink>
-
-          <NuxtLink to="https://api3.org/cookies" class="calm-voice text">
-            Privacy & Cookies
-          </NuxtLink>
-
-          <NuxtLink
-            to="https://api3.org/terms-and-conditions"
-            class="calm-voice text"
-          >
-            Terms & Conditions
-          </NuxtLink>
-          <!-- #todo -->
         </nav>
         <nav class="social-icons">
           <NuxtLink
@@ -198,7 +211,7 @@ const footerLinks = [
             <SocialIcon :social="social.icon" />
           </NuxtLink>
         </nav>
-        <p class="calm-voice">© 2023 API3 Foundation</p>
+        <p class="calm-voice">© 2023 API3 Ecosystem Foundation</p>
       </inner-column>
     </section>
   </footer>
@@ -245,6 +258,7 @@ footer {
   .site-logo {
     width: 50px;
     grid-column: 1/ -1;
+    //  align-self: end;
 
     @media (min-width: 768px) {
       width: 100px;
@@ -301,8 +315,8 @@ section.other inner-column {
     fill: var(--gray);
     @media (min-width: 1024px) {
       order: 3;
-      justify-content: end;
-      justify-self: end;
+      justify-content: center;
+      justify-self: center;
       gap: 3rem;
     }
 
