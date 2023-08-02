@@ -7,12 +7,6 @@ export default defineNuxtConfig({
     "add-dapp": {
       ssr: false,
     },
-    guild: {
-      ssr: false,
-    },
-    "ecosystem/*": {
-      ssr: false,
-    },
   },
 
   //global default head metadata

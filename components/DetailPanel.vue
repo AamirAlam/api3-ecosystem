@@ -11,7 +11,7 @@ const loading = ref(false);
 
 const { verifyWallet } = useSiwe();
 const { submitUpvote } = useHttpCalls();
-const { isConnected } = useWeb3();
+const web3Store = useWeb3Store();
 
 onMounted(() => {
   upvotes.value = !props?.dapp?.upvotes ? 0 : props?.dapp?.upvotes;
@@ -26,7 +26,7 @@ const handleShare = async () => {
 };
 
 const handleUpvote = async () => {
-  if (!isConnected.value) {
+  if (!web3Store.state?.isConnected) {
     navigateTo("/login");
     return;
   }

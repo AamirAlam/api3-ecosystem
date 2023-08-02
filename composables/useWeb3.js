@@ -10,6 +10,7 @@ import {
   watchAccount,
   signMessage,
   getNetwork,
+  watchNetwork,
 } from "@wagmi/core";
 import {
   arbitrum,
@@ -35,9 +36,11 @@ import {
   mantle,
 } from "@wagmi/core/chains";
 import { switchNetwork } from "@wagmi/core";
+import { useWeb3Store } from "@/stores/web3Store";
 
 export const useWeb3 = () => {
   //get env variable for project id
+  const web3Store = useWeb3Store();
   const config = useRuntimeConfig();
   const projectId = config.public.walletConnectProjectId;
 
@@ -90,25 +93,19 @@ export const useWeb3 = () => {
 
   const unwatchAccount = watchAccount((acc) => {
     wallet.value = { ...acc };
+
+    web3Store.state.account = acc?.address;
+    web3Store.state.isConnected = acc?.isConnected;
+  });
+
+  watchNetwork((network) => {
+    web3Store.state.chainId = network?.chain?.id;
   });
 
   const chainId = computed(() => getNetwork()?.chain?.id);
 
   const account = computed(() => wallet.value.address);
   const isConnected = computed(() => wallet.value.isConnected);
-  watch(isConnected, (isConnected) => {
-    if (!isConnected && currentUrl === "/add-dapp") {
-      navigateTo("/login");
-    }
-
-    if (isConnected && currentUrl === "/login") {
-      router.back();
-    }
-  });
-
-  const openModal = async () => {
-    await web3modal.value.openModal();
-  };
 
   const sign = async (message) => {
     try {
@@ -130,14 +127,16 @@ export const useWeb3 = () => {
     }
   };
 
+  web3Store.func.sign = sign;
+  web3Store.func.openModal = web3modal.value.openModal;
+  web3Store.func.switchChain = switchChain;
+
   return {
-    wallet,
-    openModal,
     account,
-    sign,
     isConnected,
     chainId,
-    wagmiConfig,
+    sign,
+    openModal,
     switchChain,
   };
 };

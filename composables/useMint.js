@@ -5,6 +5,7 @@ import GUILD_ABI from "../content/GUILD_ABI.json";
 const API3_GUILD_ADDRESS = "0x4052d3e79AEe9cF01168633531FEfAe4bF8FdB78";
 
 export const useMint = () => {
+  const web3Store = useWeb3Store();
   async function mintNft(productId, chainId) {
     try {
       if (!chainId?.value)
@@ -69,6 +70,9 @@ export const useMint = () => {
       return false;
     }
   }
+
+  web3Store.func.mintNft = mintNft;
+  web3Store.func.isAlreadyMinted = isAlreadyMinted;
 
   return { mintNft, isAlreadyMinted };
 };

@@ -27,10 +27,15 @@ function cardType(index, layout = layoutIndex.value, article) {
 }
 
 function handleLoadMore() {
-  if (blog.list.length < blog.totalArticles || blog.list.length >= 10) {
+  if (blog.list.length < blog.totalArticles) {
     blog.filterQuery.page += 1;
+    blog.loadArticles(blog.filterQuery.page);
   }
 }
+
+onMounted(() => {
+  blog.loadArticles(1);
+});
 </script>
 
 <template>
