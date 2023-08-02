@@ -7,12 +7,10 @@ async function buttonHandle() {
 </script>
 
 <template>
-  <button class="button loud-voice" @click="buttonHandle">
+  <button class="button filled loud-voice" @click="buttonHandle">
     <Transition name="fade" mode="out-in">
-      <span class="gradient-text" v-if="!web3Store?.state?.isConnected">
-        Connect
-      </span>
-      <span v-else class="gradient-text"> Connected </span>
+      <span class="" v-if="!web3Store?.state?.isConnected"> Connect </span>
+      <span v-else class=""> Connected </span>
     </Transition>
   </button>
 </template>
