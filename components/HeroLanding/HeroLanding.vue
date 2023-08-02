@@ -190,9 +190,9 @@ hero-landing {
     picture {
       // aspect-ratio: 1 / 1;
       max-width: 50px;
-      // background-image: url("@/assets/images/dual-lines.svg");
-      // background-size: cover;
-      // background-position: center;
+      background-image: url("@/assets/images/logo-lines.svg");
+      background-size: cover;
+      background-position: center;
       height: 100%;
       // aspect-ratio: 16/9;
 
@@ -201,11 +201,7 @@ hero-landing {
       }
 
       svg {
-        mix-blend-mode: multiply;
-        opacity: 0.5;
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
+        opacity: 0;
       }
     }
 
