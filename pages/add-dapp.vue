@@ -151,7 +151,7 @@ onMounted(() => {
           View Pull request
         </a>
       </div>
-      <div v-else>
+      <div class="actions" v-else>
         <ConnectButton />
       </div>
     </FormKit>

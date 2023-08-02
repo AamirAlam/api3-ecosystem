@@ -136,7 +136,6 @@ export const useWeb3 = () => {
     isConnected,
     chainId,
     sign,
-    openModal,
     switchChain,
   };
 };
