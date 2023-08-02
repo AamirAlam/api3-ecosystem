@@ -2,6 +2,8 @@
 const route = useRoute();
 const nuxtApp = useNuxtApp();
 const loading = ref(false);
+const {} = useWeb3Store();
+const router = useRouter();
 
 nuxtApp.hook("page:start", () => {
   loading.value = true;
@@ -16,6 +18,10 @@ useHead({
   bodyAttrs: {
     class: route.name,
   },
+});
+
+onMounted(() => {
+  const {} = useWeb3();
 });
 </script>
 

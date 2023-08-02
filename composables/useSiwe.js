@@ -1,5 +1,5 @@
 export const useSiwe = () => {
-  const { sign, account, chainId } = useWeb3();
+  const web3Store = useWeb3Store();
   async function verifyWallet() {
     try {
       const nonce = await $fetch("/api/auth/nonce", {
@@ -12,24 +12,22 @@ export const useSiwe = () => {
           message: "Failed to get nonce from service!",
         };
 
-      if (!account.value)
+      if (!web3Store.state?.account)
         return {
           success: false,
           message: "Invalid account!",
         };
 
-      if (!chainId.value)
+      if (!web3Store.state?.chainId)
         return {
           success: false,
           message: "Invalid chainId!",
         };
 
-      const address = account.value;
-
       const message = {
         domain: window.location.host,
-        chainId: chainId.value,
-        address: address,
+        chainId: web3Store.state?.chainId,
+        address: web3Store.state?.account,
         statement: "Sign in with Ethereum to the API3 ecosystem",
         uri: window.location.origin,
         version: "1",
@@ -41,7 +39,7 @@ export const useSiwe = () => {
         query: message,
       });
 
-      const signature = await sign({ message: messageToSign });
+      const signature = await web3Store.func?.sign({ message: messageToSign });
 
       if (!signature) {
         return {
@@ -54,7 +52,7 @@ export const useSiwe = () => {
         method: "POST",
         body: {
           signature: signature,
-          address: address,
+          address: web3Store.state.account,
           message: JSON.stringify(messageToSign),
           nonce: nonce,
         },
@@ -64,8 +62,6 @@ export const useSiwe = () => {
     } catch (error) {
       console.log("verificationStatus test: signature error", {
         error,
-        account: account.value,
-        chainId: chainId.value,
       });
       return {
         success: false,
