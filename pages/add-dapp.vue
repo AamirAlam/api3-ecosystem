@@ -123,22 +123,23 @@ onMounted(() => {
         <SocialsStep :dappForm="dappForm" />
       </div>
 
-      <div class="actions" v-if="web3Store.state.isConnected">
-        <h2 class="loud-voice">Submit your project!</h2>
+      <div class="actions">
+        <!-- <h2 class="loud-voice">Submit your project!</h2> -->
         <FormKit
           type="submit"
           label="Add Project"
           input-class="$reset button filled"
+          v-if="web3Store.state.isConnected"
         />
-        <ul class="validation-errors">
+        <ConnectButton v-else />
+
+        <!--  -->
+        <ul class="validation-errors" v-auto-animate>
           <FormKitMessages />
           <template v-if="!isValid">
             <li v-for="message in messages">{{ message }}</li>
           </template>
         </ul>
-        <picture class="curves-decoration">
-          <CurvesDecoration />
-        </picture>
         <!-- <div v-if="complete"> -->
         <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
         <!-- </div> -->
@@ -150,9 +151,10 @@ onMounted(() => {
         <a :href="successData.pr_url" target="_blank" v-if="submitSuccess">
           View Pull request
         </a>
-      </div>
-      <div class="actions" v-else>
-        <ConnectButton />
+
+        <picture class="curves-decoration">
+          <CurvesDecoration />
+        </picture>
       </div>
     </FormKit>
   </SectionColumn>
@@ -176,7 +178,7 @@ form {
   //   scroll-snap-points-y: repeat(calc(100vh - 100px));
   //   scroll-behavior: smooth;
 
-  & > :is(.step, .actions) {
+  & > :is(.step) {
     min-height: calc(80vh);
     display: grid;
     gap: 3rem;
