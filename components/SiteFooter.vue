@@ -231,11 +231,19 @@ footer {
   color: var(--ink);
 }
 
+nav {
+  display: grid;
+}
+
 .footer-link {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
+  justify-self: start;
+  position: relative;
+
   picture {
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
     max-width: 8px;
   }
 }
