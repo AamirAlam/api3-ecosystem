@@ -3,7 +3,7 @@ import { watchNetwork } from "@wagmi/core";
 import { gsap } from "gsap";
 
 const selected = ref("");
-const selectedProductId = ref(0);
+const selectedProductId = ref(null);
 const mintInfo = ref({ hash: null });
 
 const loading = ref(false);
@@ -51,48 +51,57 @@ function animateHeading() {
   );
 }
 
-const { switchChain, isConnected, account } = useWeb3();
-const { mintNft, isAlreadyMinted } = useMint();
+const web3Store = useWeb3Store();
 
-const unwatchNetwork = watchNetwork((network) => {
-  chainId.value = network.chain.id;
+onMounted(() => {
+  const {} = useMint();
+
+  watchNetwork((network) => {
+    chainId.value = network?.chain?.id;
+  });
 });
 
-watch(
-  [selectedProductId, account],
-  async ([productId, account], [prevProductId, prevAccount]) => {
-    console.log("check ", { productId, account });
-    if (productId === undefined || !account) {
-      return;
-    }
-    isMintChecking.value = true;
-    const check = await isAlreadyMinted(productId, account);
-    isMintChecking.value = false;
-    isMinted.value = check;
+watch(selectedProductId, async (productId, prevProductId) => {
+  if (productId === undefined) {
+    return;
   }
-);
+
+  isMintChecking.value = true;
+  const check = await web3Store.func?.isAlreadyMinted(
+    productId,
+    web3Store.state.account
+  );
+  isMintChecking.value = false;
+  isMinted.value = check;
+});
 
 const isPolygonChain = computed(() => chainId.value === 137);
 
 const handleAction = async () => {
-  if (!isConnected.value) {
-    navigateTo("/login");
+  if (!web3Store?.state?.isConnected) {
+    web3Store.func.openModal();
     return;
   }
 
   loading.value = true;
 
   if (chainId.value !== 137) {
-    await switchChain(137);
+    await web3Store.func.switchChain(137);
     loading.value = false;
     return;
   }
 
-  const mintData = await mintNft(selectedProductId.value, chainId);
+  const mintData = await web3Store.func?.mintNft(
+    selectedProductId.value,
+    chainId
+  );
 
   isMintChecking.value = true;
 
-  const check = await isAlreadyMinted(selectedProductId.value, account.value);
+  const check = await web3Store.func?.isAlreadyMinted(
+    selectedProductId.value,
+    web3Store.state.account
+  );
   isMintChecking.value = false;
   isMinted.value = check;
 
@@ -110,7 +119,7 @@ const buttonText = computed(() => {
     return "Minting...";
   }
 
-  if (!isConnected.value) {
+  if (!web3Store?.state?.isConnected) {
     return "Connect Wallet";
   }
 

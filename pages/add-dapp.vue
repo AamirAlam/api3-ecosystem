@@ -12,10 +12,8 @@ useServerSeoMeta({
   title: "Add Dapp",
 });
 
-const ui = useInterfaceStore();
 const { verifyWallet } = useSiwe();
 const { submitProject } = useHttpCalls();
-const { isConnected } = useWeb3();
 
 const dappForm = useStorage("dapp-form", {});
 
@@ -34,7 +32,14 @@ function showErrors(node) {
   });
 }
 
+const web3Store = useWeb3Store();
+
 const submitHandler = async (event) => {
+  if (!web3Store.state?.isConnected) {
+    await web3Store.func.openModal();
+    return;
+  }
+
   setErrors("add-form", []);
   submitSuccess.value = false;
   successData.value.message = "";
@@ -81,16 +86,10 @@ const submitHandler = async (event) => {
 };
 
 onMounted(() => {
-  if (!isConnected) {
-    navigateTo("/login");
-  }
-
   window.scroll({
     top: 0,
     left: 0,
   });
-
-  //   ui.scrollIndicator("#add-form");
 });
 </script>
 
@@ -124,7 +123,7 @@ onMounted(() => {
         <SocialsStep :dappForm="dappForm" />
       </div>
 
-      <div class="actions">
+      <div class="actions" v-if="web3Store.state.isConnected">
         <h2 class="loud-voice">Submit your project!</h2>
         <FormKit
           type="submit"
@@ -151,6 +150,9 @@ onMounted(() => {
         <a :href="successData.pr_url" target="_blank" v-if="submitSuccess">
           View Pull request
         </a>
+      </div>
+      <div v-else>
+        <ConnectButton />
       </div>
     </FormKit>
   </SectionColumn>
