@@ -189,6 +189,10 @@ aside {
     display: grid;
     justify-items: center;
     gap: 1rem;
+
+    h2 {
+      text-align: center;
+    }
   }
 
   div {
