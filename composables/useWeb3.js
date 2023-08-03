@@ -1,17 +1,6 @@
-import {
-  EthereumClient,
-  w3mConnectors,
-  w3mProvider,
-} from "@web3modal/ethereum";
+import { EthereumClient, w3mConnectors, w3mProvider } from "@web3modal/ethereum";
 import { Web3Modal } from "@web3modal/html";
-import {
-  configureChains,
-  createConfig,
-  watchAccount,
-  signMessage,
-  getNetwork,
-  watchNetwork,
-} from "@wagmi/core";
+import { configureChains, createConfig, watchAccount, signMessage, getNetwork, watchNetwork } from "@wagmi/core";
 import {
   arbitrum,
   mainnet,
@@ -42,7 +31,7 @@ export const useWeb3 = () => {
   //get env variable for project id
   const web3Store = useWeb3Store();
   const config = useRuntimeConfig();
-  const projectId = config.public.walletConnectProjectId;
+  const projectId = process.env.NUXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || config.public.walletConnectProjectId;
 
   //configure chains
   const chains = [
@@ -68,9 +57,7 @@ export const useWeb3 = () => {
     skaleExorde,
     mantle,
   ];
-  const { publicClient } = configureChains(chains, [
-    w3mProvider({ projectId }),
-  ]);
+  const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
 
   //create wagmi config
   const wagmiConfig = createConfig({
@@ -81,9 +68,7 @@ export const useWeb3 = () => {
 
   // //create ethereum client and web3modal
   const ethereumClient = new EthereumClient(wagmiConfig, chains);
-  const web3modal = computed(
-    () => new Web3Modal({ projectId }, ethereumClient)
-  );
+  const web3modal = computed(() => new Web3Modal({ projectId }, ethereumClient));
 
   ////////////////////////////////////
 
