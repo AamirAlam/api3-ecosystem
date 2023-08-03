@@ -87,8 +87,12 @@ function buttonHandle(valid, direction) {
 <style scoped lang="scss">
 .form-links {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+
   gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   h2 {
     grid-column: 1 / -1;
