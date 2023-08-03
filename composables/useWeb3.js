@@ -31,7 +31,7 @@ export const useWeb3 = () => {
   //get env variable for project id
   const web3Store = useWeb3Store();
   const config = useRuntimeConfig();
-  const projectId = process.env.NUXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || config.public.walletConnectProjectId;
+  const projectId = config.public.walletConnectProjectId;
 
   //configure chains
   const chains = [
