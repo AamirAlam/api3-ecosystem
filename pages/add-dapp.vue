@@ -219,11 +219,12 @@ form {
       position: absolute;
       bottom: 0px;
       left: 0px;
-      transform: rotateY(180deg) rotate(-10deg) scaleX(1.4);
+      transform: rotateY(180deg) rotate(-10deg) scaleX(0.9);
       z-index: -1;
 
       @media (min-width: 768px) {
         bottom: 20px;
+        transform: rotateY(180deg) rotate(-10deg) scaleX(1.4);
       }
     }
   }

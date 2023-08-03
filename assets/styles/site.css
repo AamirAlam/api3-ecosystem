@@ -48,6 +48,7 @@ body {
 /* This part is for the scrollbar track / */
 *::-webkit-scrollbar {
   width: 1px;
+  height: 1px;
 }
 
 /* / This part is for the track (the part that the thumb slides across) / */
