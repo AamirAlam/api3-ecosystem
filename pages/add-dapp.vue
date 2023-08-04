@@ -17,7 +17,7 @@ useSeoMeta({
 });
 
 const { verifyWallet } = useSiwe();
-const { submitProject } = useHttpCalls();
+const { submitProject, fetchFeedNames } = useHttpCalls();
 
 const dappForm = useStorage("dapp-form", {});
 
@@ -25,6 +25,7 @@ const loading = ref(false);
 const messages = ref([]);
 const successData = ref({ message: "", pr_url: "" });
 const submitSuccess = ref(false);
+const feedNameOptions = ref([]);
 
 function showErrors(node) {
   messages.value = [];
@@ -89,11 +90,14 @@ const submitHandler = async (event) => {
   loading.value = false;
 };
 
-onMounted(() => {
+onMounted(async () => {
   window.scroll({
     top: 0,
     left: 0,
   });
+  const names = await fetchFeedNames();
+
+  feedNameOptions.value = names;
 });
 </script>
 
@@ -118,7 +122,7 @@ onMounted(() => {
         <TagStep :dappForm="dappForm" />
       </div>
       <div class="step" v-if="dappForm.productType === 'datafeed'">
-        <ProxyStep :dappForm="dappForm" />
+        <ProxyStep :dappForm="dappForm" :feedNameOptions="feedNameOptions" />
       </div>
       <div class="step">
         <LinksStep :dappForm="dappForm" />

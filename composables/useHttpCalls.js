@@ -1,4 +1,8 @@
 import axios from "axios";
+import localFeedNames from "../stores/feedNames.json";
+
+const FEED_NAME_API_ENDPOINT =
+  "https://db-api-prod.api3.org/api/dapis-grouped?take=300&currentPage=1&sort=&sortDirection=&search=&categories=&chains=&sources=&statuses=";
 
 export const useHttpCalls = () => {
   const submitProject = async (dappForm, images, token) => {
@@ -196,5 +200,18 @@ export const useHttpCalls = () => {
     }
   };
 
-  return { submitProject, submitArticle, submitUpvote };
+  const fetchFeedNames = async () => {
+    try {
+      const response = await axios.get(FEED_NAME_API_ENDPOINT);
+
+      const feedNames = response.data?.dapis?.map((el) => el?.name);
+
+      return feedNames;
+    } catch (error) {
+      console.log("failed to fetch feed names", error);
+      return localFeedNames;
+    }
+  };
+
+  return { submitProject, submitArticle, submitUpvote, fetchFeedNames };
 };
