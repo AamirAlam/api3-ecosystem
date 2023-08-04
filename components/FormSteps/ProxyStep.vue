@@ -4,7 +4,7 @@ import { useEcosystemStore } from "@/stores/ecosystem";
 
 const ecosystem = useEcosystemStore();
 
-const props = defineProps(["dappForm"]);
+const props = defineProps(["dappForm", "feedNameOptions"]);
 props.dappForm.proxies = props.dappForm.proxies ?? [];
 
 const loading = ref(false);
@@ -120,7 +120,7 @@ const buttonClick = ref(false);
             :close-on-select="true"
             :searchable="true"
             :create-option="false"
-            :options="ecosystem.feedNameOptions"
+            :options="props?.feedNameOptions"
             :classes="{
               singleLabelText: 'calm-voice multiselect-single-label-text',
               search: 'calm-voice multiselect-search',

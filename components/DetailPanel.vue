@@ -27,7 +27,7 @@ const handleShare = async () => {
 
 const handleUpvote = async () => {
   if (!web3Store.state?.isConnected) {
-    navigateTo("/login");
+    web3Store.func?.openModal();
     return;
   }
 
