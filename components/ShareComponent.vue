@@ -1,24 +1,53 @@
 <script setup>
-const props = defineProps(["dappLinks"]);
+import { useClipboard } from "@vueuse/core";
 
-function copyLink(event) {
-  navigator.clipboard.writeText(props.dappLinks.website);
-  console.log("copied");
-}
+const props = defineProps(["dappLinks"]);
+const { copy, copied, text } = useClipboard();
+
+const shareText = computed(() => {
+  return `Check out ${props.dappLinks?.dapp} on API3 Ecosystem!`;
+});
+
+const socialsToShare = ref([
+  {
+    label: "Twitter",
+    url: `https://twitter.com/intent/tweet?text=${shareText.value}`,
+  },
+  {
+    label: "Facebook",
+    url: `https://www.facebook.com/sharer/sharer.php?u=${shareText.value}`,
+  },
+  {
+    label: "LinkedIn",
+    url: `https://www.linkedin.com/shareArticle?mini=true&url=${shareText.value}`,
+  },
+  {
+    label: "Reddit",
+    url: `https://reddit.com/submit?url=${shareText.value}`,
+  },
+  {
+    label: "Telegram",
+    url: `https://t.me/share/url?url=${shareText.value}`,
+  },
+]);
 </script>
 
 <template>
   <share-box>
     <header>
       <h4 class="solid-voice">Share</h4>
-      <!-- #todo button not working -->
-      <button class="icon close" @click="$emit('toggle')">╳</button>
+      <!-- <button class="icon close" @click="$emit('toggle')">
+        <picture>
+          <img src="@/assets/images/interface/cross.svg" alt="close" />
+        </picture>
+      </button> -->
     </header>
     <ul class="social-list">
-      <!-- #todo make it so social links lead to share instead of link directly -->
-      <li v-for="social in dappLinks.socials" :key="social.label">
+      <li v-for="social in socialsToShare" :key="social.label">
         <a :href="social.url" :target="social.label">
-          <SocialIcon :social="social.label" fill="var(--paper)" />
+          <picture>
+            <SocialIcon :social="social.label" fill="var(--color)" />
+          </picture>
         </a>
       </li>
     </ul>
@@ -26,7 +55,9 @@ function copyLink(event) {
       <a class="coay-text" target="website" :href="dappLinks.website">{{
         dappLinks.website
       }}</a>
-      <button @click="copyLink" class="button filled">Copy</button>
+      <button @click="copy(dappLinks.website)" class="button">
+        {{ copied ? "Copied!" : "Copy" }}
+      </button>
     </div>
   </share-box>
 </template>
@@ -35,28 +66,39 @@ function copyLink(event) {
 share-box {
   padding: 2rem;
   border-radius: var(--corners);
-  background: var(--gradient-color);
+  background: var(--paper);
 
   box-shadow: var(--shadow);
   display: grid;
-  gap: 1rem;
+
+  button.close {
+    picture {
+      max-width: 10px;
+    }
+  }
 
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--gray);
     padding: 1rem 0;
   }
 
   .social-list {
     display: flex;
     gap: 2rem;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 
     padding: 1rem 0;
-    border-bottom: 1px solid var(--gray);
+    margin: 1rem 0;
+
+    border-top: 1px solid var(--gray-dark);
+    border-bottom: 1px solid var(--gray-dark);
+
+    picture {
+      max-width: 2rem;
+    }
   }
 
   div {

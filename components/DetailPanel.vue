@@ -18,11 +18,13 @@ onMounted(() => {
 });
 
 const handleShare = async () => {
-  await navigator.clipboard.writeText(props.dapp.links?.dapp);
-  showCopyTooltip.value = true;
-  setTimeout(() => {
-    showCopyTooltip.value = false;
-  }, 1000);
+  //   await navigator.clipboard.writeText(props.dapp.links?.dapp);
+  //   showCopyTooltip.value = true;
+  //   setTimeout(() => {
+  //     showCopyTooltip.value = false;
+  //   }, 1000);
+
+  showShareBox.value = !showShareBox.value;
 };
 
 const handleUpvote = async () => {
@@ -148,22 +150,11 @@ const handleUpvote = async () => {
         class="button"
         >Launch</NuxtLink
       >
-      <button
-        class="button"
-        v-if="!loading"
-        :disabled="loading"
-        @click="handleUpvote"
-      >
-        Upvote ({{ upvotes }})
+      <button class="button" :disabled="loading" @click="handleUpvote">
+        <span v-if="!loading"> Upvote ({{ upvotes }}) </span>
+        <span v-else> Upvoting... </span>
       </button>
-      <button
-        class="button"
-        :disabled="loading"
-        v-if="loading"
-        @click="handleUpvote"
-      >
-        Voting ...
-      </button>
+
       <button
         class="button share-button"
         :title="showCopyTooltip ? 'Copied!' : 'Copy Dapp Url'"
