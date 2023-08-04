@@ -83,6 +83,11 @@ onMounted(() => {
         :searchable="true"
         :create-option="false"
         :options="yearOptions"
+        :classes="{
+          singleLabelText: 'calm-voice multiselect-single-label-text',
+          dropdown: 'calm-voice multiselect-dropdown',
+          search: 'calm-voice multiselect-search',
+        }"
       />
     </form-field>
   </FormKit>

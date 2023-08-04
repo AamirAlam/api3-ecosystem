@@ -12,11 +12,11 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
     <ul>
       <li class="table-row table-head">
         <div class="solid-voice chain">Chain</div>
-        <div class="solid-voice chain">is OEV?</div>
-        <div class="solid-voice type">Feed Name</div>
+        <div class="solid-voice feedname">Feed Name</div>
         <div class="solid-voice type">Type</div>
-        <div class="solid-voice type">Proxy Address</div>
-        <div class="solid-voice type">ID / dAPI</div>
+        <div class="solid-voice proxy-address">Proxy Address</div>
+        <div class="solid-voice address">ID / dAPI</div>
+        <div class="solid-voice is-oev">is OEV?</div>
         <div class="" v-if="isForm"></div>
       </li>
       <li class="table-row" v-for="(proxy, index) in proxies">
@@ -30,21 +30,17 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
             />
           </picture>
         </div>
-        <div class="is-oev">
-          <picture v-if="isForm ? proxy.isOEV : proxy?.oev?.enabled">
-            <img src="/images/icons/oev.svg" alt="" />
-          </picture>
-        </div>
-        <div class="type">
+
+        <div class="feedname">
           {{ proxy?.feedName }}
         </div>
         <div class="type">
           {{ proxy?.proxyType?.includes("datafeedId") ? "Data Feed" : "dAPI" }}
         </div>
-        <div class="type">
+        <div class="proxy-address">
           <WalletAddress :walletAddress="proxy?.proxyAddress" />
         </div>
-        <div class="type">
+        <div class="address">
           <WalletAddress
             :walletAddress="
               proxy?.proxyType === 'datafeedId'
@@ -52,6 +48,11 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
                 : proxy?.dapiNameHash
             "
           />
+        </div>
+        <div class="is-oev">
+          <picture v-if="isForm ? proxy.isOEV : proxy?.oev?.enabled">
+            <img src="/images/icons/oev.svg" alt="" />
+          </picture>
         </div>
         <div class="cross" v-if="isForm">
           <button
@@ -70,9 +71,11 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
 
 <style scoped lang="scss">
 section.proxy-table {
+  display: grid;
   ul {
     margin-top: 0.5rem;
     max-height: 400px;
+
     overflow-y: scroll;
     position: relative;
     scroll-behavior: smooth;
@@ -87,9 +90,14 @@ section.proxy-table {
   .table-row {
     display: grid;
     grid-template-columns: 0.75fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0.5rem;
     padding: 1rem;
     border-bottom: 1px solid var(--gray-dark);
     align-items: center;
+
+    div {
+      min-width: 115px;
+    }
 
     .chain picture {
       max-width: 50px;

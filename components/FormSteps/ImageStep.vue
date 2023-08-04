@@ -84,7 +84,9 @@ const fileSize = function (node) {
 .single-images {
   display: grid;
   gap: 2rem;
-  grid-template-columns: 1fr 1fr;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 file-upload {

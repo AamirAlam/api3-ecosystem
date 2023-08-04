@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  spaLoadingTemplate: false,
+  spaLoadingTemplate: "./app-loading.html",
 
   routeRules: {
     // Homepage pre-rendered at build time

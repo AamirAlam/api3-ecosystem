@@ -7,7 +7,10 @@ const visibleRef = ref(false);
 const indexRef = ref(0); // default 0
 
 const onHide = () => (visibleRef.value = false);
-const onShow = () => {
+const onShow = (index) => {
+  indexRef.value = index;
+  console.log(indexRef.value);
+
   visibleRef.value = true;
 };
 </script>
@@ -17,9 +20,9 @@ const onShow = () => {
     <h2 class="attention-voice">Screenshots</h2>
     <ul class="image-grid">
       <li
-        v-for="image in dapp?.images.screenshots"
+        v-for="(image, index) in dapp?.images.screenshots"
         :key="image"
-        @click="onShow"
+        @click="onShow(index)"
       >
         <img :src="image" :alt="image" />
       </li>

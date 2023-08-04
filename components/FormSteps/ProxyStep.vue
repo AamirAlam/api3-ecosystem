@@ -170,7 +170,6 @@ const buttonClick = ref(false);
   :deep(.proxy-table) {
     .table-row {
       grid-template-columns: 0.5fr 0.5fr 0.75fr 0.75fr 0.75fr 0.5fr 0.2fr;
-      gap: 1rem;
     }
   }
 }
@@ -208,7 +207,7 @@ const buttonClick = ref(false);
     }
   }
   .error-message {
-    color: red;
+    color: var(--warning, red);
   }
 }
 </style>

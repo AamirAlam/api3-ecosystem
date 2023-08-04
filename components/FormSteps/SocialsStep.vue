@@ -86,11 +86,14 @@ props.dappForm.links.socials = props.dappForm.links.socials ?? {};
   </FormKit>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .form-socials {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+
   gap: 1.5rem;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .form-socials h2 {
   grid-column: 1 / -1;
