@@ -12,17 +12,24 @@ const { data, error } = await useFetch(
 
       article.value = response._data;
 
-
-      useServerSeoMeta({
+      useSeoMeta({
         title: () => article.value.title,
         ogTitle: () => article.value.title,
+        twitterTitle: () => article.value.title,
         ogType: () => "article",
         ogUrl: () => `#todo/articles/${article.value._id}`,
+
         description: () => article.value.description,
         ogDescription: () => article.value.description,
+        twitterDescription: () => article.value.description,
+
         image: () => article.value.cover,
         ogImage: () => article.value.cover,
+        twitterImage: () => article.value.cover,
+
         ogArticlePublishedTime: () => article.value.date,
+
+        twitterCard: "summary_large_image",
       });
     },
   }
@@ -98,16 +105,12 @@ const { data, error } = await useFetch(
 <template>
   <SectionColumn innerClass="article">
     <article>
-
       <ArticleSide :toc="data?.content?.toc" :title="data?.title" />
-
 
       <ArticleHeader :article="data" />
 
-
       <picture class="cover" v-if="data?.cover">
         <img :src="article?.cover" alt="" />
-
       </picture>
 
       <ContentRendererMarkdown

@@ -8,8 +8,12 @@ definePageMeta({
   layout: "home",
 });
 
-useServerSeoMeta({
-  title: "Add Dapp",
+useSeoMeta({
+  title: "Add Your dApp",
+  description:
+    "Join the API3 ecosystem. Easily list your dApp or service and join our thriving community",
+  ogDescription:
+    "join the API3 ecosystem. Easily list your dApp or service and join our thriving community",
 });
 
 const { verifyWallet } = useSiwe();

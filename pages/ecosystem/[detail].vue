@@ -12,9 +12,10 @@ const { data: dapp, error } = await useFetch(
 
       const dapp = response._data;
 
-      useServerSeoMeta({
+      useSeoMeta({
         title: () => dapp.name,
         ogTitle: () => dapp.name,
+        twitterTitle: () => dapp.name,
 
         ogType: () => "article",
         ogUrl: () => `/ecosystem/${dapp._id}`,
@@ -22,9 +23,13 @@ const { data: dapp, error } = await useFetch(
 
         description: () => dapp.tagline,
         ogDescription: () => dapp.tagline,
+        twitterDescription: () => dapp.tagline,
 
-        image: () => dapp.images?.banner,
-        ogImage: () => dapp.images?.banner,
+        image: () => dapp.images?.cover,
+        ogImage: () => dapp.images?.cover,
+        twitterImage: () => dapp.images?.cover,
+
+        twitterCard: "summary_large_image",
       });
     },
   }
