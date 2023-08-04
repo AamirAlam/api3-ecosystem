@@ -41,7 +41,9 @@ onMounted(() => {
             v-if="ui.isMobile"
             @click="showMenu = !showMenu"
           >
-            <MenuIcon />
+            <picture>
+              <MenuIcon />
+            </picture>
           </button>
           <SidePanelSlot
             v-if="ui.isMobile"
@@ -66,7 +68,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 mast-head {
   display: grid;
-  grid-template-columns: 1fr 0.5fr;
+  grid-template-columns: 1fr 1fr;
   justify-content: space-between;
   .site-logo {
     width: 50px;
@@ -74,10 +76,6 @@ mast-head {
     @media (min-width: 768px) {
       width: 100px;
     }
-  }
-
-  @media (min-width: 768px) {
-    grid-template-columns: 0.5fr 1fr;
   }
 }
 
@@ -89,6 +87,7 @@ mast-head {
 
   .button.menu {
     justify-self: end;
+
     &.menuOpen {
       z-index: 9999;
     }
