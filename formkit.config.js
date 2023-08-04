@@ -22,7 +22,7 @@ const config = defaultConfig({
     createMultiStepPlugin(),
     createAutoHeightTextareaPlugin(),
     createFloatingLabelsPlugin(),
-    addAsteriskPlugin,
+    //  addAsteriskPlugin,
     proPlugin,
   ],
 });

@@ -202,6 +202,13 @@ form {
 
   .formkit-inner {
     box-shadow: unset;
+    --fk-border-radius: var(--corners);
+    --fk-border-box-shadow-focus: 0 0 0 2px var(--color);
+  }
+
+  .multiselect.is-active {
+    border: unset;
+    box-shadow: 0 0 0 2px var(--color);
   }
 
   input.formkit-input {
