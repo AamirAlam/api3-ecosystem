@@ -145,7 +145,7 @@ const buttonClick = ref(false);
         </div>
       </div>
 
-      <div class="grid-item">
+      <div class="grid-item" v-show="dappForm?.proxies.length > 0">
         <DappProxies
           :proxies="dappForm?.proxies"
           :dappForm="dappForm"

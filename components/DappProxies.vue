@@ -9,7 +9,7 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
 <template>
   <section class="proxy-table">
     <h2 class="attention-voice">Proxies</h2>
-    <ul>
+    <ul v-auto-animate>
       <li class="table-row table-head">
         <div class="solid-voice chain">Chain</div>
         <div class="solid-voice feedname">Feed Name</div>
