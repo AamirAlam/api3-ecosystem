@@ -1,6 +1,6 @@
 # API3 Ecosystem with Nuxt3
 
-https://api3-ecosystem.netlify.app/
+https://ecosystem.api3.org/
 
 ## Setup with docker
 
@@ -16,7 +16,7 @@ docker build . -t api3-ecosystem-image
 
 ```bash
 # docker
-docker run -p  3000:3000 -p  80:80 api3-ecosystem-image
+docker run --env-file ./.env  -p  3000:3000 -p  80:80 api3-ecosystem-image
 
 ```
 
