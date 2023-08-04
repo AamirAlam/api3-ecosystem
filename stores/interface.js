@@ -4,10 +4,42 @@ import { gsap } from "gsap";
 export const useInterfaceStore = defineStore("interface", function () {
   const mainMenuOpen = ref(false);
   const firstLoad = ref(true);
+  const heroImage = ref(null);
 
-  function toggleMenu() {
-    mainMenuOpen.value = !mainMenuOpen.value;
-  }
+  const transitionState = reactive({
+    transitionComplete: false,
+  });
+  const toggleTransitionComplete = (value) => {
+    transitionState.transitionComplete = value;
+  };
+
+  const pageTransitionConfig = {
+    name: "page-transiton",
+    mode: "out-in",
+    onEnter: (el, done) => {
+      console.log("onEnter");
+      gsap.set(el, { autoAlpha: 0, scale: 0.8, xPercent: -100 });
+      gsap
+        .timeline({
+          paused: true,
+          onComplete() {
+            toggleTransitionComplete(true);
+            done();
+          },
+        })
+        .to(el, { autoAlpha: 1, xPercent: 0, duration: 0.25 })
+        .to(el, { scale: 1, duration: 0.25 })
+        .play();
+    },
+    onLeave: (el, done) => {
+      toggleTransitionComplete(false);
+      gsap
+        .timeline({ paused: true, onComplete: done })
+        .to(el, { scale: 0.8, duration: 0.2 })
+        .to(el, { xPercent: 100, autoAlpha: 0, duration: 0.2 })
+        .play();
+    },
+  };
 
   const isMobile = computed(() => {
     if (typeof window === "undefined") return false;
@@ -24,7 +56,9 @@ export const useInterfaceStore = defineStore("interface", function () {
     return window.innerWidth >= 1024;
   });
 
-  const heroImage = ref(null);
+  function toggleMenu() {
+    mainMenuOpen.value = !mainMenuOpen.value;
+  }
 
   function changeHeroImage(card) {
     heroImage.value = card.image;
@@ -71,5 +105,9 @@ export const useInterfaceStore = defineStore("interface", function () {
     scrollIndicator,
 
     changeHeroImage,
+
+    transitionState,
+    toggleTransitionComplete,
+    pageTransitionConfig,
   };
 });

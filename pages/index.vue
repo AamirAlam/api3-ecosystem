@@ -11,12 +11,8 @@ definePageMeta({
   ],
 });
 
-useServerSeoMeta({
-  title: "Home",
-  description:
-    "Discover the API3 ecosystem and learn more about utilizing real-world data in your smart contracts",
-  ogDescription:
-    "Discover the API3 ecosystem and learn more about utilizing real-world data in your smart contracts",
+useSeoMeta({
+  title: "Ecosystem Home",
 });
 
 onMounted(() => {

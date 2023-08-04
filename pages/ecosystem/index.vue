@@ -7,7 +7,7 @@ const ui = useInterfaceStore();
 
 const showFilter = ref(false);
 
-useServerSeoMeta({
+useSeoMeta({
   title: "Ecosystems",
   description:
     "Welcome to the API3 ecosystem. Easily list your dApp or service and join our thriving community",

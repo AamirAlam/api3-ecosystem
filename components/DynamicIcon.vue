@@ -20,7 +20,7 @@ watch(icon, async (newVal, oldVal) => {
 </script>
 
 <template>
-  <picture v-if="fileExists">
+  <picture>
     <img :src="`/images/icons/${slug(icon)}.svg`" alt="" />
   </picture>
 </template>

@@ -8,8 +8,12 @@ definePageMeta({
   layout: "home",
 });
 
-useServerSeoMeta({
-  title: "Add Dapp",
+useSeoMeta({
+  title: "Add Your dApp",
+  description:
+    "Join the API3 ecosystem. Easily list your dApp or service and join our thriving community",
+  ogDescription:
+    "join the API3 ecosystem. Easily list your dApp or service and join our thriving community",
 });
 
 const { verifyWallet } = useSiwe();
@@ -198,6 +202,13 @@ form {
 
   .formkit-inner {
     box-shadow: unset;
+    --fk-border-radius: var(--corners);
+    --fk-border-box-shadow-focus: 0 0 0 2px var(--color);
+  }
+
+  .multiselect.is-active {
+    border: unset;
+    box-shadow: 0 0 0 2px var(--color);
   }
 
   input.formkit-input {

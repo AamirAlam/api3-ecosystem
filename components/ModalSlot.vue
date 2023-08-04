@@ -50,7 +50,7 @@ watch(
   overflow-y: auto;
 
   display: grid;
-  align-content: start;
+  place-items: center;
 }
 .modal-mask > * {
   position: sticky;

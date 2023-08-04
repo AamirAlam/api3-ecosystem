@@ -6,23 +6,14 @@ const ecosystem = useEcosystemStore();
 
 const upvotes = ref(0);
 const showShareBox = ref(false);
-const showCopyTooltip = ref(false);
 const loading = ref(false);
 
 const { verifyWallet } = useSiwe();
 const { submitUpvote } = useHttpCalls();
 const web3Store = useWeb3Store();
 
-onMounted(() => {
-  upvotes.value = !props?.dapp?.upvotes ? 0 : props?.dapp?.upvotes;
-});
-
 const handleShare = async () => {
-  await navigator.clipboard.writeText(props.dapp.links?.dapp);
-  showCopyTooltip.value = true;
-  setTimeout(() => {
-    showCopyTooltip.value = false;
-  }, 1000);
+  showShareBox.value = !showShareBox.value;
 };
 
 const handleUpvote = async () => {
@@ -55,6 +46,10 @@ const handleUpvote = async () => {
 
   loading.value = false;
 };
+
+onMounted(() => {
+  upvotes.value = !props?.dapp?.upvotes ? 0 : props?.dapp?.upvotes;
+});
 </script>
 
 <template>
@@ -124,7 +119,9 @@ const handleUpvote = async () => {
         <ul>
           <li v-for="social in dapp.links.socials" :key="social.id">
             <a :href="social.url" :target="social.name">
-              <SocialIcon :social="social.label" />
+              <picture>
+                <SocialIcon :social="social.label" />
+              </picture>
             </a>
           </li>
         </ul>
@@ -146,29 +143,12 @@ const handleUpvote = async () => {
         class="button"
         >Launch</NuxtLink
       >
-      <button
-        class="button"
-        v-if="!loading"
-        :disabled="loading"
-        @click="handleUpvote"
-      >
-        Upvote ({{ upvotes }})
+      <button class="button" :disabled="loading" @click="handleUpvote">
+        <span v-if="!loading"> Upvote ({{ upvotes }}) </span>
+        <span v-else> Upvoting... </span>
       </button>
-      <button
-        class="button"
-        :disabled="loading"
-        v-if="loading"
-        @click="handleUpvote"
-      >
-        Voting ...
-      </button>
-      <button
-        class="button share-button"
-        :title="showCopyTooltip ? 'Copied!' : 'Copy Dapp Url'"
-        @click="handleShare"
-      >
-        Share
-      </button>
+
+      <button class="button share-button" @click="handleShare">Share</button>
 
       <ModalSlot
         :showModal="showShareBox"
@@ -240,29 +220,5 @@ aside {
 .logo {
   border-radius: 50%;
   max-width: 100px;
-}
-
-.share-button::before {
-  /* Tooltip styling */
-  content: attr(title);
-  position: absolute;
-  margin-top: 5px;
-  top: 100%; /* Adjust this value to control the distance of the tooltip from the address */
-  left: 50%; /* Center the tooltip */
-  transform: translateX(-50%);
-  padding: 0.5px 10px;
-  background-color: #333;
-  color: #fff;
-  font-size: 12px;
-  border-radius: 4px;
-  opacity: 0; /* Hide the tooltip by default */
-  visibility: hidden;
-  white-space: nowrap; /* Prevent the tooltip from wrapping to a new line */
-}
-
-.share-button:hover::before {
-  /* Show the tooltip on hover */
-  opacity: 1;
-  visibility: visible;
 }
 </style>

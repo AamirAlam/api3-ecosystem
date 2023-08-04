@@ -293,8 +293,8 @@ section.other inner-column {
   gap: 3rem;
   border-top: 1px solid var(--gray-dark);
 
-  @media (min-width: 1024px) {
-    grid-template-columns: 0.6fr 1.2fr 1fr;
+  @media (min-width: 1365px) {
+    grid-template-columns: 0.8fr 1.2fr 1fr;
     grid-template-rows: 1fr;
     justify-items: unset;
     justify-content: space-between;

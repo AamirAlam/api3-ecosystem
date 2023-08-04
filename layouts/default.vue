@@ -4,11 +4,9 @@ const route = useRoute();
 
 <template>
   <SiteHeader />
-  <Transition name="fade" mode="out-in">
-    <main :class="route.name">
-      <slot />
-    </main>
-  </Transition>
+  <main :class="route.name">
+    <slot />
+  </main>
 
   <SiteFooter v-if="route.name != 'add-dapp' || route.name !== 'add-dapp-2'" />
 

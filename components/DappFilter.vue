@@ -143,7 +143,7 @@ const handleFilter = (event) => {
             v-if="index < defaultPillCount || showAll.categories"
           >
             <label :for="'category-' + category.name">
-              <DynamicIcon :icon="category.name" />
+              <!-- <DynamicIcon :icon="category.name" /> -->
               {{ ecosystem.categoryToLabel?.[category.name] }} ({{
                 category.count
               }})
