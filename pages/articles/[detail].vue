@@ -1,22 +1,10 @@
 <script setup>
-import { useBlogStore } from "@/stores/blog";
-import slug from "slug";
-
-const blog = useBlogStore();
 const route = useRoute();
-
-const found = computed(() => {
-  console.log(blog.list);
-  return blog.list.find(
-    (article) =>
-      slug(article.author.name + "-" + article.title) === route.params.detail
-  );
-});
 
 const article = useState("article", () => null);
 
 const { data, error } = await useFetch(
-  `/api/articles/article/${found.value._id}`,
+  `/api/articles/article/${route.params.detail}`,
   {
     initialCache: true,
     async onResponse({ request, response, options }) {
