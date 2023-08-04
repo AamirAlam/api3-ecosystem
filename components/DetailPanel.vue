@@ -124,7 +124,9 @@ const handleUpvote = async () => {
         <ul>
           <li v-for="social in dapp.links.socials" :key="social.id">
             <a :href="social.url" :target="social.name">
-              <SocialIcon :social="social.label" />
+              <picture>
+                <SocialIcon :social="social.label" />
+              </picture>
             </a>
           </li>
         </ul>
