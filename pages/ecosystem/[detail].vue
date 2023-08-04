@@ -147,6 +147,6 @@ article.main detail-content {
 }
 
 :deep(.dapp-title) {
-  //   grid-column: 2;
+  grid-column: 1/-1;
 }
 </style>
