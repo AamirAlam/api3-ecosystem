@@ -31,11 +31,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: [
-    "@/assets/styles/site.css",
-    "@formkit/themes/genesis",
-    "floating-vue/dist/style.css",
-  ],
+  css: ["@/assets/styles/site.css", "@formkit/themes/genesis", "floating-vue/dist/style.css"],
 
   build: {
     transpile: ["gsap"],
@@ -110,7 +106,7 @@ export default defineNuxtConfig({
     dappRegistryProd: process.env.NUXT_DAPP_REGISTRY_PROD,
     dappRegistryDev: process.env.NUXT_DAPP_REGISTRY_DEV,
     public: {
-      walletConnectProjectId: process.env.NUXT_PUBLIC_WALLET_CONNECT_PROJECT_ID,
+      walletConnectProjectId: "8ea05c2c45ce1000d51a7364ce317dc5",
     },
   },
 });
