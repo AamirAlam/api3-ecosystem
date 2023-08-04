@@ -18,7 +18,7 @@ const { data: dapp, error } = await useFetch(
         twitterTitle: () => dapp.name,
 
         ogType: () => "article",
-        ogUrl: () => `/ecosystem/${dapp._id}`,
+        ogUrl: () => `https://ecosystem.api3.org/ecosystem/${dapp._id}`,
         ogArticlePublishedTime: () => dapp.year,
 
         description: () => dapp.tagline,

@@ -17,7 +17,7 @@ const { data, error } = await useFetch(
         ogTitle: () => article.value.title,
         twitterTitle: () => article.value.title,
         ogType: () => "article",
-        ogUrl: () => `#todo/articles/${article.value._id}`,
+        ogUrl: () => `https://ecosystem.api3.org/articles/${article.value._id}`,
 
         description: () => article.value.description,
         ogDescription: () => article.value.description,
