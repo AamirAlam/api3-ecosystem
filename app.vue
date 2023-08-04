@@ -57,6 +57,10 @@ onMounted(() => {
 </template>
 
 <style>
+body > div[data-v-app] {
+  display: none;
+}
+
 html * {
   --fk-font-family: var(--font);
   --fk-font-size: 1rem;
