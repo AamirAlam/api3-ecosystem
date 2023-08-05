@@ -24,7 +24,7 @@ form form-field .formkit-outer {
 }
 
 form-field .formkit-messages {
-  color: red;
+  color: var(--warning);
 } 
 */
 
