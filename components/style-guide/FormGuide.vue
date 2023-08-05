@@ -11,6 +11,17 @@ const inputs = ref([
     label: "Textarea",
     type: "textarea",
   },
+
+  {
+    label: "Single Select",
+    type: "single",
+    isMultiselect: true,
+  },
+  {
+    label: "Multi Select",
+    type: "tags",
+    isMultiselect: true,
+  },
   {
     label: "Checkbox",
     type: "checkbox",
@@ -22,14 +33,9 @@ const inputs = ref([
     options: ["option1", "option2", "option3"],
   },
   {
-    label: "Single Select",
-    type: "single",
-    isMultiselect: true,
-  },
-  {
-    label: "Multi Select",
-    type: "tags",
-    isMultiselect: true,
+    label: "File",
+    type: "file",
+    formFieldClass: "file-upload",
   },
 ]);
 </script>
@@ -44,7 +50,11 @@ const inputs = ref([
     </p>
     <ul>
       <li v-for="input in inputs">
-        <form-field :type="input.type" :label="input.label">
+        <form-field
+          :type="input.type"
+          :label="input.label"
+          :class="input.formFieldClass"
+        >
           <FormKit
             v-if="!input.isMultiselect"
             :type="input.type"
@@ -53,6 +63,7 @@ const inputs = ref([
             :name="input.label"
             :id="input.label"
             :options="input.options"
+            help="This is a help message"
           />
 
           <template v-else>
