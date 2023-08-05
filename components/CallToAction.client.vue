@@ -120,8 +120,7 @@ cta-module {
     gap: 3rem;
     justify-items: start;
     order: 2;
-    //  mix-blend-mode: difference;
-    //  background-color: green;
+
     h2 {
       color: var(--color);
     }
@@ -137,8 +136,7 @@ cta-module {
     transform: translateX(-50%);
     width: 100%;
     z-index: -1;
-    //  background-color: green;
-    //  mix-blend-mode: difference;
+
     opacity: 0.5;
 
     @media (min-width: 768px) {

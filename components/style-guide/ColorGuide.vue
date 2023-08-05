@@ -161,7 +161,7 @@ watch(hue, (newVal, oldVal) => {
       <p>You can change the hue of the colors by using the slider below.</p>
 
       <form-field>
-        <input type="range" min="0" max="360" v-model="hue" />
+        <FormKit type="range" v-model="hue" min="0" max="360" step="1" />
       </form-field>
       <p>{{ hue }}</p>
     </div>

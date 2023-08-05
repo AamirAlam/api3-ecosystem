@@ -35,7 +35,7 @@ useSeoMeta({
 
   --gap: 1rem;
 
-  ul {
+  & > ul {
     gap: var(--gap);
     @media (min-width: 768px) {
       --gap: 3rem;
