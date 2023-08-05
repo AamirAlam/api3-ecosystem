@@ -59,5 +59,6 @@ onMounted(() => {
 <style>
 body > div[data-v-app] {
   display: none;
+
 }
 </style>
