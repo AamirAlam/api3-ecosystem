@@ -138,6 +138,7 @@ a.router-link-exact-active::after {
   background: var(--gradient-color);
   font-weight: var(--weight-semibold);
   padding: 1em 2em;
+  white-space: nowrap;
 }
 
 .loud-button {
@@ -146,6 +147,7 @@ a.router-link-exact-active::after {
   cursor: pointer;
   text-align: center;
   background: var(--paper);
+  white-space: nowrap;
 }
 
 .loud-button::after {
@@ -194,10 +196,10 @@ button.button.disabled {
 
 @keyframes rotate {
   0% {
-    transform: rotate(0deg) translateX(-50%);
+    transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg) translateX(-50%);
+    transform: rotate(360deg);
   }
 }
 
@@ -210,6 +212,19 @@ button.button.disabled {
   background: var(--gradient-color);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.gradient-border {
+  background: var(--paper);
+  position: relative;
+}
+.gradient-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: var(--gradient-color);
+  z-index: -1;
+  transition: 0.1s;
 }
 
 /* tooltip */

@@ -124,7 +124,7 @@ h2 + p {
 
 code {
   font-family: monospace;
-  font-size: 1em;
+  font-size: inherit;
   color: green;
   border: unset;
 }

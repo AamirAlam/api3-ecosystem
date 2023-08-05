@@ -185,7 +185,11 @@ watch(hue, (newVal, oldVal) => {
 
 .colors {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 }
 div.pallete {
   width: 100%;

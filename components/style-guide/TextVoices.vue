@@ -50,7 +50,7 @@ onMounted(() => {
     <h2 class="attention-voice">Text Voices</h2>
     <ul>
       <li v-for="voice in voices">
-        <voice-card>
+        <voice-card :class="voice.name">
           <code>
             {{ voice.name }}
           </code>
@@ -112,6 +112,14 @@ ul {
 
   p.wrap {
     text-wrap: balance;
+  }
+
+  voice-card.booming-voice {
+    display: none;
+
+    @media (min-width: 450px) {
+      display: block;
+    }
   }
 }
 </style>

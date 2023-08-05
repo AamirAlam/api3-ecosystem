@@ -37,6 +37,11 @@ const inputs = ref([
 <template>
   <div class="form-guide">
     <h2 class="attention-voice">Form</h2>
+    <p>
+      These are the forms inputs that are used. Using the Formkit and
+      vueform/multiselect packages and having their styles be overwritten to
+      match the design of the site.
+    </p>
     <ul>
       <li v-for="input in inputs">
         <form-field :type="input.type" :label="input.label">
@@ -80,6 +85,11 @@ const inputs = ref([
 <style scoped>
 ul {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  --gap: 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
 }
 </style>

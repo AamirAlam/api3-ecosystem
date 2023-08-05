@@ -14,7 +14,11 @@ const settings = ref([
   },
   {
     name: "gradient-text",
-    variable: "--gradient-text",
+    variable: ".gradient-text",
+  },
+  {
+    name: "gradient-border",
+    variable: ".gradient-border",
   },
 ]);
 </script>
@@ -41,7 +45,11 @@ const settings = ref([
 .misc-guide {
   ul {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
   }
   div {
     width: 100%;
@@ -60,6 +68,10 @@ const settings = ref([
   }
   div.shadow {
     box-shadow: var(--shadow);
+  }
+
+  code {
+    font-size: 0.75rem;
   }
 }
 

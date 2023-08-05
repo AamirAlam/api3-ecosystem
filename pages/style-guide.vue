@@ -33,8 +33,13 @@ useSeoMeta({
   display: grid;
   gap: 3rem;
 
+  --gap: 1rem;
+
   ul {
-    gap: 3rem;
+    gap: var(--gap);
+    @media (min-width: 768px) {
+      --gap: 3rem;
+    }
   }
 }
 </style>
