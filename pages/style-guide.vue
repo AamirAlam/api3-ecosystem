@@ -42,6 +42,13 @@ useSeoMeta({
     }
   }
 }
+
+:deep(code) {
+  font-size: var(--step--1);
+  @media (min-width: 768px) {
+    font-size: var(--step-0);
+  }
+}
 </style>
 <style>
 main {

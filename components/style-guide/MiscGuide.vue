@@ -69,10 +69,6 @@ const settings = ref([
   div.shadow {
     box-shadow: var(--shadow);
   }
-
-  code {
-    font-size: 0.75rem;
-  }
 }
 
 @keyframes borderRadius {

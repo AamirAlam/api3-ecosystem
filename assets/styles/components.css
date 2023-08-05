@@ -134,9 +134,9 @@ a.router-link-exact-active::after {
 }
 
 .button.filled {
-  border-radius: 0;
+  /* border-radius: 0; */
   background: var(--gradient-color);
-  font-weight: var(--weight-semibold);
+  color: var(--paper);
   padding: 1em 2em;
   white-space: nowrap;
 }
@@ -225,6 +225,7 @@ button.button.disabled {
   background: var(--gradient-color);
   z-index: -1;
   transition: 0.1s;
+  border-radius: inherit;
 }
 
 /* tooltip */
