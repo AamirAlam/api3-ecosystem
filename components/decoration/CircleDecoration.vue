@@ -1,0 +1,44 @@
+<template>
+  <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 1000 1000"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xml:space="preserve"
+    xmlns:serif="http://www.serif.com/"
+    style="
+      fill-rule: evenodd;
+      clip-rule: evenodd;
+      stroke-linejoin: round;
+      stroke-miterlimit: 2;
+    "
+  >
+    <g transform="matrix(1,0,0,1,-47198.5,-15235.5)">
+      <g transform="matrix(2.17014,0,0,1.86317,46462,15234.9)">
+        <path
+          d="M800.19,268.66C800.19,120.548 696.951,0.3 569.79,0.3C442.629,0.3 339.39,120.548 339.39,268.66C339.39,416.772 442.629,537.02 569.79,537.02C696.951,537.02 800.19,416.772 800.19,268.66Z"
+          style="fill: url(#_Linear1)"
+        />
+      </g>
+    </g>
+    <defs>
+      <linearGradient
+        id="_Linear1"
+        x1="0"
+        y1="0"
+        x2="1"
+        y2="0"
+        gradientUnits="userSpaceOnUse"
+        gradientTransform="matrix(460.8,0,0,460.8,339.39,268.66)"
+      >
+        <stop offset="0" style="stop-color: var(--color); stop-opacity: 0.4" />
+        <stop
+          offset="1"
+          style="stop-color: var(--highlight); stop-opacity: 0.4"
+        />
+      </linearGradient>
+    </defs>
+  </svg>
+</template>

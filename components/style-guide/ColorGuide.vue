@@ -1,6 +1,4 @@
 <script setup>
-const hue = ref(160);
-
 const basics = ref([
   {
     name: "Paper",
@@ -96,10 +94,6 @@ const textures = ref([
     variable: "--points",
   },
 ]);
-
-watch(hue, (newVal, oldVal) => {
-  document.documentElement.style.setProperty("--hue", `${newVal}`);
-});
 </script>
 
 <template>
@@ -156,33 +150,12 @@ watch(hue, (newVal, oldVal) => {
         </div>
       </li>
     </ul> -->
-
-    <div class="color-slider">
-      <p>You can change the hue of the colors by using the slider below.</p>
-
-      <form-field>
-        <FormKit type="range" v-model="hue" min="0" max="360" step="1" />
-      </form-field>
-      <p>{{ hue }}</p>
-    </div>
   </div>
+
+  <ColorSlider />
 </template>
 
 <style scoped lang="scss">
-.color-slider {
-  align-items: center;
-  margin-bottom: 2rem;
-
-  input {
-    flex: 1;
-    margin-right: 1rem;
-  }
-
-  span {
-    font-size: 1.5rem;
-  }
-}
-
 .colors {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));

@@ -150,7 +150,7 @@ onMounted(() => {
         </picture> -->
       </article>
       <picture class="shape-graphic">
-        <img :src="`/images/circle.svg`" alt="" />
+        <CircleDecoration />
       </picture>
       <picture class="background-graphic">
         <Transition @enter="animateBackground">

@@ -10,7 +10,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <PageHeader heading="Style Guide" />
+  <PageHeader heading="Style Guide" voice="booming-voice" />
   <SectionColumn>
     <ColorGuide />
   </SectionColumn>
@@ -51,7 +51,7 @@ useSeoMeta({
 }
 </style>
 <style>
-main {
+main.style-guide {
   display: grid;
   gap: 8rem;
 }

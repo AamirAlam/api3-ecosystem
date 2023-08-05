@@ -9,25 +9,25 @@
     <g clip-path="url(#clip0_167_13957)">
       <path
         d="M35.9562 29.275L25.3375 18.2625L4.375 40L25.3375 61.7438L35.9562 50.7313L25.6125 40L35.9562 29.275Z"
-        stroke="#4BF8BB"
+        stroke="var(--color)"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M50.6186 14.0625L35.9561 29.275L46.2998 40L35.9561 50.7312L50.6186 65.9375L75.6248 40L50.6186 14.0625Z"
-        stroke="#4BF8BB"
+        stroke="var(--color)"
         stroke-linecap="round"
         stroke-linejoin="round"
       />
       <path
         d="M35.9561 29.275L25.6123 40L35.9561 50.7313L46.2998 40L35.9561 29.275Z"
-        stroke="white"
+        stroke="var(--ink)"
         stroke-miterlimit="10"
       />
     </g>
     <defs>
       <clipPath id="clip0_167_13957">
-        <rect width="80" height="80" fill="white" />
+        <rect width="80" height="80" fill="var(--ink)" />
       </clipPath>
     </defs>
   </svg>
