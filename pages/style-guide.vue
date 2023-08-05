@@ -12,12 +12,35 @@ useSeoMeta({
 <template>
   <PageHeader heading="Style Guide" />
   <SectionColumn>
-    <!-- <TextVoices /> -->
-    <TypographyGuide />
+    <ColorGuide />
+  </SectionColumn>
+  <SectionColumn>
+    <MiscGuide />
+  </SectionColumn>
+  <SectionColumn>
+    <ButtonGuide />
+  </SectionColumn>
+  <SectionColumn>
+    <FormGuide />
+  </SectionColumn>
+  <SectionColumn>
+    <TextVoices />
   </SectionColumn>
 </template>
 
-<style scoped>
-body {
+<style scoped lang="scss">
+:deep(inner-column > div) {
+  display: grid;
+  gap: 3rem;
+
+  ul {
+    gap: 3rem;
+  }
+}
+</style>
+<style>
+main {
+  display: grid;
+  gap: 8rem;
 }
 </style>
