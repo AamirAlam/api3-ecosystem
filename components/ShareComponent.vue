@@ -2,11 +2,13 @@
 import { useClipboard } from "@vueuse/core";
 
 const props = defineProps(["dappLinks"]);
+
 const route = useRoute();
 const { copy, copied, text } = useClipboard();
 
 const shareText = computed(() => {
   return `Check out ${window.location.origin}${route.fullPath} on API3 Ecosystem!`;
+
 });
 
 const socialsToShare = ref([

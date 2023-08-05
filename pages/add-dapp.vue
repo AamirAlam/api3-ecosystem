@@ -193,6 +193,7 @@ form {
     align-content: center;
   }
 
+
   .not-valid {
     color: var(--warning);
   }
