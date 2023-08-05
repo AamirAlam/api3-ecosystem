@@ -92,12 +92,4 @@ function buttonHandle(valid, direction) {
   </FormKit>
 </template>
 
-<style>
-.multiselect {
-  border: unset;
-  background: var(--gradient-dark);
-  border-radius: var(--corners);
-  font-size: var(--step-0);
-  padding: 0.5rem;
-}
-</style>
+<style></style>
