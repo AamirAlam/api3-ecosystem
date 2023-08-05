@@ -300,8 +300,8 @@ dapp-filter {
       font-weight: var(--weight-medium);
       font-family: var(--font);
       padding: 0.5rem;
-      --gray-darkest: hsla(167, 22%, 15%, 1);
-      background-color: var(--gray-darkest);
+      --color-darkest: hsla(167, 22%, 15%, 1);
+      background-color: var(--color-darkest);
     }
 
     input-field:has(input:checked) label {
