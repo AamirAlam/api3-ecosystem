@@ -136,7 +136,7 @@ onMounted(async () => {
         <FormKit
           type="submit"
           label="Add Project"
-          input-class="$reset button filled"
+          input-class="$reset button filled firm-voice"
           v-if="web3Store.state.isConnected"
         />
         <ConnectButton v-else />
@@ -193,35 +193,8 @@ form {
     align-content: center;
   }
 
-  .formkit-wrapper {
-    max-width: unset;
-    display: grid;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .formkit-inner {
-    box-shadow: unset;
-    --fk-border-radius: var(--corners);
-    --fk-border-box-shadow-focus: 0 0 0 2px var(--color);
-  }
-
-  .multiselect.is-active {
-    border: unset;
-    box-shadow: 0 0 0 2px var(--color);
-  }
-
-  input.formkit-input {
-    font-size: var(--step-0);
-    border-radius: var(--corners);
-  }
-
-  button.next {
-    justify-self: end;
-  }
-
   .not-valid {
-    color: red;
+    color: var(--warning);
   }
   .valid {
     color: var(--success);
@@ -247,11 +220,5 @@ form {
 
 form > .actions {
   justify-items: start;
-}
-
-.formkit-step-actions {
-  margin-bottom: 0rem !important;
-  margin-top: 2rem !important;
-  display: none;
 }
 </style>

@@ -35,15 +35,13 @@ a {
   cursor: pointer;
 }
 
-:is(button, a).button {
+.button {
   position: relative;
 
   padding: 0.5em 2em;
   text-align: center;
   border: 1px solid var(--gray);
   border-radius: var(--corners);
-
-  font-size: 0.875rem;
 }
 
 .button::after {
@@ -138,7 +136,6 @@ a.router-link-exact-active::after {
 .button.filled {
   border-radius: 0;
   background: var(--gradient-color);
-  font-size: var(--step-1);
   font-weight: var(--weight-semibold);
   padding: 1em 2em;
 }
@@ -165,7 +162,9 @@ a.router-link-exact-active::after {
   transition: 0.2s;
 }
 
-button:disabled {
+button:disabled,
+a.button.disabled,
+button.button.disabled {
   filter: saturate(0) brightness(0.4);
   cursor: not-allowed;
   pointer-events: none;

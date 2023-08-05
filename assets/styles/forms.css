@@ -69,3 +69,46 @@ textarea {
 label {
   cursor: pointer;
 }
+
+.formkit-wrapper {
+  max-width: unset !important;
+  display: grid !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+
+.formkit-inner {
+  box-shadow: unset !important;
+  position: relative !important;
+}
+
+:root {
+  --fk-color-primary: var(--color) !important;
+  --fk-color-border-focus: var(--color) !important;
+  --fk-color-checked: var(--color) !important;
+  --fk-border-radius: var(--corners) !important;
+  --fk-border-box-shadow-focus: 0 0 0 2px var(--color) !important;
+  --fk-border-box-shadow-decorator-checked: 0 0 0 2px var(--color) !important;
+}
+
+.formkit-inner svg * {
+  fill: var(--color) !important;
+}
+
+.multiselect.is-active {
+  border: unset !important;
+  box-shadow: 0 0 0 2px var(--color) !important;
+}
+
+input.formkit-input {
+  font-size: var(--step-0) !important;
+  border-radius: var(--corners) !important;
+}
+
+.multiselect {
+  border: unset !important;
+  background: var(--gradient-dark) !important;
+  border-radius: var(--corners) !important;
+  font-size: var(--step-0) !important;
+  padding: 0.5rem !important;
+}

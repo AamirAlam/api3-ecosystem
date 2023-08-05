@@ -10,17 +10,17 @@ html {
   --gray-lighter: hsla(var(--hue), 0%, 90%, 1);
 
   --gray-dark: hsla(var(--hue), 0%, 26%, 1);
-  --gray-darkest: hsla(var(--hue), 40%, 5%, 1);
 
   --color: hsla(var(--hue), 64%, 69%, 1);
   --color-shade: hsla(var(--hue), 28%, 27%, 1);
   --color-dark: hsla(var(--hue), 65%, 10%, 1);
+  --color-darkest: hsla(var(--hue), 40%, 5%, 1);
 
-  --highlight: hsla(256, 34%, 54%, 1);
+  --highlight: hsla(calc(100 + var(--hue)), 34%, 54%, 1);
   /* --highlight: hsla(240, 72%, 63%, 1.00); */
 
-  --success: hsla(122, 53%, 65%, 1);
-  --warning: hsla(290, 53%, 65%, 1);
+  --success: hsla(122, 85%, 65%, 1);
+  --warning: hsla(0, 85%, 65%, 1);
 
   --paper: var(--black);
   --ink: hsla(var(--hue), 0%, 95%, 1);
@@ -76,11 +76,11 @@ html {
 
   /* Borders */
   --misc: "!misc";
-  --border: 1px solid var(--ink);
+  --border: 1px solid var(--color);
   --corners: 1rem;
 
   /* Shadows */
-  --shadow: var(--highlight) 5px 5px 50px -25px;
+  --shadow: var(--highlight) 0px 0px 40px -10px;
 }
 /* #todo api3 triangle texture */
 
