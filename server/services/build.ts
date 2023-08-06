@@ -1,6 +1,7 @@
 import { ProjectType } from "server/types";
 import shelljs from "shelljs";
 import { createPR } from "./github";
+import fs from "fs";
 
 interface BuildStatus {
   success: boolean;
@@ -53,6 +54,17 @@ async function verifyBuild(
     const branch = `${prTitle}-${projectId}`;
     const path = `projects/${prTitle}.json`;
 
+    // check if project file with same name already exists in projects directory in the repo
+
+    if (fs.existsSync(path)) {
+      reject({
+        success: false,
+        message: "Project with same name already exists",
+      });
+      return;
+    }
+
+    // add project json inside projects folder
     const isProjectAdded =
       shelljs.exec(
         `cd dapp-registry && echo '${JSON.stringify(

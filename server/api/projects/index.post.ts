@@ -103,6 +103,20 @@ export default authenticated(
                 year: parseInt(year),
               };
 
+        // check if project with same name already active
+        const existingProject = await Project.findOne({
+          name: payload.name,
+          status: "active",
+        });
+
+        if (existingProject) {
+          event.node.res.statusCode = 400;
+          return {
+            code: "REQ_FAILED",
+            message: `Project with name ${payload.name} already active`,
+          };
+        }
+
         // add slug field in  mongodb project collection to implement find by name slug
         const createdProject = await new Project({
           ...payload,
