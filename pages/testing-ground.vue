@@ -3,8 +3,7 @@
 <template>
   <PageHeader heading="test ground" />
   <SectionColumn>
-    <ColorSlider />
-    <LogoWithLines />
+    <LoadingSpinner />
   </SectionColumn>
 </template>
 
