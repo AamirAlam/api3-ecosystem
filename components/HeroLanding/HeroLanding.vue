@@ -188,20 +188,17 @@ hero-landing {
     }
 
     picture {
-      // aspect-ratio: 1 / 1;
       max-width: 50px;
-      background-image: url("@/assets/images/logo-lines.svg");
-      background-size: cover;
-      background-position: center;
       height: 100%;
-      // aspect-ratio: 16/9;
+      display: grid;
+      justify-content: center;
 
       @media (min-width: 768px) {
         max-width: 200px;
       }
 
       svg {
-        opacity: 0;
+        width: 105px;
       }
     }
 

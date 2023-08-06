@@ -8,6 +8,7 @@
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
     xmlns:serif="http://www.serif.com/"
+    preserveAspectRatio="xMidYMid meet"
     style="
       fill-rule: evenodd;
       clip-rule: evenodd;

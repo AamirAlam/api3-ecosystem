@@ -33,7 +33,6 @@ const icons = ref([
     name: "Logo With Lines",
     component: "LogoWithLines",
   },
-
   {
     name: "Menu Icon",
     component: "MenuIcon",
@@ -120,24 +119,21 @@ function animateBackground() {
       strokeDasharray: "900",
     },
     {
-      duration: 0.5,
-      delay: 1,
+      duration: 1,
       strokeDashoffset: 0,
       ease: "power2.in",
-      stagger: 0.05,
-      repeat: "-1",
+      stagger: { each: 0.05, repeat: "-1" },
     }
   );
+
+  //   indexTimer();
 }
 
-onMounted(() => {
-  animateBackground();
-  //   indexTimer();
-});
+onMounted(() => {});
 </script>
 
 <template>
-  <div class="decoration-guide">
+  <div class="decoration-guide" @click="animateBackground()">
     <h2 class="attention-voice">Decorations and Icons</h2>
 
     <ul>
