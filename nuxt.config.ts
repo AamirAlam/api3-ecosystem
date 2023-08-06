@@ -105,7 +105,6 @@ export default defineNuxtConfig({
     rootBucket: process.env.NUXT_ROOT_BUCKET,
     imageUploadSizeLimit: process.env.NUXT_IMAGE_UPLOAD_SIZE_LIMIT,
     gitAccessToken: process.env.NUXT_GIT_ACCESS_TOKEN,
-    jwtSecret: process.env.NUXT_JWT_SECRET,
     githubWebhookSecret: process.env.NUXT_GITHUB_WEBHOOK_SECRET,
     nodeEnv: process.env.NUXT_NODE_ENV,
     dappRegistryProd: process.env.NUXT_DAPP_REGISTRY_PROD,

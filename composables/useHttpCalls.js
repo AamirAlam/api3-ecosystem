@@ -65,34 +65,6 @@ export const useHttpCalls = () => {
         });
       }
 
-      if (dappForm?.value?.links?.socials?.facebook) {
-        links.socials.push({
-          label: "facebook",
-          url: dappForm?.value?.links.socials.facebook,
-        });
-      }
-
-      if (dappForm?.value?.links?.socials?.instagram) {
-        links.socials.push({
-          label: "instagram",
-          url: dappForm?.value?.links.socials.instagram,
-        });
-      }
-
-      if (dappForm?.value?.links?.socials?.youtube) {
-        links.socials.push({
-          label: "youtube",
-          url: dappForm?.value?.links.socials.youtube,
-        });
-      }
-
-      if (dappForm?.value?.links?.socials?.blog) {
-        links.socials.push({
-          label: "blog",
-          url: dappForm?.value?.links.socials.blog,
-        });
-      }
-
       body.append("links", JSON.stringify(links));
 
       const proxies = dappForm.value.proxies;
