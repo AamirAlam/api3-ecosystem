@@ -18,6 +18,9 @@ useSeoMeta({
     <MiscGuide />
   </SectionColumn>
   <SectionColumn>
+    <DecorationGuide />
+  </SectionColumn>
+  <SectionColumn>
     <ButtonGuide />
   </SectionColumn>
   <SectionColumn>
