@@ -79,7 +79,7 @@ const socialIcons = ref([
 const chainIcons = ref([
   "ethereum",
   "polygon",
-  "bnb",
+  "bsc",
   "avalanche",
   "solana",
   "gnosis-chain",
@@ -88,6 +88,10 @@ const chainIcons = ref([
   "boba",
 ]);
 const index = ref(0);
+
+index.value = Math.floor(
+  Math.random() * Math.min(socialIcons.value.length, chainIcons.value.length)
+);
 
 function loadIcon(component) {
   return defineAsyncComponent(() =>
@@ -133,7 +137,7 @@ onMounted(() => {});
 </script>
 
 <template>
-  <div class="decoration-guide" @click="animateBackground()">
+  <div class="decoration-guide" @click.once="animateBackground()">
     <h2 class="attention-voice">Decorations and Icons</h2>
 
     <ul>

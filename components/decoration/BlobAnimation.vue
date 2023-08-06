@@ -67,4 +67,13 @@ onMounted(() => {
   backdrop-filter: blur(10vmax);
   pointer-events: none;
 }
+
+body.index #blob {
+  opacity: 0.15;
+  height: 50vmax;
+}
+body.style-guide #blob {
+  opacity: 25;
+  height: 50vmax;
+}
 </style>
