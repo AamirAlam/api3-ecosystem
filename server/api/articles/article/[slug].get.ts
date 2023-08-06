@@ -14,17 +14,18 @@ export default defineEventHandler(async (event) => {
     const article = await Article.findOne({ slug: articleSlug });
 
     if (!article) {
-      event.res.statusCode = 404;
+      event.node.res.statusCode = 404;
       return {
         code: "ARTICLE_NOT_FOUND",
         message: `Article not found `,
       };
     }
 
+    event.node.res.statusCode = 200;
     return article;
   } catch (err) {
-    console.dir(err);
-    event.res.statusCode = 500;
+    console.dir("get article by id error ", err);
+    event.node.res.statusCode = 500;
     return {
       code: "ERROR",
       message: "Something went wrong.",

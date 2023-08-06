@@ -55,11 +55,8 @@ const submitHandler = async (event) => {
   const screenshots = event?.images?.screenshots?.map((el) => el?.file);
   const images = { logo, cover, screenshots };
 
-  const {
-    success: verificationSuccess,
-    data: verificationData,
-    message: verificationError,
-  } = await verifyWallet();
+  const { success: verificationSuccess, data: verificationPayload } =
+    await verifyWallet();
 
   if (!verificationSuccess) {
     setErrors("add-form", ["Signature verification failed!"]);
@@ -74,7 +71,7 @@ const submitHandler = async (event) => {
   const submitResult = await submitProject(
     dappForm,
     images,
-    verificationData?.token
+    verificationPayload
   );
   if (submitResult.success) {
     successData.value.message = submitResult.message;
@@ -83,7 +80,7 @@ const submitHandler = async (event) => {
 
     delete dappForm.value;
   } else {
-    successData.value = "";
+    successData.value.message = "";
     setErrors("add-form", [submitResult?.message]);
   }
   loading.value = false;

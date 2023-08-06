@@ -5,7 +5,7 @@ const FEED_NAME_API_ENDPOINT =
   "https://db-api-prod.api3.org/api/dapis-grouped?take=300&currentPage=1&sort=&sortDirection=&search=&categories=&chains=&sources=&statuses=";
 
 export const useHttpCalls = () => {
-  const submitProject = async (dappForm, images, token) => {
+  const submitProject = async (dappForm, images, verificationPayload) => {
     try {
       const body = new FormData();
 
@@ -133,9 +133,7 @@ export const useHttpCalls = () => {
       });
 
       const response = await axios.post("/api/projects", body, {
-        headers: {
-          Authorization: token,
-        },
+        headers: verificationPayload,
       });
 
       if (response.status === 201) {
@@ -156,12 +154,10 @@ export const useHttpCalls = () => {
     }
   };
 
-  const submitArticle = async (articleForm, token) => {
+  const submitArticle = async (articleForm, verificationPayload) => {
     try {
       const res = await axios.post("/api/articles", articleForm, {
-        headers: {
-          Authorization: token,
-        },
+        headers: verificationPayload,
       });
 
       if (res.status === 201) {
@@ -178,15 +174,13 @@ export const useHttpCalls = () => {
     }
   };
 
-  const submitUpvote = async (projectId, payload, token) => {
+  const submitUpvote = async (projectId, payload, verificationPayload) => {
     try {
       const res = await axios.post(
         `/api/projects/project/${projectId}`,
         payload,
         {
-          headers: {
-            Authorization: token,
-          },
+          headers: verificationPayload,
         }
       );
 
