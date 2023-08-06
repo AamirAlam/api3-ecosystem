@@ -78,22 +78,15 @@ mast-head {
     }
   }
 }
+.button.menu {
+  max-width: 50px;
+  justify-self: end;
 
-@media (max-width: 768px) {
-  .site-logo.menuOpen {
-    //  position: fixed;
-    //  z-index: 9999;
+  &.menuOpen {
+    z-index: 9999;
   }
-
-  .button.menu {
-    justify-self: end;
-
-    &.menuOpen {
-      z-index: 9999;
-    }
-    &.icon {
-      scale: 0.8;
-    }
+  &.icon {
+    scale: 0.8;
   }
 }
 </style>

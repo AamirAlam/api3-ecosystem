@@ -21,7 +21,7 @@ const showcaseCards = ref([
 
   {
     heading: "Updates",
-    paragraph: "Stay up to date with the API3 Ecosystem and our partners",
+    paragraph: "Stay upto date with the API3 Ecosystem and our partners",
     cta: "Discover Updates",
     link: "/articles",
     image: "/images/hero-ecosystem-articles.svg",
