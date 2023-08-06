@@ -21,7 +21,7 @@ export async function createPR(
   const title = projectData.name?.split(" ")?.join("-");
   const branch = `${title}-${projectId}`;
   const base = "main";
-  const path = `projects/${branch}.json`;
+  const path = `projects/${title}.json`;
 
   let branchCreated = false;
   try {
