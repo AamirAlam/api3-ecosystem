@@ -73,7 +73,7 @@ body.index #blob {
   height: 50vmax;
 }
 body.style-guide #blob {
-  opacity: 25;
+  opacity: 0.25;
   height: 50vmax;
 }
 </style>
