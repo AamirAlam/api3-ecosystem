@@ -1,4 +1,5 @@
 import { Octokit } from "@octokit/rest";
+import fs from "fs";
 
 interface PrStatus {
   success: boolean;
@@ -21,10 +22,21 @@ export async function createPR(
   const title = projectData.name?.split(" ")?.join("-");
   const branch = `${title}-${projectId}`;
   const base = "main";
-  const path = `projects/${title}.json`;
+  const projectJsonPath = `projects/${title}.json`;
+  const projectTsPath = "src/generated/projects.ts";
 
   let branchCreated = false;
   try {
+    // Read local files
+    const projectJsonData: string = fs.readFileSync(
+      `dapp-registry/${projectJsonPath}`,
+      "utf-8"
+    );
+    const projectTsData: string = fs.readFileSync(
+      `dapp-registry/${projectTsPath}`,
+      "utf-8"
+    );
+
     // get the SHA of the latest commit on the base branch
     const { data: refData } = await octokit.git.getRef({
       owner,
@@ -44,19 +56,19 @@ export async function createPR(
 
     branchCreated = true;
 
-    const jsonContent = projectData;
-
-    // convert content back to base64
-    const newContent = Buffer.from(
-      JSON.stringify(jsonContent, null, 2)
-    ).toString("base64");
-
     // create blob for new file content
-    const { data: newBlob } = await octokit.git.createBlob({
+    const { data: jsonBlob } = await octokit.git.createBlob({
       owner,
       repo,
-      content: newContent,
-      encoding: "base64",
+      content: projectJsonData,
+      encoding: "utf-8",
+    });
+
+    const { data: tsBlob } = await octokit.git.createBlob({
+      owner,
+      repo,
+      content: projectTsData,
+      encoding: "utf-8",
     });
 
     // create new tree
@@ -66,10 +78,16 @@ export async function createPR(
       base_tree: baseSha,
       tree: [
         {
-          path: path,
+          path: projectJsonPath,
           mode: "100644",
           type: "blob",
-          sha: newBlob.sha,
+          sha: jsonBlob.sha,
+        },
+        {
+          path: projectTsPath,
+          mode: "100644",
+          type: "blob",
+          sha: tsBlob.sha,
         },
       ],
     });
@@ -78,7 +96,7 @@ export async function createPR(
     const { data: newCommit } = await octokit.git.createCommit({
       owner,
       repo,
-      message: `Add new project listing`,
+      message: `add: ${title} listing request`,
       tree: newTree.sha,
       parents: [baseSha],
     });

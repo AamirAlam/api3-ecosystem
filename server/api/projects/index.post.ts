@@ -2,7 +2,6 @@ import { Project } from "~/server/models/Project";
 import { imageUploadHandler } from "../../utils/imageUpload";
 import { authenticated } from "../../utils/authenticated";
 import { checkBuildStatus } from "~/server/services/build";
-import { createPR } from "~/server/services/github";
 import { ProjectType } from "~/server/types";
 
 export default authenticated(
@@ -105,7 +104,7 @@ export default authenticated(
 
         const createdProject = await new Project(payload).save();
 
-        // // verify build with new project
+        // // verify build and create pr
         const buildResult = await checkBuildStatus(payload, createdProject.id);
 
         if (!buildResult.success) {
@@ -119,26 +118,11 @@ export default authenticated(
           };
         }
 
-        // create a pr for listing review if build success
-
-        const prResult = await createPR(payload, createdProject.id);
-
-        if (!prResult.success) {
-          // remove project data from db when pr failed
-          await Project.findByIdAndDelete(createdProject.id);
-
-          event.res.statusCode = 400;
-          return {
-            code: "PR_FAILED",
-            message: "Failed to create PR!",
-          };
-        }
-
         event.res.statusCode = 201;
         return {
           code: "OK",
           message: "Project submitted successfully!",
-          data: prResult?.data,
+          data: buildResult?.data,
         };
       } catch (err: any) {
         console.log("create project error ", err);
