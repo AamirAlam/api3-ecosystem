@@ -55,11 +55,13 @@ async function verifyBuild(
     const path = `projects/${prTitle}.json`;
 
     // check if project file with same name already exists in projects directory in the repo
+    const isAlreadyExists =
+      shelljs.exec(`cd dapp-registry && cat ${path}`).code === 0;
 
-    if (fs.existsSync(path)) {
+    if (isAlreadyExists) {
       reject({
         success: false,
-        message: "Project with same name already exists",
+        message: "File with same name already exists in repo",
       });
       return;
     }
