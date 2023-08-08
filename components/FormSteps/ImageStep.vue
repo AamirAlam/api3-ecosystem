@@ -27,7 +27,7 @@ const fileSize = function (node) {
           v-auto-animate
           id="logoForm"
           type="file"
-          label="Upload your logo"
+          label="Upload your logo*"
           label-class="$reset notice-voice"
           name="logo"
           help="This image should be a square and at least 512px wide. [JPG/PNG/WEBP]"
@@ -43,7 +43,7 @@ const fileSize = function (node) {
         <FormKit
           id="coverForm"
           type="file"
-          label="Upload a branded cover"
+          label="Upload a branded cover*"
           label-class="$reset notice-voice"
           name="cover"
           help="This image should be at least 1024px wide. [JPG/PNG/WEBP]"

@@ -130,6 +130,9 @@ onMounted(async () => {
       <div class="step">
         <SocialsStep :dappForm="dappForm" />
       </div>
+      <!-- <div class="step">
+        <SocialsStep2 :dappForm="dappForm" />
+      </div> -->
 
       <div class="actions">
         <!-- <h2 class="loud-voice">Submit your project!</h2> -->

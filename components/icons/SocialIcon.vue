@@ -1,6 +1,5 @@
 <script setup>
 const props = defineProps(["social", "fill", "stroke"]);
-console.log(props.social);
 
 const capitalizedSocial =
   props.social[0].toUpperCase() + props.social.toLowerCase().slice(1);
