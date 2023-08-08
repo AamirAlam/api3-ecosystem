@@ -60,9 +60,11 @@ header {
   position: relative;
   margin-bottom: 4rem;
 
-  h1 {
+  h1.loud-voice {
     position: relative;
     text-wrap: balance;
+
+    font-size: var(--step-2);
 
     padding: 5px 0;
     background: linear-gradient(
@@ -72,6 +74,10 @@ header {
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    @media (min-width: 768px) {
+      font-size: var(--step-3);
+    }
 
     &::before {
       content: "";
