@@ -143,7 +143,7 @@ onMounted(async () => {
 
         <!--  -->
         <ul class="validation-errors" v-auto-animate>
-          <FormKitMessages />
+          <FormKitMessages v-auto-animate />
           <template v-if="!isValid">
             <li v-for="message in messages">{{ message }}</li>
           </template>
@@ -192,7 +192,6 @@ form {
     gap: 3rem;
     align-content: center;
   }
-
 
   .not-valid {
     color: var(--warning);
