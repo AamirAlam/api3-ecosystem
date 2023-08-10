@@ -33,17 +33,16 @@
 }
 @keyframes strokeAnimate {
   0% {
-    stroke-dashoffset: 1550;
+    stroke-dashoffset: 400;
   }
 
   100% {
     stroke-dashoffset: 0;
-    stroke-dasharray: 1000;
   }
 }
 .loading-triangle {
-  animation: strokeAnimate 1.5s ease-in-out infinite alternate;
-  stroke-dasharray: 400;
+  animation: strokeAnimate 1.5s linear infinite;
+  stroke-dasharray: 100;
   width: 100%;
 }
 </style>
