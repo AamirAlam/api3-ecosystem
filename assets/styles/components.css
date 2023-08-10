@@ -1,6 +1,7 @@
 /* buttons and icons and smaller reusable bits here */
 
 @import "forms.css";
+@import "buttons.css";
 
 .texture {
   background-image: var(--texture);
@@ -18,190 +19,46 @@
   background-image: var(--points);
 }
 
-div.actions {
-  display: flex;
-  gap: 1rem;
+/* borders */
+.border {
+  border: var(--border);
 }
-
-a {
+.border-light {
+  border: var(--border-light);
+}
+.border-color {
+  border: var(--border-color);
+}
+.border-highlight {
+  border: var(--border-highlight);
+}
+.border-gradient {
   position: relative;
-}
-
-/* button */
-
-button,
-a {
-  background: none;
-  cursor: pointer;
-}
-
-.button {
-  position: relative;
-
-  padding: 0.5em 2em;
-  text-align: center;
-  border: 1px solid var(--gray);
-  border-radius: var(--corners);
-}
-
-.button::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  background: var(--gray);
-  z-index: -2;
-  display: none;
-  border-radius: var(--corners);
-}
-
-.button::before {
-  content: "";
-  position: absolute;
-  bottom: -0.5em;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-  height: 1px;
-  background-color: var(--gray);
-  transition: 0.2s;
-  border-radius: var(--corners);
-}
-
-.button:is(:hover, :focus) {
-  outline-color: var(--highlight);
-}
-
-.button:is(:hover, :focus)::after {
-  background: var(--gradient-color);
-}
-
-.button:is(:hover, :focus)::before {
-  width: 100%;
-  background: var(--gradient-color);
-}
-
-.button:active {
-  outline-color: var(--color);
-}
-
-:is(button, a).text {
-  padding: 0.5em 1em;
-  background: none;
-  border: none;
-  font-size: 1rem;
-  color: var(--color);
-}
-
-:is(button, a).icon {
-  padding: 0.5em;
-  background: none;
-  /* border: 1px solid var(--gray); */
-  border-radius: 50%;
-  aspect-ratio: 1 / 1;
-  border: 1px solid var(--gray);
-}
-
-/*  */
-picture.logo {
-  /* max-width: 100px; */
-  /* justify-self: center; */
-}
-
-:is(button, a).text,
-.hover-underline,
-.router-link-exact-active {
-  --underline-width: 0;
-  position: relative;
-}
-:is(button, a).text::after,
-.hover-underline::after,
-.router-link-exact-active::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: var(--underline-width);
-  height: 1px;
-  background: var(--gradient-color);
-  transition: 0.2s;
-  border-radius: var(--corners);
-}
-
-:is(button, a).text:is(:hover, :focus)::after,
-.hover-underline:is(:hover, :focus)::after,
-a.router-link-exact-active::after {
-  --underline-width: 100%;
-}
-
-.button.filled {
-  /* border-radius: 0; */
-  background: var(--gradient-color);
-  color: var(--paper);
-  padding: 1em 2em;
-  white-space: nowrap;
-}
-
-.loud-button {
-  position: relative;
-  padding: 1em 2em;
-  cursor: pointer;
-  text-align: center;
   background: var(--paper);
-  white-space: nowrap;
 }
-
-.loud-button::after {
+.border-gradient::after {
   content: "";
   position: absolute;
   inset: -1px;
   background: var(--gradient-color);
   z-index: -1;
   transition: 0.1s;
+  border-radius: inherit;
 }
 
-.loud-button:hover::after {
-  inset: -3px;
-  transition: 0.2s;
+/* Shadows  */
+.shadow {
+  box-shadow: var(--shadow);
 }
 
-button:disabled,
-a.button.disabled,
-button.button.disabled {
-  filter: saturate(0) brightness(0.4);
-  cursor: not-allowed;
-  pointer-events: none;
+.shadow-lines {
+  box-shadow: var(--shadow-lines);
+}
+.shadow-lines-light {
+  box-shadow: var(--shadow-lines-light);
 }
 
-[data-loading] [data-type="submit"] .button {
-  filter: brightness(1.1);
-  pointer-events: none;
-}
-[data-loading] [data-type="submit"] .button::before {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: transparent;
-  border-left: white 2px solid;
-  border-top: white 2px solid;
-
-  animation: rotate 1s linear infinite reverse;
-
-  transform: unset;
-
-  left: calc(50% - 10px);
-  bottom: -30px;
-
-  transition: width 0.1s, height 0.2s, border 0.25s, bottom 0.25s, left 0.1s;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+/* gradient texts */
 
 .gradient-text {
   background: var(--gradient-light);
@@ -224,18 +81,32 @@ button.button.disabled {
   padding: 0.25em 0;
 }
 
-.gradient-border {
-  background: var(--paper);
+/* Hover underline */
+:is(button, a).text,
+.hover-underline,
+.router-link-exact-active {
+  --underline-width: 0;
   position: relative;
 }
-.gradient-border::after {
+
+:is(button, a).text::after,
+.hover-underline::after,
+.router-link-exact-active::after {
   content: "";
   position: absolute;
-  inset: -1px;
+  bottom: 0;
+  left: 0;
+  width: var(--underline-width);
+  height: 1px;
   background: var(--gradient-color);
-  z-index: -1;
-  transition: 0.1s;
-  border-radius: inherit;
+  transition: 0.2s;
+  border-radius: var(--corners);
+}
+
+:is(button, a).text:is(:hover, :focus-visible)::after,
+.hover-underline:is(:hover, :focus-visible)::after,
+a.router-link-exact-active::after {
+  --underline-width: 100%;
 }
 
 /* tooltip */
@@ -256,17 +127,31 @@ button.button.disabled {
   visibility: hidden;
 }
 
-.scroll-indicator {
-  /* position: relative; */
+/* scrollbar */
+
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: var(--line-width); /* Firefox */
+}
+/* This part is for the scrollbar track / */
+*::-webkit-scrollbar {
+  width: var(--line-width);
+  height: var(--line-width);
 }
 
-.scroll-indicator::after {
-  content: "";
-  position: absolute;
-  width: 5px;
-  height: var(--scroll-position, 50px);
-  right: 0px;
-  top: 0px;
+/* / This part is for the track (the part that the thumb slides across) / */
+::-webkit-scrollbar-track {
+  box-shadow: var(--shadow);
+  border-radius: var(--corners);
+}
+
+/* / This part is for the thumb (the part you drag) / */
+::-webkit-scrollbar-thumb {
   background: var(--gradient-color);
-  z-index: 10;
+  border-radius: var(--corners);
+}
+
+/* / This part is for the thumb when it's being hovered over  */
+::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
 }

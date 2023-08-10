@@ -54,7 +54,7 @@ textarea {
     .formkit-fieldset,
     .multiselect.is-active,
     form-field.file-upload
-  ):is(:focus, :focus-visible, :focus-within, :active) {
+  ):is(:focus-visible, :focus-visible-visible, :focus-visible-within, :active) {
   box-shadow: var(--shadow) !important;
 }
 
@@ -82,7 +82,7 @@ textarea {
   width: 0%;
   background: var(--gradient-color);
 }
-:is(input, textarea):focus::after {
+:is(input, textarea):focus-visible::after {
   width: 100%;
 } */
 

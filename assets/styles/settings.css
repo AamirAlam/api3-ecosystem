@@ -19,9 +19,9 @@ html {
   --color-darker: hsla(var(--hue), 47%, 27%, 1);
   --color-darkest: hsla(var(--hue), 40%, 5%, 1);
 
-  --color-light: hsla(var(--hue), 65%, 76%, 1);
-  --color-lighter: hsla(var(--hue), 66%, 84%, 1);
-  --color-lightest: hsla(var(--hue), 64%, 90%, 1);
+  --color-light: hsla(var(--hue), 65%, 75%, 1);
+  --color-lighter: hsla(var(--hue), 66%, 80%, 1);
+  --color-lightest: hsla(var(--hue), 64%, 85%, 1);
 
   --highlight: hsla(calc(96 + var(--hue)), 58%, 54%, 1);
 
@@ -56,7 +56,7 @@ html {
 
   --gradient-color-light: linear-gradient(
     var(--gradient-direction),
-    var(--ink) 35%,
+    var(--ink),
     var(--color)
   );
 
@@ -98,11 +98,27 @@ html {
   --border-highlight: var(--line-width) solid var(--highlight);
 
   /* Shadows */
+  --shadow-line-gap: 5px;
+
   --shadow: var(--highlight) 0px 0px 40px -10px;
 
-  --shadow-lines: var(--color) 0px 0px 0px 1px, var(--paper) 0px 0px 0px 6px,
-    var(--color-dark) 0px 0px 0px 7px, var(--paper) 0px 0px 0px 12px,
-    var(--color-darker) 0px 0px 0px 13px;
+  --shadow-lines: var(--color) 0px 0px 0px var(--line-width),
+    var(--paper) 0px 0px 0px calc(var(--line-width) + var(--shadow-line-gap)),
+    var(--color-dark) 0px 0px 0px
+      calc((2 * var(--line-width)) + var(--shadow-line-gap)),
+    var(--paper) 0px 0px 0px
+      calc(2 * (var(--line-width) + var(--shadow-line-gap))),
+    var(--color-darker) 0px 0px 0px
+      calc((3 * var(--line-width)) + (2 * var(--shadow-line-gap)));
+
+  --shadow-lines-light: var(--color) 0px 0px 0px var(--line-width),
+    var(--paper) 0px 0px 0px calc(var(--line-width) + var(--shadow-line-gap)),
+    var(--color-light) 0px 0px 0px
+      calc((2 * var(--line-width)) + var(--shadow-line-gap)),
+    var(--paper) 0px 0px 0px
+      calc(2 * (var(--line-width) + var(--shadow-line-gap))),
+    var(--color-lighter) 0px 0px 0px
+      calc((3 * var(--line-width)) + (2 * var(--shadow-line-gap)));
 }
 /* #todo api3 triangle texture */
 

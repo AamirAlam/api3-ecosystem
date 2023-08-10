@@ -35,41 +35,13 @@ body {
   overflow-x: hidden;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-*::-webkit-scrollbar {
-  /* display: none; */
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-* {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: var(--line-width); /* Firefox */
-}
-/* This part is for the scrollbar track / */
-*::-webkit-scrollbar {
-  width: var(--line-width);
-  height: var(--line-width);
-}
-
-/* / This part is for the track (the part that the thumb slides across) / */
-::-webkit-scrollbar-track {
-  box-shadow: var(--shadow);
-  border-radius: 10px;
-}
-
-/* / This part is for the thumb (the part you drag) / */
-::-webkit-scrollbar-thumb {
-  background: var(--gradient-color);
-  border-radius: 10px;
-}
-
-/* / This part is for the thumb when it's being hovered over  */
-::-webkit-scrollbar-thumb:hover {
-  filter: brightness(1.2);
-}
 #__nuxt,
 .display-contents {
   display: contents;
+}
+
+.hide {
+  display: none;
 }
 
 .page-enter-active,
@@ -80,10 +52,6 @@ body {
 .page-leave-to {
   opacity: 0;
   filter: blur(1rem);
-}
-
-.hide {
-  display: none;
 }
 
 /* #todo nuxt3 transitions */
