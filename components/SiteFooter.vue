@@ -293,26 +293,25 @@ section.other inner-column {
   gap: 3rem;
   border-top: 1px solid var(--gray-dark);
 
-  @media (min-width: 1365px) {
-    grid-template-columns: 0.8fr 1.2fr 1fr;
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    justify-items: unset;
+    justify-items: center;
     justify-content: space-between;
     text-align: left;
     align-items: center;
   }
 
   .misc-links {
-    display: grid;
-    gap: 0.25rem;
-
+    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     @media (min-width: 768px) {
-      display: flex;
       gap: 2rem;
-      justify-content: center;
     }
     @media (min-width: 1024px) {
-      order: 2;
+      // order: 2;
     }
   }
   .social-icons {
@@ -322,9 +321,8 @@ section.other inner-column {
     place-items: center;
     fill: var(--gray);
     @media (min-width: 1024px) {
-      order: 3;
+      // order: 3;
       justify-content: center;
-      justify-self: center;
       gap: 3rem;
     }
 
@@ -336,7 +334,8 @@ section.other inner-column {
   p {
     color: var(--gray);
     @media (min-width: 1024px) {
-      order: 1;
+      // order: 1;
+      grid-column: 1/-1;
     }
   }
 }
