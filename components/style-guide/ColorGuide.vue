@@ -108,25 +108,40 @@ const colors = ref([
       variable: "--gradient-color-dark",
     },
   ],
-]);
-
-const textures = ref([
-  {
-    name: "Texture",
-    variable: "--texture",
-  },
-  {
-    name: "checkers",
-    variable: "--checkers",
-  },
-  {
-    name: "Diagonal",
-    variable: "--diagnol",
-  },
-  {
-    name: "Points",
-    variable: "--points",
-  },
+  [
+    {
+      name: "checkers",
+      class: "checkers",
+    },
+    {
+      name: "Diagonal",
+      class: "diagnol",
+    },
+    {
+      name: "Points",
+      class: "points",
+    },
+    {
+      name: "Pattern One",
+      class: "pattern-one",
+    },
+    {
+      name: "Pattern Two",
+      class: "pattern-two",
+    },
+    {
+      name: "Pattern Three",
+      class: "pattern-three",
+    },
+    {
+      name: "Pattern Four",
+      class: "pattern-four",
+    },
+    {
+      name: "Pattern Five",
+      class: "pattern-five",
+    },
+  ],
 ]);
 </script>
 
@@ -141,13 +156,18 @@ const textures = ref([
 
     <ul class="colors" v-for="colorGroup in colors">
       <li v-for="color in colorGroup" :key="color.name">
-        <div
-          class="pallete"
-          :style="`background: var(${color.variable})`"
-        ></div>
-        <div class="color-name">
-          <code>{{ color.variable }}</code>
-        </div>
+        <template v-if="!color.class">
+          <div class="pallete" :style="`background: var(${color.variable})`" />
+          <div class="color-name">
+            <code>{{ color.variable }}</code>
+          </div>
+        </template>
+        <template v-else>
+          <div class="pallete" :class="color.class" />
+          <div class="color-name">
+            <code>.{{ color.class }}</code>
+          </div>
+        </template>
       </li>
     </ul>
   </div>

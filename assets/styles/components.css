@@ -3,20 +3,46 @@
 @import "forms.css";
 @import "buttons.css";
 
-.texture {
-  background-image: var(--texture);
-}
-
+/* textures and patterns */
 .checkers {
   background-image: var(--checkers);
+  background-size: 5px;
 }
 
 .diagnol {
   background-image: var(--diagnol);
+  background-size: 15px;
 }
 
 .points {
   background-image: var(--points);
+}
+
+.pattern-one {
+  background-image: var(--pattern-one);
+
+  background-size: calc(100% / 10);
+}
+
+.pattern-two {
+  background-image: var(--pattern-two);
+  background-size: calc(100% / 5);
+}
+
+.pattern-three {
+  background-image: var(--pattern-three);
+  background-size: cover;
+  background-position: center;
+}
+
+.pattern-four {
+  background-image: var(--pattern-four);
+  background-size: calc(100% / 1.5);
+}
+.pattern-five {
+  background-image: var(--pattern-one);
+  background-size: 150%;
+  background-position: center;
 }
 
 /* borders */

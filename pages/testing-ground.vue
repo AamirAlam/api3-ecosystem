@@ -5,16 +5,9 @@ const ecosystem = useEcosystemStore();
 <template>
   <PageHeader heading="test ground" />
   <SectionColumn>
-    {{ ecosystem.chainOptions }}
-
     <ul>
-      <li v-for="chain in ecosystem.chainOptions">
-        <ChainIcon
-          :chain="chain.label"
-          fill="var(--color)"
-          stroke="var(--paper)"
-          strokeWidth="15%"
-        />
+      <li v-for="something in 10">
+        <div class="pallete diagnol"></div>
       </li>
     </ul>
   </SectionColumn>
@@ -23,8 +16,13 @@ const ecosystem = useEcosystemStore();
 <style scoped>
 ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 1rem;
+}
+
+.pallete {
+  width: 100%;
+  aspect-ratio: 1 /1;
 }
 </style>
 

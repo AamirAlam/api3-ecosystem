@@ -152,7 +152,7 @@ const miscLinks = [
 </script>
 
 <template>
-  <footer>
+  <footer class="diagnol">
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
