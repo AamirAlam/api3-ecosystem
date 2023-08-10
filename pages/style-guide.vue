@@ -15,7 +15,7 @@ useSeoMeta({
     <ColorGuide />
   </SectionColumn>
   <SectionColumn>
-    <MiscGuide />
+    <BorderGuide />
   </SectionColumn>
   <SectionColumn>
     <DecorationGuide />
@@ -51,6 +51,10 @@ useSeoMeta({
   @media (min-width: 768px) {
     font-size: var(--step-0);
   }
+}
+
+:deep(.slider) {
+  margin-top: 2rem;
 }
 </style>
 <style>

@@ -146,7 +146,8 @@ const buttonText = computed(() => {
       <h2 class="loud-voice">
         <template v-if="selected">
           Join the
-          <span class="gradient-text">{{ selected }}</span> by minting this NFT
+          <span class="gradient-text-color">{{ selected }}</span> by minting
+          this NFT
         </template>
         <template v-else>
           {{ content.unselectedHeading }}

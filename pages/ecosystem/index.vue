@@ -41,7 +41,7 @@ const ecosystem = useEcosystemStore();
 
 <template>
   <SectionColumn class="ecosystem-header">
-    <h1 class="loud-voice gradient-text">Search API3's Ecosystem</h1>
+    <h1 class="loud-voice gradient-text-color">Search API3's Ecosystem</h1>
 
     <NuxtLink to="/add-dapp" class="loud-button firm-voice">
       <span class=""> Add Your Own </span>

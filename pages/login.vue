@@ -8,7 +8,9 @@ const route = useRoute();
 
 <template>
   <SectionColumn>
-    <h1 class="loud-voice">Please Connect your wallet</h1>
+    <h1 class="loud-voice gradient-text-color-light">
+      Please Connect your wallet
+    </h1>
     <div class="actions">
       <ConnectButton />
     </div>
