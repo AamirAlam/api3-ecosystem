@@ -7,7 +7,11 @@
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
     xmlns:serif="http://www.serif.com/"
-    style="fill-rule: evenodd; clip-rule: evenodd; stroke-width: 1"
+    style="
+      fill-rule: evenodd;
+      clip-rule: evenodd;
+      stroke-width: calc(var(--line-width) / 2);
+    "
   >
     <g transform="matrix(1,0,0,1,-36000.9,-15888.6)">
       <g

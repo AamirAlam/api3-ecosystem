@@ -53,7 +53,7 @@ onMounted(() => {
   left: 50%;
   top: 50%;
   translate: -50% -50%;
-  background: linear-gradient(to right, var(--color), var(--highlight));
+  background: var(--gradient-color);
   animation: rotate 20s infinite;
   opacity: 0.1;
   pointer-events: none;
@@ -68,12 +68,12 @@ onMounted(() => {
   pointer-events: none;
 }
 
-body.index #blob {
-  opacity: 0.15;
-  height: 50vmax;
-}
-body.style-guide #blob {
-  opacity: 0.25;
-  height: 50vmax;
-}
+// body.index #blob {
+//   opacity: 0.15;
+//   height: 50vmax;
+// }
+// body.style-guide #blob {
+//   opacity: 0.25;
+//   height: 50vmax;
+// }
 </style>
