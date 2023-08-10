@@ -43,12 +43,12 @@ body {
 /* Hide scrollbar for IE, Edge and Firefox */
 * {
   -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: 1px; /* Firefox */
+  scrollbar-width: var(--line-width); /* Firefox */
 }
 /* This part is for the scrollbar track / */
 *::-webkit-scrollbar {
-  width: 1px;
-  height: 1px;
+  width: var(--line-width);
+  height: var(--line-width);
 }
 
 /* / This part is for the track (the part that the thumb slides across) / */
@@ -103,5 +103,5 @@ body {
 path,
 circle {
   vector-effect: non-scaling-stroke;
-  stroke-width: 1px;
+  stroke-width: var(--line-width);
 }
