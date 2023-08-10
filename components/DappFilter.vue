@@ -106,7 +106,7 @@ const handleFilter = (event) => {
                   :chain="ecosystem.chainNames(chain?.chainId)"
                   fill="var(--color)"
                   stroke="var(--paper)"
-                  strokeWidth="5%"
+                  strokeWidth="1px"
                 />
               </picture>
               {{ ecosystem.chainNames(chain?.chainId) }} ({{ chain.count }})

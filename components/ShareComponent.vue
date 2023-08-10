@@ -8,7 +8,6 @@ const { copy, copied, text } = useClipboard();
 
 const shareText = computed(() => {
   return `Check out ${window.location.origin}${route.fullPath} on API3 Ecosystem!`;
-
 });
 
 const socialsToShare = ref([

@@ -86,7 +86,7 @@ dapp-card {
   background: var(--gradient-dark);
 
   &:hover {
-    background: var(--gradient-dark-color);
+    background: var(--gradient-color-dark);
     transition: 0.2s ease-in-out;
   }
 

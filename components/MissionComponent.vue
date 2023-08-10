@@ -145,14 +145,11 @@ onMounted(() => {
             </div>
           </template>
         </text-content>
-        <!-- <picture class="graphic">
-          <img src="@/assets/images/square.jpg" alt="" />
-        </picture> -->
       </article>
-      <picture class="shape-graphic">
+      <picture class="shape-graphic hide">
         <CircleDecoration />
       </picture>
-      <picture class="background-graphic">
+      <picture class="background-graphic hide">
         <Transition @enter="animateBackground">
           <DatafeedIcon v-if="cardIndex == 0" />
           <DaoIcon v-else-if="cardIndex == 1" />
