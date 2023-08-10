@@ -86,11 +86,6 @@ body {
   display: none;
 }
 
-body:has(main.home) #blob {
-  opacity: 0.5;
-  /* #fixme */
-}
-
 /* #todo nuxt3 transitions */
 .fade-enter-active,
 .fade-leave-active {
@@ -103,4 +98,10 @@ body:has(main.home) #blob {
 
 :focus {
   outline: none;
+}
+
+path,
+circle {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1px;
 }
