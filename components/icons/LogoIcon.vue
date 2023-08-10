@@ -20,28 +20,22 @@
         <g transform="matrix(0.177261,0,0,0.309657,-7476.08,-681.082)">
           <path
             d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-            style="fill: none; stroke: var(--color); stroke-width: 2.5px"
+            style="fill: none; stroke: var(--color-darker)"
           />
         </g>
         <g transform="matrix(0.117463,0,0,0.205196,-6854.1,860.496)">
           <path
             d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-            style="fill: none; stroke: var(--color); stroke-width: 5px"
+            style="fill: none; stroke: var(--color-dark)"
           />
         </g>
         <g transform="matrix(0.0599381,0,0,0.104706,-6255.77,2342.61)">
           <path
             d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-            style="fill: none; stroke: var(--color); stroke-width: 10px"
+            style="fill: none; stroke: var(--color)"
           />
         </g>
       </g>
     </g>
   </svg>
 </template>
-
-<style scoped lang="scss">
-svg {
-  stroke: var(--color);
-}
-</style>
