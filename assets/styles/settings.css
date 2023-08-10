@@ -1,29 +1,37 @@
 html {
   /* Black and white */
   --colors: "!colors";
-  --black: hsla(0, 0%, 1%, 1);
-  --white: hsla(180, 0%, 95%, 1);
   --hue: 160;
+  --black: hsla(0, 0%, 1%, 1);
+  --white: hsla(var(--hue), 0%, 94%, 1);
 
-  --gray: hsla(var(--hue), 0%, 51%, 1);
+  --gray: hsla(var(--hue), 0%, 50%, 1);
+
   --gray-light: hsla(var(--hue), 0%, 71%, 1);
   --gray-lighter: hsla(var(--hue), 0%, 90%, 1);
 
   --gray-dark: hsla(var(--hue), 0%, 26%, 1);
+  --gray-darker: hsla(var(--hue), 0%, 15%, 1);
 
   --color: hsla(var(--hue), 64%, 69%, 1);
-  --color-shade: hsla(var(--hue), 28%, 27%, 1);
-  --color-dark: hsla(var(--hue), 65%, 10%, 1);
+
+  --color-dark: hsla(var(--hue), 51%, 46%, 1);
+  --color-darker: hsla(var(--hue), 47%, 27%, 1);
   --color-darkest: hsla(var(--hue), 40%, 5%, 1);
 
-  --highlight: hsla(calc(100 + var(--hue)), 34%, 54%, 1);
-  /* --highlight: hsla(240, 72%, 63%, 1.00); */
+  --color-light: hsla(var(--hue), 65%, 76%, 1);
+  --color-lighter: hsla(var(--hue), 66%, 84%, 1);
+  --color-lightest: hsla(var(--hue), 64%, 90%, 1);
+
+  --highlight: hsla(calc(96 + var(--hue)), 58%, 54%, 1);
+
+  --tertiary-color: hsla(calc(66 + var(--hue)), 77%, 44%, 1);
 
   --success: hsla(122, 85%, 65%, 1);
   --warning: hsla(0, 85%, 65%, 1);
 
   --paper: var(--black);
-  --ink: hsla(var(--hue), 0%, 95%, 1);
+  --ink: var(--white);
 
   /* Gradients */
   --gradient-direction: 130deg;
@@ -31,7 +39,7 @@ html {
   --gradient-dark: linear-gradient(
     var(--gradient-direction),
     var(--black) 35%,
-    hsla(153, 3%, 15%, 1)
+    var(--gray-darker)
   );
 
   --gradient-light: linear-gradient(
@@ -42,14 +50,20 @@ html {
 
   --gradient-color: linear-gradient(
     var(--gradient-direction),
-    var(--color),
+    var(--color) 35%,
     var(--highlight)
   );
 
-  --gradient-dark-color: linear-gradient(
+  --gradient-color-light: linear-gradient(
+    var(--gradient-direction),
+    var(--ink) 35%,
+    var(--color)
+  );
+
+  --gradient-color-dark: linear-gradient(
     var(--gradient-direction),
     var(--black) 35%,
-    var(--color-shade)
+    var(--color-dark)
   );
 
   /* Backgrounds */
@@ -75,12 +89,20 @@ html {
   --weight-light: 300;
 
   /* Borders */
-  --misc: "!misc";
-  --border: 1px solid var(--color);
+  --line-width: 1px;
   --corners: 1rem;
+
+  --border: var(--line-width) solid var(--gray);
+  --border-light: var(--line-width) solid var(--ink);
+  --border-color: var(--line-width) solid var(--color);
+  --border-highlight: var(--line-width) solid var(--highlight);
 
   /* Shadows */
   --shadow: var(--highlight) 0px 0px 40px -10px;
+
+  --shadow-lines: var(--color) 0px 0px 0px 1px, var(--paper) 0px 0px 0px 6px,
+    var(--color-dark) 0px 0px 0px 7px, var(--paper) 0px 0px 0px 12px,
+    var(--color-darker) 0px 0px 0px 13px;
 }
 /* #todo api3 triangle texture */
 
