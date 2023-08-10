@@ -30,12 +30,9 @@ const showcaseCards = ref([
 </script>
 <template>
   <div class="items">
-    <hero-card
-      class="item"
-      v-for="card in showcaseCards"
-      @mouseover="ui.changeHeroImage(card)"
-    >
-      <picture>
+    <hero-card class="item" v-for="card in showcaseCards">
+      <!-- @mouseover="ui.changeHeroImage(card)" -->
+      <picture class="hide">
         <img :src="card.image" alt="" />
       </picture>
       <text-content>
