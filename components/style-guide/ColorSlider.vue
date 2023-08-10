@@ -7,7 +7,7 @@ watch(hue, (newVal, oldVal) => {
 </script>
 
 <template>
-  <div class="color-slider">
+  <div class="color slider">
     <form-field>
       <FormKit
         type="range"
@@ -24,19 +24,6 @@ watch(hue, (newVal, oldVal) => {
 </template>
 
 <style scoped>
-.color-slider {
-  align-items: center;
-  margin-bottom: 2rem;
-
-  input {
-    flex: 1;
-    margin-right: 1rem;
-  }
-
-  span {
-    font-size: 1.5rem;
-  }
-}
 form-field {
   max-width: 50%;
 }

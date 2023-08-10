@@ -72,12 +72,12 @@ a {
 }
 
 .button:is(:hover, :focus)::after {
-  background: linear-gradient(to right, var(--color), var(--highlight));
+  background: var(--gradient-color);
 }
 
 .button:is(:hover, :focus)::before {
   width: 100%;
-  background: linear-gradient(to right, var(--color), var(--highlight));
+  background: var(--gradient-color);
 }
 
 .button:active {
@@ -204,14 +204,24 @@ button.button.disabled {
 }
 
 .gradient-text {
-  background: linear-gradient(
-    var(--gradient-direction),
-    var(--ink),
-    var(--color)
-  );
+  background: var(--gradient-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0.25em 0;
+}
+
+.gradient-text-color {
   background: var(--gradient-color);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  padding: 0.25em 0;
+}
+
+.gradient-text-color-light {
+  background: var(--gradient-color-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0.25em 0;
 }
 
 .gradient-border {
@@ -230,7 +240,7 @@ button.button.disabled {
 
 /* tooltip */
 .v-popper--theme-tooltip .v-popper__inner {
-  background: var(--gradient-dark-color) !important;
+  background: var(--gradient-color-dark) !important;
   font-family: var(--font);
   color: var(--ink);
   padding: 12px;
