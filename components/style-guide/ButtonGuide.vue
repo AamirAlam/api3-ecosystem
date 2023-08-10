@@ -23,12 +23,40 @@ const buttons = ref([
   },
   {
     name: "Loading",
+    class: "button",
+    isLoading: true,
+  },
+
+  {
+    name: "Loading",
     class: "button filled",
     isLoading: true,
   },
+
   {
     name: "Disabled",
-    class: "button disabled",
+    class: "button",
+    disabled: true,
+  },
+  {
+    name: "Disabled",
+    class: "text",
+    disabled: true,
+  },
+  {
+    name: "Disabled",
+    class: "icon button",
+    disabled: true,
+  },
+  {
+    name: "Disabled",
+    class: "button filled",
+    disabled: true,
+  },
+
+  {
+    name: "Disabled",
+    class: "loud-button",
     disabled: true,
   },
 ]);
