@@ -1,79 +1,113 @@
 <script setup>
-const basics = ref([
-  {
-    name: "Paper",
-    variable: "--paper",
-  },
-  {
-    name: "Ink",
-    variable: "--ink",
-  },
-  {
-    name: "Gray",
-    variable: "--gray",
-  },
-  {
-    name: "Gray Light",
-    variable: "--gray-light",
-  },
-  {
-    name: "Gray Lighter",
-    variable: "--gray-lighter",
-  },
-  {
-    name: "Gray Dark",
-    variable: "--gray-dark",
-  },
-]);
-
 const colors = ref([
-  {
-    name: "Primary",
-    variable: "--color",
-  },
-  {
-    name: "Color Dark",
-    variable: "--color-shade",
-  },
-  {
-    name: "Color Darker",
-    variable: "--color-dark",
-  },
-  {
-    name: "Cololr Darkest",
-    variable: "--color-darkest",
-  },
-  {
-    name: "Highlight",
-    variable: "--highlight",
-  },
-  {
-    name: "Success",
-    variable: "--success",
-  },
-  {
-    name: "Warning",
-    variable: "--warning",
-  },
-]);
+  [
+    {
+      name: "Paper",
+      variable: "--paper",
+    },
+    {
+      name: "Ink",
+      variable: "--ink",
+    },
+  ],
+  [
+    {
+      name: "Gray",
+      variable: "--gray",
+    },
+    {
+      name: "Gray Light",
+      variable: "--gray-light",
+    },
+    {
+      name: "Gray Lighter",
+      variable: "--gray-lighter",
+    },
+    {
+      name: "Gray Dark",
+      variable: "--gray-dark",
+    },
+    {
+      name: "Gray Darker",
+      variable: "--gray-darker",
+    },
+  ],
 
-const gradients = ref([
-  {
-    name: "Gradient Dark",
-    variable: "--gradient-dark",
-  },
-  {
-    name: "Gradient Light",
-    variable: "--gradient-light",
-  },
-  {
-    name: "Gradient Color",
-    variable: "--gradient-color",
-  },
-  {
-    name: "Gradient Color Darker",
-    variable: "--gradient-dark-color",
-  },
+  [
+    {
+      name: "Primary",
+      variable: "--color",
+    },
+    {
+      name: "Secondary",
+      variable: "--highlight",
+    },
+    {
+      name: "Tertiary",
+      variable: "--tertiary-color",
+    },
+  ],
+  [
+    {
+      name: "Color Lighter",
+      variable: "--color-light",
+    },
+    {
+      name: "Color Lighter",
+      variable: "--color-lighter",
+    },
+    {
+      name: "Cololr Lightest",
+      variable: "--color-lightest",
+    },
+  ],
+  [
+    {
+      name: "Color Darker",
+      variable: "--color-dark",
+    },
+    {
+      name: "Color Darker",
+      variable: "--color-darker",
+    },
+    {
+      name: "Cololr Darkest",
+      variable: "--color-darkest",
+    },
+  ],
+
+  [
+    {
+      name: "Success",
+      variable: "--success",
+    },
+    {
+      name: "Warning",
+      variable: "--warning",
+    },
+  ],
+  [
+    {
+      name: "Gradient Dark",
+      variable: "--gradient-dark",
+    },
+    {
+      name: "Gradient Light",
+      variable: "--gradient-light",
+    },
+    {
+      name: "Gradient Color",
+      variable: "--gradient-color",
+    },
+    {
+      name: "Gradient Color Lighter",
+      variable: "--gradient-color-light",
+    },
+    {
+      name: "Gradient Color Darker",
+      variable: "--gradient-color-dark",
+    },
+  ],
 ]);
 
 const textures = ref([
@@ -105,8 +139,8 @@ const textures = ref([
       used throughout the app.
     </p>
 
-    <ul class="colors">
-      <li v-for="color in basics" :key="color.name">
+    <ul class="colors" v-for="colorGroup in colors">
+      <li v-for="color in colorGroup" :key="color.name">
         <div
           class="pallete"
           :style="`background: var(${color.variable})`"
@@ -116,40 +150,6 @@ const textures = ref([
         </div>
       </li>
     </ul>
-
-    <ul class="colors">
-      <li v-for="color in colors" :key="color.name">
-        <div
-          class="pallete"
-          :style="`background: var(${color.variable})`"
-        ></div>
-        <div class="color-name">
-          <code>{{ color.variable }}</code>
-        </div>
-      </li>
-    </ul>
-    <ul class="colors">
-      <li v-for="color in gradients" :key="color.name">
-        <div
-          class="pallete"
-          :style="`background: var(${color.variable})`"
-        ></div>
-        <div class="color-name">
-          <code>{{ color.variable }}</code>
-        </div>
-      </li>
-    </ul>
-    <!-- <ul class="colors">
-      <li v-for="texture in textures" :key="texture.name">
-        <div
-          class="pallete"
-          :style="`backgroundImage: var(${texture.variable})`"
-        ></div>
-        <div class="texture-name">
-          <code>{{ texture.variable }}</code>
-        </div>
-      </li>
-    </ul> -->
   </div>
 
   <ColorSlider />
