@@ -13,8 +13,8 @@ const settings = ref([
     variable: "--shadow",
   },
   {
-    name: "gradient-text",
-    variable: ".gradient-text",
+    name: "gradient-text-color",
+    variable: ".gradient-text-color",
   },
   {
     name: "gradient-border",
@@ -67,7 +67,7 @@ const settings = ref([
     background: var(--color);
   }
   div.shadow {
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-lines);
   }
 }
 
