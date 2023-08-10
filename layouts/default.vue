@@ -11,5 +11,4 @@ const route = useRoute();
   <SiteFooter v-if="route.name != 'add-dapp' || route.name !== 'add-dapp-2'" />
 
   <BlobAnimation />
-  <!-- <BackgroundDecoration /> -->
 </template>
