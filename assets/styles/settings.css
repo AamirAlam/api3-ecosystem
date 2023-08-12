@@ -63,7 +63,7 @@ html {
   --gradient-color-dark: linear-gradient(
     var(--gradient-direction),
     var(--black) 35%,
-    var(--color-dark)
+    var(--color-darker)
   );
 
   /* Backgrounds */

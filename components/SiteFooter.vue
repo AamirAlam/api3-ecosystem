@@ -152,7 +152,7 @@ const miscLinks = [
 </script>
 
 <template>
-  <footer class="diagnol">
+  <footer class="">
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
@@ -220,9 +220,22 @@ const miscLinks = [
 <style scoped lang="scss">
 footer {
   padding: 4rem 0;
+  position: relative;
+
   inner-column {
     padding-left: 30px;
     padding-right: 30px;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--pattern-four);
+    background-repeat: no-repeat;
+    background-position: right;
+    z-index: -1;
+    opacity: 0.1;
   }
 }
 .calm-voice {
@@ -253,11 +266,13 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   justify-content: space-between;
+
   @media (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr 1fr;
     align-items: start;
   }
+
   @media (min-width: 1024px) {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr;
@@ -307,13 +322,16 @@ section.other inner-column {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+
     @media (min-width: 768px) {
       gap: 2rem;
     }
+
     @media (min-width: 1024px) {
       // order: 2;
     }
   }
+
   .social-icons {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
