@@ -1,3 +1,27 @@
+<script setup>
+import gsap from "gsap";
+
+onMounted(() => {
+  gsap.fromTo(
+    ".loading-triangle path",
+    {
+      scale: 0,
+      transformOrigin: "center",
+    },
+    {
+      duration: 1.5,
+      scale: 2,
+      transformOrigin: "center",
+      ease: "power2.inOut",
+      stagger: {
+        each: 0.1,
+        repeat: -1,
+      },
+    }
+  );
+});
+</script>
+
 <template>
   <div class="loading-spinner">
     <!-- <div class="spinner-text">+</div> -->
@@ -7,7 +31,7 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .loading-spinner {
   position: relative;
   width: 50px;
@@ -21,6 +45,11 @@
   width: 100%;
   aspect-ratio: 1 / 1;
   animation: spin 2s ease-out infinite;
+}
+.loading-triangle {
+  /* animation: strokeAnimate 1.5s linear infinite; */
+  /* stroke-dasharray: 100; */
+  width: 100%;
 }
 
 @keyframes spin {
@@ -39,10 +68,5 @@
   100% {
     stroke-dashoffset: 0;
   }
-}
-.loading-triangle {
-  animation: strokeAnimate 1.5s linear infinite;
-  stroke-dasharray: 100;
-  width: 100%;
 }
 </style>

@@ -5,11 +5,7 @@ const ecosystem = useEcosystemStore();
 <template>
   <PageHeader heading="test ground" />
   <SectionColumn>
-    <ul>
-      <li v-for="something in 10">
-        <div class="pallete diagnol"></div>
-      </li>
-    </ul>
+    <LoadingSpinner />
   </SectionColumn>
 </template>
 
