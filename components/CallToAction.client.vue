@@ -90,8 +90,9 @@ onMounted(() => {
   position: absolute;
 
   left: 100px;
-  transform: rotateY(180deg) rotate(-10deg) scaleX(1.4);
+  transform: rotateY(180deg) rotate(10deg) scaleX(1.4);
   z-index: -1;
+  opacity: 0.5;
 }
 
 .cta-module :is(h2, button, picture.graphic, .curves-decoration path) {
