@@ -147,8 +147,6 @@ const miscLinks = [
     external: true,
   },
 ];
-
-//#todo do the same for the other links
 </script>
 
 <template>

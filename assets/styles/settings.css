@@ -38,7 +38,7 @@ html {
 
   --gradient-dark: linear-gradient(
     var(--gradient-direction),
-    var(--black) 35%,
+    var(--paper) 35%,
     var(--gray-darker)
   );
 
@@ -62,7 +62,7 @@ html {
 
   --gradient-color-dark: linear-gradient(
     var(--gradient-direction),
-    var(--black) 35%,
+    var(--paper) 35%,
     var(--color-darker)
   );
 
@@ -128,8 +128,12 @@ html {
     var(--color-lighter) 0px 0px 0px
       calc((3 * var(--line-width)) + (2 * var(--shadow-line-gap)));
 }
-/* #todo api3 triangle texture */
 
-html {
-  --end: "!!!";
+@media (prefers-color-scheme: light) {
+  html {
+    /* --paper: var(--white);
+    --ink: var(--black);
+    --color-darker: var(--color-lighter);
+    --color-dark: var(--color-light); */
+  }
 }
