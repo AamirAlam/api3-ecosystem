@@ -5,7 +5,7 @@ const ecosystem = useEcosystemStore();
 <template>
   <PageHeader heading="test ground" />
   <SectionColumn>
-    <LoadingSpinner />
+    <JoinNewsletter />
   </SectionColumn>
 </template>
 

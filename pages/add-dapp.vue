@@ -196,13 +196,6 @@ form {
     align-content: center;
   }
 
-  .not-valid {
-    color: var(--warning);
-  }
-  .valid {
-    color: var(--success);
-  }
-
   div.actions {
     position: relative;
 

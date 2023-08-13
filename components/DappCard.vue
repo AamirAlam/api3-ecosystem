@@ -38,7 +38,7 @@ function filterBy(event) {
               @click="filterBy"
             >
               {{ ecosystem?.categoryToLabel?.[category] }}
-              <DynamicIcon :icon="category" />
+              <!-- <DynamicIcon :icon="category" /> -->
             </li>
           </ul>
         </div>

@@ -91,6 +91,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding: 0.25em 0;
+  width: max-content;
 }
 
 .gradient-text-color {
@@ -98,6 +99,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding: 0.25em 0;
+  width: max-content;
 }
 
 .gradient-text-color-light {
@@ -105,6 +107,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding: 0.25em 0;
+  width: max-content;
 }
 
 /* Hover underline */

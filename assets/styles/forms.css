@@ -43,18 +43,21 @@ input.multiselect-tags-search {
   border-radius: var(--corners);
 }
 
-input:not(.multiselect input, input[type="file"]),
-textarea {
+input:not(.multiselect input, .formkit-inner input, input[type="file"]),
+textarea,
+.formkit-inner {
   background: var(--gradient-dark) !important;
   position: relative;
 }
+
 :is(
-    input:not(.multiselect input, input[type="file"]),
+    input:not(.multiselect input, .formkit-inner input, input[type="file"]),
     textarea,
+    .formkit-inner,
     .formkit-fieldset,
     .multiselect.is-active,
     form-field.file-upload
-  ):is(:focus-visible, :focus-visible-visible, :focus-visible-within, :active) {
+  ):is(:focus-visible, :focus-visible, :focus-within, :active) {
   box-shadow: var(--shadow) !important;
 }
 
@@ -125,6 +128,8 @@ label {
   --multistep-color-success: var(--color) !important;
   --fk-color-help: var(--gray-light) !important;
 
+  --fk-margin-outer: 0 !important;
+
   /* vueform/multistep */
 
   --ms-bg: var(--gradient-dark) !important;
@@ -185,9 +190,16 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 10px;
   cursor: pointer;
-  animate: 0.2s;
+  /* animate: 0.2s; */
   box-shadow: 1px 1px 1px #000000;
   background: #3071a9;
   border-radius: 5px;
   border: 1px solid #000000;
+}
+
+.not-valid {
+  color: var(--warning);
+}
+.valid {
+  color: var(--success);
 }
