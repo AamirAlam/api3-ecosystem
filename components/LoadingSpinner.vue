@@ -1,6 +1,7 @@
 <script setup>
 import gsap from "gsap";
 
+const props = defineProps(["duration"]);
 onMounted(() => {
   gsap.fromTo(
     ".loading-triangle path",
@@ -9,7 +10,7 @@ onMounted(() => {
       transformOrigin: "center",
     },
     {
-      duration: 1.5,
+      duration: props.duration ?? 1.5,
       scale: 2,
       transformOrigin: "center",
       ease: "power2.inOut",
