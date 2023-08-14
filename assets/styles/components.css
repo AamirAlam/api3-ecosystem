@@ -7,42 +7,65 @@
 .checkers {
   background-image: var(--checkers);
   background-size: 5px;
+  filter: hue-rotate(var(--hue-rotate));
 }
 
 .diagnol {
   background-image: var(--diagnol);
   background-size: 15px;
+  filter: hue-rotate(var(--hue-rotate));
 }
 
 .points {
   background-image: var(--points);
+  filter: hue-rotate(var(--hue-rotate));
 }
 
 .pattern-one {
+  filter: hue-rotate(var(--hue-rotate));
   background-image: var(--pattern-one);
 
   background-size: calc(100% / 10);
 }
 
 .pattern-two {
+  filter: hue-rotate(var(--hue-rotate));
   background-image: var(--pattern-two);
   background-size: calc(100% / 5);
 }
 
 .pattern-three {
+  filter: hue-rotate(var(--hue-rotate));
   background-image: var(--pattern-three);
   background-size: cover;
   background-position: center;
 }
 
 .pattern-four {
+  filter: hue-rotate(var(--hue-rotate));
   background-image: var(--pattern-four);
   background-size: calc(100% / 1.5);
 }
 .pattern-five {
+  filter: hue-rotate(var(--hue-rotate));
   background-image: var(--pattern-one);
   background-size: 150%;
   background-position: center;
+}
+
+.pattern-six {
+  position: relative;
+}
+.pattern-six::after {
+  filter: hue-rotate(var(--hue-rotate));
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--pattern-four);
+  background-repeat: no-repeat;
+  background-position: right;
+  z-index: -1;
+  opacity: 0.15;
 }
 
 /* borders */
@@ -91,7 +114,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding: 0.25em 0;
-  width: max-content;
+  max-width: max-content;
 }
 
 .gradient-text-color {
@@ -99,7 +122,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding: 0.25em 0;
-  width: max-content;
+  max-width: max-content;
 }
 
 .gradient-text-color-light {
@@ -107,7 +130,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding: 0.25em 0;
-  width: max-content;
+  max-width: max-content;
 }
 
 /* Hover underline */
