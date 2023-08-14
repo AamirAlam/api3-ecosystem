@@ -150,7 +150,7 @@ const miscLinks = [
 </script>
 
 <template>
-  <footer class="">
+  <footer class="pattern-six">
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
@@ -225,16 +225,16 @@ footer {
     padding-right: 30px;
   }
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--pattern-four);
-    background-repeat: no-repeat;
-    background-position: right;
-    z-index: -1;
-    opacity: 0.1;
-  }
+  //   &::before {
+  //     content: "";
+  //     position: absolute;
+  //     inset: 0;
+  //     background: var(--pattern-four);
+  //     background-repeat: no-repeat;
+  //     background-position: right;
+  //     z-index: -1;
+  //     opacity: 0.1;
+  //   }
 }
 .calm-voice {
   font-size: var(--step-0);
