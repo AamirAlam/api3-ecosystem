@@ -49,30 +49,58 @@ const colors = ref([
   ],
   [
     {
-      name: "Color Lighter",
+      name: "Primary Light",
       variable: "--color-light",
     },
     {
-      name: "Color Lighter",
+      name: "Primary Lighter",
       variable: "--color-lighter",
     },
     {
-      name: "Cololr Lightest",
+      name: "Primary Lightest",
       variable: "--color-lightest",
     },
   ],
   [
     {
-      name: "Color Darker",
+      name: "Primary Dark",
       variable: "--color-dark",
     },
     {
-      name: "Color Darker",
+      name: "Primary Darker",
       variable: "--color-darker",
     },
     {
-      name: "Cololr Darkest",
+      name: "Primary Darkest",
       variable: "--color-darkest",
+    },
+  ],
+  [
+    {
+      name: "Secondary Light",
+      variable: "--highlight-light",
+    },
+    {
+      name: "Secondary Lighter",
+      variable: "--highlight-lighter",
+    },
+    {
+      name: "Secondary Lightest",
+      variable: "--highlight-lightest",
+    },
+  ],
+  [
+    {
+      name: "Secondary Dark",
+      variable: "--highlight-dark",
+    },
+    {
+      name: "Secondary Darker",
+      variable: "--highlight-darker",
+    },
+    {
+      name: "Secondary Darkest",
+      variable: "--highlight-darkest",
     },
   ],
 
@@ -141,8 +169,22 @@ const colors = ref([
       name: "Pattern Five",
       class: "pattern-five",
     },
+    {
+      name: "Pattern Six",
+      class: "pattern-six",
+    },
   ],
 ]);
+
+const hue = ref(160);
+
+watch(hue, (newVal, oldVal) => {
+  document.documentElement.style.setProperty("--hue", `${newVal}`);
+  document.documentElement.style.setProperty(
+    "--hue-rotate",
+    `${newVal - 160}deg`
+  );
+});
 </script>
 
 <template>
@@ -171,8 +213,20 @@ const colors = ref([
       </li>
     </ul>
   </div>
-
-  <ColorSlider />
+  <div class="color slider">
+    <form-field>
+      <FormKit
+        type="range"
+        v-model="hue"
+        min="0"
+        max="360"
+        step="1"
+        :label="`Hue: ${hue}`"
+        label-class="$reset notice-voice"
+        help="You can change the hue of the colors by using the slider below."
+      />
+    </form-field>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -189,5 +243,8 @@ div.pallete {
   height: 100px;
   border-radius: var(--corners);
   margin-bottom: 0.5rem;
+}
+form-field {
+  max-width: 50%;
 }
 </style>

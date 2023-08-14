@@ -11,10 +11,6 @@ const decorations = ref([
     component: "CurvesDecoration",
   },
   {
-    name: "Decoration Triangle",
-    component: "DecorationTriangle",
-  },
-  {
     name: "Circle Decoration",
     component: "CircleDecoration",
   },
@@ -28,10 +24,6 @@ const icons = ref([
   {
     name: "Logo Icon",
     component: "LogoIcon",
-  },
-  {
-    name: "Logo With Lines",
-    component: "LogoWithLines",
   },
   {
     name: "Menu Icon",

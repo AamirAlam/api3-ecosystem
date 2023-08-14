@@ -41,12 +41,12 @@ useSeoMeta({
     <FormGuide />
   </SectionColumn>
 
-  <SectionColumn id="text-guide">
-    <TextVoices />
-  </SectionColumn>
-
   <SectionColumn id="decoration-guide">
     <DecorationGuide />
+  </SectionColumn>
+
+  <SectionColumn id="text-guide">
+    <TextVoices />
   </SectionColumn>
 </template>
 

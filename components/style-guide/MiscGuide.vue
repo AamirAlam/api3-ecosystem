@@ -1,53 +1,59 @@
 <script setup>
 const settings = ref([
-  {
-    name: "border",
-    variable: ".border",
-  },
-  {
-    name: "border-light",
-    variable: ".border-light",
-  },
-  {
-    name: "border-color",
-    variable: ".border-color",
-  },
-  {
-    name: "border-highlight",
-    variable: ".border-highlight",
-  },
-  {
-    name: "border-gradient",
-    variable: ".border-gradient",
-  },
-  {
-    name: "shadow",
-    variable: ".shadow",
-  },
-  {
-    name: "shadow-lines",
-    variable: ".shadow-lines",
-  },
-  {
-    name: "shadow-lines-light",
-    variable: ".shadow-lines-light",
-  },
-  {
-    name: "gradient-text",
-    variable: ".gradient-text",
-  },
-  {
-    name: "gradient-text-color",
-    variable: ".gradient-text-color",
-  },
-  {
-    name: "gradient-text-color-light",
-    variable: ".gradient-text-color-light",
-  },
-  {
-    name: "hover-underline",
-    variable: "hover-underline",
-  },
+  [
+    {
+      name: "border",
+      variable: ".border",
+    },
+    {
+      name: "border-light",
+      variable: ".border-light",
+    },
+    {
+      name: "border-color",
+      variable: ".border-color",
+    },
+    {
+      name: "border-highlight",
+      variable: ".border-highlight",
+    },
+    {
+      name: "border-gradient",
+      variable: ".border-gradient",
+    },
+  ],
+  [
+    {
+      name: "shadow",
+      variable: ".shadow",
+    },
+    {
+      name: "shadow-lines",
+      variable: ".shadow-lines",
+    },
+    {
+      name: "shadow-lines-light",
+      variable: ".shadow-lines-light",
+    },
+  ],
+  [
+    {
+      name: "gradient-text",
+      variable: ".gradient-text",
+    },
+    {
+      name: "gradient-text-color",
+      variable: ".gradient-text-color",
+    },
+    {
+      name: "gradient-text-color-light",
+      variable: ".gradient-text-color-light",
+    },
+    {
+      name: "hover-underline",
+      variable: ".hover-underline",
+    },
+  ],
 ]);
 
 const corners = ref(16);
@@ -76,8 +82,8 @@ watch(shadowLineGap, (newVal, oldVal) => {
       <code>settings.css</code> and are available as CSS variables and classes
       which are used throughout the app.
     </p>
-    <ul class="settings">
-      <li v-for="setting in settings" :key="setting.name">
+    <ul class="settings" v-for="settingGroup in settings">
+      <li v-for="setting in settingGroup" :key="setting.name">
         <div :class="setting.name">
           <code>{{ setting.variable }}</code>
         </div>
