@@ -24,7 +24,7 @@ function submitHandler(event) {
         <FormKit
           type="submit"
           label="Join"
-          input-class="$reset button calm-voice"
+          input-class="$reset button whisper-voice"
         />
       </FormKit>
     </text-content>
