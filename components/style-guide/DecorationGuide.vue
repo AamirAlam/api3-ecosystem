@@ -86,9 +86,10 @@ index.value = Math.floor(
 );
 
 function loadIcon(component) {
-  return defineAsyncComponent(() =>
-    import(`@/components/icons/${component}.vue`)
-  );
+  return defineAsyncComponent(() => {
+    return import(`@/components/icons/${component}.vue`);
+    // change the import to search everything within /components and its subfolders to finding matching name
+  });
 }
 
 function loadDecoration(component) {

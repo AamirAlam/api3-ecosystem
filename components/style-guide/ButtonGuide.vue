@@ -74,7 +74,7 @@ const buttons = ref([
           v-tooltip="button.class"
           v-if="!button.isLoading"
         >
-          {{ button.name }}
+          {{ button.class }}
         </button>
         <div data-loading v-else>
           <div data-type="submit">
@@ -83,7 +83,7 @@ const buttons = ref([
               :disabled="button.disabled"
               v-tooltip="button.class"
             >
-              {{ button.name }}
+              {{ button.class }}
             </button>
           </div>
         </div>
