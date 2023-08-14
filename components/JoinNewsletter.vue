@@ -28,8 +28,8 @@ function submitHandler(event) {
         />
       </FormKit>
     </text-content>
-    <graphic-content>
-      <LoadingSpinner />
+    <graphic-content class="pattern-five">
+      <LoadingSpinner duration="2" isStrokeScaling="true" />
     </graphic-content>
   </div>
 </template>
@@ -57,11 +57,19 @@ graphic-content {
   position: absolute;
   inset: 0;
   top: -50%;
-  left: 25%;
+  left: 2%;
   z-index: -1;
+  background: unset;
 
   :deep(.loading-spinner) {
     width: 100%;
+
+    //  display: none;
+
+    path {
+      opacity: 0;
+      stroke-width: 4px;
+    }
   }
 }
 </style>
