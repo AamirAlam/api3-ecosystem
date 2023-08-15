@@ -150,6 +150,7 @@ watch(shadowLineGap, (newVal, oldVal) => {
     border-radius: var(--corners);
     display: grid;
     place-items: center;
+    text-align: center;
 
     animation: borderRadius 0.5s ease-in-out infinite alternate;
   }
