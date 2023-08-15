@@ -150,7 +150,7 @@ const miscLinks = [
 </script>
 
 <template>
-  <footer class="pattern-six">
+  <footer class="">
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
