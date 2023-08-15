@@ -23,15 +23,15 @@ html {
   --color-lighter: hsla(var(--hue), 66%, 80%, 1);
   --color-lightest: hsla(var(--hue), 64%, 85%, 1);
 
-  --highlight: hsla(calc(96 + var(--hue)), 58%, 54%, 1);
+  --highlight: hsla(calc(96 + var(--hue)), 34%, 54%, 1);
 
-  --highlight-light: hsla(calc(96 + var(--hue)), 58%, 64%, 1);
-  --highlight-lighter: hsla(calc(96 + var(--hue)), 58%, 74%, 1);
-  --highlight-lightest: hsla(calc(96 + var(--hue)), 58%, 90%, 1);
+  --highlight-light: hsla(calc(96 + var(--hue)), 34%, 64%, 1);
+  --highlight-lighter: hsla(calc(96 + var(--hue)), 34%, 74%, 1);
+  --highlight-lightest: hsla(calc(96 + var(--hue)), 34%, 90%, 1);
 
-  --highlight-dark: hsla(calc(96 + var(--hue)), 58%, 44%, 1);
-  --highlight-darker: hsla(calc(96 + var(--hue)), 58%, 34%, 1);
-  --highlight-darkest: hsla(calc(96 + var(--hue)), 58%, 10%, 1);
+  --highlight-dark: hsla(calc(96 + var(--hue)), 34%, 44%, 1);
+  --highlight-darker: hsla(calc(96 + var(--hue)), 34%, 34%, 1);
+  --highlight-darkest: hsla(calc(96 + var(--hue)), 34%, 10%, 1);
 
   --tertiary-color: hsla(calc(66 + var(--hue)), 77%, 44%, 1);
 
