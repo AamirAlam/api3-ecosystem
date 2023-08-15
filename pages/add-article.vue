@@ -58,7 +58,7 @@ async function submitHandler(event) {
 </script>
 
 <template>
-  <PageHeader heading="Add Article" />
+  <PageTitle heading="Add Article" />
   <SectionColumn>
     <file-upload>
       <FormKit type="form" @submit="submitHandler">
