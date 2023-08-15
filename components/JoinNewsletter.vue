@@ -29,7 +29,7 @@ function submitHandler(event) {
       </FormKit>
     </text-content>
     <graphic-content class="pattern-five">
-      <LoadingSpinner duration="2" isStrokeScaling="true" />
+      <LoadingSpinner duration="5" />
     </graphic-content>
   </div>
 </template>
@@ -57,7 +57,7 @@ graphic-content {
   position: absolute;
   inset: 0;
   top: -50%;
-  left: 2%;
+  left: 25%;
   z-index: -1;
   background: unset;
 
@@ -68,7 +68,7 @@ graphic-content {
 
     path {
       opacity: 0;
-      stroke-width: 4px;
+      stroke-width: 8px;
     }
   }
 }

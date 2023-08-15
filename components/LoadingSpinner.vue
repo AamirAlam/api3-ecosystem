@@ -1,7 +1,7 @@
 <script setup>
 import gsap from "gsap";
 
-const props = defineProps(["duration", "isStrokeScaling"]);
+const props = defineProps(["duration"]);
 onMounted(() => {
   gsap.fromTo(
     ".loading-triangle path",
@@ -12,7 +12,6 @@ onMounted(() => {
     },
     {
       duration: props.duration ?? 1.5,
-      vectorEffect: props.isStrokeScaling ? "unset" : "non-scaling-stroke",
       scale: 2,
       transformOrigin: "center",
       ease: "power2.inOut",
