@@ -52,6 +52,10 @@ useSeoMeta({
     <FormGuide />
   </SectionColumn>
 
+  <SectionColumn id="component-guide">
+    <ComponentGuide />
+  </SectionColumn>
+
   <SectionColumn id="decoration-guide">
     <DecorationGuide />
   </SectionColumn>

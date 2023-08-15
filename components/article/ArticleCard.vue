@@ -33,13 +33,13 @@ onMounted(() => {
     </picture>
     <text-content>
       <h3 class="firm-voice">
-        {{ article.title }}
+        {{ article?.title ?? "Article Title" }}
       </h3>
       <h4 class="whisper-voice">
-        {{ article.author.name }}
+        {{ article?.author.name ?? "Author Name" }}
       </h4>
 
-      <NuxtLink :to="`/articles/${slug(article._id)}`" class="text">
+      <NuxtLink :to="`/articles/${slug(article?._id ?? '#')}`" class="text">
         Read more
       </NuxtLink>
     </text-content>
@@ -83,12 +83,10 @@ article-card {
     padding: 1rem;
 
     .firm-voice {
-      font-size: var(--step-0);
       margin-bottom: 0.5rem;
     }
 
     .calm-voice {
-      font-size: var(--step--1);
       margin-top: 0.5rem;
     }
   }

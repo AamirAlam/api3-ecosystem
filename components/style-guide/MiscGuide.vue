@@ -165,6 +165,8 @@ watch(shadowLineGap, (newVal, oldVal) => {
 }
 
 form-field {
-  max-width: 50%;
+  @media (min-width: 768px) {
+    max-width: 50%;
+  }
 }
 </style>
