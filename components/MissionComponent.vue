@@ -208,7 +208,7 @@ mission-section {
     width: 40vmin;
     height: 40vmin;
     z-index: -1;
-    opacity: 0.3;
+    opacity: 0.5;
     //  transform: rotate(20deg);
 
     @media (min-width: 768px) {

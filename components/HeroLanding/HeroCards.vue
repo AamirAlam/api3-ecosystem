@@ -8,7 +8,7 @@ const showcaseCards = ref([
     paragraph: "Discover and explore API3's Ecosystem partners.",
     cta: "Explore Ecosystem",
     link: "/ecosystem",
-    image: "/images/hero-graphic-ecosystem.svg",
+    image: "/images/icons/dao.svg",
   },
   {
     heading: "Developers",
@@ -16,7 +16,7 @@ const showcaseCards = ref([
       "Learn how to utilize oracles while building your own blockchain applications.",
     cta: "Get Started",
     link: "http://docs.api3.org",
-    image: "/images/hero-ecosystem-gears.svg",
+    image: "/images/icons/developer-tool.svg",
   },
 
   {
