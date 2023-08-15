@@ -105,6 +105,7 @@ export default authenticated(
         const createdProject = await new Project(payload).save();
 
         // // verify build and create pr
+        payload.status = "active";
         const buildResult = await checkBuildStatus(payload, createdProject.id);
 
         if (!buildResult.success) {
