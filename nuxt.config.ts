@@ -31,7 +31,11 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ["@/assets/styles/site.css", "@formkit/themes/genesis", "floating-vue/dist/style.css"],
+  css: [
+    "@/assets/styles/site.css",
+    "@formkit/themes/genesis",
+    "floating-vue/dist/style.css",
+  ],
 
   build: {
     transpile: ["gsap"],
@@ -95,6 +99,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     mongodbUri: process.env.NUXT_MONGODB_URI,
+    mongodbUriDev: process.env.NUXT_MONGODB_URI_DEV,
     awsAccessKeyId: process.env.NUXT_AWS_ACCESS_KEY_ID,
     awsSecretAccessKey: process.env.NUXT_AWS_SECRET_ACCESS_KEY,
     rootBucket: process.env.NUXT_ROOT_BUCKET,

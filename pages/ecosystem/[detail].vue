@@ -96,8 +96,8 @@ const formattedProxies = (dappData) => {
         <detail-content>
           <section class="about">
             <h2 class="attention-voice">About</h2>
-            <p>
-              {{ dapp?.description }}
+            <p class="pre-line">
+              {{ dapp?.description?.replace(/\/n/g, "\n") }}
             </p>
           </section>
 
@@ -145,6 +145,10 @@ article.main detail-content {
       color: var(--gray);
     }
   }
+}
+
+.pre-line {
+  white-space: pre-line;
 }
 
 :deep(.dapp-title) {

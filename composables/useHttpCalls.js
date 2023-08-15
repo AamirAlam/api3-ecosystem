@@ -12,7 +12,10 @@ export const useHttpCalls = () => {
       // append dappform to body, dappForm is vue reactive, so needs .value
       body.append("name", dappForm.value.name);
       body.append("tagline", dappForm.value.tagline);
-      body.append("description", dappForm.value.description);
+      body.append(
+        "description",
+        dappForm.value.description?.replace(/\n/g, "/n")
+      );
       body.append("chains", JSON.stringify(dappForm.value.chains));
       body.append("categories", JSON.stringify(dappForm.value.categories));
       body.append("productType", dappForm.value?.productType);

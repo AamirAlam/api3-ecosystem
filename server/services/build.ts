@@ -1,9 +1,11 @@
 import { ProjectType } from "server/types";
 import shelljs from "shelljs";
+import { createPR } from "./github";
 
 interface BuildStatus {
   success: boolean;
   message: string;
+  data?: any | undefined;
 }
 
 const config = useRuntimeConfig();
@@ -18,7 +20,7 @@ async function verifyBuild(
   projectId: string
 ): Promise<BuildStatus> {
   // chenge dir to dapp-registry
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const isProjectDirExists = shelljs.exec(`cd dapp-registry`).code === 0;
 
     if (!isProjectDirExists) {
@@ -49,7 +51,7 @@ async function verifyBuild(
 
     const prTitle = projectData.name?.split(" ")?.join("-");
     const branch = `${prTitle}-${projectId}`;
-    const path = `projects/${branch}.json`;
+    const path = `projects/${prTitle}.json`;
 
     const isProjectAdded =
       shelljs.exec(
@@ -68,17 +70,38 @@ async function verifyBuild(
     const isBuildSuccess =
       shelljs.exec(`cd dapp-registry && yarn build`).code === 0;
 
-    // clean git repo after build check
-    const isCleaned =
-      shelljs.exec(`cd dapp-registry && git reset --hard && git clean -fd`)
-        .code === 0;
-
     if (!isBuildSuccess) {
       reject({ success: false, message: "Build failed with new project" });
       return;
     }
 
-    resolve({ success: true, message: "Build success with new project data" });
+    // create pr after build success
+
+    const prStatus = await createPR(projectData, projectId);
+
+    if (!prStatus.success) {
+      // clean git repo after pr created
+      const isCleaned =
+        shelljs.exec(`cd dapp-registry && git reset --hard && git clean -fd`)
+          .code === 0;
+
+      reject({
+        success: false,
+        message: prStatus.message,
+      });
+      return;
+    }
+
+    // clean git repo after pr created
+    const isCleaned =
+      shelljs.exec(`cd dapp-registry && git reset --hard && git clean -fd`)
+        .code === 0;
+
+    resolve({
+      success: true,
+      message: prStatus.message,
+      data: prStatus.data,
+    });
   });
 }
 
