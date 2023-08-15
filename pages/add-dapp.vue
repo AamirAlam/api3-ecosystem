@@ -114,7 +114,6 @@ onMounted(async () => {
       <div class="step">
         <ContentStep :dappForm="dappForm" />
       </div>
-      {{ scrollPosition }}
       <div class="step">
         <ImageStep :dappForm="dappForm" />
       </div>
