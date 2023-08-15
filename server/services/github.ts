@@ -1,4 +1,5 @@
 import { Octokit } from "@octokit/rest";
+import { createAppAuth } from "@octokit/auth-app";
 import fs from "fs";
 
 interface PrStatus {
@@ -9,7 +10,14 @@ interface PrStatus {
 
 const config = useRuntimeConfig();
 const octokit = new Octokit({
-  auth: config.gitAccessToken,
+  authStrategy: createAppAuth,
+  auth: {
+    appId: config.gitAppId,
+    privateKey: config.gitAppPrivateKey,
+    installationId: config.gitAppInstallationId,
+    clientId: config.gitAppClientId,
+    clientSecret: config.gitAppClientSecret,
+  },
 });
 
 const owner = config.nodeEnv === "production" ? "api3dao" : "AamirAlam";
