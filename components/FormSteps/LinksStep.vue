@@ -24,7 +24,7 @@ function buttonHandle(valid, direction) {
           type="url"
           id="website"
           v-model="dappForm.links.website"
-          label="Website"
+          label="Website*"
           label-class="$reset notice-voice"
           validation="url"
           placeholder="https://yourwebsite.com"
@@ -37,7 +37,7 @@ function buttonHandle(valid, direction) {
           validation="url"
           id="dapp"
           v-model="dappForm.links.dapp"
-          label="dApp"
+          label="dApp*"
           label-class="$reset notice-voice"
           placeholder="https://yourdapp.com"
         />

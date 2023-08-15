@@ -91,7 +91,7 @@ onMounted(() => {
       </picture>
       <ClientOnly>
         <h1
-          class="page-title"
+          class="page-title gradient-text-color-light"
           :class="{ 'booming-voice': !ui.isMobile, 'loud-voice': ui.isMobile }"
         >
           Connecting the First-Party Oracle Ecosystem
@@ -101,9 +101,9 @@ onMounted(() => {
       </ClientOnly>
 
       <div class="intro-paragraph">
-        <picture>
+        <!-- <picture>
           <LogoWithLines />
-        </picture>
+        </picture> -->
         <p class="notice-voice">
           Welcome to the API3 ecosystem a space for blockchain enthusiasts,
           developers, and visionaries from across the globe using API3 data
@@ -125,7 +125,7 @@ onMounted(() => {
   right: 150px;
   width: 400px;
   z-index: -1;
-  filter: hue-rotate(120deg);
+  //   filter: hue-rotate(96deg);
   opacity: 0.25;
 }
 hero-landing {
@@ -176,32 +176,30 @@ hero-landing {
     align-content: start;
 
     @media (min-width: 768px) {
-      grid-column: 1 / -7;
-      grid-template-columns: 0.1fr 1fr;
+      /* grid-column: 1 / -7;
+     grid-template-columns: 0.1fr 1fr; */
+
       gap: 2rem;
     }
     @media (min-width: 1194px) {
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: inherit;
       p {
         grid-column: 2 / -1;
       }
     }
 
     picture {
-      // aspect-ratio: 1 / 1;
       max-width: 50px;
-      background-image: url("@/assets/images/logo-lines.svg");
-      background-size: cover;
-      background-position: center;
       height: 100%;
-      // aspect-ratio: 16/9;
+      display: grid;
+      justify-content: center;
 
       @media (min-width: 768px) {
         max-width: 200px;
       }
 
       svg {
-        opacity: 0;
+        width: 105px;
       }
     }
 

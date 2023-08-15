@@ -38,7 +38,7 @@ function filterBy(event) {
               @click="filterBy"
             >
               {{ ecosystem?.categoryToLabel?.[category] }}
-              <DynamicIcon :icon="category" />
+              <!-- <DynamicIcon :icon="category" /> -->
             </li>
           </ul>
         </div>
@@ -46,7 +46,7 @@ function filterBy(event) {
     </header>
 
     <text-content>
-      <h2 class="attention-voice">{{ dapp.name }}</h2>
+      <h2 class="firm-voice">{{ dapp.name }}</h2>
 
       <p class="whisper-voice">{{ dapp.tagline }}</p>
     </text-content>
@@ -86,7 +86,7 @@ dapp-card {
   background: var(--gradient-dark);
 
   &:hover {
-    background: var(--gradient-dark-color);
+    background: var(--gradient-color-dark);
     transition: 0.2s ease-in-out;
   }
 

@@ -1,120 +1,146 @@
 /* buttons and icons and smaller reusable bits here */
 
 @import "forms.css";
+@import "buttons.css";
 
-.texture {
-  background-image: var(--texture);
-}
-
+/* textures and patterns */
 .checkers {
   background-image: var(--checkers);
+  background-size: 5px;
+  filter: hue-rotate(var(--hue-rotate));
 }
 
 .diagnol {
   background-image: var(--diagnol);
+  background-size: 15px;
+  filter: hue-rotate(var(--hue-rotate));
 }
 
 .points {
   background-image: var(--points);
+  filter: hue-rotate(var(--hue-rotate));
 }
 
-div.actions {
-  display: flex;
-  gap: 1rem;
+.pattern-one {
+  filter: hue-rotate(var(--hue-rotate));
+  background-image: var(--pattern-one);
+
+  background-size: calc(100% / 10);
 }
 
-a {
+.pattern-two {
+  filter: hue-rotate(var(--hue-rotate));
+  background-image: var(--pattern-two);
+  background-size: calc(100% / 5);
+}
+
+.pattern-three {
+  filter: hue-rotate(var(--hue-rotate));
+  background-image: var(--pattern-three);
+  background-size: cover;
+  background-position: center;
+}
+
+.pattern-four {
+  filter: hue-rotate(var(--hue-rotate));
+  background-image: var(--pattern-four);
+  background-size: calc(100% / 1.5);
+}
+.pattern-five {
+  filter: hue-rotate(var(--hue-rotate));
+  background-image: var(--pattern-one);
+  background-size: 150%;
+  background-position: center;
+}
+
+.pattern-six {
   position: relative;
 }
-
-/* button */
-
-button,
-a {
-  background: none;
-  cursor: pointer;
+.pattern-six::after {
+  filter: hue-rotate(var(--hue-rotate));
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--pattern-four);
+  background-repeat: no-repeat;
+  background-position: right;
+  z-index: -1;
+  opacity: 0.15;
 }
 
-:is(button, a).button {
+/* borders */
+.border {
+  border: var(--border);
+}
+.border-light {
+  border: var(--border-light);
+}
+.border-color {
+  border: var(--border-color);
+}
+.border-highlight {
+  border: var(--border-highlight);
+}
+.border-gradient {
   position: relative;
-
-  padding: 0.5em 2em;
-  text-align: center;
-  border: 1px solid var(--gray);
-  border-radius: var(--corners);
-
-  font-size: 0.875rem;
+  background: var(--paper);
 }
-
-.button::after {
+.border-gradient::after {
   content: "";
   position: absolute;
   inset: -1px;
-  background: var(--gray);
-  z-index: -2;
-  display: none;
-  border-radius: var(--corners);
+  background: var(--gradient-color);
+  z-index: -1;
+  transition: 0.1s;
+  border-radius: inherit;
 }
 
-.button::before {
-  content: "";
-  position: absolute;
-  bottom: -0.5em;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-  height: 1px;
-  background-color: var(--gray);
-  transition: 0.2s;
-  border-radius: var(--corners);
+/* Shadows  */
+.shadow {
+  box-shadow: var(--shadow);
 }
 
-.button:is(:hover, :focus) {
-  outline-color: var(--highlight);
+.shadow-lines {
+  box-shadow: var(--shadow-lines);
+}
+.shadow-lines-light {
+  box-shadow: var(--shadow-lines-light);
 }
 
-.button:is(:hover, :focus)::after {
-  background: linear-gradient(to right, var(--color), var(--highlight));
+/* gradient texts */
+
+.gradient-text {
+  background: var(--gradient-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0.25em 0;
+  max-width: max-content;
 }
 
-.button:is(:hover, :focus)::before {
-  width: 100%;
-  background: linear-gradient(to right, var(--color), var(--highlight));
+.gradient-text-color {
+  background: var(--gradient-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0.25em 0;
+  max-width: max-content;
 }
 
-.button:active {
-  outline-color: var(--color);
+.gradient-text-color-light {
+  background: var(--gradient-color-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0.25em 0;
+  max-width: max-content;
 }
 
-:is(button, a).text {
-  padding: 0.5em 1em;
-  background: none;
-  border: none;
-  font-size: 1rem;
-  color: var(--color);
-}
-
-:is(button, a).icon {
-  padding: 0.5em;
-  background: none;
-  /* border: 1px solid var(--gray); */
-  border-radius: 50%;
-  aspect-ratio: 1 / 1;
-  border: 1px solid var(--gray);
-}
-
-/*  */
-picture.logo {
-  /* max-width: 100px; */
-  /* justify-self: center; */
-}
-
+/* Hover underline */
 :is(button, a).text,
 .hover-underline,
 .router-link-exact-active {
   --underline-width: 0;
   position: relative;
 }
+
 :is(button, a).text::after,
 .hover-underline::after,
 .router-link-exact-active::after {
@@ -129,93 +155,15 @@ picture.logo {
   border-radius: var(--corners);
 }
 
-:is(button, a).text:is(:hover, :focus)::after,
-.hover-underline:is(:hover, :focus)::after,
+:is(button, a).text:is(:hover, :focus-visible)::after,
+.hover-underline:is(:hover, :focus-visible)::after,
 a.router-link-exact-active::after {
   --underline-width: 100%;
 }
 
-.button.filled {
-  border-radius: 0;
-  background: var(--gradient-color);
-  font-size: var(--step-1);
-  font-weight: var(--weight-semibold);
-  padding: 1em 2em;
-}
-
-.loud-button {
-  position: relative;
-  padding: 1em 2em;
-  cursor: pointer;
-  text-align: center;
-  background: var(--paper);
-}
-
-.loud-button::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  background: var(--gradient-color);
-  z-index: -1;
-  transition: 0.1s;
-}
-
-.loud-button:hover::after {
-  inset: -3px;
-  transition: 0.2s;
-}
-
-button:disabled {
-  filter: saturate(0) brightness(0.4);
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-[data-loading] [data-type="submit"] .button {
-  filter: brightness(1.1);
-  pointer-events: none;
-}
-[data-loading] [data-type="submit"] .button::before {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: transparent;
-  border-left: white 2px solid;
-  border-top: white 2px solid;
-
-  animation: rotate 1s linear infinite reverse;
-
-  transform: unset;
-
-  left: calc(50% - 10px);
-  bottom: -30px;
-
-  transition: width 0.1s, height 0.2s, border 0.25s, bottom 0.25s, left 0.1s;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg) translateX(-50%);
-  }
-  100% {
-    transform: rotate(360deg) translateX(-50%);
-  }
-}
-
-.gradient-text {
-  background: linear-gradient(
-    var(--gradient-direction),
-    var(--ink),
-    var(--color)
-  );
-  background: var(--gradient-color);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 /* tooltip */
 .v-popper--theme-tooltip .v-popper__inner {
-  background: var(--gradient-dark-color) !important;
+  background: var(--gradient-color-dark) !important;
   font-family: var(--font);
   color: var(--ink);
   padding: 12px;
@@ -231,17 +179,31 @@ button:disabled {
   visibility: hidden;
 }
 
-.scroll-indicator {
-  /* position: relative; */
+/* scrollbar */
+
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: var(--line-width); /* Firefox */
+}
+/* This part is for the scrollbar track / */
+*::-webkit-scrollbar {
+  width: var(--line-width);
+  height: var(--line-width);
 }
 
-.scroll-indicator::after {
-  content: "";
-  position: absolute;
-  width: 5px;
-  height: var(--scroll-position, 50px);
-  right: 0px;
-  top: 0px;
+/* / This part is for the track (the part that the thumb slides across) / */
+::-webkit-scrollbar-track {
+  box-shadow: var(--shadow);
+  border-radius: var(--corners);
+}
+
+/* / This part is for the thumb (the part you drag) / */
+::-webkit-scrollbar-thumb {
   background: var(--gradient-color);
-  z-index: 10;
+  border-radius: var(--corners);
+}
+
+/* / This part is for the thumb when it's being hovered over  */
+::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.2);
 }

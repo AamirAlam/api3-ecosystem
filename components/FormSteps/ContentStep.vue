@@ -31,7 +31,7 @@ onMounted(() => {
     <form-field>
       <FormKit
         type="text"
-        label="Dapp name"
+        label="Dapp name*"
         label-class="$reset notice-voice"
         name="dappName"
         placeholder="Insert your dApp name"
@@ -45,7 +45,7 @@ onMounted(() => {
     <form-field>
       <FormKit
         type="text"
-        label="Tagline"
+        label="Tagline*"
         label-class="$reset notice-voice"
         name="shortDescription"
         placeholder="Insert a quater-tweet sized description of your dApp"
@@ -61,7 +61,7 @@ onMounted(() => {
       <FormKit
         type="textarea"
         rows="5"
-        label="Description"
+        label="Description*"
         label-class="$reset notice-voice"
         name="longDescription"
         placeholder="Insert a longer form description of your dApp"

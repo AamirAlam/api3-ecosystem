@@ -1,10 +1,12 @@
-<script scoped></script>
+<script setup>
+const props = defineProps(["strokeWidth"]);
+</script>
 
 <template>
   <svg
     width="100%"
-    class="decoration-triangle"
     height="100%"
+    class="decoration-triangle"
     viewBox="0 0 251 220"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
@@ -17,6 +19,7 @@
       stroke-linejoin: round;
       stroke-miterlimit: 2;
     "
+    :style="strokeWidth ? `stroke-width: ${strokeWidth};` : ''"
   >
     <g transform="matrix(1,0,0,1,-15413.7,-12365.8)">
       <g transform="matrix(1,0,0,1,15413.6,12366.2)">
@@ -78,6 +81,6 @@
 .decoration-triangle {
   fill: none;
   stroke: var(--color);
-  stroke-width: 0.1;
+  stroke-width: 0.5;
 }
 </style>

@@ -10,7 +10,7 @@ useHead({
 
 <template>
   <SectionColumn class="error-page">
-    <h1 class="booming-voice gradient-text">
+    <h1 class="booming-voice gradient-text-color">
       {{ error.statusCode }}
     </h1>
     <h2 class="attention-voice">

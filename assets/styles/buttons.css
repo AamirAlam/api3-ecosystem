@@ -1,0 +1,163 @@
+div.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+a {
+  position: relative;
+}
+
+/* button */
+
+button,
+a {
+  background: none;
+  cursor: pointer;
+}
+
+.button {
+  position: relative;
+
+  padding: 0.5em 2em;
+  text-align: center;
+  border: var(--border);
+  border-radius: var(--corners);
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  bottom: -0.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 1px;
+  background-color: var(--gray);
+  transition: 0.2s;
+}
+
+.button:is(:hover, :focus-visible) {
+  outline-color: var(--highlight);
+  /* border-color: var(--highlight); */
+  /* box-shadow: var(--shadow-lines); */
+}
+
+.button:is(:hover, :focus-visible)::before {
+  width: 100%;
+  background: var(--gradient-color);
+}
+
+.button:active {
+  outline: unset;
+}
+
+/* Text buttons and acnhors  */
+:is(button, a).text {
+  padding: 0.5em 1em;
+  background: none;
+  border: none;
+
+  color: var(--color);
+}
+
+/* Icons */
+
+:is(button, a).icon {
+  padding: 0.5em;
+  background: none;
+  border: var(--border);
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+:is(button, a).icon:active::before {
+  display: none;
+}
+
+:is(button, a).icon:active {
+  box-shadow: var(--shadow-lines);
+}
+
+/* filled button */
+
+.button.filled {
+  background: var(--gradient-color);
+  color: var(--paper);
+  padding: 1em 2em;
+  white-space: nowrap;
+  border: unset;
+}
+
+/* Loud button */
+
+.loud-button {
+  position: relative;
+  padding: 1em 2em;
+  cursor: pointer;
+  text-align: center;
+  background: var(--paper);
+  white-space: nowrap;
+}
+
+.loud-button::before {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--line-width));
+  background: var(--gradient-color);
+  z-index: -1;
+  transition: 0.1s;
+}
+
+.loud-button:is(:hover, :focus-visible)::before {
+  box-shadow: var(--shadow-lines);
+}
+html:has(.loud-button:active) {
+  --shadow-line-gap: 10px;
+}
+.loud-button:active::before {
+  transition: 0.1s;
+}
+
+/* diabled buttons */
+
+button:disabled,
+a.button.disabled,
+button.button.disabled {
+  filter: saturate(0) brightness(0.4);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* loading buttons */
+
+[data-loading] [data-type="submit"] :is(.button) {
+  filter: brightness(1.1);
+  pointer-events: none;
+}
+[data-loading] [data-type="submit"] :is(.button)::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: transparent;
+  border-left: var(--ink) 2px solid;
+  border-top: var(--ink) 2px solid;
+
+  animation: rotate 1s linear infinite;
+
+  transform: unset;
+
+  left: calc(50% - 10px);
+  bottom: -30px;
+
+  transition: width 0.1s, height 0.2s, border 0.25s, bottom 0.25s, left 0.1s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

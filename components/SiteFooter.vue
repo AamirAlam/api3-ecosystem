@@ -147,12 +147,10 @@ const miscLinks = [
     external: true,
   },
 ];
-
-//#todo do the same for the other links
 </script>
 
 <template>
-  <footer>
+  <footer class="">
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
@@ -220,10 +218,23 @@ const miscLinks = [
 <style scoped lang="scss">
 footer {
   padding: 4rem 0;
+  position: relative;
+
   inner-column {
     padding-left: 30px;
     padding-right: 30px;
   }
+
+  //   &::before {
+  //     content: "";
+  //     position: absolute;
+  //     inset: 0;
+  //     background: var(--pattern-four);
+  //     background-repeat: no-repeat;
+  //     background-position: right;
+  //     z-index: -1;
+  //     opacity: 0.1;
+  //   }
 }
 .calm-voice {
   font-size: var(--step-0);
@@ -253,11 +264,13 @@ nav {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   justify-content: space-between;
+
   @media (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr 1fr;
     align-items: start;
   }
+
   @media (min-width: 1024px) {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr;
@@ -293,28 +306,30 @@ section.other inner-column {
   gap: 3rem;
   border-top: 1px solid var(--gray-dark);
 
-  @media (min-width: 1365px) {
-    grid-template-columns: 0.8fr 1.2fr 1fr;
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    justify-items: unset;
+    justify-items: center;
     justify-content: space-between;
     text-align: left;
     align-items: center;
   }
 
   .misc-links {
-    display: grid;
-    gap: 0.25rem;
+    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 
     @media (min-width: 768px) {
-      display: flex;
       gap: 2rem;
-      justify-content: center;
     }
+
     @media (min-width: 1024px) {
-      order: 2;
+      // order: 2;
     }
   }
+
   .social-icons {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -322,9 +337,8 @@ section.other inner-column {
     place-items: center;
     fill: var(--gray);
     @media (min-width: 1024px) {
-      order: 3;
+      // order: 3;
       justify-content: center;
-      justify-self: center;
       gap: 3rem;
     }
 
@@ -336,7 +350,8 @@ section.other inner-column {
   p {
     color: var(--gray);
     @media (min-width: 1024px) {
-      order: 1;
+      // order: 1;
+      grid-column: 1/-1;
     }
   }
 }

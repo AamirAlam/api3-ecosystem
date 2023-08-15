@@ -1,37 +1,53 @@
 html {
   /* Black and white */
   --colors: "!colors";
-  --black: hsla(0, 0%, 1%, 1);
-  --white: hsla(180, 0%, 95%, 1);
   --hue: 160;
+  --black: hsla(0, 0%, 1%, 1);
+  --white: hsla(var(--hue), 0%, 94%, 1);
 
-  --gray: hsla(var(--hue), 0%, 51%, 1);
+  --gray: hsla(var(--hue), 0%, 50%, 1);
+
   --gray-light: hsla(var(--hue), 0%, 71%, 1);
   --gray-lighter: hsla(var(--hue), 0%, 90%, 1);
 
   --gray-dark: hsla(var(--hue), 0%, 26%, 1);
-  --gray-darkest: hsla(var(--hue), 40%, 5%, 1);
+  --gray-darker: hsla(var(--hue), 0%, 15%, 1);
 
   --color: hsla(var(--hue), 64%, 69%, 1);
-  --color-shade: hsla(var(--hue), 28%, 27%, 1);
-  --color-dark: hsla(var(--hue), 65%, 10%, 1);
 
-  --highlight: hsla(256, 34%, 54%, 1);
-  /* --highlight: hsla(240, 72%, 63%, 1.00); */
+  --color-dark: hsla(var(--hue), 51%, 46%, 1);
+  --color-darker: hsla(var(--hue), 47%, 27%, 1);
+  --color-darkest: hsla(var(--hue), 40%, 5%, 1);
 
-  --success: hsla(122, 53%, 65%, 1);
-  --warning: hsla(290, 53%, 65%, 1);
+  --color-light: hsla(var(--hue), 65%, 75%, 1);
+  --color-lighter: hsla(var(--hue), 66%, 80%, 1);
+  --color-lightest: hsla(var(--hue), 64%, 85%, 1);
+
+  --highlight: hsla(calc(96 + var(--hue)), 34%, 54%, 1);
+
+  --highlight-light: hsla(calc(96 + var(--hue)), 34%, 64%, 1);
+  --highlight-lighter: hsla(calc(96 + var(--hue)), 34%, 74%, 1);
+  --highlight-lightest: hsla(calc(96 + var(--hue)), 34%, 90%, 1);
+
+  --highlight-dark: hsla(calc(96 + var(--hue)), 34%, 44%, 1);
+  --highlight-darker: hsla(calc(96 + var(--hue)), 34%, 34%, 1);
+  --highlight-darkest: hsla(calc(96 + var(--hue)), 34%, 10%, 1);
+
+  --tertiary-color: hsla(calc(66 + var(--hue)), 77%, 44%, 1);
+
+  --success: hsla(122, 85%, 65%, 1);
+  --warning: hsla(0, 85%, 65%, 1);
 
   --paper: var(--black);
-  --ink: hsla(var(--hue), 0%, 95%, 1);
+  --ink: var(--white);
 
   /* Gradients */
   --gradient-direction: 130deg;
 
   --gradient-dark: linear-gradient(
     var(--gradient-direction),
-    var(--black) 35%,
-    hsla(153, 3%, 15%, 1)
+    var(--paper) 35%,
+    var(--gray-darker)
   );
 
   --gradient-light: linear-gradient(
@@ -42,21 +58,35 @@ html {
 
   --gradient-color: linear-gradient(
     var(--gradient-direction),
-    var(--color),
+    var(--color) 35%,
     var(--highlight)
   );
 
-  --gradient-dark-color: linear-gradient(
+  --gradient-color-light: linear-gradient(
     var(--gradient-direction),
-    var(--black) 35%,
-    var(--color-shade)
+    var(--ink),
+    var(--color)
+  );
+
+  --gradient-color-dark: linear-gradient(
+    var(--gradient-direction),
+    var(--paper) 35%,
+    var(--color-darker)
   );
 
   /* Backgrounds */
-  --texture: url(../images/texture.png);
-  --checkers: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6' viewBox='0 0 8 8'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
-  --diagnol: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
-  --points: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+
+  --checkers: url("/images/pattern-one.svg");
+
+  --diagnol: url("/images/pattern-diagnol.svg");
+  --points: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='hsla(256, 58%, 54%, 1.00)' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+
+  --pattern-one: url("/images/pattern-one.svg");
+  --pattern-two: url("/images/pattern-two.svg");
+  --pattern-three: url("/images/pattern-three.svg");
+  --pattern-four: url("/images/pattern-four.svg");
+
+  /* Typography */
 
   --typography: "!typography";
   --font: Inter, sans-serif;
@@ -75,15 +105,43 @@ html {
   --weight-light: 300;
 
   /* Borders */
-  --misc: "!misc";
-  --border: 1px solid var(--ink);
+  --line-width: 1px;
   --corners: 1rem;
 
-  /* Shadows */
-  --shadow: var(--highlight) 5px 5px 50px -25px;
-}
-/* #todo api3 triangle texture */
+  --border: var(--line-width) solid var(--gray);
+  --border-light: var(--line-width) solid var(--ink);
+  --border-color: var(--line-width) solid var(--color);
+  --border-highlight: var(--line-width) solid var(--highlight);
 
-html {
-  --end: "!!!";
+  /* Shadows */
+  --shadow-line-gap: 5px;
+
+  --shadow: var(--highlight) 0px 0px 40px -10px;
+
+  --shadow-lines: var(--color) 0px 0px 0px var(--line-width),
+    var(--paper) 0px 0px 0px calc(var(--line-width) + var(--shadow-line-gap)),
+    var(--color-dark) 0px 0px 0px
+      calc((2 * var(--line-width)) + var(--shadow-line-gap)),
+    var(--paper) 0px 0px 0px
+      calc(2 * (var(--line-width) + var(--shadow-line-gap))),
+    var(--color-darker) 0px 0px 0px
+      calc((3 * var(--line-width)) + (2 * var(--shadow-line-gap)));
+
+  --shadow-lines-light: var(--color) 0px 0px 0px var(--line-width),
+    var(--paper) 0px 0px 0px calc(var(--line-width) + var(--shadow-line-gap)),
+    var(--color-light) 0px 0px 0px
+      calc((2 * var(--line-width)) + var(--shadow-line-gap)),
+    var(--paper) 0px 0px 0px
+      calc(2 * (var(--line-width) + var(--shadow-line-gap))),
+    var(--color-lighter) 0px 0px 0px
+      calc((3 * var(--line-width)) + (2 * var(--shadow-line-gap)));
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    /* --paper: var(--white);
+    --ink: var(--black);
+    --color-darker: var(--color-lighter);
+    --color-dark: var(--color-light); */
+  }
 }

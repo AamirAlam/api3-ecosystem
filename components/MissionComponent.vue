@@ -35,14 +35,14 @@ function animateBackground() {
   gsap.fromTo(
     "mission-section .background-graphic path",
     {
-      strokeDashoffset: "900",
-      strokeDasharray: "900",
+      strokeDashoffset: "1500",
+      strokeDasharray: "1500",
     },
     {
       duration: 1,
       strokeDashoffset: 0,
       ease: "power2.in",
-      stagger: 0.05,
+      stagger: 0.1,
     }
   );
 }
@@ -122,7 +122,7 @@ onMounted(() => {
   <SectionColumn class="mission-stats">
     <mission-section v-auto-animate>
       <heading-text v-auto-animate>
-        <h2 class="loud-voice">
+        <h2 class="attention-voice">
           API3 DAO serves data on-chain with first-party oracles that provide a
           secure and reliable solution, with end-to-end transparency.
         </h2>
@@ -145,12 +145,9 @@ onMounted(() => {
             </div>
           </template>
         </text-content>
-        <!-- <picture class="graphic">
-          <img src="@/assets/images/square.jpg" alt="" />
-        </picture> -->
       </article>
       <picture class="shape-graphic">
-        <img :src="`/images/circle.svg`" alt="" />
+        <CircleDecoration />
       </picture>
       <picture class="background-graphic">
         <Transition @enter="animateBackground">
@@ -208,10 +205,10 @@ mission-section {
 
     bottom: -10%;
     right: 0%;
-    width: 60vmin;
+    width: 40vmin;
+    height: 40vmin;
     z-index: -1;
-    opacity: 0.25;
-    stroke-width: 0.2 !important;
+    opacity: 0.5;
     //  transform: rotate(20deg);
 
     @media (min-width: 768px) {
@@ -243,10 +240,6 @@ article {
       min-height: 100%;
     }
   }
-}
-
-h2.loud-voice {
-  font-size: var(--step-2);
 }
 </style>
 <style lang="scss">

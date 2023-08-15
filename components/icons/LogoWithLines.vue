@@ -8,11 +8,13 @@
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
     xmlns:serif="http://www.serif.com/"
+    preserveAspectRatio="xMidYMid meet"
     style="
       fill-rule: evenodd;
       clip-rule: evenodd;
       stroke-linecap: round;
       stroke-miterlimit: 20;
+      --hue-difference: 10;
     "
   >
     <g transform="matrix(1,0,0,1,-8516.56,-15774.8)">
@@ -24,7 +26,11 @@
           <g transform="matrix(0.177261,0,0,0.309657,-7476.08,-681.082)">
             <path
               d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-              style="fill: none; stroke: rgb(54, 83, 72); stroke-width: 2.9px"
+              style="
+                fill: none;
+                stroke: hsla(var(--hue), 50%, 20%, 1);
+                stroke-width: 2.9px;
+              "
             />
           </g>
           <g transform="matrix(0.117463,0,0,0.205196,-6854.1,860.496)">
@@ -32,7 +38,7 @@
               d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
               style="
                 fill: none;
-                stroke: rgb(94, 152, 127);
+                stroke: hsla(var(--hue), 50%, 45%, 1);
                 stroke-width: 4.37px;
               "
             />
@@ -42,7 +48,7 @@
               d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
               style="
                 fill: none;
-                stroke: rgb(124, 202, 171);
+                stroke: hsla(var(--hue), 50%, 70%, 1);
                 stroke-width: 8.57px;
               "
             />
@@ -55,7 +61,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(121, 232, 216);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    69%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -66,7 +77,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(98, 228, 209);
+                  stroke: hsla(
+                    calc(var(--hue-difference) + var(--hue)),
+                    71%,
+                    64%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -77,7 +93,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(81, 225, 203);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    60%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -88,7 +109,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(59, 221, 197);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    55%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -99,7 +125,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(37, 218, 191);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    50%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -110,7 +141,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(34, 196, 172);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    45%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -121,7 +157,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(30, 174, 152);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    40%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -132,7 +173,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(26, 152, 133);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    35%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -143,7 +189,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(22, 131, 114);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    30%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -154,7 +205,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(19, 109, 95);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    25%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -165,7 +221,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(15, 87, 76);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    20%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -176,7 +237,12 @@
                 d="M9332.66,15827.5L9698.66,15827.5"
                 style="
                   fill: none;
-                  stroke: rgb(11, 65, 57);
+                  stroke: hsla(
+                    calc(var(--hue) + var(--hue-difference)),
+                    71%,
+                    15%,
+                    1
+                  );
                   stroke-width: 4px;
                   stroke-linecap: butt;
                 "
@@ -188,7 +254,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(103, 249, 195);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  65%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -199,7 +270,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(78, 248, 186);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  64%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -210,7 +286,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(59, 247, 178);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  60%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -221,7 +302,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(34, 246, 169);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  55%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -232,7 +318,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(10, 245, 159);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  50%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -243,7 +334,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(9, 221, 143);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  45%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -254,7 +350,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(8, 196, 127);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  40%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -265,7 +366,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(7, 172, 111);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  35%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -276,7 +382,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(6, 147, 95);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  30%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -287,7 +398,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(5, 123, 79);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  25%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -298,7 +414,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(4, 98, 64);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  20%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "
@@ -309,7 +430,12 @@
               d="M9332.66,15827.5L9698.66,15827.5"
               style="
                 fill: none;
-                stroke: rgb(3, 74, 48);
+                stroke: hsla(
+                  calc(var(--hue) - var(--hue-difference)),
+                  93%,
+                  15%,
+                  1
+                );
                 stroke-width: 4px;
                 stroke-linecap: butt;
               "

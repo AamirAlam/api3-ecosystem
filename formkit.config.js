@@ -38,9 +38,10 @@ function addAsteriskPlugin(node) {
   node.on("created", () => {
     const schemaFn = node.props.definition.schema;
     node.props.definition.schema = (sectionsSchema = {}) => {
-      const isRequired = node.props.parsedRules.some(
-        (rule) => rule.name === "required"
-      );
+      const isRequired = node.props.parsedRules.some((rule) => {
+        return rule.name === "required";
+      });
+      // console.log(node.props.id, node.props, isRequired);
 
       if (isRequired) {
         if (isCheckboxAndRadioMultiple(node)) {

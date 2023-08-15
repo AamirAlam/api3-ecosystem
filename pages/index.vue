@@ -2,7 +2,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 definePageMeta({
-  layout: "home",
+  //   layout: "home",
   meta: [
     {
       hid: "home",
@@ -45,13 +45,13 @@ onMounted(() => {
     <ArticleGrid layout="4" cardCount="4" />
   </SectionColumn>
 
-  <SiteFooter />
+  <!-- <SiteFooter /> -->
 </template>
 
 <style lang="scss">
 body:has(main.index) {
   @media (min-width: 1024px) {
-    overflow: hidden;
+    //  overflow: hidden;
   }
 }
 main.index {
@@ -67,13 +67,13 @@ main.index {
     gap: 10rem;
   }
   @media (min-width: 1024px) {
-    max-height: calc(100vh - 100px);
-    overflow-y: scroll;
+    //  max-height: calc(100vh - 100px);
+    //  overflow-y: scroll;
     //  scroll-snap-type: mandatory;
     //  scroll-snap-type: y mandatory;
     //  scroll-snap-points-y: repeat(calc(100vh - 100px));
 
-    display: grid;
+    //  display: grid;
 
     & > section:not(.scrolling-stats) {
       // scroll-snap-align: start;
@@ -83,28 +83,13 @@ main.index {
       }
       // padding-bottom: 5rem 0;
     }
-    & > footer {
-      scroll-snap-align: end;
-      // scroll-padding-top: 15rem;
-      inner-column {
-        height: calc(50vh - 50px);
-      }
-    }
-  }
-}
-
-h1 {
-  padding: 5px 0;
-  background: linear-gradient(
-    var(--gradient-direction),
-    var(--ink),
-    var(--color)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  &.booming-voice {
-    padding: 30px 0;
+    //  & > footer {
+    //    scroll-snap-align: end;
+    //    // scroll-padding-top: 15rem;
+    //    inner-column {
+    //      height: calc(50vh - 50px);
+    //    }
+    //  }
   }
 }
 </style>

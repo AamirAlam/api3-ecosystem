@@ -13,7 +13,10 @@ const datePublished = computed(() => {
 
 <template>
   <header>
-    <h1 class="loud-voice article-heading" :id="article?.title">
+    <h1
+      class="loud-voice article-heading gradient-text-color-light"
+      :id="article?.title"
+    >
       {{ article?.title }}
     </h1>
     <h2 class="notice-voice">
@@ -60,18 +63,17 @@ header {
   position: relative;
   margin-bottom: 4rem;
 
-  h1 {
+  h1.loud-voice {
     position: relative;
     text-wrap: balance;
 
+    font-size: var(--step-2);
+
     padding: 5px 0;
-    background: linear-gradient(
-      var(--gradient-direction),
-      var(--ink),
-      var(--color)
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+
+    @media (min-width: 768px) {
+      font-size: var(--step-3);
+    }
 
     &::before {
       content: "";

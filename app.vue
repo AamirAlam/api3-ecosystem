@@ -59,34 +59,6 @@ onMounted(() => {
 <style>
 body > div[data-v-app] {
   display: none;
-}
 
-html * {
-  --fk-font-family: var(--font);
-  --fk-font-size: 1rem;
-  --fk-font-weight: 400;
-  --fk-line-height: 1.4;
-  --fk-color-input: var(--ink);
-}
-form {
-  --multistep-radius: var(--corners);
-  --multistep-color-success: var(--color);
-  --fk-color-help: var(--ink);
-  fill: black !important;
-
-  /* vueform/multistep */
-
-  --ms-bg: var(--paper);
-  --ms-border-color: var(--ink);
-  --ms-radius: var(--corners);
-
-  --ms-tag-bg: var(--color);
-  --ms-tag-color: var(--paper);
-  --ms-tag-radius: var(--corners);
-
-  --ms-dropdown-bg: var(--paper);
-  --ms-dropdown-border-color: var(--ink);
-  --ms-dropdown-color: var(--ink);
-  --ms-dropdown-radius: var(--corners);
 }
 </style>

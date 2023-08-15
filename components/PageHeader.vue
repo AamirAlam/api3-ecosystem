@@ -25,7 +25,9 @@ onMounted(() => {
 
 <template>
   <SectionColumn :innerClass="'page-title ' + innerClass">
-    <h1 :class="voice ? voice : 'loud-voice'">{{ heading }}</h1>
+    <h1 class="gradient-text-color-light" :class="voice ? voice : 'loud-voice'">
+      {{ heading }}
+    </h1>
   </SectionColumn>
 </template>
 
@@ -35,21 +37,6 @@ onMounted(() => {
   justify-content: start;
   padding: 5rem 15px;
   //   opacity: 0;
-}
-
-h1 {
-  padding: 5px 0;
-  background: linear-gradient(
-    var(--gradient-direction),
-    var(--ink),
-    var(--color)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  &.booming-voice {
-    padding: 30px 0;
-  }
 }
 
 main.ecosystem-detail .page-title {

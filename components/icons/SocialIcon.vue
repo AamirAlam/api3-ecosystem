@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(["social", "fill"]);
+const props = defineProps(["social", "fill", "stroke"]);
 
 const capitalizedSocial =
   props.social[0].toUpperCase() + props.social.toLowerCase().slice(1);
@@ -13,7 +13,9 @@ const dynamicComponent = defineAsyncComponent(() =>
   <Component
     :is="dynamicComponent"
     :style="`
-   ${fill ? `fill: ${fill};` : 'fill: #81838C'}
+   ${fill ? `fill: ${fill};` : 'fill: var(--gray);'}
+	${stroke ? `stroke: ${stroke}; stroke-width: 1px;` : 'stroke: none;'}
+
   `"
   />
 </template>

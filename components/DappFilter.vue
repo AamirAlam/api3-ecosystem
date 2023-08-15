@@ -106,7 +106,7 @@ const handleFilter = (event) => {
                   :chain="ecosystem.chainNames(chain?.chainId)"
                   fill="var(--color)"
                   stroke="var(--paper)"
-                  strokeWidth="5%"
+                  strokeWidth="1px"
                 />
               </picture>
               {{ ecosystem.chainNames(chain?.chainId) }} ({{ chain.count }})
@@ -300,8 +300,8 @@ dapp-filter {
       font-weight: var(--weight-medium);
       font-family: var(--font);
       padding: 0.5rem;
-      --gray-darkest: hsla(167, 22%, 15%, 1);
-      background-color: var(--gray-darkest);
+      --color-darkest: hsla(167, 22%, 15%, 1);
+      background-color: var(--color-darkest);
     }
 
     input-field:has(input:checked) label {

@@ -54,7 +54,7 @@ onMounted(() => {
     <cta-module>
       <text-content>
         <h2
-          class="gradient-text"
+          class="gradient-text-color"
           :class="{
             'booming-voice': !ui.isMobile,
             'loud-voice': ui.isMobile,
@@ -62,7 +62,10 @@ onMounted(() => {
         >
           Join the Web3 API revolution and publish your dapp on our site today!
         </h2>
-        <button class="button filled" @click="navigateTo('/ecosystem')">
+        <button
+          class="firm-voice loud-button"
+          @click="navigateTo('/ecosystem')"
+        >
           Join Now
         </button>
       </text-content>
@@ -73,23 +76,23 @@ onMounted(() => {
   </SectionColumn>
 </template>
 
-<style>
+<style lang="scss">
 .cta-module inner-column {
   display: grid;
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  @media (min-width: 768px) {
+    overflow-x: unset;
+  }
 }
 .cta-module .curves-decoration {
   position: absolute;
-  bottom: -60px;
-  left: 100px;
-  transform: rotateY(180deg) rotate(-10deg) scaleX(1.4);
-  z-index: -1;
 
-  @media (min-width: 768px) {
-    bottom: 20px;
-  }
+  left: 100px;
+  transform: rotateY(180deg) rotate(10deg) scaleX(1.4);
+  z-index: -1;
+  opacity: 0.5;
 }
 
 .cta-module :is(h2, button, picture.graphic, .curves-decoration path) {
@@ -120,8 +123,7 @@ cta-module {
     gap: 3rem;
     justify-items: start;
     order: 2;
-    //  mix-blend-mode: difference;
-    //  background-color: green;
+
     h2 {
       color: var(--color);
     }
@@ -137,8 +139,7 @@ cta-module {
     transform: translateX(-50%);
     width: 100%;
     z-index: -1;
-    //  background-color: green;
-    //  mix-blend-mode: difference;
+
     opacity: 0.5;
 
     @media (min-width: 768px) {

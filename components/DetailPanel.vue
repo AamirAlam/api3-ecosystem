@@ -82,7 +82,7 @@ onMounted(() => {
                 :chain="ecosystem.chainNames(chain)"
                 fill="var(--color)"
                 stroke="var(--paper)"
-                strokeWidth="15%"
+                strokeWidth="1px"
               />
             </picture>
           </li>

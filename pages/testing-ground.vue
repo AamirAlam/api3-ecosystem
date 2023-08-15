@@ -1,23 +1,25 @@
 <script setup>
-import slug from "slug";
-import { useEcosystemStore } from "@/stores/ecosystem";
-
-slug.extend({ "/": "-" });
-
 const ecosystem = useEcosystemStore();
 </script>
 
 <template>
-  <PageHeader heading="Style Guide" />
+  <PageHeader heading="test ground" />
   <SectionColumn>
-    <GithubGist />
+    <JoinNewsletter />
   </SectionColumn>
 </template>
 
 <style scoped>
-div {
+ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 15rem;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 1rem;
+}
+
+.pallete {
+  width: 100%;
+  aspect-ratio: 1 /1;
 }
 </style>
+
+<style></style>

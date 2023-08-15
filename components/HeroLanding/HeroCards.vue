@@ -8,7 +8,7 @@ const showcaseCards = ref([
     paragraph: "Discover and explore API3's Ecosystem partners.",
     cta: "Explore Ecosystem",
     link: "/ecosystem",
-    image: "/images/hero-graphic-ecosystem.svg",
+    image: "/images/icons/dao.svg",
   },
   {
     heading: "Developers",
@@ -16,12 +16,12 @@ const showcaseCards = ref([
       "Learn how to utilize oracles while building your own blockchain applications.",
     cta: "Get Started",
     link: "http://docs.api3.org",
-    image: "/images/hero-ecosystem-gears.svg",
+    image: "/images/icons/developer-tool.svg",
   },
 
   {
     heading: "Updates",
-    paragraph: "Stay up to date with the API3 Ecosystem and our partners",
+    paragraph: "Stay upto date with the API3 Ecosystem and our partners",
     cta: "Discover Updates",
     link: "/articles",
     image: "/images/hero-ecosystem-articles.svg",
@@ -30,12 +30,9 @@ const showcaseCards = ref([
 </script>
 <template>
   <div class="items">
-    <hero-card
-      class="item"
-      v-for="card in showcaseCards"
-      @mouseover="ui.changeHeroImage(card)"
-    >
-      <picture>
+    <hero-card class="item" v-for="card in showcaseCards">
+      <!-- @mouseover="ui.changeHeroImage(card)" -->
+      <picture class="hide">
         <img :src="card.image" alt="" />
       </picture>
       <text-content>

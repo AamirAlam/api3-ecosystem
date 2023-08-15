@@ -22,12 +22,12 @@ const fileSize = function (node) {
     name="images"
   >
     <div class="single-images">
-      <file-upload>
+      <form-field class="file-upload">
         <FormKit
           v-auto-animate
           id="logoForm"
           type="file"
-          label="Upload your logo"
+          label="Upload your logo*"
           label-class="$reset notice-voice"
           name="logo"
           help="This image should be a square and at least 512px wide. [JPG/PNG/WEBP]"
@@ -38,12 +38,12 @@ const fileSize = function (node) {
             fileSize: 'File size must be below 3MB',
           }"
         />
-      </file-upload>
-      <file-upload>
+      </form-field>
+      <form-field class="file-upload">
         <FormKit
           id="coverForm"
           type="file"
-          label="Upload a branded cover"
+          label="Upload a branded cover*"
           label-class="$reset notice-voice"
           name="cover"
           help="This image should be at least 1024px wide. [JPG/PNG/WEBP]"
@@ -55,10 +55,10 @@ const fileSize = function (node) {
             fileSize: 'File size must be below 3MB',
           }"
         />
-      </file-upload>
+      </form-field>
     </div>
     <div>
-      <file-upload>
+      <form-field class="file-upload">
         <FormKit
           v-auto-animate
           id="screenShotForm"
@@ -75,7 +75,7 @@ const fileSize = function (node) {
             fileSize: 'Each file must be below 3MB',
           }"
         />
-      </file-upload>
+      </form-field>
     </div>
   </FormKit>
 </template>
@@ -86,30 +86,6 @@ const fileSize = function (node) {
   gap: 2rem;
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
-  }
-}
-
-file-upload {
-  display: grid;
-  justify-content: start;
-  background: var(--gradient-dark);
-  --ink: hsla(180, 0%, 95%, 1);
-  border-radius: var(--corners);
-  gap: 10px;
-  padding: 1rem;
-  align-items: start;
-
-  :deep([data-type="file"]) {
-    input.formkit-input {
-      color: var(--white) !important;
-      font-size: var(--step--1) !important;
-
-      ul li.formkit-file-item {
-        display: grid !important;
-        grid-template-columns: 0.25fr 1fr 0.25fr !important;
-        align-content: center !important;
-      }
-    }
   }
 }
 </style>

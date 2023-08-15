@@ -1,11 +1,38 @@
+<script setup>
+import gsap from "gsap";
+
+const props = defineProps(["duration"]);
+onMounted(() => {
+  gsap.fromTo(
+    ".loading-triangle path",
+    {
+      scale: 0,
+      transformOrigin: "center",
+      opacity: 1,
+    },
+    {
+      duration: props.duration ?? 1.5,
+      scale: 2,
+      transformOrigin: "center",
+      ease: "power2.inOut",
+      stagger: {
+        each: 0.1,
+        repeat: -1,
+      },
+    }
+  );
+});
+</script>
+
 <template>
   <div class="loading-spinner">
-    <div class="spinner"></div>
-    <!-- <div class="spinner-text">+</div> -->
+    <picture class="loading-triangle">
+      <LogoIcon />
+    </picture>
   </div>
 </template>
 
-<style>
+<style scoped lang="scss">
 .loading-spinner {
   position: relative;
   width: 50px;
@@ -14,19 +41,12 @@
 
 .spinner {
   border-top: 2px solid var(--color);
-
   border-radius: 50%;
   width: 100%;
   aspect-ratio: 1 / 1;
-  animation: spin 1s linear infinite;
+  animation: spin 2s ease-out infinite;
 }
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.loading-triangle {
+  width: 100%;
 }
 </style>
