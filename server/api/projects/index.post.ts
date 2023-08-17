@@ -104,7 +104,9 @@ export default authenticated(
 
         const createdProject = await new Project(payload).save();
 
-        // // verify build and create pr
+        // project json will be stored with active status in pull request for review
+        payload.status = "active";
+        // verify build and create pr
         const buildResult = await checkBuildStatus(payload, createdProject.id);
 
         if (!buildResult.success) {
