@@ -38,11 +38,15 @@ const onShow = (index) => {
   </section>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .image-grid {
   display: grid;
   gap: 0.3125rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: auto auto;
+
+  li {
+    cursor: pointer;
+  }
 }
 </style>

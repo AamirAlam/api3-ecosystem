@@ -1,7 +1,6 @@
 <script setup>
 import { gsap } from "gsap";
 import { useInterfaceStore } from "@/stores/interface";
-import { useEcosystemStore } from "@/stores/ecosystem";
 
 const ui = useInterfaceStore();
 
@@ -35,8 +34,6 @@ onMounted(() => {
     }
   );
 });
-
-const ecosystem = useEcosystemStore();
 </script>
 
 <template>
