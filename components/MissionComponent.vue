@@ -106,12 +106,12 @@ function onMouseEnter(index) {
         </template>
       </ul>
 
-      <!--  -->
+      <!-- static circle -->
       <picture class="shape-graphic">
         <CircleDecoration />
       </picture>
 
-      <!--  -->
+      <!-- background animating graphic -->
       <picture class="background-graphic">
         <Transition @enter="animateBackground">
           <DatafeedIcon v-if="cardIndex == 0" />
@@ -127,6 +127,7 @@ function onMouseEnter(index) {
 span.highlight {
   color: var(--highlight);
 }
+
 mission-section {
   display: grid;
   align-content: center;
@@ -136,16 +137,16 @@ mission-section {
 
   heading-text {
     max-width: 100ch;
+
+    @media (min-width: 768px) {
+      grid-column: 2 / span 6;
+    }
+
     h2 {
       margin-bottom: 1rem;
     }
   }
 
-  @media (min-width: 768px) {
-    heading-text {
-      grid-column: 2 / span 6;
-    }
-  }
   ul {
     grid-column: 1/-1;
     @media (min-width: 768px) {
@@ -179,18 +180,17 @@ mission-section {
 
   .mission-card {
     border-radius: var(--corners);
+    transition: 0.2s;
+
     h4 {
       margin-bottom: 0.5rem;
     }
-    transition: 0.2s;
   }
 }
 
 ul {
   display: grid;
   align-items: center;
-
-  display: grid;
   gap: 2rem;
 }
 </style>
