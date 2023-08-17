@@ -3,6 +3,7 @@ import { imageUploadHandler } from "../../utils/imageUpload";
 import { authenticated } from "../../utils/authenticated";
 import { checkBuildStatus } from "~/server/services/build";
 import { ProjectType } from "~/server/types";
+import slug from "slug";
 
 export default authenticated(
   imageUploadHandler(
@@ -102,7 +103,11 @@ export default authenticated(
                 year: parseInt(year),
               };
 
-        const createdProject = await new Project(payload).save();
+        // add slug field in  mongodb project collection to implement find by name slug
+        const createdProject = await new Project({
+          ...payload,
+          slug: slug(payload.name),
+        }).save();
 
         // project json will be stored with active status in pull request for review
         payload.status = "active";
