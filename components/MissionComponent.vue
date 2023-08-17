@@ -39,7 +39,7 @@ function animateBackground() {
       strokeDasharray: "1500",
     },
     {
-      duration: 1,
+      duration: 0.35,
       strokeDashoffset: 0,
       ease: "power2.in",
       stagger: 0.1,
@@ -77,45 +77,6 @@ function onMouseEnter(index) {
 
   animateParagraph();
 }
-
-onMounted(() => {
-  //   const pageLoad = gsap.timeline({
-  //     // scrollTrigger: {
-  //     //   trigger: ".mission-stats",
-  //     // },
-  //   });
-  //   pageLoad.set(".mission-stats", {
-  //     opacity: 1,
-  //   });
-  //   pageLoad.fromTo(
-  //     ".shape-graphic)",
-  //     {
-  //       y: 50,
-  //       opacity: 0,
-  //     },
-  //     {
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 0.5,
-  //       ease: "power4.out",
-  //       stagger: 0.25,
-  //     }
-  //   );
-  //   pageLoad.fromTo(
-  //     ".mission-stats :is(h2, text-content)",
-  //     {
-  //       y: 50,
-  //       opacity: 0,
-  //     },
-  //     {
-  //       y: 0,
-  //       opacity: 1,
-  //       duration: 0.5,
-  //       ease: "power4.out",
-  //       stagger: 0.25,
-  //     }
-  //   );
-});
 </script>
 
 <template>
@@ -134,21 +95,23 @@ onMounted(() => {
           }}
         </h3>
       </heading-text>
-      <article>
-        <text-content>
-          <template v-for="(card, index) in content.cards">
-            <div
-              class="mission-card hover-underline"
-              @mouseenter="onMouseEnter(index)"
-            >
-              <h4 class="notice-voice">{{ card.title }}</h4>
-            </div>
-          </template>
-        </text-content>
-      </article>
+      <ul>
+        <template v-for="(card, index) in content.cards">
+          <li
+            class="mission-card hover-underline"
+            @mouseenter="onMouseEnter(index)"
+          >
+            <h4 class="notice-voice">{{ card.title }}</h4>
+          </li>
+        </template>
+      </ul>
+
+      <!--  -->
       <picture class="shape-graphic">
         <CircleDecoration />
       </picture>
+
+      <!--  -->
       <picture class="background-graphic">
         <Transition @enter="animateBackground">
           <DatafeedIcon v-if="cardIndex == 0" />
@@ -179,12 +142,11 @@ mission-section {
   }
 
   @media (min-width: 768px) {
-    //  grid-template-columns: repeat(12, 1fr);
     heading-text {
       grid-column: 2 / span 6;
     }
   }
-  article {
+  ul {
     grid-column: 1/-1;
     @media (min-width: 768px) {
       grid-column: 2 / span 5;
@@ -192,7 +154,6 @@ mission-section {
   }
 
   picture.shape-graphic {
-    //  max-width: 60vw;
     position: absolute;
     top: 50px;
     width: 320px;
@@ -209,7 +170,6 @@ mission-section {
     height: 40vmin;
     z-index: -1;
     opacity: 0.5;
-    //  transform: rotate(20deg);
 
     @media (min-width: 768px) {
       top: 0%;
@@ -226,28 +186,11 @@ mission-section {
   }
 }
 
-article {
+ul {
   display: grid;
-  //   grid-template-columns: 1fr 1fr;
-  //   gap: 10rem;
   align-items: center;
 
-  text-content {
-    display: grid;
-    gap: 2rem;
-
-    p {
-      min-height: 100%;
-    }
-  }
-}
-</style>
-<style lang="scss">
-.mission-stats {
-}
-
-.mission-stats,
-.mission-stats :is(h2, text-content, .shape-graphic) {
-  /* opacity: 0; */
+  display: grid;
+  gap: 2rem;
 }
 </style>

@@ -12,7 +12,6 @@
     <NuxtLink class="text" to="/ecosystem">Ecosystem</NuxtLink>
     <NuxtLink class="text" to="/articles">Articles</NuxtLink>
     <!-- <NuxtLink class="text" to="/guild">Guild</NuxtLink> -->
-    <!-- <NuxtLink to="/about">About</NuxtLink> -->
     <div class="actions">
       <!-- <ConnectButton /> -->
     </div>
