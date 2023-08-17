@@ -6,11 +6,6 @@ import "@vueform/multiselect/themes/default.css";
 const ecosystem = useEcosystemStore();
 
 const props = defineProps(["dappForm"]);
-
-const buttonClick = ref(false);
-function buttonHandle(valid, direction) {
-  formStepButtonHandle(valid, direction, buttonClick);
-}
 </script>
 
 <template>
@@ -75,20 +70,6 @@ function buttonHandle(valid, direction) {
         }"
       />
     </form-field>
-    <!-- <div class="actions">
-      <button class="button previous" @click.prevent="buttonHandle(valid, -1)">
-        Previous
-      </button>
-      <button class="button next" @click.prevent="buttonHandle(valid, 1)">
-        Next
-      </button>
-    </div> -->
-    <template v-if="buttonClick">
-      <p v-if="!valid" class="not-valid">
-        Your account details are not complete!
-      </p>
-      <p v-else class="valid">It all looks good 👍</p>
-    </template>
   </FormKit>
 </template>
 
