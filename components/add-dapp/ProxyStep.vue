@@ -68,7 +68,6 @@ async function handleUpdateProxy() {
   }
 }
 
-const buttonClick = ref(false);
 </script>
 
 <template>

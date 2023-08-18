@@ -85,7 +85,7 @@ const formattedProxies = (dappData) => {
 
     <SectionColumn class="detail-main">
       <article class="main">
-        <PageHeader
+        <PageTitle
           class="dapp-title"
           :heading="dapp?.name"
           innerClass="none"

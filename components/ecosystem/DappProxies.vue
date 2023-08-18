@@ -10,6 +10,7 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
   <section class="proxy-table">
     <h2 class="attention-voice">Proxies</h2>
     <ul v-auto-animate>
+      <!-- Table heading, first row -->
       <li class="table-row table-head">
         <div class="solid-voice chain">Chain</div>
         <div class="solid-voice feedname">Feed Name</div>
@@ -19,7 +20,10 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
         <div class="solid-voice is-oev">is OEV?</div>
         <div class="" v-if="isForm"></div>
       </li>
+
+      <!-- Dynamically rendered table based on data -->
       <li class="table-row" v-for="(proxy, index) in proxies">
+        <!-- chain -->
         <div class="chain">
           <picture>
             <ChainIcon
@@ -31,15 +35,22 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
           </picture>
         </div>
 
+        <!-- feed name -->
         <div class="feedname">
           {{ proxy?.feedName }}
         </div>
+
+        <!-- type -->
         <div class="type">
           {{ proxy?.proxyType?.includes("datafeedId") ? "Data Feed" : "dAPI" }}
         </div>
+
+        <!-- proxy address -->
         <div class="proxy-address">
           <WalletAddress :walletAddress="proxy?.proxyAddress" />
         </div>
+
+        <!-- id / dapi based address -->
         <div class="address">
           <WalletAddress
             :walletAddress="
@@ -49,11 +60,15 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
             "
           />
         </div>
+
+        <!-- is oev -->
         <div class="is-oev">
           <picture v-if="isForm ? proxy.isOEV : proxy?.oev?.enabled">
             <img src="/images/icons/oev.svg" alt="" />
           </picture>
         </div>
+
+        <!-- button column rendered when this component is loaded in the form-->
         <div class="cross" v-if="isForm">
           <button
             class="icon"

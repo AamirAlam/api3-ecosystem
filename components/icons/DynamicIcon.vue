@@ -24,3 +24,9 @@ watch(icon, async (newVal, oldVal) => {
     <img :src="`/images/icons/${slug(icon)}.svg`" alt="" />
   </picture>
 </template>
+
+<style scoped>
+picture {
+  filter: hue-rotate(var(--hue-rotate));
+}
+</style>

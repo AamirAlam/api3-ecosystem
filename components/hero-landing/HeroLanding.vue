@@ -7,6 +7,9 @@ const ui = useInterfaceStore();
 // const content = await queryContent("/home").findOne().heroLanding; #todo
 
 onMounted(() => {
+  //
+
+  //hero landing on load animations
   const pageLoad = gsap.timeline({
     //  scrollTrigger: {
     //    trigger: "hero-landing",

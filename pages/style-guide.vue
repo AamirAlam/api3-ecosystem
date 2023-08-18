@@ -10,7 +10,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <PageHeader heading="Style Guide" voice="booming-voice" />
+  <PageTitle heading="Style Guide" voice="booming-voice" />
   <SectionColumn>
     <p>
       This is the API3 Ecosystem style guide. Its a dynamic page showcasing all
