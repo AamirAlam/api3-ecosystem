@@ -109,6 +109,7 @@ html {
   --corners: 1rem;
 
   --border: var(--line-width) solid var(--gray);
+  --border-dark: var(--line-width) solid var(--gray-dark);
   --border-light: var(--line-width) solid var(--ink);
   --border-color: var(--line-width) solid var(--color);
   --border-highlight: var(--line-width) solid var(--highlight);
@@ -116,7 +117,9 @@ html {
   /* Shadows */
   --shadow-line-gap: 5px;
 
-  --shadow: var(--highlight) 0px 0px 40px -10px;
+  --shadow: var(--highlight) 0px 0px 2em -0.625em;
+
+  --shadow-selected: 2px 2px 1px var(--highlight);
 
   --shadow-lines: var(--color) 0px 0px 0px var(--line-width),
     var(--paper) 0px 0px 0px calc(var(--line-width) + var(--shadow-line-gap)),

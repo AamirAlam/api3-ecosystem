@@ -82,7 +82,7 @@ onMounted(() => {
                 :chain="ecosystem.chainNames(chain)"
                 fill="var(--color)"
                 stroke="var(--paper)"
-                strokeWidth="1px"
+                strokeWidth="var(--line-width)"
               />
             </picture>
           </li>
@@ -183,7 +183,7 @@ aside {
     align-items: center;
   }
   div.row {
-    border-bottom: 1px solid var(--gray-dark);
+    border-bottom: var(--border-dark);
     li {
       display: flex;
       align-items: center;

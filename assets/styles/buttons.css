@@ -31,7 +31,7 @@ a {
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
-  height: 1px;
+  height: var(--line-width);
   background-color: var(--gray);
   transition: 0.2s;
 }

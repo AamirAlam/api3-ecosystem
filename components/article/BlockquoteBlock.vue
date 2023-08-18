@@ -51,7 +51,7 @@ blockquote {
   p::after {
     content: "";
     position: absolute;
-    inset: -1px;
+    inset: calc(var(--line-width) * -1);
     z-index: -2;
     background: var(--gradient-dark);
     border-radius: calc(var(--corners) + 3rem);

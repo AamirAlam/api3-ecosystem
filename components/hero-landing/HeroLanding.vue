@@ -218,7 +218,7 @@ hero-landing {
     left: 0;
 
     width: var(--before-width);
-    height: 1px;
+    height: var(--line-width);
 
     background: var(--color);
   }
@@ -229,7 +229,7 @@ hero-landing {
     top: 0;
     right: 0;
 
-    width: 1px;
+    width: var(--line-width);
     background: var(--gradient-color);
 
     height: var(--after-height);

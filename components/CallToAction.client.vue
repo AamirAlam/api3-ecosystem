@@ -63,7 +63,7 @@ const ui = useInterfaceStore();
 <style scoped lang="scss">
 .cta-module span.line {
   position: absolute;
-  height: 1px;
+  height: var(--line-width);
   background: var(--gradient-color);
   top: 0;
   right: 0;

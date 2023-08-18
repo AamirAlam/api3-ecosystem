@@ -171,7 +171,7 @@ inner-column.article {
       &::after {
         content: "";
         position: absolute;
-        inset: -1px;
+        inset: calc(-1 * var(--line-width));
         z-index: -2;
         border-radius: calc(var(--corners) + 3rem);
       }

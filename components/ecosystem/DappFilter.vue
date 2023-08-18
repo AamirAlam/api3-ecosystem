@@ -106,7 +106,7 @@ const handleFilter = (event) => {
                   :chain="ecosystem.chainNames(chain?.chainId)"
                   fill="var(--color)"
                   stroke="var(--paper)"
-                  strokeWidth="1px"
+                  strokeWidth="var(--line-width)"
                 />
               </picture>
               {{ ecosystem.chainNames(chain?.chainId) }} ({{ chain.count }})
@@ -274,7 +274,7 @@ dapp-filter {
     padding: 1.5rem;
 
     & + *:not(search-bar) {
-      border-top: 1px solid hsla(162, 10%, 30%, 0.5);
+      border-top: var(--border-dark);
     }
   }
 }
@@ -341,7 +341,7 @@ dapp-filter {
     }
 
     &:has(input:checked) label {
-      box-shadow: 2px 2px 1px var(--color);
+      box-shadow: var(--shadow-selected);
       transform: translate(0.1rem, 0.1rem);
     }
   }

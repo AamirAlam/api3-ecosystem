@@ -95,8 +95,8 @@ share-box {
     padding: 1rem 0;
     margin: 1rem 0;
 
-    border-top: 1px solid var(--gray-dark);
-    border-bottom: 1px solid var(--gray-dark);
+    border-top: var(--border);
+    border-bottom: var(--border);
 
     picture {
       max-width: 2rem;

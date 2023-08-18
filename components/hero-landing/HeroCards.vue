@@ -77,7 +77,7 @@ div.items {
   .item {
     --heroCard-corners: var(--corners);
     border-radius: var(--heroCard-corners);
-    border-right: 1px solid var(--highlight);
+    border-right: var(--border-highlight);
     /* box-shadow: var(--shadow); */
     min-height: 250px;
     box-shadow: var(--shadow);
@@ -95,7 +95,7 @@ div.items {
     @media (min-width: 768px) {
       box-shadow: unset;
       border-right: unset;
-      border-left: 1px solid var(--color);
+      border-left: var(--border-color);
     }
 
     picture {
@@ -120,7 +120,7 @@ div.items {
     top: 0;
     left: 0;
     width: var(--before-width);
-    height: 1px;
+    height: var(--line-width);
     background: var(--gradient-color);
     display: none;
     @media (min-width: 768px) {

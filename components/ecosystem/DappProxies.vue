@@ -107,7 +107,7 @@ section.proxy-table {
     grid-template-columns: 0.75fr 1fr 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
     padding: 1rem;
-    border-bottom: 1px solid var(--gray-dark);
+    border-bottom: var(--border);
     align-items: center;
 
     div {
@@ -119,7 +119,7 @@ section.proxy-table {
     }
 
     & + .table-row {
-      // border-top: 1px solid var(--white);
+      // border-top: var(--border-light);
     }
 
     .is-oev picture {

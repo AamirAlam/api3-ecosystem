@@ -49,7 +49,7 @@ onMounted(() => {
 .loading-progress {
   width: 250px;
   height: 4px;
-  border: 1px solid var(--gray);
+  border: var(--border);
   border-radius: 2px;
   /* overflow: hidden; */
 }

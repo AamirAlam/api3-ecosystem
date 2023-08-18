@@ -67,11 +67,11 @@ article-card {
     right: -0.5rem;
 
     width: var(--decoration-size);
-    height: 1px;
+    height: var(--line-width);
   }
 
   &::after {
-    width: 1px;
+    width: var(--line-width);
     height: var(--decoration-size);
   }
 
