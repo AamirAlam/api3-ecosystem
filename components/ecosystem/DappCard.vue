@@ -1,5 +1,6 @@
 <script setup>
 import { useEcosystemStore } from "@/stores/ecosystem";
+import slug from "slug";
 
 const props = defineProps(["dapp"]);
 const ecosystem = useEcosystemStore();
@@ -53,7 +54,7 @@ function filterBy(event) {
 
     <footer>
       <NuxtLink
-        :to="`/ecosystem/${dapp._id}`"
+        :to="`/ecosystem/${slug(dapp?.name)}`"
         class="text card-link"
       ></NuxtLink>
     </footer>

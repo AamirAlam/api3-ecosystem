@@ -8,6 +8,10 @@ const AuthorSchema = new mongoose.Schema({
 });
 
 const ArticleSchema = new Schema<ArticleType>({
+  slug: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,

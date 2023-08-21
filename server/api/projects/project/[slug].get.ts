@@ -1,18 +1,20 @@
-import mongoose from "mongoose";
 import { Project } from "~/server/models/Project";
 
 export default defineEventHandler(async (event) => {
-  const projectId = event.context?.params?.id;
+  const projectSlug = event.context?.params?.slug;
 
   try {
-    if (!mongoose.isValidObjectId(projectId)) {
+    if (!projectSlug) {
       event.res.statusCode = 400;
       return {
         code: "INVALID_ID",
-        message: "Invalid project Id",
+        message: "Invalid project name slug",
       };
     }
-    const project = await Project.findById(projectId);
+    const project = await Project.findOne({
+      slug: projectSlug,
+      status: "active",
+    });
 
     if (!project) {
       event.res.statusCode = 404;

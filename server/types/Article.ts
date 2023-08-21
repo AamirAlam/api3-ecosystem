@@ -6,6 +6,7 @@ const AuthorSchema = z.object({
 });
 
 const ArticleSchema = z.object({
+  slug: z.string().nonempty("Slug is required"),
   title: z.string().nonempty("Title is required"),
   subtitle: z.string().optional(),
   description: z.string().optional(),

@@ -1,18 +1,17 @@
-import mongoose from "mongoose";
 import { Article } from "~/server/models/Article";
 
 export default defineEventHandler(async (event) => {
-  const articleId = event.context?.params?.id;
+  const articleSlug = event.context?.params?.slug;
 
   try {
-    if (!mongoose.isValidObjectId(articleId)) {
+    if (!articleSlug) {
       event.res.statusCode = 400;
       return {
-        code: "INVALID_ID",
-        message: "Invalid project Id",
+        code: "INVALID_TITLE",
+        message: "Invalid article title",
       };
     }
-    const article = await Article.findById(articleId);
+    const article = await Article.findOne({ slug: articleSlug });
 
     if (!article) {
       event.res.statusCode = 404;
