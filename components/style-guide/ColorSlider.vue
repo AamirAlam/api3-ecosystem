@@ -23,8 +23,10 @@ watch(hue, (newVal, oldVal) => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 form-field {
-  max-width: 50%;
+  @media (min-width: 768px) {
+    max-width: 50%;
+  }
 }
 </style>

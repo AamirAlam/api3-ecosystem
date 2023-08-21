@@ -150,6 +150,7 @@ watch(shadowLineGap, (newVal, oldVal) => {
     border-radius: var(--corners);
     display: grid;
     place-items: center;
+    text-align: center;
 
     animation: borderRadius 0.5s ease-in-out infinite alternate;
   }
@@ -165,6 +166,8 @@ watch(shadowLineGap, (newVal, oldVal) => {
 }
 
 form-field {
-  max-width: 50%;
+  @media (min-width: 768px) {
+    max-width: 50%;
+  }
 }
 </style>

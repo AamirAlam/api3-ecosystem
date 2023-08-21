@@ -141,6 +141,7 @@ button {
   cursor: pointer;
   text-align: center;
   transition: 200ms ease;
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
