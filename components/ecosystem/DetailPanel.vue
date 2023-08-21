@@ -56,11 +56,7 @@ onMounted(() => {
   <aside class="panel">
     <header class="panel-header">
       <picture class="logo">
-        <img
-          :src="dapp?.images?.logo"
-          src="@/assets/images/square.jpg"
-          alt=""
-        />
+        <img :src="dapp?.images?.logo" alt="" />
       </picture>
       <h2 class="teaser-voice">
         {{ dapp.tagline }}
