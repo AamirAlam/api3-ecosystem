@@ -28,7 +28,7 @@
           <clipPath id="_clip1">
             <rect x="3832.19" y="23576.2" width="347.237" height="296.097" />
           </clipPath>
-          <g clip-path="url(#_clip1)">
+          <g>
             <g
               transform="matrix(3.37958,-2.97248e-33,1.08884e-32,1.8845,23041,16496.6)"
             >

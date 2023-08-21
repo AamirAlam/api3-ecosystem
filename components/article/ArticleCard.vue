@@ -39,7 +39,7 @@ onMounted(() => {
         {{ article?.author.name ?? "Author Name" }}
       </h4>
 
-      <NuxtLink :to="`/articles/${slug(article?.title)}`" class="text">
+      <NuxtLink :to="`/articles/${slug(article?.title ?? '#')}`" class="text">
         Read more
       </NuxtLink>
     </text-content>

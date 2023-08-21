@@ -4,7 +4,6 @@ import slug from "slug";
 
 const props = defineProps(["dapp"]);
 const ecosystem = useEcosystemStore();
-const logo = props?.dapp?.images?.logo ?? "@/assets/images/square.jpg";
 
 function filterBy(event) {
   if (event.target.classList.contains("category")) {
@@ -21,24 +20,30 @@ function filterBy(event) {
   <dapp-card class="list-move">
     <header>
       <picture class="logo">
-        <img :src="logo" alt="" />
+        <img
+          :src="dapp?.images?.logo"
+          src="@/assets/images/background/square.jpg"
+          alt=""
+        />
       </picture>
       <div>
         <div class="lists" v-if="true">
           <ul class="productTypes-list productType">
             <li class="micro-voice productType" @click="filterBy">
-              {{ ecosystem?.productTypeToLabel?.[dapp?.productType] }}
-              <DynamicIcon :icon="dapp?.productType" />
+              {{
+                ecosystem?.productTypeToLabel?.[dapp?.productType] ?? "Product"
+              }}
+              <DynamicIcon v-if="dapp?.productType" :icon="dapp?.productType" />
             </li>
           </ul>
 
           <ul class="categories-list">
             <li
               class="micro-voice category"
-              v-for="category in dapp.categories"
+              v-for="category in dapp?.categories ?? [1, 2]"
               @click="filterBy"
             >
-              {{ ecosystem?.categoryToLabel?.[category] }}
+              {{ ecosystem?.categoryToLabel?.[category] ?? "Category" }}
               <!-- <DynamicIcon :icon="category" /> -->
             </li>
           </ul>
@@ -47,14 +52,16 @@ function filterBy(event) {
     </header>
 
     <text-content>
-      <h2 class="firm-voice">{{ dapp.name }}</h2>
+      <h2 class="firm-voice">{{ dapp?.name ?? "Dapp Name" }}</h2>
 
-      <p class="whisper-voice">{{ dapp.tagline }}</p>
+      <p class="whisper-voice">
+        {{ dapp?.tagline ?? "This is the Dapp Tagline" }}
+      </p>
     </text-content>
 
     <footer>
       <NuxtLink
-        :to="`/ecosystem/${slug(dapp?.name)}`"
+        :to="`/ecosystem/${slug(dapp?.name ?? '#')}`"
         class="text card-link"
       ></NuxtLink>
     </footer>
@@ -62,7 +69,7 @@ function filterBy(event) {
     <div class="background-wrapper">
       <picture class="card-background">
         <ChainIcon
-          :chain="ecosystem.chainNames(dapp.chains[0])"
+          :chain="ecosystem.chainNames(dapp?.chains[0] ?? 1)"
           fill="none"
           stroke="var(--color)"
         />
