@@ -117,11 +117,11 @@ strong {
 /* this is just a loose setting for now */
 /* or smaller group of article-like styles such as a <text-content> custom element */
 p + p {
-  /* margin-top: 1em; */
+  margin-top: 0.5em;
 }
 
 h2 + p {
-  margin-top: 4px;
+  margin-top: 1px;
 }
 
 code {

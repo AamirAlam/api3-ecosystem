@@ -156,9 +156,6 @@ label {
   box-shadow: 0 0 0 2px var(--color) !important;
 }
 
-input.formkit-input {
-}
-
 .multiselect {
   border: unset !important;
   padding: 0.5rem !important;
