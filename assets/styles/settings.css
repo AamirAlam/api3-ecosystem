@@ -140,11 +140,12 @@ html {
       calc((3 * var(--line-width)) + (2 * var(--shadow-line-gap)));
 }
 
-@media (prefers-color-scheme: light) {
+/*@media (prefers-color-scheme: light) {
   html {
-    /* --paper: var(--white);
+     --paper: var(--white);
     --ink: var(--black);
     --color-darker: var(--color-lighter);
-    --color-dark: var(--color-light); */
+    --color-dark: var(--color-light); 
   }
 }
+*/

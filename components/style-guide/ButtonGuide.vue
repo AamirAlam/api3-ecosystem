@@ -98,11 +98,8 @@ ul {
   align-items: center;
   justify-items: center;
 
-  grid-template-columns: 1fr 1fr;
   --gap: 3rem;
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 </style>
