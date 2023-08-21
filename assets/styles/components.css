@@ -88,7 +88,7 @@
 .border-gradient::after {
   content: "";
   position: absolute;
-  inset: -1px;
+  inset: calc(-1 * var(--line-width));
   background: var(--gradient-color);
   z-index: -1;
   transition: 0.1s;
@@ -149,7 +149,7 @@
   bottom: 0;
   left: 0;
   width: var(--underline-width);
-  height: 1px;
+  height: var(--line-width);
   background: var(--gradient-color);
   transition: 0.2s;
   border-radius: var(--corners);

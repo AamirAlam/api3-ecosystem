@@ -2,22 +2,27 @@
 
 <template>
   <nav>
+    <NuxtLink to="mailto:ecosystem@api3.org" class="icon social-icon">
+      <SocialIcon social="Email" />
+    </NuxtLink>
+
     <NuxtLink
       to="https://discord.com/invite/qnRrcfnm5W"
       class="icon social-icon"
     >
       <SocialIcon social="Discord" />
     </NuxtLink>
+
     <NuxtLink class="text" to="/">Home</NuxtLink>
     <NuxtLink class="text" to="/ecosystem">Ecosystem</NuxtLink>
     <NuxtLink class="text" to="/articles">Articles</NuxtLink>
     <!-- <NuxtLink class="text" to="/guild">Guild</NuxtLink> -->
-    <!-- <NuxtLink to="/about">About</NuxtLink> -->
     <div class="actions">
       <!-- <ConnectButton /> -->
     </div>
   </nav>
 </template>
+
 <style lang="scss" scoped>
 .social-icon {
   width: 35px;

@@ -35,72 +35,6 @@ const { data, error } = await useFetch(
     },
   }
 );
-
-// article.value.sections = article.value.sections.map((section, index) => {
-//   return {
-//     ...section,
-//     isHighlighted: index === 0 ? true : false,
-//   };
-// });
-
-// onMounted(() => {
-//   const pageLoad = gsap.timeline();
-
-//   pageLoad
-//     .to("article", {
-//       opacity: 1,
-//       duration: 0,
-//     })
-
-//     .fromTo(
-//       ["h1", "h2", "article-meta div, aside"],
-//       {
-//         x: "-5vw",
-//         opacity: 0,
-//         delay: "0.5",
-//         duration: 0,
-//       },
-//       {
-//         x: "0vw",
-//         opacity: 1,
-//         duration: 0.5,
-//         stagger: {
-//           each: 0.15,
-//           from: "start",
-//         },
-//       },
-//       "0"
-//     )
-//     .fromTo(
-//       "h1",
-//       {
-//         "--before-width": "0",
-//         duration: 0,
-//       },
-//       {
-//         "--before-width": "50%",
-//         duration: 0.5,
-//       }
-//     )
-//     .fromTo(
-//       ["article > section > *"],
-//       {
-//         y: "10vw",
-//         opacity: 0,
-//         duration: 0,
-//       },
-//       {
-//         y: "0vw",
-//         opacity: 1,
-//         duration: 0.5,
-//         stagger: {
-//           each: 0.08,
-//           from: "start",
-//         },
-//       },
-//       "1"
-//     );
-// });
 </script>
 
 <template>
@@ -120,15 +54,6 @@ const { data, error } = await useFetch(
         tag="article"
         class="body"
       />
-
-      <!--
-
-      <ArticleSection
-        v-for="section in article.sections"
-        :key="section.heading"
-        :section="section"P
-      />
-      <ArticleRecommend :article="blog.list[0]" /> -->
     </article>
   </SectionColumn>
 </template>
@@ -246,7 +171,7 @@ inner-column.article {
       &::after {
         content: "";
         position: absolute;
-        inset: -1px;
+        inset: calc(-1 * var(--line-width));
         z-index: -2;
         border-radius: calc(var(--corners) + 3rem);
       }

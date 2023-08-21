@@ -304,7 +304,7 @@ section.other inner-column {
   justify-items: center;
   text-align: center;
   gap: 3rem;
-  border-top: 1px solid var(--gray-dark);
+  border-top: var(--border);
 
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr;

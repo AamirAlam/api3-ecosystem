@@ -1,3 +1,4 @@
+import slug from "slug";
 import { Project } from "../models/Project";
 import { ProjectType } from "../types";
 import axios from "axios";
@@ -69,14 +70,19 @@ export async function syncProjectsToMongodb() {
 
           if (!project?.id) {
             // insert new entry
-            const newProject = await new Project(projectData).save();
+            const newProject = await new Project({
+              ...projectData,
+              slug: slug(projectData.name),
+            }).save();
 
             console.log("new project added", newProject);
             return;
           }
 
           // update existing project
-          await Project.findByIdAndUpdate(project.id, { $set: projectData });
+          await Project.findByIdAndUpdate(project.id, {
+            $set: { ...projectData, slug: slug(projectData.name) },
+          });
 
           console.log(`File '${filePath}' updated into MongoDB.`);
         }

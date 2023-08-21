@@ -1,17 +1,5 @@
 <script setup>
-import getCSSCustomProperties from "@/composables/getCSSCustomProperties";
 const props = defineProps(["toc", "title"]);
-
-function noHeading(section) {
-  const firstPara = section.content.find((content) => {
-    if (content.type === "paragraph") {
-      return content;
-    }
-  });
-  const paraStr = `${firstPara.text.slice(0, 17)}...`;
-
-  return paraStr;
-}
 </script>
 
 <template>

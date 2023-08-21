@@ -1,56 +1,13 @@
 <script setup>
-import { gsap } from "gsap";
 import { useInterfaceStore } from "~/stores/interface";
 
 const ui = useInterfaceStore();
-
-onMounted(() => {
-  const pageLoad = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".cta-module",
-    },
-  });
-
-  pageLoad.set(".cta-module", {
-    opacity: 1,
-  });
-
-  //   pageLoad.fromTo(
-  //     "cta-module picture, cta-module h2, cta-module button",
-  //     {
-  //       y: 50,
-  //     },
-  //     {
-  //       opacity: 1,
-  //       y: 0,
-  //       duration: 0.5,
-  //       ease: "power4.out",
-  //       stagger: 0.25,
-  //     }
-  //   );
-  //   pageLoad.fromTo(
-  //     ".cta-module .curves-decoration path",
-  //     {
-  //       strokeDashoffset: -4000,
-  //       strokeDasharray: -4000,
-  //     },
-  //     {
-  //       opacity: 1,
-  //       duration: 1,
-  //       strokeDashoffset: 1,
-  //       ease: "power2.inOut",
-  //       // stagger: 0.01,
-  //     }
-  //   );
-});
 </script>
 
 <template>
   <SectionColumn class="cta-module">
     <!-- <span class="line"></span> -->
-    <picture class="curves-decoration">
-      <CurvesDecoration />
-    </picture>
+
     <cta-module>
       <text-content>
         <h2
@@ -69,10 +26,17 @@ onMounted(() => {
           Join Now
         </button>
       </text-content>
+
+      <!-- partner logo wall -->
       <picture class="graphic">
         <img src="@/assets/images/partner-logos.png" alt="" />
       </picture>
     </cta-module>
+
+    <!-- background decoration -->
+    <picture class="curves-decoration">
+      <CurvesDecoration />
+    </picture>
   </SectionColumn>
 </template>
 
@@ -94,16 +58,12 @@ onMounted(() => {
   z-index: -1;
   opacity: 0.5;
 }
-
-.cta-module :is(h2, button, picture.graphic, .curves-decoration path) {
-  /* opacity: 0; */
-}
 </style>
 
 <style scoped lang="scss">
 .cta-module span.line {
   position: absolute;
-  height: 1px;
+  height: var(--line-width);
   background: var(--gradient-color);
   top: 0;
   right: 0;

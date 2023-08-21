@@ -103,7 +103,7 @@ ul {
 
   li + li {
     padding-top: 1rem;
-    border-top: 1px solid var(--color);
+    border-top: var(--border-highlight);
   }
 
   P + p {

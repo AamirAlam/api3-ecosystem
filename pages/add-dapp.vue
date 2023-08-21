@@ -4,7 +4,7 @@ import { setErrors, FormKitMessages } from "@formkit/vue";
 import { getValidationMessages } from "@formkit/validation";
 
 definePageMeta({
-  title: "Add Dapp",
+  title: "Add Your dApp",
   layout: "home",
 });
 
@@ -18,6 +18,7 @@ useSeoMeta({
 
 const { verifyWallet } = useSiwe();
 const { submitProject, fetchFeedNames } = useHttpCalls();
+const web3Store = useWeb3Store();
 
 const dappForm = useStorage("dapp-form", {});
 
@@ -36,8 +37,6 @@ function showErrors(node) {
     );
   });
 }
-
-const web3Store = useWeb3Store();
 
 const submitHandler = async (event) => {
   if (!web3Store.state?.isConnected) {
@@ -114,18 +113,23 @@ onMounted(async () => {
       <div class="step">
         <ContentStep :dappForm="dappForm" />
       </div>
+
       <div class="step">
         <ImageStep :dappForm="dappForm" />
       </div>
+
       <div class="step">
         <TagStep :dappForm="dappForm" />
       </div>
+
       <div class="step" v-if="dappForm.productType === 'datafeed'">
         <ProxyStep :dappForm="dappForm" :feedNameOptions="feedNameOptions" />
       </div>
+
       <div class="step">
         <LinksStep :dappForm="dappForm" />
       </div>
+
       <div class="step">
         <SocialsStep :dappForm="dappForm" />
       </div>
@@ -134,7 +138,6 @@ onMounted(async () => {
       </div> -->
 
       <div class="actions">
-        <!-- <h2 class="loud-voice">Submit your project!</h2> -->
         <FormKit
           type="submit"
           label="Add Project"
@@ -150,6 +153,7 @@ onMounted(async () => {
             <li v-for="message in messages">{{ message }}</li>
           </template>
         </ul>
+
         <!-- <div v-if="complete"> -->
         <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
         <!-- </div> -->
