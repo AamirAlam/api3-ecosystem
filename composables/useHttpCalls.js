@@ -173,7 +173,8 @@ export const useHttpCalls = () => {
       console.log("submit response error ", {
         error: error,
       });
-      return { success: false, message: error?.response?.statusText };
+      const errorMessage = error?.response?.data?.response?.response?.message;
+      return { success: false, message: errorMessage };
     }
   };
 

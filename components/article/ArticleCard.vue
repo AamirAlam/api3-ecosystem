@@ -39,7 +39,7 @@ onMounted(() => {
         {{ article.author.name }}
       </h4>
 
-      <NuxtLink :to="`/articles/${slug(article._id)}`" class="text">
+      <NuxtLink :to="`/articles/${slug(article?.title)}`" class="text">
         Read more
       </NuxtLink>
     </text-content>
@@ -67,11 +67,11 @@ article-card {
     right: -0.5rem;
 
     width: var(--decoration-size);
-    height: 1px;
+    height: var(--line-width);
   }
 
   &::after {
-    width: 1px;
+    width: var(--line-width);
     height: var(--decoration-size);
   }
 

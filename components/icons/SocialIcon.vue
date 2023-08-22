@@ -14,7 +14,11 @@ const dynamicComponent = defineAsyncComponent(() =>
     :is="dynamicComponent"
     :style="`
    ${fill ? `fill: ${fill};` : 'fill: var(--gray);'}
-	${stroke ? `stroke: ${stroke}; stroke-width: 1px;` : 'stroke: none;'}
+	${
+    stroke
+      ? `stroke: ${stroke}; stroke-width: var(--line-width);`
+      : 'stroke: none;'
+  }
 
   `"
   />

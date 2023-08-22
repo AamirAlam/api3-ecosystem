@@ -13,11 +13,11 @@ const SocialSchema = new Schema({
 });
 
 const ProjectLinkSchema = new Schema({
-  dapp: { type: String, required: true },
-  website: { type: String, required: true },
-  docs: { type: String, required: true },
-  explorer: { type: String, required: true },
-  socials: { type: [SocialSchema], required: true },
+  dapp: { type: String, required: false },
+  website: { type: String, required: false },
+  docs: { type: String, required: false },
+  explorer: { type: String, required: false },
+  socials: { type: [SocialSchema], required: false },
 });
 
 const ImageSchema = new Schema({
@@ -27,6 +27,10 @@ const ImageSchema = new Schema({
 });
 
 const ProjectSchema = new Schema({
+  slug: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,

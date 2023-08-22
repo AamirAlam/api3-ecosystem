@@ -3,9 +3,10 @@ const ecosystem = useEcosystemStore();
 </script>
 
 <template>
-  <PageHeader heading="test ground" />
+  <PageTitle heading="test ground" />
   <SectionColumn>
     <JoinNewsletter />
+    <AddLoading start="5" />
   </SectionColumn>
 </template>
 

@@ -2,6 +2,8 @@
 import { watchNetwork } from "@wagmi/core";
 import { gsap } from "gsap";
 
+const web3Store = useWeb3Store();
+
 const selected = ref("");
 const selectedProductId = ref(null);
 const mintInfo = ref({ hash: null });
@@ -50,16 +52,6 @@ function animateHeading() {
     }
   );
 }
-
-const web3Store = useWeb3Store();
-
-onMounted(() => {
-  const {} = useMint();
-
-  watchNetwork((network) => {
-    chainId.value = network?.chain?.id;
-  });
-});
 
 watch(selectedProductId, async (productId, prevProductId) => {
   if (productId === undefined) {
@@ -128,6 +120,14 @@ const buttonText = computed(() => {
   }
 
   return "Mint it Now";
+});
+
+onMounted(() => {
+  const {} = useMint();
+
+  watchNetwork((network) => {
+    chainId.value = network?.chain?.id;
+  });
 });
 </script>
 
