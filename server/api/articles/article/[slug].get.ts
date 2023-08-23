@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     if (!articleSlug) {
-      event.res.statusCode = 400;
+      event.node.res.statusCode = 400;
       return {
         code: "INVALID_TITLE",
         message: "Invalid article title",

@@ -85,7 +85,10 @@ async function verifyBuild(
       shelljs.exec(`cd dapp-registry && yarn build`).code === 0;
 
     if (!isBuildSuccess) {
-      reject({ success: false, message: "Build failed with new project" });
+      reject({
+        success: false,
+        message: "New project did not match the build requirement",
+      });
       return;
     }
 

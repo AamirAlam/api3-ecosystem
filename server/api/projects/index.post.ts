@@ -106,14 +106,13 @@ export default authenticated(
         // check if project with same name already active
         const existingProject = await Project.findOne({
           name: payload.name,
-          status: "active",
         });
 
         if (existingProject) {
           event.node.res.statusCode = 400;
           return {
             code: "REQ_FAILED",
-            message: `Project with name ${payload.name} already active`,
+            message: `Project with name ${payload.name} already submitted`,
           };
         }
 
@@ -135,11 +134,11 @@ export default authenticated(
           event.node.res.statusCode = 400;
           return {
             code: "BUILD_FAILED",
-            message: "Failed to build project!",
+            message: buildResult.message,
           };
         }
 
-        event.res.statusCode = 201;
+        event.node.res.statusCode = 201;
         return {
           code: "OK",
           message: "Project submitted successfully!",

@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     if (!projectSlug) {
-      event.res.statusCode = 400;
+      event.node.res.statusCode = 400;
       return {
         code: "INVALID_ID",
         message: "Invalid project name slug",

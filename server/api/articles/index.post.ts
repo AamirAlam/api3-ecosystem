@@ -40,7 +40,7 @@ export default authenticated(
         });
 
         if (existingArticle) {
-          event.res.statusCode = 401;
+          event.node.res.statusCode = 401;
           return {
             code: "ERROR",
             message: "Article with same title already exists",

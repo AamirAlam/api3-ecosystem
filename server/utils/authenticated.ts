@@ -95,7 +95,7 @@ export const authenticated = (
         };
       }
 
-      //check token has correct role or not
+      // role checks
       // skip access check if role is USER
 
       if (role !== ROLE.USER && user?.role !== role) {

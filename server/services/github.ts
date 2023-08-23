@@ -127,7 +127,7 @@ export async function createPR(
     });
     return {
       success: true,
-      message: "Pull request created for review",
+      message: "Project submitted successfully!",
       data: prData?.html_url,
     };
   } catch (err) {
