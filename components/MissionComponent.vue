@@ -188,8 +188,9 @@ mission-section {
     opacity: 0.5;
 
     @media (min-width: 768px) {
-      top: 0%;
-      bottom: unset;
+      grid-row: 2/3;
+
+      top: -100px;
     }
   }
 
