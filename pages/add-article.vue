@@ -102,18 +102,5 @@ file-upload {
   gap: 10px;
   padding: 1rem;
   align-items: start;
-
-  :deep([data-type="file"]) {
-    input.formkit-input {
-      color: var(--white) !important;
-      font-size: var(--step--1) !important;
-
-      ul li.formkit-file-item {
-        display: grid !important;
-        grid-template-columns: 0.25fr 1fr 0.25fr !important;
-        align-content: center !important;
-      }
-    }
-  }
 }
 </style>
