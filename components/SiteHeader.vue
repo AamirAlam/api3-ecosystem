@@ -37,7 +37,7 @@ onMounted(() => {
           </picture>
           <SiteNav v-if="!ui.isMobile" />
           <button
-            :class="`button menu icon ${showMenu ? 'menuOpen' : ''}`"
+            :class="` menu icon ${showMenu ? 'menuOpen' : ''}`"
             v-if="ui.isMobile"
             @click="showMenu = !showMenu"
           >
@@ -78,7 +78,7 @@ mast-head {
     }
   }
 }
-.button.menu {
+button.menu {
   max-width: 50px;
   justify-self: end;
 
