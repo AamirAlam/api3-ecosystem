@@ -12,12 +12,14 @@ const props = withDefaults(
 );
 
 const { copy, copied, text } = useClipboard();
+
+console.log(props.language);
 </script>
 
 <template>
   <div>
     <span class="calm-voice" @click="copy(code)" v-tooltip="'Copy code'">
-      <template v-if="copied">{{ language }}</template>
+      <template v-if="!copied">{{ language }}</template>
 
       <template v-else> Copied! </template>
     </span>
@@ -32,7 +34,7 @@ div {
   margin: 2rem 0;
   padding: 2rem 1rem;
   background: var(--gradient-dark);
-  overflow: hidden;
+  overflow: scroll;
   span {
     position: absolute;
     top: 1rem;
@@ -50,7 +52,7 @@ div {
   }
 
   :deep(pre) {
-    white-space: pre-wrap;
+    white-space: pre;
   }
 }
 </style>

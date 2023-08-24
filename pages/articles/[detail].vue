@@ -39,7 +39,7 @@ const { data, error } = await useFetch(
 
 <template>
   <SectionColumn innerClass="article">
-    <article>
+    <div class="article-wrapper">
       <ArticleSide :toc="data?.content?.toc" :title="data?.title" />
 
       <ArticleHeader :article="data" />
@@ -54,7 +54,7 @@ const { data, error } = await useFetch(
         tag="article"
         class="body"
       />
-    </article>
+    </div>
   </SectionColumn>
 </template>
 
@@ -65,6 +65,36 @@ inner-column.article {
   padding: 5rem 2rem;
   align-items: start;
   position: relative;
+
+  & > .article-wrapper {
+    display: grid;
+    column-gap: 1rem;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: start;
+
+    & > :not(aside, header) {
+      grid-column: 1 / -1;
+      @media (min-width: 768px) {
+        grid-column: 4 / 11;
+        //     padding: 2rem;
+        //     gap: 2rem;
+      }
+
+      &.cover {
+        height: 100%;
+        aspect-ratio: 16/10;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        @media (min-width: 768px) {
+          grid-column: 3 / -1;
+        }
+      }
+    }
+  }
 
   article.body {
     h2 {
@@ -107,6 +137,10 @@ inner-column.article {
 
       &:has(img) {
         margin-top: 2rem;
+      }
+
+      &:has(> :is(a, code)) {
+        overflow: scroll;
       }
     }
 
@@ -199,36 +233,6 @@ inner-column.article {
     }
     .highlight {
       --height: 100%;
-    }
-  }
-
-  & > article {
-    display: grid;
-    column-gap: 1rem;
-    grid-template-columns: repeat(12, 1fr);
-    align-items: start;
-
-    & > :not(aside, header) {
-      grid-column: 1 / -1;
-      @media (min-width: 768px) {
-        grid-column: 4 / 11;
-        //     padding: 2rem;
-        //     gap: 2rem;
-      }
-
-      &.cover {
-        height: 100%;
-        aspect-ratio: 16/10;
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        @media (min-width: 768px) {
-          grid-column: 3 / -1;
-        }
-      }
     }
   }
 }
