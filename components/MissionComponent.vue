@@ -82,6 +82,11 @@ function onMouseEnter(index) {
 <template>
   <SectionColumn class="mission-stats">
     <mission-section v-auto-animate>
+      <!-- static circle -->
+      <picture class="shape-graphic">
+        <CircleDecoration />
+      </picture>
+
       <heading-text v-auto-animate>
         <h2 class="attention-voice">
           API3 DAO serves data on-chain with first-party oracles that provide a
@@ -106,11 +111,6 @@ function onMouseEnter(index) {
         </template>
       </ul>
 
-      <!-- static circle -->
-      <picture class="shape-graphic">
-        <CircleDecoration />
-      </picture>
-
       <!-- background animating graphic -->
       <picture class="background-graphic">
         <Transition @enter="animateBackground">
@@ -131,9 +131,13 @@ span.highlight {
 mission-section {
   display: grid;
   align-content: center;
-  gap: 100px;
   height: 100%;
   position: relative;
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    gap: 100px;
+  }
 
   heading-text {
     max-width: 100ch;
@@ -148,24 +152,35 @@ mission-section {
   }
 
   ul {
+    display: grid;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
     grid-column: 1/-1;
     @media (min-width: 768px) {
       grid-column: 2 / span 5;
+      gap: 2rem;
+      margin-top: unset;
     }
   }
 
   picture.shape-graphic {
-    position: absolute;
-    top: 50px;
-    width: 320px;
-    z-index: -1;
-    opacity: 0.5;
+    width: 50px;
+
+    @media (min-width: 768px) {
+      width: 320px;
+      opacity: 0.5;
+
+      position: absolute;
+      z-index: -1;
+      top: 50px;
+    }
   }
 
   picture.background-graphic {
     position: absolute;
 
-    bottom: -10%;
+    grid-row: 3/4;
     right: 0%;
     width: 40vmin;
     height: 40vmin;
@@ -186,11 +201,5 @@ mission-section {
       margin-bottom: 0.5rem;
     }
   }
-}
-
-ul {
-  display: grid;
-  align-items: center;
-  gap: 2rem;
 }
 </style>
