@@ -41,22 +41,40 @@ const ui = useInterfaceStore();
 </template>
 
 <style lang="scss">
-.cta-module inner-column {
-  display: grid;
-  align-items: center;
-  position: relative;
+.cta-module {
   overflow-x: hidden;
+
   @media (min-width: 768px) {
     overflow-x: unset;
   }
 }
+.cta-module inner-column {
+  display: grid;
+  align-items: center;
+  position: relative;
+  padding-top: 7rem !important;
+  //   overflow-x: hidden;
+  @media (min-width: 768px) {
+    //  overflow-x: unset;
+    padding-top: unset !important;
+  }
+}
 .cta-module .curves-decoration {
   position: absolute;
+  max-width: 500px;
+  top: -50px;
 
-  left: 100px;
-  transform: rotateY(180deg) rotate(10deg) scaleX(1.4);
+  left: -10px;
+  transform: rotateX(180deg) rotateY(180deg) rotate(-20deg) scaleX(1.2);
   z-index: -1;
-  opacity: 0.5;
+
+  @media (min-width: 768px) {
+    top: unset;
+    max-width: unset;
+    left: 100px;
+    opacity: 0.5;
+    transform: rotateY(180deg) rotate(10deg) scaleX(1.4);
+  }
 }
 </style>
 
