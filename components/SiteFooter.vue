@@ -331,9 +331,11 @@ section.other inner-column {
   }
 
   .social-icons {
+    justify-self: stretch;
+
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(15px, 1fr));
+    gap: 1rem;
     place-items: center;
     fill: var(--gray);
     @media (min-width: 1024px) {
