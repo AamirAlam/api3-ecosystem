@@ -32,17 +32,16 @@ onMounted(() => {
       <img :src="article?.cover ?? '/images/article-placeholder.jpg'" />
     </picture>
     <text-content>
-      <h3 class="firm-voice">
+      <h3 class="solid-voice">
         {{ article?.title ?? "Article Title" }}
       </h3>
       <h4 class="whisper-voice">
         {{ article?.author.name ?? "Author Name" }}
       </h4>
-
-      <NuxtLink :to="`/articles/${slug(article?.title ?? '#')}`" class="text">
-        Read more
-      </NuxtLink>
     </text-content>
+    <NuxtLink :to="`/articles/${slug(article?.title ?? '#')}`" class="text">
+      Read more
+    </NuxtLink>
   </article-card>
 </template>
 
@@ -76,13 +75,13 @@ article-card {
   }
 
   a.text {
-    padding-left: 0;
+    padding-bottom: 1rem;
   }
 
   text-content {
-    padding: 1rem;
+    padding: 0.5rem 1rem;
 
-    .firm-voice {
+    .solid-voice {
       margin-bottom: 0.5rem;
     }
 
@@ -92,6 +91,7 @@ article-card {
   }
   &.card {
     grid-column: 1/-1;
+
     @media (min-width: 768px) {
       grid-column: span 4;
     }
@@ -123,13 +123,16 @@ article-card {
     }
   }
   &.text {
-    @media (min-width: 840px) {
+    //  aspect-ratio: 1/1;
+    grid-column: span 2;
+
+    @media (min-width: 768px) {
       grid-column: span 3;
+      .firm-voice {
+        //   font-size: var(--step-0);
+      }
     }
 
-    @media (min-width: 1350px) {
-      grid-column: span 2;
-    }
     align-items: center;
     min-height: 150px;
 
@@ -140,6 +143,10 @@ article-card {
 
   &.big-card {
     grid-column: 1/-1;
+
+    .solid-voice {
+      font-size: var(--step-1);
+    }
 
     picture {
       height: 100%;
@@ -162,11 +169,19 @@ article-card {
       left: 0;
       width: 100%;
 
-      padding-top: 50px;
+      z-index: 2;
+    }
+
+    a.text {
+      color: transparent;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+
       background: linear-gradient(
         0deg,
-        hsla(0, 0%, 1%, 0.7) 70%,
-        hsla(0, 0%, 1%, 0) 100%
+        hsla(0, 0%, 1%, 0.7) 20%,
+        hsla(0, 0%, 1%, 0) 50%
       );
     }
   }

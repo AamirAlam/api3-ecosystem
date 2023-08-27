@@ -1,18 +1,21 @@
 <script setup>
 import { useBlogStore } from "@/stores/blog";
+const props = defineProps(["layout", "cardCount"]);
 
 const blog = useBlogStore();
 const ui = useInterfaceStore();
-const props = defineProps(["layout", "cardCount"]);
 
 const layouts = [
+  ["big-card"],
+  ["card"],
+  ["slide"],
+  ["text"],
   ["card", "card", "card", "big-card", "slide", "text", "text", "text", "text"],
   ["big-card", "big-card", "card", "card", "card"],
   ["big-card", "slide", "big-card", "slide", "slide"],
   ["big-card", "slide", "text", "text", "text"],
   ["big-card", "big-card", "slide", "slide", "slide"],
   ["big-card", "card", "text", "text"],
-  ["big-card"],
 ];
 
 const layoutIndex = ref(props.layout ?? 0);
@@ -22,7 +25,6 @@ function cardType(index, layout = layoutIndex.value, article) {
   const cardType = layout[index % layout.length];
 
   if (cardType === "slide" && ui.isMobile) return "big-card";
-
   return cardType;
 }
 
