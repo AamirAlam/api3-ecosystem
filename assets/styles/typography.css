@@ -61,6 +61,13 @@ article.body h2 a {
   /* text-transform: uppercase; */
 }
 
+.solid-voice {
+  font-family: var(--font);
+  font-size: var(--step-0);
+  font-weight: var(--weight-semibold);
+  line-height: 1.6;
+}
+
 .calm-voice,
 p,
 a,
@@ -97,12 +104,6 @@ strong {
   font-weight: var(--weight-light);
   color: var(--gray-light);
   letter-spacing: 0.08em;
-}
-
-.solid-voice {
-  font-family: var(--font);
-  font-size: var(--step-0);
-  font-weight: var(--weight-semibold);
 }
 
 .micro-voice {
