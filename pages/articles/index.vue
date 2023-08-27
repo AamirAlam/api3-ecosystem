@@ -15,16 +15,21 @@ useSeoMeta({
   <PageTitle heading="Articles" />
   <SectionColumn>
     <h2 class="attention-voice">Featured</h2>
-    <ArticleGrid :layout="0" cardCount="4" />
+    <ArticleGrid :layout="5" />
   </SectionColumn>
-
   <SectionColumn>
     <h2 class="attention-voice">Recent</h2>
-    <ArticleGrid :layout="1" cardCount="3" />
+    <ArticleGridRecent />
   </SectionColumn>
 
-  <SectionColumn>
+  <!-- <SectionColumn>
     <h2 class="attention-voice">Popular</h2>
     <ArticleGrid :layout="3" cardCount="4" />
-  </SectionColumn>
+  </SectionColumn> -->
 </template>
+
+<style lang="scss" scoped>
+h2 {
+  margin-bottom: 2rem;
+}
+</style>

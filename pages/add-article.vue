@@ -87,7 +87,14 @@ async function submitHandler(event) {
         />
 
         <p v-if="status.loading">Uploading...</p>
-        <p>{{ status.message }}</p>
+        <p
+          :class="{
+            'color-success': status.success,
+            'color-warning': !status.success,
+          }"
+        >
+          {{ status.message }}
+        </p>
       </FormKit>
     </file-upload>
   </SectionColumn>

@@ -1,9 +1,40 @@
 <script setup>
 import { useBlogStore } from "@/stores/blog";
-const props = defineProps(["layout", "cardCount"]);
+const props = defineProps([
+  "layout",
+  "cardCount",
+  "isRecentSort",
+  "isPopularSort",
+  "isTrendingSort",
+  "isFeaturedSort",
+]);
 
 const blog = useBlogStore();
 const ui = useInterfaceStore();
+
+const sorted = computed(() => {
+  if (props.isRecentSort) {
+    return blog.list.sort((a, b) => {
+      return new Date(b.created_at) - new Date(a.created_at);
+    });
+  }
+  if (props.isPopularSort) {
+    return blog.list.sort((a, b) => {
+      return new Date(b.views) - new Date(a.views);
+    });
+  }
+  if (props.isTrendingSort) {
+    return blog.list.sort((a, b) => {
+      return new Date(b.upvotes) - new Date(a.upvotes);
+    });
+  }
+  if (props.isFeaturedSort) {
+    return blog.list.sort((a, b) => {
+      return new Date(b.isFeatured) - new Date(a.isFeatured);
+    });
+  }
+  return blog.list;
+});
 
 const layouts = [
   ["big-card"],
@@ -42,11 +73,11 @@ onMounted(() => {
 
 <template>
   <ul class="article-grid" v-auto-animate>
-    <template v-for="(article, index) in blog.list">
+    <template v-for="(article, index) in sorted">
       <ArticleCard
         :article="article"
         :class="cardType(index, layouts[layoutIndex], article)"
-        v-if="index < (props.cardCount ?? blog.list.length)"
+        v-if="index < (props.cardCount ?? sorted.length)"
       />
     </template>
     <button

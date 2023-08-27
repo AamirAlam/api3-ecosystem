@@ -132,6 +132,14 @@ code {
   border: unset;
 }
 
+.color-success {
+  color: var(--success);
+}
+
+.color-error {
+  color: var(--warning);
+}
+
 .validation-warn {
   color: var(--warning);
 }
