@@ -80,6 +80,7 @@ article-card {
 
   text-content {
     padding: 0.5rem 1rem;
+    padding-top: 1rem;
 
     .solid-voice {
       margin-bottom: 0.5rem;
