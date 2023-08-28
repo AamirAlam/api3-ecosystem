@@ -36,6 +36,7 @@ onMounted(() => {
   display: grid;
   justify-content: start;
   padding: 5rem 15px;
+  margin-top: 2rem;
   //   opacity: 0;
 }
 
