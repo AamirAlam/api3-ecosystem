@@ -60,8 +60,10 @@ onMounted(() => {
 </template>
 
 <style>
-body:not(.index) .site-header inner-column {
-  padding: 64px 0;
+@media (min-width: 768px) {
+  body:not(.index) .site-header inner-column {
+    padding: 64px 16px;
+  }
 }
 </style>
 

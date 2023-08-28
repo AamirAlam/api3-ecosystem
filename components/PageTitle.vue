@@ -36,8 +36,12 @@ onMounted(() => {
   display: grid;
   justify-content: start;
   padding: 5rem 15px;
-  margin-top: 2rem;
+
   //   opacity: 0;
+
+  @media (min-width: 768px) {
+    margin-top: 2rem;
+  }
 }
 
 main.ecosystem-detail .page-title {

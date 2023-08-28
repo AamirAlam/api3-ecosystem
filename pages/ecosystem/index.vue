@@ -76,7 +76,7 @@ onMounted(() => {
 }
 .ecosystem-header {
   opacity: 0;
-  margin-top: 2rem;
+
   inner-column {
     display: grid;
     gap: 1rem;
@@ -91,7 +91,9 @@ onMounted(() => {
     }
 
     @media (min-width: 768px) {
-      grid-template-columns: 1fr 0.5fr;
+      margin-top: 2rem;
+
+      display: flex;
     }
   }
 }

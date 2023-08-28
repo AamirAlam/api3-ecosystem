@@ -156,12 +156,14 @@ const miscLinks = [
         <picture class="site-logo">
           <LogoIcon />
         </picture>
+
         <section
           v-for="(footerMenu, index) in footerLinks"
           :key="index"
           class="footer-menu"
         >
           <h5 class="notice-voice">{{ footerMenu.title }}</h5>
+
           <nav>
             <NuxtLink
               v-for="(link, linkIndex) in footerMenu.links"
@@ -224,17 +226,6 @@ footer {
     padding-left: 30px;
     padding-right: 30px;
   }
-
-  //   &::before {
-  //     content: "";
-  //     position: absolute;
-  //     inset: 0;
-  //     background: var(--pattern-four);
-  //     background-repeat: no-repeat;
-  //     background-position: right;
-  //     z-index: -1;
-  //     opacity: 0.1;
-  //   }
 }
 .calm-voice {
   font-size: var(--step-0);
@@ -250,11 +241,10 @@ nav {
   justify-self: start;
   position: relative;
 
-  picture {
+  .external-link {
     position: absolute;
-    right: -10px;
-    top: 50%;
-    transform: translateY(-50%);
+    right: -11px;
+    top: 14px;
     max-width: 8px;
   }
 }
@@ -323,6 +313,7 @@ section.other inner-column {
   .social-icons {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
     fill: var(--gray);
     @media (min-width: 1264px) {
@@ -343,27 +334,6 @@ section.other inner-column {
     @media (min-width: 1024px) {
       // order: 1;
       grid-column: 1/-1;
-    }
-  }
-}
-
-main.index {
-  footer {
-    .footer-navigation inner-column {
-      @media (min-width: 1024px) {
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: 1fr;
-        picture {
-          grid-column: 1 / -1;
-        }
-      }
-    }
-    .other inner-column {
-      grid-template-columns: unset;
-      grid-template-rows: unset;
-      text-align: center;
-      justify-content: center;
-      align-content: center;
     }
   }
 }
