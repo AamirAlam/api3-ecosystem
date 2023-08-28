@@ -190,7 +190,7 @@ mission-section {
     @media (min-width: 768px) {
       grid-row: 2/3;
 
-      top: -100px;
+      top: -300px;
     }
   }
 
