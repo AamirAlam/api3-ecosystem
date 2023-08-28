@@ -4,8 +4,6 @@ import { useInterfaceStore } from "@/stores/interface";
 
 const ui = useInterfaceStore();
 
-const showFilter = ref(false);
-
 useSeoMeta({
   title: "Ecosystems",
   description:
@@ -49,9 +47,9 @@ onMounted(() => {
     <ClientOnly>
       <DappFilter v-if="!ui.isMobile" />
       <div v-else>
-        <button class="button" @click="showFilter = !showFilter">Filter</button>
+        <button class="button" @click="ui.toggleModal">Filter</button>
 
-        <ModalSlot :showModal="showFilter" @toggle="showFilter = !showFilter">
+        <ModalSlot>
           <DappFilter />
         </ModalSlot>
       </div>
@@ -78,6 +76,7 @@ onMounted(() => {
 }
 .ecosystem-header {
   opacity: 0;
+  margin-top: 2rem;
   inner-column {
     display: grid;
     gap: 1rem;
@@ -85,7 +84,7 @@ onMounted(() => {
     align-items: center;
     justify-content: space-between;
     justify-items: start;
-    padding: 60px 15px;
+    padding: 5rem 15px;
 
     .button {
       justify-self: center;
