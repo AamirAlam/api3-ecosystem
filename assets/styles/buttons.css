@@ -17,7 +17,7 @@ a {
 
 .button {
   position: relative;
-
+  user-select: none;
   padding: 0.5em 2em;
   text-align: center;
   border: var(--border);

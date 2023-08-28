@@ -16,12 +16,12 @@ function animateCurvesWaves() {
   tl.fromTo(
     "#curve-decoration path",
     {
-      strokeDashoffset: "1100",
-      strokeDasharray: "1100",
+      // strokeDashoffset: "1100",
+      // strokeDasharray: "1100",
     },
     {
       duration: 5,
-      strokeDashoffset: 0,
+      // strokeDashoffset: 0,
       scaleY: 0.5,
       transformOrigin: "center center",
     }
