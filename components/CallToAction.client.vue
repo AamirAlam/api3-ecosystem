@@ -62,18 +62,26 @@ const ui = useInterfaceStore();
 .cta-module .curves-decoration {
   position: absolute;
   max-width: 500px;
-  top: -50px;
+  bottom: -110px;
 
-  left: -10px;
-  transform: rotateX(180deg) rotateY(180deg) rotate(-20deg) scaleX(1.2);
+  left: -50px;
+  transform: rotateY(180deg) rotate(-20deg) scaleX(0.9);
   z-index: -1;
 
   @media (min-width: 768px) {
-    top: unset;
-    max-width: unset;
-    left: 100px;
+    bottom: unset;
+    max-width: 100vw;
+    left: -10%;
     opacity: 0.5;
-    transform: rotateY(180deg) rotate(10deg) scaleX(1.4);
+    transform: rotateY(180deg) scaleX(1.2) scaleY(1.5);
+  }
+
+  @media (min-width: 1440px) {
+    transform: rotateY(180deg) scaleX(2) scaleY(1.5);
+  }
+
+  @media (min-width: 1920px) {
+    transform: rotateY(180deg) rotate(10deg) scaleX(2.5) scaleY(1.5);
   }
 }
 </style>
