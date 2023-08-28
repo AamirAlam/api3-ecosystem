@@ -19,7 +19,7 @@ useSeoMeta({
   </SectionColumn>
   <SectionColumn>
     <h2 class="attention-voice">Recent</h2>
-    <ArticleGridRecent />
+    <ArticleGrid layout="3" cardCount="4" isRecentSort="true" />
   </SectionColumn>
 
   <!-- <SectionColumn>
