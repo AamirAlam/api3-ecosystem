@@ -1,3 +1,38 @@
+<script setup>
+import { gsap } from "gsap";
+
+function animateCurvesWaves() {
+  //   animation of the curves making waves
+  const tl = gsap.timeline({
+    repeat: -1,
+    repeatDelay: 0,
+    defaults: {
+      duration: 1,
+      ease: "power1.inOut",
+      stagger: { each: 0.5, repeat: "-1", from: "end", yoyo: true },
+    },
+  });
+
+  tl.fromTo(
+    "#curve-decoration path",
+    {
+      strokeDashoffset: "1100",
+      strokeDasharray: "1100",
+    },
+    {
+      duration: 5,
+      strokeDashoffset: 0,
+      scaleY: 0.5,
+      transformOrigin: "center center",
+    }
+  );
+}
+
+onMounted(() => {
+  animateCurvesWaves();
+});
+</script>
+
 <template>
   <svg
     width="1036px"
