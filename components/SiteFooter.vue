@@ -300,47 +300,36 @@ nav {
 }
 
 section.other inner-column {
-  display: grid;
-  justify-items: center;
   text-align: center;
-  gap: 3rem;
+  gap: 2rem;
   border-top: var(--border);
 
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    justify-items: center;
+  display: grid;
+
+  @media (min-width: 1264px) {
+    display: flex;
     justify-content: space-between;
-    text-align: left;
-    align-items: center;
+    flex-wrap: wrap;
   }
 
   .misc-links {
-    gap: 2rem;
+    column-gap: 2rem;
+    row-gap: 0.5rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
-    @media (min-width: 768px) {
-      gap: 2rem;
-    }
-
-    @media (min-width: 1024px) {
-      // order: 2;
-    }
   }
 
   .social-icons {
-    justify-self: stretch;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15px, 1fr));
+    display: flex;
+    justify-content: center;
     gap: 1rem;
-    place-items: center;
     fill: var(--gray);
-    @media (min-width: 1024px) {
-      // order: 3;
-      justify-content: center;
+    @media (min-width: 1264px) {
+      order: 3;
+      gap: 2rem;
+    }
+    @media (min-width: 1380px) {
       gap: 3rem;
     }
 
