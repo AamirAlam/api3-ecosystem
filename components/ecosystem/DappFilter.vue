@@ -3,6 +3,7 @@ import { useEcosystemStore } from "~/stores/ecosystem";
 import { gsap } from "gsap";
 
 const ecosystem = useEcosystemStore();
+const ui = useInterfaceStore();
 
 const chains = computed(() => {
   if (ecosystem.stats) {
@@ -238,6 +239,11 @@ const handleFilter = (event) => {
         {{ !showAll.years ? "Show More" : "Show Less" }}
       </button>
     </div>
+
+    <div class="actions" v-if="ui.isMobile">
+      <button class="button" @click="ui.toggleModal">Apply</button>
+      <button class="button" @click="ui.toggleModal">Cancel</button>
+    </div>
   </dapp-filter>
 </template>
 
@@ -276,6 +282,10 @@ dapp-filter {
     & + *:not(search-bar) {
       border-top: var(--border-dark);
     }
+  }
+
+  div.actions {
+    justify-content: space-between;
   }
 }
 
