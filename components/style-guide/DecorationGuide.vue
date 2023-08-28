@@ -110,7 +110,7 @@ function indexTimer() {
 
 function animateBackground() {
   gsap.fromTo(
-    ".decoration-guide path",
+    ".decoration-guide :not(#curve-decoration) path",
     {
       strokeDashoffset: "900",
       strokeDasharray: "900",
