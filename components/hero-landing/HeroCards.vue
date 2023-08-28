@@ -32,7 +32,7 @@ const showcaseCards = ref([
   <div class="items">
     <hero-card class="item" v-for="card in showcaseCards">
       <!-- @mouseover="ui.changeHeroImage(card)" -->
-      <picture class="hide">
+      <picture class="">
         <img :src="card.image" alt="" />
       </picture>
       <text-content>
@@ -105,8 +105,8 @@ div.items {
       top: 50%;
       right: 2rem;
       transform: translateY(-50%);
-      width: 150px;
-      opacity: 0.5;
+      width: 120px;
+      opacity: 0.6;
     }
 
     a {
