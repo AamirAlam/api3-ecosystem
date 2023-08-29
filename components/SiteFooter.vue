@@ -246,6 +246,7 @@ nav {
     right: -11px;
     top: 14px;
     max-width: 8px;
+    opacity: 0.5;
   }
 }
 
