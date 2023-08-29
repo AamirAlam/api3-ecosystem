@@ -1,32 +1,41 @@
 <script setup>
 import slug from "slug";
 
-const props = defineProps(["icon"]);
+const props = defineProps(["icon", "fill", "stroke"]);
 
-const icon = computed(() => {
-  return props.icon;
-});
+const capitalizedIcon =
+  props.icon[0].toUpperCase() + props.icon.toLowerCase().slice(1);
 
-const fileExists = ref(false);
-
-watch(icon, async (newVal, oldVal) => {
-  try {
-    const response = await axios.head(`/images/icons/${slug(newVal)}.svg`);
-    fileExists.value = response.status === 200;
-  } catch (error) {
-    fileExists.value = false;
-  }
-});
+const dynamicComponent = defineAsyncComponent(() =>
+  import(`@/components/icons/${capitalizedIcon}Icon.vue`)
+);
 </script>
 
 <template>
   <picture>
-    <img :src="`/images/icons/${slug(icon)}.svg`" alt="" />
+    <Component
+      :is="dynamicComponent"
+      :style="`
+   ${fill ? `fill: ${fill};` : 'fill: var(--gray);'}
+	${
+    stroke
+      ? `stroke: ${stroke}; stroke-width: var(--line-width);`
+      : 'stroke: none;'
+  }
+
+  `"
+    />
   </picture>
 </template>
 
 <style scoped>
 picture {
   filter: hue-rotate(var(--hue-rotate));
+}
+</style>
+
+<style scoped>
+:deep(path, rect, circle, polygon, polyline, line) {
+  vector-effect: none;
 }
 </style>
