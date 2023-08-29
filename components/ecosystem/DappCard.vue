@@ -103,6 +103,7 @@ dapp-card {
   }
   .whisper-voice {
     font-size: var(--step--1);
+    max-width: 350px;
   }
 
   & :is(.lists, .status) {
