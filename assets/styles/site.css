@@ -69,7 +69,8 @@ body {
 }
 
 path,
-circle {
+circle,
+rect {
   vector-effect: non-scaling-stroke;
   stroke-width: var(--line-width);
 }
