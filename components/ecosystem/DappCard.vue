@@ -144,7 +144,7 @@ header {
   h2 {
     white-space: nowrap;
   }
-  picture {
+  picture.logo {
     max-width: 80px;
     border-radius: 50%;
     z-index: 1;

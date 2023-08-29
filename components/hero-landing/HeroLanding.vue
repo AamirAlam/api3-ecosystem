@@ -187,7 +187,7 @@ hero-landing {
     @media (min-width: 1194px) {
       grid-template-columns: inherit;
       p {
-        grid-column: 2 / -1;
+        grid-column: 2/-5;
       }
     }
 
