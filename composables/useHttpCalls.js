@@ -183,5 +183,29 @@ export const useHttpCalls = () => {
     }
   };
 
-  return { submitProject, submitArticle, submitUpvote, fetchFeedNames };
+  const subscribeNewsletter = async (body) => {
+    try {
+      const res = await axios.post("/api/newsletter", body, {});
+
+      if (res.status === 201) {
+        return { success: true, message: "Subscription success!" };
+      }
+
+      return { success: false, message: "Failed to subscribe" };
+    } catch (error) {
+      console.log("submit response error ", {
+        error: error,
+      });
+      const errorMessage = error?.response?.data?.response?.response?.message;
+      return { success: false, message: errorMessage };
+    }
+  };
+
+  return {
+    submitProject,
+    submitArticle,
+    submitUpvote,
+    fetchFeedNames,
+    subscribeNewsletter,
+  };
 };

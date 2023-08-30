@@ -13,7 +13,7 @@ export default async (_nitroApp: Nitro) => {
     await mongoose.connect(dbUrl);
 
     // sync projects on server startup
-    console.log("db connected:");
+    console.log(`db connected: on ${config.nodeEnv}`);
 
     if (config.nodeEnv === "production") {
       console.log("syncing projects");
