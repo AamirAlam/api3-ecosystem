@@ -71,7 +71,7 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
         <!-- button column rendered when this component is loaded in the form-->
         <div class="cross" v-if="isForm">
           <button
-            class="icon"
+            class="cross"
             @click.prevent="dappForm?.proxies?.splice(index, 1)"
           >
             <picture>
