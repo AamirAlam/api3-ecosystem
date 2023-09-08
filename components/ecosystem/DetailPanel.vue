@@ -98,7 +98,7 @@ onMounted(() => {
         <p>Category</p>
         <ul>
           <li v-for="category in dapp.categories" :key="category">
-            <DynamicIcon :icon="category" />
+            <!-- <DynamicIcon :icon="category" /> -->
             {{ ecosystem.categoryToLabel?.[category] }}
           </li>
         </ul>
