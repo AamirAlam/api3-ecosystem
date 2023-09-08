@@ -20,11 +20,8 @@ async function submitHandler(event) {
     const parsed = await parseMarkdown({ content });
     parsed.content = content;
 
-    const {
-      success: verificationSuccess,
-      data: verificationData,
-      message: verificationError,
-    } = await verifyWallet();
+    const { success: verificationSuccess, data: verificationPayload } =
+      await verifyWallet();
 
     if (!verificationSuccess) {
       status.value.message = "verificationStatus signature verification failed";
@@ -40,7 +37,7 @@ async function submitHandler(event) {
     }
 
     status.value.loading = true;
-    const submitResult = await submitArticle(formData, verificationData?.token);
+    const submitResult = await submitArticle(formData, verificationPayload);
 
     if (submitResult.success) {
       status.value.success = true;

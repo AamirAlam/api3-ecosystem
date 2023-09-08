@@ -23,7 +23,7 @@ const handleUpvote = async () => {
   }
 
   loading.value = true;
-  const { success: verificationSuccess, data: verificationData } =
+  const { success: verificationSuccess, data: verificationPayload } =
     await verifyWallet();
 
   if (!verificationSuccess) {
@@ -38,7 +38,7 @@ const handleUpvote = async () => {
   const submitResult = await submitUpvote(
     props.dapp?._id,
     payload,
-    verificationData?.token
+    verificationPayload
   );
   if (submitResult.success) {
     upvotes.value += 1;

@@ -1,4 +1,4 @@
-import { View } from "../../../models/View";
+import { ArticleUpvote } from "~/server/models/ArticleUpvote";
 import { Article } from "~/server/models/Article";
 
 export default defineEventHandler(async (event) => {
@@ -9,8 +9,8 @@ export default defineEventHandler(async (event) => {
     if (!articleSlug) {
       event.node.res.statusCode = 400;
       return {
-        code: "INVALID_SLUG",
-        message: "Invalid article slug",
+        code: "INVALID_TITLE",
+        message: "Invalid article title",
       };
     }
     const article = await Article.findOne({ slug: articleSlug });
@@ -23,30 +23,33 @@ export default defineEventHandler(async (event) => {
       };
     }
 
-    // Check if the IP has already viewed the article in the last 24 hours
-    const lastView = await View.findOne({
+    // Check if the IP has already upvoted the article in the last 24 hours
+    const lastUpvote = await ArticleUpvote.findOne({
       ipAddress: clientIp,
       article: article.id,
       timestamp: { $gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
     });
 
-    if (!lastView) {
-      const newView = new View({
+    if (!lastUpvote) {
+      const newUpvote = new ArticleUpvote({
         ipAddress: clientIp,
         article: article.id,
       });
-      await newView.save();
-      await Article.findByIdAndUpdate(article.id, { $inc: { views: 1 } });
+      await newUpvote.save();
+      await Article.findByIdAndUpdate(article.id, { $inc: { upvotes: 1 } });
     }
 
-    event.node.res.statusCode = 200;
-    return article;
+    event.node.res.statusCode = 201;
+    return {
+      code: "OK",
+      message: "Upvote success!",
+    };
   } catch (err) {
-    console.dir("get article by id error ", err);
+    console.dir("article upvote: error ", err);
     event.node.res.statusCode = 500;
     return {
       code: "ERROR",
-      message: "Something went wrong.",
+      message: "Failed to handle upvote",
     };
   }
 });
