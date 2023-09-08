@@ -89,7 +89,7 @@ const formattedProxies = (dappData) => {
           class="dapp-title"
           :heading="dapp?.name"
           innerClass="none"
-          voice="booming-voice"
+          voice="loud-voice"
         />
 
         <DetailPanel :dapp="dapp" v-if="dapp" />
