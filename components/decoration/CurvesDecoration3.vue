@@ -14,7 +14,7 @@ function animateCurvesWaves() {
   });
 
   tl.fromTo(
-    "#curve-decoration-2 path",
+    "#curve-decoration-3 path",
     {
       // strokeDashoffset: "1100",
       // strokeDasharray: "1100",
@@ -22,19 +22,20 @@ function animateCurvesWaves() {
     {
       duration: 5,
       // strokeDashoffset: 0,
-      scaleY: 0.95,
+      scaleY: 0.98,
       transformOrigin: "center center",
     }
   );
 }
 
 onMounted(() => {
-  //   animateCurvesWaves();
+  animateCurvesWaves();
 });
 </script>
 
 <template>
   <svg
+    id="curve-decoration-3"
     width="100%"
     height="100%"
     viewBox="0 0 3012 2932"
