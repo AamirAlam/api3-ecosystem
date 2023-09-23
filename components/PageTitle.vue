@@ -28,23 +28,24 @@ onMounted(() => {
     <h1 class="gradient-text-color-light" :class="voice ? voice : 'loud-voice'">
       {{ heading }}
     </h1>
+    <slot />
   </SectionColumn>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .page-title {
   display: grid;
   justify-content: start;
-  padding: 5rem 15px;
+  padding: var(--space-2xl) 15px;
 
   //   opacity: 0;
 
   @media (min-width: 768px) {
-    margin-top: 2rem;
+    margin-top: var(--space-l);
   }
 }
 
 main.ecosystem-detail .page-title {
-  padding: 3rem 0px;
+  padding: var(--space-xl) 0px;
 }
 </style>
