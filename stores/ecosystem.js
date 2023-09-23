@@ -8,10 +8,10 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
   const baseServerUrl = ref("/api/projects/");
   const filterQuery = ref({
     searchKey: "",
-    chains: [],
-    categories: [],
-    productTypes: [],
-    years: [],
+    chains: {},
+    categories: {},
+    productTypes: {},
+    years: {},
     page: 1,
   });
   const hasMoreItems = ref(true);
@@ -21,25 +21,30 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
   const serverURL = computed(() => {
     let url = baseServerUrl.value + `?page=${filterQuery.value.page}`;
 
-    if (filterQuery.value.chains.length > 0) {
-      url += `&chains=${filterQuery.value.chains.join(",")}`;
-    }
+    const chainsString = Object.keys(filterQuery.value.chains)
+      .filter((key) => filterQuery.value.chains[key])
+      .join(",");
 
-    if (filterQuery.value.categories.length > 0) {
-      url += `&categories=${filterQuery.value.categories.join(",")}`;
-    }
+    const categoriesString = Object.keys(filterQuery.value.categories)
+      .filter((key) => filterQuery.value.categories[key])
+      .join(",");
 
-    if (filterQuery.value.productTypes.length > 0) {
-      url += `&productTypes=${filterQuery.value.productTypes.join(",")}`;
-    }
+    const productTypesString = Object.keys(filterQuery.value.productTypes)
+      .filter((key) => filterQuery.value.productTypes[key])
+      .join(",");
 
-    if (filterQuery.value.searchKey !== "") {
-      url += `&searchKey=${filterQuery.value.searchKey}`;
-    }
+    const yearsString = Object.keys(filterQuery.value.years)
+      .filter((key) => filterQuery.value.years[key])
+      .join(",");
 
-    if (filterQuery.value.years.length > 0) {
-      url += `&years=${filterQuery.value.years.join(",")}`;
-    }
+    url += filterQuery.value.searchKey
+      ? `&search=${filterQuery.value.searchKey}`
+      : "";
+
+    url += chainsString ? `&chains=${chainsString}` : "";
+    url += categoriesString ? `&categories=${categoriesString}` : "";
+    url += productTypesString ? `&productTypes=${productTypesString}` : "";
+    url += yearsString ? `&years=${yearsString}` : "";
 
     return url;
   });
