@@ -9,6 +9,7 @@ html {
   --gray-lighter: color-mix(in hsl, var(--gray-light), var(--white));
   --gray-dark: color-mix(in hsl, var(--gray), var(--black));
   --gray-darker: color-mix(in hsl, var(--gray-dark), var(--black));
+  --gray-darkest: color-mix(in hsl, var(--gray-darker), var(--black));
 
   --green: hsla(var(--hue), 64%, 69%, 1);
 
@@ -100,6 +101,14 @@ html {
     ),
     #040606;
 
+  --gradient-radial-green-hover: radial-gradient(
+      208.44% 148.88% at 50% 0%,
+      hsla(var(--hue), 100%, 50%, 0.25) 0%,
+      hsla(0, 0%, 0%, 0) 45.83%,
+      hsla(0, 0%, 96%, 0.1) 100%
+    ),
+    #040606;
+
   --gradient-radial-blue: radial-gradient(
       90% 50% at 50% 0%,
       hsla(calc(60 + var(--hue)), 100%, 50%, 0.2) 0%,
@@ -135,7 +144,7 @@ html {
 
   --step--2: clamp(0.39rem, calc(0.36rem + 0.15vw), 0.5rem);
   --step--1: clamp(0.58rem, calc(0.54rem + 0.23vw), 0.75rem);
-  --step-0: clamp(0.88rem, calc(0.81rem + 0.34vw), 1.13rem);
+  --step-0: clamp(0.95rem, calc(0.81rem + 0.34vw), 1.05rem);
   --step-1: clamp(1.31rem, calc(1.21rem + 0.51vw), 1.69rem);
   --step-2: clamp(1.97rem, calc(1.82rem + 0.76vw), 2.53rem);
   --step-3: clamp(2.95rem, calc(2.72rem + 1.14vw), 3.8rem);
