@@ -37,18 +37,34 @@ onMounted(() => {
   <!-- <ScrollingStats /> -->
 
   <MissionComponent />
+  <section class="curves-wrapper">
+    <picture class="curves-decoration-3">
+      <CurvesDecoration3 />
+    </picture>
+  </section>
 
   <CallToAction />
 
   <SectionColumn class="home-article-grid">
-    <h2 class="loud-voice">Learn About us</h2>
-    <ArticleGrid layout="4" cardCount="4" />
+    <h2 class="loud-voice">Articles</h2>
+    <ArticleGrid layout="0" cardCount="4" />
+    <NuxtLink class="text blue" to="/articles">See More</NuxtLink>
   </SectionColumn>
 
   <!-- <SiteFooter /> -->
 </template>
 
 <style lang="scss">
+.home-article-grid {
+  .loud-voice {
+    text-align: center;
+  }
+  a.text {
+    text-align: center;
+    margin-top: var(--space-m);
+  }
+}
+
 body:has(main.index) {
   @media (min-width: 1024px) {
     //  overflow: hidden;
@@ -56,15 +72,15 @@ body:has(main.index) {
 }
 main.index {
   display: grid;
-  gap: 3rem;
+  gap: var(--space-xl);
   inner-column {
-    padding: 3rem 15px;
+    //  padding: var(--space-xl) 15px;
   }
   inner-column > h2 {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-l);
   }
   @media (min-width: 768px) {
-    gap: 10rem;
+    gap: calc(var(--space-3xs) * 10);
   }
   @media (min-width: 1024px) {
     //  max-height: calc(100vh - 100px);
@@ -81,7 +97,7 @@ main.index {
       inner-column {
         //   height: calc(100vh - 100px);
       }
-      // padding-bottom: 5rem 0;
+      // padding-bottom:var(--space-2xl) 0;
     }
     //  & > footer {
     //    scroll-snap-align: end;
@@ -90,6 +106,38 @@ main.index {
     //      height: calc(50vh - 50px);
     //    }
     //  }
+  }
+}
+</style>
+
+<style scoped lang="scss">
+.curves-wrapper {
+  position: absolute;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+  z-index: -10;
+
+  picture.curves-decoration-3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(10deg) scaleY(1.8);
+
+    width: 500vw;
+    //   display: none;
+
+    @media (min-width: 768px) {
+      display: block;
+      top: 45%;
+      left: 45%;
+      transform: translate(-50%, -50%) scaleY(0.8);
+
+      width: 200vw;
+      z-index: -10;
+    }
+
+    //  display: none;
   }
 }
 </style>
