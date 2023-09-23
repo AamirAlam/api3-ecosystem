@@ -121,7 +121,7 @@ const formattedProxies = (dappData) => {
 
 article.main {
   display: grid;
-  gap: 4rem;
+  gap: var(--space-2xl);
   align-items: start;
 
   @media (min-width: 768px) {
@@ -131,14 +131,14 @@ article.main {
 
 article.main detail-content {
   display: grid;
-  gap: 4rem;
+  gap: var(--space-2xl);
   //   grid-column: 2;
   //   grid-row: 2;
 
   section {
     align-self: start;
     display: grid;
-    gap: 1.2rem;
+    gap: calc(var(--space-s) * 1.2);
 
     p {
       line-height: 1.8;

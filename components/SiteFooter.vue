@@ -219,17 +219,17 @@ const miscLinks = [
 
 <style scoped lang="scss">
 footer {
-  padding: 4rem 0;
+  padding: var(--space-2xl) 0;
   position: relative;
 
   inner-column {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: var(--space-l);
+    padding-right: var(--space-l);
   }
 }
 .calm-voice {
   font-size: var(--step-0);
-  padding: 0.5rem 0;
+  padding: var(--space-2xs) 0;
   color: var(--ink);
 }
 
@@ -253,7 +253,7 @@ nav {
 .footer-navigation inner-column {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: var(--space-xl);
   justify-content: space-between;
 
   @media (min-width: 768px) {
@@ -282,7 +282,7 @@ nav {
   h5 {
     font-size: var(--step-0);
     //  font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-s);
     text-transform: uppercase;
     @media (min-width: 1024px) {
       font-size: var(--step--1);
@@ -292,7 +292,7 @@ nav {
 
 section.other inner-column {
   text-align: center;
-  gap: 2rem;
+  gap: var(--space-l);
   border-top: var(--border);
 
   display: grid;
@@ -304,8 +304,8 @@ section.other inner-column {
   }
 
   .misc-links {
-    column-gap: 2rem;
-    row-gap: 0.5rem;
+    column-gap: var(--space-l);
+    row-gap: var(--space-2xs);
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -315,14 +315,15 @@ section.other inner-column {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-s);
     fill: var(--gray);
     @media (min-width: 1264px) {
       order: 3;
-      gap: 2rem;
+      gap: var(--space-l);
+      flex-grow: 1;
     }
     @media (min-width: 1380px) {
-      gap: 3rem;
+      gap: var(--space-xl);
     }
 
     .social-icon {

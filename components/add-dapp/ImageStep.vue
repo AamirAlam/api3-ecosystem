@@ -83,7 +83,7 @@ const fileSize = function (node) {
 <style lang="scss" scoped>
 .single-images {
   display: grid;
-  gap: 2rem;
+  gap: var(--space-l);
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1fr;
   }

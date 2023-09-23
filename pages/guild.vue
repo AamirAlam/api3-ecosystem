@@ -159,13 +159,13 @@ onMounted(() => {
       </p>
 
       <Transition name="fade" mode="out-in" v-if="selected && !isMinted">
-        <button class="loud-button" :disabled="loading" @click="handleAction">
+        <button class="button" :disabled="loading" @click="handleAction">
           {{ buttonText }}
         </button>
       </Transition>
 
       <Transition name="fade" mode="out-in" v-if="selected && isMinted">
-        <button class="loud-button" :disabled="loading">
+        <button class="button" :disabled="loading">
           <a
             href="https://opensea.io/collection/api3-guild"
             target="_blank"
@@ -188,7 +188,7 @@ onMounted(() => {
 section {
   :deep(inner-column) {
     display: grid;
-    gap: 3rem;
+    gap: var(--space-xl);
 
     height: 80vh;
     align-content: center;
@@ -201,13 +201,13 @@ section {
   aside {
     display: grid;
     align-content: center;
-    gap: 3rem;
+    gap: var(--space-xl);
     text-align: left;
   }
 
   .panel {
     display: grid;
-    gap: 3rem;
+    gap: var(--space-xl);
 
     place-content: center;
     text-align: center;
@@ -220,7 +220,7 @@ section {
 
 .external-link {
   max-width: 10px;
-  margin-left: 10px;
+  margin-left: var(--space-2xs);
 }
 .group {
   display: flex;

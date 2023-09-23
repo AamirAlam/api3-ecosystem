@@ -151,7 +151,7 @@ onMounted(() => {});
           :social="socialIcons[index]"
           :chain="chainIcons[index]"
           :key="icon.name"
-          stroke="var(--color)"
+          stroke="var(--green)"
           fill="none"
           v-auto-animate
           v-tooltip="icon.name"

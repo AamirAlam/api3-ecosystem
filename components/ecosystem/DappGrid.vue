@@ -83,7 +83,7 @@ onMounted(() => {
 .dapp-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
+  gap: var(--space-l);
   align-items: start;
   position: relative;
   opacity: 0;

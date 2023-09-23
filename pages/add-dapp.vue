@@ -138,7 +138,7 @@ onMounted(async () => {
         <FormKit
           type="submit"
           label="Add Project"
-          input-class="$reset button filled firm-voice"
+          input-class="$reset button outline firm-voice"
           v-if="web3Store.state.isConnected"
         />
         <ConnectButton v-else />
@@ -192,7 +192,7 @@ form {
   & > :is(.step) {
     min-height: calc(80vh);
     display: grid;
-    gap: 3rem;
+    gap: var(--space-xl);
     align-content: center;
   }
 

@@ -40,7 +40,7 @@ onMounted(() => {
 }
 
 .spinner {
-  border-top: 2px solid var(--color);
+  border-top: 2px solid var(--green);
   border-radius: 50%;
   width: 100%;
   aspect-ratio: 1 / 1;

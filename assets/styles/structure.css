@@ -7,10 +7,10 @@ body {
 inner-column {
   display: block;
   width: 100%;
-  max-width: 1400px; /* could be a variable in settings */
+  max-width: 1200px; /* could be a variable in settings */
   margin-right: auto;
   margin-left: auto;
-  padding: 32px 16px; /* a loose default */
+  padding: var(--space-l) var(--space-s); /* a loose default */
 }
 
 inner-column.none {
@@ -19,11 +19,11 @@ inner-column.none {
 }
 
 html:has(main.index) main inner-column {
-  max-width: 1600px;
+  /* max-width: 1600px; */
 }
 @media (min-width: 1700px) {
   html:has(main.index) inner-column {
-    max-width: 1750px;
+    /* max-width: 1750px; */
   }
 }
 /*.site-header {

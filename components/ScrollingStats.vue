@@ -90,13 +90,13 @@ onMounted(() => {
 scrolling-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: var(--space-s);
   position: relative;
   align-items: center;
   justify-items: center;
 
   @media (min-width: 768px) {
-    gap: 5rem;
+    gap: var(--space-2xl);
   }
 
   stats-card {

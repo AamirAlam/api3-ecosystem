@@ -25,7 +25,7 @@ useSeoMeta({
     </p>
     <p>
       <code>--variable-name</code> is a CSS variable and can be used in any
-      relevant CSS property. For example, <code>background: var(--color)</code>.
+      relevant CSS property. For example, <code>background: var(--green)</code>.
     </p>
     <nav class="style-guide">
       <a href="#color-guide" class="text"> Colors </a>
@@ -40,8 +40,12 @@ useSeoMeta({
     <ColorGuide />
   </SectionColumn>
 
+  <SectionColumn id="space-guide">
+    <SpacingGuide />
+  </SectionColumn>
+
   <SectionColumn id="misc-guide">
-    <MiscGuide />
+    <!-- <MiscGuide /> -->
   </SectionColumn>
 
   <SectionColumn id="button-guide">
@@ -53,11 +57,11 @@ useSeoMeta({
   </SectionColumn>
 
   <SectionColumn id="component-guide">
-    <ComponentGuide />
+    <!-- <ComponentGuide /> -->
   </SectionColumn>
 
   <SectionColumn id="decoration-guide">
-    <DecorationGuide />
+    <!-- <DecorationGuide /> -->
   </SectionColumn>
 
   <SectionColumn id="text-guide">
@@ -68,14 +72,14 @@ useSeoMeta({
 <style scoped lang="scss">
 :deep(inner-column > div) {
   display: grid;
-  gap: 3rem;
+  gap: var(--space-xl);
 
-  --gap: 1rem;
+  --gap: var(--space-s);
 
   & > ul {
     gap: var(--gap);
     @media (min-width: 768px) {
-      --gap: 3rem;
+      --gap: var(--space-xl);
     }
   }
 }
@@ -88,7 +92,7 @@ useSeoMeta({
 // }
 
 :deep(.slider) {
-  margin-top: 2rem;
+  margin-top: var(--space-l);
 }
 </style>
 <style>

@@ -17,7 +17,7 @@ const props = defineProps(["dapp"]);
   //   position: relative;
   //   top: 4rem;
   //   z-index: -1;
-  margin-top: 5rem;
+  margin-top:var(--space-2xl);
   picture {
     overflow: hidden;
     aspect-ratio: 16 / 6;

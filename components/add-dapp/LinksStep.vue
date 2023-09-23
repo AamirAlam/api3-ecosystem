@@ -69,7 +69,7 @@ props.dappForm.links = props.dappForm.links ?? {};
 .form-links {
   display: grid;
 
-  gap: 1.5rem;
+  gap: var(--space-m);
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);

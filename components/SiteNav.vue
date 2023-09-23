@@ -26,32 +26,28 @@
 <style lang="scss" scoped>
 .social-icon {
   width: 35px;
-  padding: 0.5rem;
+  padding: var(--space-2xs);
   border: unset;
-  margin-right: 1rem;
+  margin-right: var(--space-s);
 }
 
-:deep(.loud-button) {
-  padding: 0.5rem 2rem;
-  @media (min-width: 768px) {
-    margin-left: 2rem;
-  }
-  @media (max-width: 768px) {
-    margin-top: 2rem;
-  }
+:deep(.button) {
+  padding: var(--space-2xs) var(--space-l);
+
+  margin-left: var(--space-l);
 }
 nav:not(.panel-menu) {
   display: flex;
   align-items: center;
   justify-content: end;
-  gap: 1rem;
+  gap: var(--space-s);
 
   a {
     color: var(--ink);
   }
 
   .button {
-    margin-left: 2rem;
+    margin-left: var(--space-l);
   }
 }
 
@@ -60,8 +56,8 @@ nav.panel-menu {
 
   //   align-items: end;
   //   justify-content: start;
-  gap: 1.5em;
-  padding: 2rem;
+  gap: var(--space-m);
+  padding: var(--space-l);
 
   a {
     color: var(--ink);

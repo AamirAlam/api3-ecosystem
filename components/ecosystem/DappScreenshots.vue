@@ -41,8 +41,8 @@ const onShow = (index) => {
 <style scoped lang="scss">
 .image-grid {
   display: grid;
-  gap: 0.3125rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-3xs);
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
   grid-template-rows: auto auto;
 
   li {

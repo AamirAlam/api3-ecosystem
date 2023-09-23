@@ -90,7 +90,7 @@ props.dappForm.links.socials = props.dappForm.links.socials ?? {};
 .form-socials {
   display: grid;
 
-  gap: 1.5rem;
+  gap: var(--space-m);
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }

@@ -28,7 +28,7 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
           <picture>
             <ChainIcon
               :chain="ecosystem.chainNames(proxy.chainId)"
-              fill="var(--color)"
+              fill="var(--green)"
               stroke="var(--paper)"
               strokeWidth="15%"
             />
@@ -88,7 +88,7 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
 section.proxy-table {
   display: grid;
   ul {
-    margin-top: 0.5rem;
+    margin-top: var(--space-2xs);
     max-height: 400px;
 
     overflow-y: scroll;
@@ -105,8 +105,8 @@ section.proxy-table {
   .table-row {
     display: grid;
     grid-template-columns: 0.75fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 0.5rem;
-    padding: 1rem;
+    gap: var(--space-2xs);
+    padding: var(--space-s);
     border-bottom: var(--border);
     align-items: center;
 

@@ -27,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <article-card>
+  <article-card class="background-radial-blue">
     <picture>
       <img :src="article?.cover ?? '/images/article-placeholder.jpg'" />
     </picture>
@@ -75,19 +75,19 @@ article-card {
   }
 
   a.text {
-    padding-bottom: 1rem;
+    padding-bottom: 1em;
   }
 
   text-content {
-    padding: 0.5rem 1rem;
-    padding-top: 1rem;
+    padding: var(--space-2xs) var(--space-s);
+    padding-top: var(--space-s);
 
     .solid-voice {
-      margin-bottom: 0.5rem;
+      margin-bottom: var(--space-2xs);
     }
 
     .calm-voice {
-      margin-top: 0.5rem;
+      margin-top: var(--space-2xs);
     }
   }
   &.card {
@@ -185,7 +185,7 @@ article-card {
     }
 
     a.text {
-      color: transparent;
+      color: transparent !important;
       position: absolute;
       inset: 0;
       z-index: 1;

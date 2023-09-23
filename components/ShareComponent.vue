@@ -48,7 +48,7 @@ const socialsToShare = ref([
       <li v-for="social in socialsToShare" :key="social.label">
         <a :href="social.url" :target="social.label">
           <picture>
-            <SocialIcon :social="social.label" fill="var(--color)" />
+            <SocialIcon :social="social.label" fill="var(--green)" />
           </picture>
         </a>
       </li>
@@ -66,7 +66,7 @@ const socialsToShare = ref([
 
 <style lang="scss" scoped>
 share-box {
-  padding: 2rem;
+  padding: var(--space-);
   border-radius: var(--corners);
   background: var(--paper);
 
@@ -83,17 +83,17 @@ share-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    padding: var(--space-s) 0;
   }
 
   .social-list {
     display: flex;
-    gap: 2rem;
+    gap: var(--space-);
     justify-content: center;
     align-items: center;
 
-    padding: 1rem 0;
-    margin: 1rem 0;
+    padding: var(--space-s) 0;
+    margin: var(--space-s) 0;
 
     border-top: var(--border);
     border-bottom: var(--border);
@@ -107,7 +107,7 @@ share-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: var(--space-s);
     background: var(--gradient-color);
     background: var(--gradient-dark);
 

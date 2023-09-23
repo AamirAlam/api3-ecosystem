@@ -14,7 +14,7 @@ const dynamicComponent = defineAsyncComponent(() =>
     :is="dynamicComponent"
     :style="`
    	fill: ${props.fill ? props.fill : 'none'};
-      stroke: ${props.stroke ? props.stroke : 'var(--color)'};
+      stroke: ${props.stroke ? props.stroke : 'var(--green)'};
       ${props.strokeWidth ? `stroke-width: ${props.strokeWidth};` : ''}
   `"
     v-tooltip="props.chain"

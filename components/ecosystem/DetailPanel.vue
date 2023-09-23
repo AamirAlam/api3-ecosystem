@@ -80,7 +80,7 @@ onMounted(() => {
             <picture class="chain">
               <ChainIcon
                 :chain="ecosystem.chainNames(chain)"
-                fill="var(--color)"
+                fill="var(--green)"
                 stroke="var(--paper)"
                 strokeWidth="var(--line-width)"
               />
@@ -163,12 +163,12 @@ onMounted(() => {
 aside {
   display: grid;
   grid-column: 1 / 1;
-  gap: 3rem;
+  gap: var(--space-xl);
 
   .panel-header {
     display: grid;
     justify-items: center;
-    gap: 1rem;
+    gap: var(--space-s);
 
     h2 {
       text-align: center;
@@ -178,8 +178,8 @@ aside {
   div {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    padding: 1rem 0;
+    gap: var(--space-l);
+    padding: var(--space-s) 0;
     align-items: center;
   }
   div.row {
@@ -187,7 +187,7 @@ aside {
     li {
       display: flex;
       align-items: center;
-      gap: 0.25rem;
+      gap: var(--space-3xs);
 
       :deep(picture) {
         max-width: 1.25rem;
@@ -200,7 +200,7 @@ aside {
   ul {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 1rem;
+    gap: var(--space-s);
 
     picture.chain {
       aspect-ratio: 1/1;
@@ -210,7 +210,7 @@ aside {
 .socials {
   ul {
     display: grid;
-    gap: 1rem;
+    gap: var(--space-s);
     grid-template-columns: 1fr 1fr 1fr 1fr;
 
     align-items: center;

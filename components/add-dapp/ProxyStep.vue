@@ -160,7 +160,7 @@ async function handleUpdateProxy() {
 }
 .proxy-step {
   display: grid;
-  gap: 4rem;
+  gap: var(--space-2xl);
 
   @media (min-width: 726px) {
     grid-template-columns: 1fr 1.5fr;
@@ -183,7 +183,7 @@ async function handleUpdateProxy() {
 
 .proxy-form {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-s);
   align-items: center;
 
   button {
@@ -191,7 +191,7 @@ async function handleUpdateProxy() {
   }
 
   .feed-option {
-    margin-bottom: 50px;
+    margin-bottom: var(--space-xl);
   }
 
   .actions {
@@ -202,7 +202,7 @@ async function handleUpdateProxy() {
     }
 
     .icon {
-      padding: 1rem;
+      padding: var(--space-s);
     }
   }
   .error-message {

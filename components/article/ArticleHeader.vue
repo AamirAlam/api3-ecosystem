@@ -61,7 +61,7 @@ header {
   align-items: start;
   justify-content: start;
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: var(--space-2xl);
 
   h1.loud-voice {
     position: relative;
@@ -69,7 +69,7 @@ header {
 
     font-size: var(--step-2);
 
-    padding: 5px 0;
+    padding: var(--space-3xs) 0;
 
     @media (min-width: 768px) {
       font-size: var(--step-3);
@@ -95,16 +95,16 @@ header {
 
   article-meta {
     display: grid;
-    gap: 1rem;
+    gap: var(--space-s);
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 0.5rem;
+    margin-top: var(--space-2xs);
     justify-self: start;
     .solid-voice {
       font-size: var(--step--1);
     }
     div {
       display: flex;
-      gap: 0.5rem;
+      gap: var(--space-2xs);
       align-items: center;
       picture {
         max-width: 15px;

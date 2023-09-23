@@ -30,6 +30,6 @@ useSeoMeta({
 
 <style lang="scss" scoped>
 h2 {
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-l);
 }
 </style>

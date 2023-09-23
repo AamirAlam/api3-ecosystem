@@ -56,7 +56,7 @@ article.body h2 a {
   font-family: var(--font);
   font-size: var(--step-0);
   line-height: 1.6;
-  color: var(--color);
+  color: var(--green);
   font-weight: var(--weight-light);
   /* text-transform: uppercase; */
 }
@@ -82,7 +82,7 @@ button {
 }
 
 :is(li, p) a {
-  color: var(--color);
+  color: var(--green);
   /* text-decoration: underline; */
   display: inline;
   font-size: inherit;
@@ -102,7 +102,7 @@ strong {
   font-size: var(--step--1);
   /* opacity: 0.8; */
   font-weight: var(--weight-light);
-  color: var(--gray-light);
+  color: var(--gray-lighter);
   letter-spacing: 0.08em;
 }
 
@@ -122,7 +122,11 @@ p + p {
 }
 
 h2 + p {
-  margin-top: 1px;
+  margin-top: 0.75em;
+}
+
+h3 + p {
+  margin-top: 1em;
 }
 
 code {
@@ -145,6 +149,6 @@ code {
 }
 
 .highlight {
-  background-color: var(--highlight);
+  background-color: var(--violet);
   color: var(--ink);
 }
