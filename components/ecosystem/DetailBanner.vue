@@ -5,7 +5,7 @@ const props = defineProps(["dapp"]);
 </script>
 
 <template>
-  <SectionColumn v-if="dapp" class="banner" innerClass="none">
+  <SectionColumn v-if="dapp" class="banner">
     <picture>
       <img :src="dapp.images.cover" alt="" />
     </picture>
@@ -17,7 +17,7 @@ const props = defineProps(["dapp"]);
   //   position: relative;
   //   top: 4rem;
   //   z-index: -1;
-  margin-top:var(--space-2xl);
+  margin-top: var(--space-2xl);
   picture {
     overflow: hidden;
     aspect-ratio: 16 / 6;
@@ -32,5 +32,10 @@ const props = defineProps(["dapp"]);
       object-position: center center;
     }
   }
+}
+
+:deep(inner-column) {
+  max-width: 1700px;
+  padding: 0;
 }
 </style>

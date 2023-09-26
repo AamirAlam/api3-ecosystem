@@ -16,6 +16,10 @@ inner-column {
 inner-column.none {
   width: unset;
   padding: 0;
+  max-width: unset;
+  margin-right: unset;
+  margin-left: unset;
+  padding: unset;
 }
 
 html:has(main.index) main inner-column {

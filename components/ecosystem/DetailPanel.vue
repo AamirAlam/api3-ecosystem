@@ -54,18 +54,16 @@ onMounted(() => {
 
 <template>
   <aside class="panel">
-    <header class="panel-header">
-      <picture class="logo">
-        <img
-          :src="dapp?.images?.logo"
-          src="@/assets/images/background/square.jpg"
-          alt=""
-        />
-      </picture>
-      <h2 class="teaser-voice">
-        {{ dapp.tagline }}
-      </h2>
-    </header>
+    <!-- <div class="actions">
+
+      <NuxtLink
+        :to="dapp.links.dapp"
+        :target="`${dapp?.name}-app`"
+        class="button"
+        >Launch</NuxtLink
+      >
+
+    </div> -->
     <article class="rows">
       <!-- <div class="row status">
         <p>Status</p>
@@ -97,7 +95,7 @@ onMounted(() => {
       <div class="row category-list">
         <p>Category</p>
         <ul>
-          <li v-for="category in dapp.categories" :key="category">
+          <li v-for="category in dapp?.categories" :key="category">
             <!-- <DynamicIcon :icon="category" /> -->
             {{ ecosystem.categoryToLabel?.[category] }}
           </li>
@@ -108,63 +106,22 @@ onMounted(() => {
         <p>Product</p>
         <ul>
           <li>
-            <DynamicIcon :icon="dapp.productType" />
-            {{ ecosystem?.productTypeToLabel?.[dapp.productType] }}
-          </li>
-        </ul>
-      </div>
-
-      <div class="row socials">
-        <p>Socials</p>
-        <ul>
-          <li v-for="social in dapp.links.socials" :key="social.id">
-            <a :href="social.url" :target="social.name">
-              <picture>
-                <SocialIcon :social="social.label" />
-              </picture>
-            </a>
+            <DynamicIcon :icon="dapp?.productType" />
+            {{ ecosystem?.productTypeToLabel?.[dapp?.productType] }}
           </li>
         </ul>
       </div>
     </article>
-
-    <div class="actions">
-      <NuxtLink
-        :to="dapp.links?.website"
-        :target="`${dapp.name}-website`"
-        class="button"
-      >
-        Website
-      </NuxtLink>
-      <!-- Launch dapp -->
-      <NuxtLink
-        :to="dapp.links.dapp"
-        :target="`${dapp?.name}-app`"
-        class="button"
-        >Launch</NuxtLink
-      >
-      <button class="button" :disabled="loading" @click="handleUpvote">
-        <span v-if="!loading"> Upvote ({{ upvotes }}) </span>
-        <span v-else> Upvoting... </span>
-      </button>
-
-      <button class="button share-button" @click="handleShare">Share</button>
-
-      <ModalSlot
-        :showModal="showShareBox"
-        @toggle="showShareBox = !showShareBox"
-      >
-        <ShareComponent :dappLinks="dapp.links" />
-      </ModalSlot>
-    </div>
   </aside>
 </template>
 <style lang="scss" scoped>
 aside {
   display: grid;
-  grid-column: 1 / 1;
-  gap: var(--space-xl);
-
+  gap: var(--space-2xl);
+  @media (min-width: 768px) {
+    grid-row: 2 / span 1;
+    grid-column: 2;
+  }
   .panel-header {
     display: grid;
     justify-items: center;
@@ -205,15 +162,6 @@ aside {
     picture.chain {
       aspect-ratio: 1/1;
     }
-  }
-}
-.socials {
-  ul {
-    display: grid;
-    gap: var(--space-s);
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-
-    align-items: center;
   }
 }
 

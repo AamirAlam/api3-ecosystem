@@ -3,14 +3,14 @@
 <template>
   <nav>
     <NuxtLink to="mailto:ecosystem@api3.org" class="icon social-icon">
-      <SocialIcon social="Email" />
+      <SocialIcon fill="none" stroke="var(--ink)" social="Email" />
     </NuxtLink>
 
     <NuxtLink
       to="https://discord.com/invite/qnRrcfnm5W"
       class="icon social-icon"
     >
-      <SocialIcon social="Discord" />
+      <SocialIcon fill="none" stroke="var(--ink)" social="Discord" />
     </NuxtLink>
 
     <NuxtLink class="text" to="/">Home</NuxtLink>
@@ -25,10 +25,10 @@
 
 <style lang="scss" scoped>
 .social-icon {
-  width: 35px;
-  padding: var(--space-2xs);
+  width: 50px;
+  //   padding: var(--space-2xs);
   border: unset;
-  margin-right: var(--space-s);
+  margin-right: var(--space-xs);
 }
 
 :deep(.button) {

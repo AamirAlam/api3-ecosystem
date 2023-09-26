@@ -1,7 +1,9 @@
 <script setup>
 import { gsap } from "gsap";
+import { useInterfaceStore } from "~/stores/interface";
 
 const route = useRoute();
+const ui = useInterfaceStore();
 
 const { data: dapp, error } = await useFetch(
   `/api/projects/project/${route.params.detail}`,
@@ -62,21 +64,21 @@ onMounted(() => {
   );
 });
 
-const formattedProxies = (dappData) => {
-  if (!dappData?.proxies) {
+const formattedProxies = computed(() => {
+  if (!dapp.value?.proxies) {
     return [];
   }
 
   const formattedProxyItems = [];
-  Object.keys(dappData?.proxies).forEach((chain) => {
-    let chainItems = dappData?.proxies?.[chain]?.map((el) => {
+  Object.keys(dapp.value?.proxies).forEach((chain) => {
+    let chainItems = dapp.value?.proxies?.[chain]?.map((el) => {
       return { ...el, chainId: chain };
     });
     formattedProxyItems.push(...chainItems);
   });
 
   return formattedProxyItems;
-};
+});
 </script>
 
 <template>
@@ -85,35 +87,86 @@ const formattedProxies = (dappData) => {
 
     <SectionColumn class="detail-main">
       <article class="main">
-        <PageTitle
-          class="dapp-title"
-          :heading="dapp?.name"
-          innerClass="none"
-          voice="loud-voice"
+        <ClientOnly>
+          <PageTitle
+            class="dapp-title"
+            :heading="dapp?.name"
+            innerClass="none"
+            :voice="ui.isMobile ? 'attention-voice' : 'loud-voice'"
+          >
+            <picture class="logo">
+              <img
+                :src="dapp?.images?.logo"
+                src="@/assets/images/background/square.jpg"
+                alt=""
+              />
+            </picture>
+          </PageTitle>
+        </ClientOnly>
+        <div class="launch-button">
+          <NuxtLink
+            :to="dapp?.links?.dapp"
+            :target="`${dapp?.name}-app`"
+            class="button"
+          >
+            Launch dApp
+          </NuxtLink>
+        </div>
+        <DetailPanel :dapp="dapp" v-if="dapp" />
+        <section class="about">
+          <h2 class="attention-voice">About</h2>
+          <p class="pre-line">
+            {{ dapp?.description?.replace(/\/n/g, "\n") }}
+          </p>
+
+          <div class="actions">
+            <NuxtLink
+              :to="dapp?.links?.website"
+              :target="`${dapp?.name}-website`"
+              class="text green"
+            >
+              {{ dapp?.links?.website }}
+            </NuxtLink>
+
+            <ul class="socials">
+              <li v-for="social in dapp?.links?.socials" :key="social.id">
+                <a :href="social.url" :target="social.name">
+                  <picture>
+                    <SocialIcon :social="social.label" />
+                  </picture>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <DappProxies
+          :proxies="formattedProxies"
+          v-if="dapp?.productType != 'qrng'"
         />
 
-        <DetailPanel :dapp="dapp" v-if="dapp" />
-        <detail-content>
-          <section class="about">
-            <h2 class="attention-voice">About</h2>
-            <p class="pre-line">
-              {{ dapp?.description?.replace(/\/n/g, "\n") }}
-            </p>
-          </section>
-
-          <DappProxies
-            :proxies="formattedProxies(dapp)"
-            v-if="dapp.productType != 'qrng'"
-          />
-
-          <DappScreenshots :dapp="dapp" />
-        </detail-content>
+        <DappScreenshots :dapp="dapp" />
       </article>
     </SectionColumn>
   </article>
 </template>
 
 <style lang="scss" scoped>
+.dapp-title {
+  :deep(inner-column) {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-s);
+  }
+
+  .logo {
+    border-radius: 50%;
+    max-width: 100px;
+  }
+}
+
 .detail-page,
 .banner {
   opacity: 0;
@@ -122,18 +175,15 @@ const formattedProxies = (dappData) => {
 article.main {
   display: grid;
   gap: var(--space-2xl);
-  align-items: start;
 
   @media (min-width: 768px) {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 2fr 1fr;
   }
-}
 
-article.main detail-content {
-  display: grid;
-  gap: var(--space-2xl);
-  //   grid-column: 2;
-  //   grid-row: 2;
+  section:not(.about, .dapp-title) {
+    grid-column: 1/-1;
+    color: var(--gray-light);
+  }
 
   section {
     align-self: start;
@@ -142,16 +192,41 @@ article.main detail-content {
 
     p {
       line-height: 1.8;
-      color: var(--gray);
+      color: var(--gray-light);
+    }
+  }
+
+  .about {
+    grid-column: 1;
+    color: var(--gray-light);
+
+    .text.green {
+      padding: 0;
     }
   }
 }
 
+.launch-button {
+  display: flex;
+
+  align-items: center;
+  grid-row: 3;
+
+  @media (min-width: 768px) {
+    justify-content: flex-end;
+  }
+}
 .pre-line {
   white-space: pre-line;
 }
 
-:deep(.dapp-title) {
-  grid-column: 1/-1;
+.socials {
+  display: flex;
+  gap: var(--space-s);
+
+  align-items: center;
+  picture {
+    max-width: 24px;
+  }
 }
 </style>

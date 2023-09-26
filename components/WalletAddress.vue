@@ -1,10 +1,13 @@
 <template>
-  <div
-    @click="copyToClipboard"
-    class="short-wallet"
-    v-tooltip="showCopyTooltip ? 'Copied!' : 'Copy'"
-  >
-    {{ shortWallet }}
+  <div class="short-wallet" v-tooltip="showCopyTooltip ? 'Copied!' : 'Copy'">
+    <button class="text green" @click="copyToClipboard">
+      {{ shortWallet }}
+    </button>
+    <button class="icon copy">
+      <picture>
+        <img src="@/assets/images/interface/copy.svg" alt="Copy" />
+      </picture>
+    </button>
   </div>
 </template>
 
@@ -44,10 +47,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .short-wallet {
   /* Add your desired styles for the short wallet address here */
   position: relative; /* Make sure the container is relative for positioning the tooltip */
   cursor: pointer; /* Show pointer cursor when hovering */
+}
+
+button.text {
+  padding: 0;
 }
 </style>

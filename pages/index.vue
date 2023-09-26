@@ -137,6 +137,11 @@ main.index {
       z-index: -10;
     }
 
+    @media (min-width: 1600px) {
+      width: 100vw;
+      transform: translate(-50%, -50%) scaleX(2);
+    }
+
     //  display: none;
   }
 }

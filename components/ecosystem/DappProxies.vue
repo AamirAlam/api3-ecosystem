@@ -100,6 +100,8 @@ section.proxy-table {
       top: 0;
       background-color: var(--paper);
       z-index: 1;
+
+      box-shadow: var(--shadow);
     }
   }
   .table-row {
@@ -109,9 +111,10 @@ section.proxy-table {
     padding: var(--space-s);
     border-bottom: var(--border);
     align-items: center;
+    min-width: fit-content;
 
     div {
-      min-width: 115px;
+      min-width: 130px;
     }
 
     .chain picture {

@@ -25,7 +25,7 @@ onMounted(() => {
 
 <template>
   <SectionColumn :innerClass="'page-title ' + innerClass">
-    <h1 class="gradient-text-color-light" :class="voice ? voice : 'loud-voice'">
+    <h1 :class="voice ? voice : 'loud-voice'">
       {{ heading }}
     </h1>
     <slot />
