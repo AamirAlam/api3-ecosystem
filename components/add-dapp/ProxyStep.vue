@@ -85,7 +85,6 @@ async function handleUpdateProxy() {
             label="Proxy address"
             label-class="$reset notice-voice"
             name="proxyAddress"
-            validation="required"
             id="proxyAddress"
             help="You can get proxy address from market.api3.org"
             v-model="dappForm.proxyAddress"

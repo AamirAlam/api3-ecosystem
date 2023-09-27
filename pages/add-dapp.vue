@@ -55,6 +55,18 @@ const submitHandler = async (event) => {
   const screenshots = event?.images?.screenshots?.map((el) => el?.file);
   const images = { logo, cover, screenshots };
 
+  // check correct proxy info for datafeed service
+  if (
+    dappForm?.value.productType === "datafeed" &&
+    !dappForm?.value?.proxies?.length
+  ) {
+    setErrors("add-form", [
+      "Please add atleast 1 proxy for data feed service!",
+    ]);
+
+    return;
+  }
+
   const { success: verificationSuccess, data: verificationPayload } =
     await verifyWallet();
 
