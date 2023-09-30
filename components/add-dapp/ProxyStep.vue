@@ -71,88 +71,87 @@ async function handleUpdateProxy() {
 </script>
 
 <template>
-  <FormKit
-    type="group"
-    #default="{ state: { valid } }"
-    v-auto-animate
-    name="proxy"
-  >
-    <div class="proxy-step">
-      <div class="proxy-form grid-item" v-auto-animate>
-        <form-field>
-          <FormKit
-            type="text"
-            label="Proxy address"
-            label-class="$reset notice-voice"
-            name="proxyAddress"
-            validation="required"
-            id="proxyAddress"
-            help="You can get proxy address from market.api3.org"
-            v-model="dappForm.proxyAddress"
-          />
-        </form-field>
+  <div class="proxy-step">
+    <text-content>
+      <h2 class="attention-voice">Enter Proxy information</h2>
+      <p>
+        This information will be displayed for other to learn about your dApp.
+      </p>
+    </text-content>
+    <div class="proxy-form grid-item" v-auto-animate>
+      <form-field>
+        <FormKit
+          type="text"
+          label="Proxy address"
+          label-class="$reset notice-voice"
+          name="proxyAddress"
+          validation="required"
+          id="proxyAddress"
+          help="You can get proxy address from market.api3.org"
+          v-model="dappForm.proxyAddress"
+        />
+      </form-field>
 
-        <form-field>
-          <label class="notice-voice" for="proxy-chain"> Proxy chain </label>
-          <Multiselect
-            id="proxy-chain"
-            v-model="dappForm.proxyChain"
-            mode="single"
-            :close-on-select="true"
-            :searchable="true"
-            :create-option="false"
-            :options="ecosystem.chainOptions"
-            :classes="{
-              singleLabelText: 'calm-voice multiselect-single-label-text',
-              dropdown: 'calm-voice multiselect-dropdown',
-              search: 'calm-voice multiselect-search',
-            }"
-          />
-        </form-field>
+      <form-field>
+        <label class="notice-voice" for="proxy-chain"> Proxy chain </label>
+        <Multiselect
+          id="proxy-chain"
+          v-model="dappForm.proxyChain"
+          mode="single"
+          :close-on-select="true"
+          :searchable="true"
+          :create-option="false"
+          :options="ecosystem.chainOptions"
+          :classes="{
+            singleLabelText: 'calm-voice multiselect-single-label-text',
+            dropdown: 'calm-voice multiselect-dropdown',
+            search: 'calm-voice multiselect-search',
+          }"
+        />
+      </form-field>
 
-        <form-field class="feed-option">
-          <label class="notice-voice" for="feed-name"> Proxy feed name </label>
-          <Multiselect
-            id="feed-name"
-            v-model="dappForm.feedName"
-            mode="single"
-            :close-on-select="true"
-            :searchable="true"
-            :create-option="false"
-            :options="props?.feedNameOptions"
-            :classes="{
-              singleLabelText: 'calm-voice multiselect-single-label-text',
-              search: 'calm-voice multiselect-search',
-              dropdown: 'calm-voice multiselect-dropdown',
-            }"
-          />
-        </form-field>
+      <form-field class="feed-option">
+        <label class="notice-voice" for="feed-name"> Proxy feed name </label>
+        <Multiselect
+          id="feed-name"
+          v-model="dappForm.feedName"
+          mode="single"
+          :close-on-select="true"
+          :searchable="true"
+          :create-option="false"
+          :options="props?.feedNameOptions"
+          :classes="{
+            singleLabelText: 'calm-voice multiselect-single-label-text',
+            search: 'calm-voice multiselect-search',
+            dropdown: 'calm-voice multiselect-dropdown',
+          }"
+        />
+      </form-field>
 
-        <div class="actions">
-          <div class="add-button">
-            <LoadingSpinner v-if="loading" />
-            <button v-else class="icon" @click.prevent="handleUpdateProxy">
-              <picture>
-                <img src="@/assets/images/interface/plus.svg" alt="" />
-              </picture>
-            </button>
-          </div>
+      <div class="actions">
+        <div class="add-button">
+          <LoadingSpinner v-if="loading" />
+          <button v-else class="icon" @click.prevent="handleUpdateProxy">
+            <picture>
+              <img src="@/assets/images/interface/plus.svg" alt="" />
+            </picture>
+          </button>
+        </div>
 
-          <div class="error-message whisper-voice">
-            {{ message }}
-          </div>
+        <div class="error-message whisper-voice">
+          {{ message }}
         </div>
       </div>
-
-      <div class="grid-item" v-show="dappForm?.proxies.length > 0">
-        <DappProxies
-          :proxies="dappForm?.proxies"
-          :dappForm="dappForm"
-          :isForm="true"
-        />
-      </div>
     </div>
-  </FormKit>
+
+    <div class="grid-item" v-show="dappForm?.proxies.length > 0">
+      <DappProxies
+        :proxies="dappForm?.proxies"
+        :dappForm="dappForm"
+        :isForm="true"
+      />
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">

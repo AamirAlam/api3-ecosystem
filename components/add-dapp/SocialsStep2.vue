@@ -5,12 +5,7 @@ props.dappForm.links.socials = props.dappForm.links.socials ?? {};
 </script>
 
 <template>
-  <FormKit
-    type="group"
-    #default="{ state: { valid } }"
-    v-auto-animate
-    name="socialLinks2"
-  >
+  <FormKit type="group" v-auto-animate name="socialLinks2">
     <section class="form-socials">
       <h2 class="solid-voice">More Socials</h2>
       <form-field>

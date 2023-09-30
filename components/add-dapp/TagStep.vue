@@ -9,14 +9,15 @@ const props = defineProps(["dappForm"]);
 </script>
 
 <template>
-  <FormKit
-    type="group"
-    #default="{ state: { valid } }"
-    v-auto-animate
-    name="tags"
-  >
+  <section>
+    <text-content>
+      <h2 class="attention-voice">Tell us about your dApp</h2>
+      <p>
+        This information will be displayed for other to learn about your dApp.
+      </p>
+    </text-content>
     <form-field>
-      <label class="notice-voice" for="categories"> Select category* </label>
+      <label class="calm-voice" for="categories"> Select category* </label>
       <Multiselect
         id="categories"
         v-model="dappForm.categories"
@@ -25,6 +26,7 @@ const props = defineProps(["dappForm"]);
         :searchable="true"
         :create-option="false"
         :options="ecosystem.categoryOptions"
+        class="tags"
         :classes="{
           tag: 'calm-voice multiselect-tag',
           dropdown: 'calm-voice multiselect-dropdown',
@@ -34,7 +36,7 @@ const props = defineProps(["dappForm"]);
     </form-field>
 
     <form-field>
-      <label class="notice-voice" for="chains"> Select chains* </label>
+      <label class="calm-voice" for="chains"> Select chains* </label>
       <Multiselect
         id="chains"
         v-model="dappForm.chains"
@@ -43,6 +45,7 @@ const props = defineProps(["dappForm"]);
         :searchable="true"
         :create-option="false"
         :options="ecosystem.chainOptions"
+        class="tags"
         :classes="{
           tag: 'calm-voice multiselect-tag',
           dropdown: 'calm-voice multiselect-dropdown',
@@ -52,7 +55,7 @@ const props = defineProps(["dappForm"]);
     </form-field>
 
     <form-field>
-      <label class="notice-voice" for="productType">
+      <label class="calm-voice" for="productType">
         Select the service used*
       </label>
       <Multiselect
@@ -70,7 +73,11 @@ const props = defineProps(["dappForm"]);
         }"
       />
     </form-field>
-  </FormKit>
+  </section>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+section {
+  display: contents;
+}
+</style>

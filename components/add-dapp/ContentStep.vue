@@ -22,20 +22,22 @@ onMounted(() => {
 });
 </script>
 <template>
-  <FormKit
-    type="group"
-    #default="{ state: { valid } }"
-    v-auto-animate
-    name="content"
-  >
+  <section>
+    <text-content>
+      <h2 class="attention-voice">Tell us about your dApp</h2>
+      <p>
+        This information will be displayed for other to learn about your dApp.
+      </p>
+    </text-content>
     <form-field>
       <FormKit
         type="text"
-        label="Dapp name*"
-        label-class="$reset notice-voice"
+        label="What is the name of your dApp?*"
+        label-class="$reset calm-voice"
         name="dappName"
-        placeholder="Insert your dApp name"
+        placeholder="dApp Name"
         validation="required"
+        validation-label="Name"
         id="dappName"
         v-model="dappForm.name"
       />
@@ -45,12 +47,13 @@ onMounted(() => {
     <form-field>
       <FormKit
         type="text"
-        label="Tagline*"
-        label-class="$reset notice-voice"
+        label="Enter your  dApp’s slogan.*"
+        label-class="$reset calm-voice"
         name="shortDescription"
-        placeholder="Insert a quater-tweet sized description of your dApp"
-        help="You will see this on your card"
+        placeholder="dApp slogan"
+        help="Insert a quater-tweet sized description of your dApp"
         validation="required|length:0,70"
+        validation-label="Slogan"
         id="shortDescription"
         v-model="dappForm.tagline"
       />
@@ -61,12 +64,13 @@ onMounted(() => {
       <FormKit
         type="textarea"
         rows="5"
-        label="Description*"
-        label-class="$reset notice-voice"
+        label="Tell us about your dApp.*"
+        label-class="$reset calm-voice"
         name="longDescription"
-        placeholder="Insert a longer form description of your dApp"
+        placeholder="dApp description"
         help="This is going to be your 'About', it can be a paragraph or two."
         validation="required"
+        validation-label="Description"
         id="longDescription"
         v-model="dappForm.description"
       />
@@ -90,5 +94,11 @@ onMounted(() => {
         }"
       />
     </form-field>
-  </FormKit>
+  </section>
 </template>
+
+<style scoped>
+section {
+  display: contents;
+}
+</style>

@@ -5,64 +5,62 @@ props.dappForm.links = props.dappForm.links ?? {};
 </script>
 
 <template>
-  <FormKit
-    type="group"
-    #default="{ state: { valid } }"
-    v-auto-animate
-    name="links"
-  >
-    <section class="form-links">
-      <h2 class="solid-voice">Links</h2>
+  <section class="form-links">
+    <text-content>
+      <h2 class="attention-voice">How can your users contact you?</h2>
+      <p>
+        This information will be displayed for other to learn about your dApp.
+      </p>
+    </text-content>
 
-      <form-field>
-        <FormKit
-          type="url"
-          id="website"
-          v-model="dappForm.links.website"
-          label="Website*"
-          label-class="$reset notice-voice"
-          validation="url"
-          placeholder="https://yourwebsite.com"
-        />
-      </form-field>
+    <form-field>
+      <FormKit
+        type="url"
+        id="website"
+        v-model="dappForm.links.website"
+        label="What’s your company’s website?*"
+        label-class="$reset calm-voice"
+        validation="url"
+        placeholder="https://yourwebsite.com"
+      />
+    </form-field>
 
-      <form-field>
-        <FormKit
-          type="url"
-          validation="url"
-          id="dapp"
-          v-model="dappForm.links.dapp"
-          label="dApp*"
-          label-class="$reset notice-voice"
-          placeholder="https://yourdapp.com"
-        />
-      </form-field>
+    <form-field>
+      <FormKit
+        type="url"
+        validation="url"
+        id="dapp"
+        v-model="dappForm.links.dapp"
+        label="dApp*"
+        label-class="$reset calm-voice"
+        placeholder="https://yourdapp.com"
+      />
+    </form-field>
 
-      <form-field>
-        <FormKit
-          type="url"
-          validation="url"
-          id="docs"
-          v-model="dappForm.links.docs"
-          label="Docs"
-          label-class="$reset notice-voice"
-          placeholder="https://docs.api3.org/"
-        />
-      </form-field>
+    <form-field>
+      <FormKit
+        type="url"
+        validation="url"
+        id="docs"
+        v-model="dappForm.links.docs"
+        label="Docs"
+        label-class="$reset calm-voice"
+        placeholder="https://docs.api3.org/"
+      />
+    </form-field>
 
-      <form-field>
-        <FormKit
-          type="url"
-          validation="url"
-          id="explorer"
-          v-model="dappForm.links.explorer"
-          label="Explorer"
-          label-class="$reset notice-voice"
-          placeholder="https://etherscan.io/"
-        />
-      </form-field>
-    </section>
-  </FormKit>
+    <form-field>
+      <FormKit
+        type="url"
+        validation="url"
+        id="explorer"
+        v-model="dappForm.links.explorer"
+        label="Explorer"
+        label-class="$reset calm-voice"
+        placeholder="https://etherscan.io/"
+      />
+    </form-field>
+  </section>
 </template>
 
 <style scoped lang="scss">
@@ -70,13 +68,5 @@ props.dappForm.links = props.dappForm.links ?? {};
   display: grid;
 
   gap: var(--space-m);
-
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  h2 {
-    grid-column: 1 / -1;
-  }
 }
 </style>
