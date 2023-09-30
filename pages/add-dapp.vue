@@ -98,6 +98,12 @@ onMounted(async () => {
 </script>
 
 <template>
+  <PageTitle heading="Join the Ecosystem" innerClass="add-dapp-title">
+    <p>
+      Join the API3 ecosystem. Easily list your dApp or service and join our
+      thriving community
+    </p>
+  </PageTitle>
   <SectionColumn>
     <FormKit
       type="form"
@@ -107,66 +113,98 @@ onMounted(async () => {
       :actions="false"
       #default="{ state: { valid: isValid } }"
     >
-      <div class="step">
-        <ContentStep :dappForm="dappForm" />
-      </div>
-
-      <div class="step">
-        <ImageStep :dappForm="dappForm" />
-      </div>
-
-      <div class="step">
-        <TagStep :dappForm="dappForm" />
-      </div>
-
-      <div class="step" v-if="dappForm.productType === 'datafeed'">
-        <ProxyStep :dappForm="dappForm" :feedNameOptions="feedNameOptions" />
-      </div>
-
-      <div class="step">
-        <LinksStep :dappForm="dappForm" />
-      </div>
-
-      <div class="step">
-        <SocialsStep :dappForm="dappForm" />
-      </div>
-      <!-- <div class="step">
-        <SocialsStep2 :dappForm="dappForm" />
-      </div> -->
-
-      <div class="actions">
-        <FormKit
-          type="submit"
-          label="Add Project"
-          input-class="$reset button outline firm-voice"
-          v-if="web3Store.state.isConnected"
-        />
-        <ConnectButton v-else />
-
-        <!--  -->
-        <ul class="validation-errors" v-auto-animate>
-          <FormKitMessages v-auto-animate />
-          <template v-if="!isValid">
-            <li v-for="message in messages">{{ message }}</li>
+      <FormKit
+        type="multi-step"
+        tab-style="progress"
+        :hide-progress-labels="true"
+      >
+        <FormKit type="step" v-auto-animate name="content">
+          <ContentStep :dappForm="dappForm" />
+          <template #stepNext="{ handlers }" #stepPrevious>
+            <FormStepButtons
+              :next="handlers.next"
+              :previous="handlers.previous"
+            />
           </template>
-        </ul>
+        </FormKit>
 
-        <!-- <div v-if="complete"> -->
-        <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
-        <!-- </div> -->
+        <FormKit type="step" v-auto-animate name="images">
+          <ImageStep :dappForm="dappForm" />
+          <template #stepNext="{ handlers }" #stepPrevious>
+            <FormStepButtons
+              :next="handlers.next"
+              :previous="handlers.previous"
+            />
+          </template>
+        </FormKit>
 
-        <p class="success-indicator">
-          {{ successData.message }}
-        </p>
+        <FormKit type="step" v-auto-animate name="tags">
+          <TagStep :dappForm="dappForm" />
+          <template #stepNext="{ handlers }" #stepPrevious>
+            <FormStepButtons
+              :next="handlers.next"
+              :previous="handlers.previous"
+            />
+          </template>
+        </FormKit>
 
-        <a :href="successData.pr_url" target="_blank" v-if="submitSuccess">
-          View Pull request
-        </a>
+        <FormKit
+          type="step"
+          v-auto-animate
+          name="proxy"
+          v-if="dappForm.productType === 'datafeed'"
+        >
+          <ProxyStep :dappForm="dappForm" :feedNameOptions="feedNameOptions" />
+          <template #stepNext="{ handlers }" #stepPrevious>
+            <FormStepButtons
+              :next="handlers.next"
+              :previous="handlers.previous"
+            />
+          </template>
+        </FormKit>
 
-        <picture class="curves-decoration">
-          <CurvesDecoration />
-        </picture>
-      </div>
+        <FormKit type="step" v-auto-animate name="links">
+          <LinksStep :dappForm="dappForm" />
+          <template #stepNext="{ handlers }" #stepPrevious>
+            <FormStepButtons
+              :next="handlers.next"
+              :previous="handlers.previous"
+            />
+          </template>
+        </FormKit>
+
+        <FormKit type="step" v-auto-animate name="socialLinks">
+          <SocialsStep :dappForm="dappForm" />
+
+          <template #stepNext="{ handlers }">
+            <FormStepButtons :isLastStep="true" :previous="handlers.previous" />
+            <div class="messages">
+              <ul class="validation-errors" v-auto-animate>
+                <FormKitMessages v-auto-animate />
+                <template v-if="!isValid">
+                  <li v-for="message in messages" class="whisper-voice">
+                    {{ message }}
+                  </li>
+                </template>
+              </ul>
+
+              <!-- <div v-if="complete"> -->
+              <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
+              <!-- </div> -->
+
+              <text-content v-if="submitSuccess">
+                <p class="success-indicator">
+                  {{ successData.message }}
+                </p>
+
+                <a :href="successData.pr_url" target="_blank">
+                  View Pull request
+                </a>
+              </text-content>
+            </div>
+          </template>
+        </FormKit>
+      </FormKit>
     </FormKit>
   </SectionColumn>
 </template>
@@ -195,26 +233,26 @@ form {
     gap: var(--space-xl);
     align-content: center;
   }
-
-  div.actions {
-    position: relative;
-
-    .curves-decoration {
-      position: absolute;
-      bottom: 0px;
-      left: 0px;
-      transform: rotateY(180deg) rotate(-10deg) scaleX(0.9);
-      z-index: -1;
-
-      @media (min-width: 768px) {
-        bottom: 20px;
-        transform: rotateY(180deg) rotate(-10deg) scaleX(1.4);
-      }
-    }
-  }
 }
 
-form > .actions {
-  justify-items: start;
+div.actions {
+  justify-content: center;
+  gap: var(--space-m);
+}
+
+div.messages {
+  .validation-errors * {
+    color: var(--error);
+  }
+
+  .success-indicator {
+    color: var(--success);
+  }
+}
+form {
+  .formkit-step-previous,
+  .formkit-step-next {
+    display: none;
+  }
 }
 </style>
