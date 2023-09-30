@@ -32,3 +32,9 @@ const content = ref([
     />
   </SectionColumn>
 </template>
+
+<style>
+.mission-section {
+  opacity: 1;
+}
+</style>

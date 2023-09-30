@@ -61,8 +61,9 @@ onMounted(() => {
 
 <style>
 @media (min-width: 768px) {
-  body:not(.index) .site-header inner-column {
-    padding: var(--space-2xl) var(--space-s);
+  .site-header inner-column {
+    padding: var(--space-l) var(--space-s);
+    padding-top: var(--space-2xl);
   }
 }
 </style>
