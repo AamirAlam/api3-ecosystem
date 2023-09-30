@@ -1,90 +1,3 @@
-form,
-.formkit-step-inner,
-.step-transition-wrapper {
-  display: grid;
-  gap: var(--space-m);
-}
-
-input-field,
-form :is(form-field),
-.formkit-wrapper {
-  display: grid;
-  gap: var(--space-s);
-}
-
-:is(form-field, input-field) input {
-  padding: var(--space-2xs);
-}
-
-.radio-group {
-  display: grid;
-  gap: var(--space-s);
-}
-
-input.multiselect-tags-search {
-  color: var(--ink);
-  background-color: var(--paper);
-  border-radius: var(--corners);
-}
-
-input:not(.multiselect input, .formkit-inner input, input[type="file"]),
-textarea,
-.formkit-inner {
-  position: relative;
-  border: var(--border-dark);
-}
-
-:is(
-    input:not(.multiselect input, .formkit-inner input, input[type="file"]),
-    textarea,
-    .formkit-inner,
-    .formkit-fieldset,
-    .multiselect.is-active,
-    form-field.file-upload
-  ):is(:focus-visible, :focus-visible, :focus-within, :active) {
-  box-shadow: var(--shadow) !important;
-}
-
-.formkit-fieldset {
-  border: unset !important;
-  /* box-shadow: 0 0 0 1px var(--green) !important; */
-}
-
-.multiselect input {
-  background: unset;
-}
-
-label {
-  cursor: pointer;
-}
-
-.formkit-wrapper {
-  max-width: unset !important;
-
-  display: grid !important;
-  align-items: center !important;
-  gap: var(--space-s) !important;
-}
-
-:is([data-type="checkbox"], [data-type="radio"]) .formkit-wrapper {
-  display: flex !important;
-}
-:is([data-type="checkbox"], [data-type="radio"]) .formkit-decorator {
-  width: var(--step-0) !important;
-  height: var(--step-0) !important;
-  border-radius: (var(--corners) / 8) !important;
-}
-
-:is([data-type="checkbox"], [data-type="radio"]) .formkit-inner {
-  background: var(--gray-darkest) !important;
-  border-radius: (var(--corners) / 8) !important;
-}
-
-.formkit-inner {
-  box-shadow: unset !important;
-  position: relative !important;
-}
-
 :root {
   --fk-color-primary: var(--green) !important;
   --fk-color-border-focus: var(--green) !important;
@@ -96,7 +9,7 @@ label {
   --fk-font-family: var(--font) !important;
   --fk-font-size: var(--step-0) !important;
 
-  --fk-padding-input: var(--space-xs) var(--space-3xs) !important;
+  --fk-padding-input: var(--space-xs) !important;
 
   --fk-font-weight: var(--weight-light) !important;
   --fk-line-height: 1.4 !important;
@@ -126,19 +39,179 @@ label {
   --ms-dropdown-radius: var(--corners) !important;
 }
 
+/* Form */
+form,
+.formkit-step-inner,
+.step-transition-wrapper {
+  display: grid;
+  gap: var(--space-l);
+}
+
+input-field,
+form :is(form-field) {
+  display: grid;
+  gap: var(--space-s);
+}
+
+:is(form-field, input-field) input {
+  padding: var(--space-xs);
+}
+
+.formkit-fieldset {
+  border: unset !important;
+  /* box-shadow: 0 0 0 1px var(--green) !important; */
+}
+
+.formkit-wrapper {
+  max-width: 736px !important;
+  margin: 0 auto !important;
+
+  display: grid !important;
+  align-items: center !important;
+  gap: var(--space-2xs) !important;
+}
+
+.formkit-tabs {
+  order: 2;
+  justify-self: center;
+}
+.formkit-tabs .formkit-tab {
+}
+.formkit-tabs .formkit-tab::after {
+  display: none !important;
+}
+
+.formkit-tabs .formkit-tab::before {
+  border: var(--border) !important;
+  background: none !important;
+}
+.formkit-tab[data-active="true"]::before {
+  background: var(--gray) !important;
+}
+
+.formkit-inner {
+  box-shadow: unset !important;
+  position: relative !important;
+}
+
+.formkit-steps {
+  border: none !important;
+}
+
+.formkit-step-actions {
+  margin-top: var(--space-2xl);
+  margin-bottom: unset !important;
+  display: grid !important;
+  gap: var(--space-s) !important;
+  justify-content: unset !important;
+}
+
+/*  */
+
+.not-valid {
+  color: var(--warning);
+}
+.valid {
+  color: var(--success);
+}
+
 .formkit-inner svg * {
-  fill: var(--white) !important;
+  fill: var(--green) !important;
+}
+/* Label */
+label {
+  cursor: pointer;
+  color: var(--gray-light) !important;
+}
+
+.file-upload .formkit-no-files {
+  color: var(--green) !important;
+}
+
+/* text input */
+
+input:not(.multiselect input, .formkit-inner input, input[type="file"]),
+textarea,
+.formkit-inner:not(.file-upload .formkit-inner) {
+  position: relative;
+  background: var(--gray-darkest);
+}
+
+:is(
+    input:not(.multiselect input, .formkit-inner input, input[type="file"]),
+    textarea,
+    .formkit-inner,
+    .formkit-fieldset,
+    .multiselect.is-active,
+    form-field.file-upload
+  ):is(:focus-visible, :focus-visible, :focus-within, :active) {
+  box-shadow: var(--shadow) !important;
+}
+
+/* Radio/checkbox */
+.radio-group {
+  display: grid;
+  gap: var(--space-s);
+}
+
+:is([data-type="checkbox"], [data-type="radio"]) .formkit-wrapper {
+  display: flex !important;
+}
+:is([data-type="checkbox"], [data-type="radio"]) .formkit-decorator {
+  width: var(--step-0) !important;
+  height: var(--step-0) !important;
+  border-radius: (var(--corners) / 8) !important;
+}
+
+:is([data-type="checkbox"], [data-type="radio"]) .formkit-inner {
+  background: var(--gray-darkest) !important;
+  border-radius: (var(--corners) / 8) !important;
+}
+
+/* Multiselect */
+input.multiselect-tags-search {
+  color: var(--ink);
+  background: var(--paper);
+  border-radius: var(--corners);
+}
+
+.multiselect input {
+  background: unset;
 }
 
 .multiselect.is-active {
-  border: unset !important;
-  box-shadow: 0 0 0 2px var(--green) !important;
+  box-shadow: var(--shadow) !important;
 }
 
 .multiselect {
-  border: unset !important;
+  border: var(--border-dark) !important;
   padding: var(--space-2xs) !important;
+  background: unset !important;
 }
+
+.multiselect.tags {
+  background: var(--gray-darkest) !important;
+  border: var(--border-light) !important;
+}
+
+.multiselect-caret {
+  mask-image: unset !important;
+  webkit-mask-image: unset !important;
+  background: url("/assets/images/interface/caret.svg") no-repeat center center !important;
+  background-size: 10px !important;
+
+  transform: rotate(180deg);
+}
+.multiselect.tags .multiselect-caret {
+  background-size: 20px !important;
+
+  transform: rotate(90deg);
+}
+
+.multiselect.tags .multiselect-caret.is-open {
+  transform: rotate(0deg);
+}
+/* File */
 
 [data-type="file"] input.formkit-input:not(input[type="file"]) {
   color: var(--ink) !important;
@@ -154,7 +227,6 @@ input.formkit-input ul li.formkit-file-item {
 form-field.file-upload {
   display: grid;
   justify-content: start;
-  background: var(--gradient-dark);
   --ink: hsla(180, 0%, 95%, 1);
   border-radius: var(--corners);
   gap: var(--space-xxs);
@@ -162,6 +234,7 @@ form-field.file-upload {
   align-items: start;
 }
 
+/* range */
 input[type="range"] {
   display: block;
   width: 100%;
@@ -174,11 +247,4 @@ input[type="range"]::-webkit-slider-runnable-track {
   cursor: pointer;
   border-radius: var(--corners);
   background: var(--gradient-color);
-}
-
-.not-valid {
-  color: var(--warning);
-}
-.valid {
-  color: var(--success);
 }
