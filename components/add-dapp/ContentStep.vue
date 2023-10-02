@@ -1,7 +1,4 @@
 <script setup>
-import Multiselect from "@vueform/multiselect";
-import "@vueform/multiselect/themes/default.css";
-
 const props = defineProps(["dappForm"]);
 props.dappForm.date = new Date().toISOString().slice(0, 10);
 
@@ -43,6 +40,28 @@ onMounted(() => {
       />
     </form-field>
 
+    <form-field class="file-upload">
+      <FormKit
+        v-auto-animate
+        id="logoForm"
+        type="file"
+        label="Upload your dApp’s logo.*"
+        label-class="$reset calm-voice"
+        name="logo"
+        no-files-icon="fileImage"
+        fileName="logo"
+        accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP"
+        validation="required|fileSize"
+        validation-label="Logo"
+        :validation-rules="{ fileSize }"
+        :validation-messages="{
+          fileSize: 'File size must be below 3MB',
+        }"
+      />
+      <p class="whisper-voice">Accepted file types: jpeg, png, webp</p>
+      <p class="whisper-voice">Minimum width: 512px</p>
+    </form-field>
+
     <!-- short description -->
     <form-field>
       <FormKit
@@ -73,25 +92,6 @@ onMounted(() => {
         validation-label="Description"
         id="longDescription"
         v-model="dappForm.description"
-      />
-    </form-field>
-
-    <form-field>
-      <label class="notice-voice" for="year"> Select release year* </label>
-      <Multiselect
-        id="year"
-        v-model="dappForm.year"
-        mode="single"
-        :required="true"
-        :close-on-select="true"
-        :searchable="true"
-        :create-option="false"
-        :options="yearOptions"
-        :classes="{
-          singleLabelText: 'calm-voice multiselect-single-label-text',
-          dropdown: 'calm-voice multiselect-dropdown',
-          search: 'calm-voice multiselect-search',
-        }"
       />
     </form-field>
   </section>

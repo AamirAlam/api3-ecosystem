@@ -10,15 +10,12 @@ import {
 import { applicationIcons, cryptoIcons } from "@formkit/icons";
 
 //pro
-import { createProPlugin, repeater } from "@formkit/pro";
+import { createProPlugin, inputs } from "@formkit/pro";
 
 //css
 import "@formkit/addons/css/multistep";
 
-const proPlugin = createProPlugin("fk-885cbbc2860", {
-  repeater,
-  // ... and any other Pro Inputs
-});
+const proPlugin = createProPlugin("fk-2fbe2621a", inputs);
 
 const icons = {
   ...applicationIcons,

@@ -96,6 +96,13 @@ form :is(form-field) {
 
 .formkit-steps {
   border: none !important;
+  padding: 0 !important;
+}
+
+@media (min-width: 768px) {
+  .formkit-steps {
+    padding: var(--space-l);
+  }
 }
 
 .formkit-step-actions {
@@ -200,16 +207,16 @@ input.multiselect-tags-search {
   background: url("/assets/images/interface/caret.svg") no-repeat center center !important;
   background-size: 10px !important;
 
-  transform: rotate(180deg);
+  transform: rotate(180deg) !important;
 }
 .multiselect.tags .multiselect-caret {
   background-size: 20px !important;
 
-  transform: rotate(90deg);
+  transform: rotate(90deg) !important;
 }
 
-.multiselect.tags .multiselect-caret.is-open {
-  transform: rotate(0deg);
+.multiselect .multiselect-caret.is-open {
+  transform: rotate(0deg) !important;
 }
 /* File */
 
@@ -230,7 +237,7 @@ form-field.file-upload {
   --ink: hsla(180, 0%, 95%, 1);
   border-radius: var(--corners);
   gap: var(--space-xxs);
-  padding: var(--space-s);
+  /* padding: var(--space-s); */
   align-items: start;
 }
 

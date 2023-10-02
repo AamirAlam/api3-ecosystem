@@ -20,9 +20,13 @@ const web3Store = useWeb3Store();
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 :deep(button) {
-  padding-left: var(--space-3xl);
-  padding-right: var(--space-3xl);
+  padding-left: var(--space-xl);
+  padding-right: var(--space-xl);
+  @media (min-width: 768px) {
+    padding-left: var(--space-3xl);
+    padding-right: var(--space-3xl);
+  }
 }
 </style>

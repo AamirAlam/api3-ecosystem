@@ -50,9 +50,7 @@ function filterBy(event) {
       </ul>
 
       <div class="productType" :data-productType="dapp?.productType">
-        <picture @click="filterBy">
-          <DynamicIcon :icon="dapp?.productType" />
-        </picture>
+        <DynamicIcon :icon="dapp?.productType" @click="filterBy" />
       </div>
     </header>
 

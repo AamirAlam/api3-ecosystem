@@ -52,9 +52,15 @@ export default {
   /* Add your desired styles for the short wallet address here */
   position: relative; /* Make sure the container is relative for positioning the tooltip */
   cursor: pointer; /* Show pointer cursor when hovering */
+  display: flex;
+  align-items: center;
 }
 
 button.text {
   padding: 0;
+}
+
+button.copy picture {
+  max-width: var(--space-s);
 }
 </style>

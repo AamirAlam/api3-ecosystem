@@ -83,9 +83,10 @@ async function handleUpdateProxy() {
         <FormKit
           type="text"
           label="Proxy address"
-          label-class="$reset notice-voice"
+          label-class="$reset calm-voice"
           name="proxyAddress"
           validation="required"
+          validation-label="Proxy address"
           id="proxyAddress"
           help="You can get proxy address from market.api3.org"
           v-model="dappForm.proxyAddress"
@@ -93,7 +94,7 @@ async function handleUpdateProxy() {
       </form-field>
 
       <form-field>
-        <label class="notice-voice" for="proxy-chain"> Proxy chain </label>
+        <label class="calm-voice" for="proxy-chain"> Proxy chain </label>
         <Multiselect
           id="proxy-chain"
           v-model="dappForm.proxyChain"
@@ -111,7 +112,7 @@ async function handleUpdateProxy() {
       </form-field>
 
       <form-field class="feed-option">
-        <label class="notice-voice" for="feed-name"> Proxy feed name </label>
+        <label class="calm-voice" for="feed-name"> Proxy feed name </label>
         <Multiselect
           id="feed-name"
           v-model="dappForm.feedName"
@@ -131,10 +132,11 @@ async function handleUpdateProxy() {
       <div class="actions">
         <div class="add-button">
           <LoadingSpinner v-if="loading" />
-          <button v-else class="icon" @click.prevent="handleUpdateProxy">
+          <button v-else class="text green" @click.prevent="handleUpdateProxy">
             <picture>
               <img src="@/assets/images/interface/plus.svg" alt="" />
             </picture>
+            <span class="whisper-voice"> Fetch Proxy </span>
           </button>
         </div>
 
@@ -161,13 +163,31 @@ async function handleUpdateProxy() {
   display: grid;
   gap: var(--space-2xl);
 
-  @media (min-width: 726px) {
-    grid-template-columns: 1fr 1.5fr;
+  text-content {
+    grid-column: 1 / -1;
   }
 
   :deep(.proxy-table) {
+    h2.attention-voice {
+      display: none;
+    }
+
+    .table-head .whisper-voice {
+      font-weight: var(--weight-heavy);
+    }
+
     .table-row {
-      grid-template-columns: 0.5fr 0.5fr 0.75fr 0.75fr 0.75fr 0.5fr 0.2fr;
+      grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 0.7fr 0.5fr 0.2fr;
+
+      * {
+        font-size: var(--step--1);
+      }
+      div {
+        min-width: 70px;
+        @media (min-width: 768px) {
+          min-width: unset;
+        }
+      }
     }
   }
 }
@@ -197,15 +217,23 @@ async function handleUpdateProxy() {
     align-items: center;
 
     .add-button {
-      max-width: 50px;
-    }
+      width: 150px;
 
-    .icon {
-      padding: var(--space-s);
+      button.text {
+        padding: var(--space-s);
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+        white-space: nowrap;
+
+        picture {
+          max-width: 30px;
+        }
+      }
     }
   }
   .error-message {
-    color: var(--warning, red);
+    color: var(--error, red);
   }
 }
 </style>

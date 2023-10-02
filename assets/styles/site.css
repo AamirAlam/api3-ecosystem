@@ -100,7 +100,7 @@ html {
   --w3m-button-hover-highlight-border-radius: var(--corners) !important;
 
   --w3m-text-big-bold-weight: var(--weight-medium) !important;
-  --w3m-text-xsmall-bold-weight: var(--weight-semibold) !important;
+  --w3m-text-xsmall-bold-weight: var(--weight-heavy) !important;
   --w3m-text-xsmall-regular-weight: var(--weight-medium) !important;
   --w3m-text-small-thin-weight: var(--weight-light) !important;
   --w3m-text-small-regular-weight: var(--weight-medium) !important;

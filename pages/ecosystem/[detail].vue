@@ -213,6 +213,8 @@ article.main {
   grid-row: 3;
 
   @media (min-width: 768px) {
+    grid-column: 2;
+    grid-row: 1;
     justify-content: flex-end;
   }
 }

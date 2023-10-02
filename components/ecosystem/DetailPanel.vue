@@ -71,7 +71,7 @@ onMounted(() => {
       </div> -->
 
       <div class="row chain">
-        <p>Chain</p>
+        <p>Chains</p>
         <ul>
           <li v-for="chain in dapp.chains" :key="chain.id">
             <!-- {{ chain }} -->
@@ -86,22 +86,6 @@ onMounted(() => {
           </li>
         </ul>
       </div>
-
-      <div class="year row">
-        <p>Year</p>
-        <p>{{ dapp.year }}</p>
-      </div>
-
-      <div class="row category-list">
-        <p>Category</p>
-        <ul>
-          <li v-for="category in dapp?.categories" :key="category">
-            <!-- <DynamicIcon :icon="category" /> -->
-            {{ ecosystem.categoryToLabel?.[category] }}
-          </li>
-        </ul>
-      </div>
-
       <div class="row product-list">
         <p>Product</p>
         <ul>
@@ -110,6 +94,24 @@ onMounted(() => {
             {{ ecosystem?.productTypeToLabel?.[dapp?.productType] }}
           </li>
         </ul>
+      </div>
+      <div class="row category-list">
+        <p>Category</p>
+        <ul>
+          <li
+            v-for="category in dapp?.categories"
+            :key="category"
+            class="whisper-voice"
+          >
+            <!-- <DynamicIcon :icon="category" /> -->
+            {{ ecosystem.categoryToLabel?.[category] }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="year row">
+        <p>Year</p>
+        <p>{{ dapp.year }}</p>
       </div>
     </article>
   </aside>
@@ -148,6 +150,29 @@ aside {
 
       :deep(picture) {
         max-width: 1.25rem;
+      }
+    }
+  }
+
+  .row.category-list {
+    ul {
+      display: flex;
+      gap: var(--space-2xs);
+      justify-content: start;
+
+      li {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3xs);
+        white-space: nowrap;
+        padding: calc(var(--space-2xs) / 5) var(--space-xs);
+
+        border-radius: calc(var(--corners) * 3);
+        background: var(--gray-darker);
+
+        :deep(picture) {
+          max-width: var(--step-0);
+        }
       }
     }
   }

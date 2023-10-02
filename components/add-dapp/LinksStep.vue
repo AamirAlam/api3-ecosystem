@@ -2,6 +2,7 @@
 const props = defineProps(["dappForm"]);
 
 props.dappForm.links = props.dappForm.links ?? {};
+props.dappForm.links.socials = props.dappForm.links.socials ?? {};
 </script>
 
 <template>
@@ -21,45 +22,119 @@ props.dappForm.links = props.dappForm.links ?? {};
         label="What’s your company’s website?*"
         label-class="$reset calm-voice"
         validation="url"
+        validation-label="Website"
         placeholder="https://yourwebsite.com"
       />
     </form-field>
 
-    <form-field>
-      <FormKit
-        type="url"
-        validation="url"
-        id="dapp"
-        v-model="dappForm.links.dapp"
-        label="dApp*"
-        label-class="$reset calm-voice"
-        placeholder="https://yourdapp.com"
-      />
-    </form-field>
+    <div class="form-socials">
+      <h2 class="solid-voice">Enter the socials you'd like to share.</h2>
+      <form-field>
+        <SocialIcon social="twitter" />
 
-    <form-field>
-      <FormKit
-        type="url"
-        validation="url"
-        id="docs"
-        v-model="dappForm.links.docs"
-        label="Docs"
-        label-class="$reset calm-voice"
-        placeholder="https://docs.api3.org/"
-      />
-    </form-field>
+        <FormKit
+          type="url"
+          id="twitter"
+          v-model="dappForm.links.socials.twitter"
+          label="Twitter"
+          label-class="$reset calm-voice"
+          placeholder="https://twitter.com/yourdapp"
+          validation="url"
+        />
+      </form-field>
 
-    <form-field>
-      <FormKit
-        type="url"
-        validation="url"
-        id="explorer"
-        v-model="dappForm.links.explorer"
-        label="Explorer"
-        label-class="$reset calm-voice"
-        placeholder="https://etherscan.io/"
-      />
-    </form-field>
+      <form-field>
+        <SocialIcon social="discord" />
+
+        <FormKit
+          type="url"
+          id="discord"
+          v-model="dappForm.links.socials.discord"
+          label="Discord"
+          label-class="$reset calm-voice"
+          placeholder="https://discord.gg/yourdapp"
+          validation="url"
+        />
+      </form-field>
+
+      <form-field>
+        <SocialIcon social="github" />
+
+        <FormKit
+          type="url"
+          id="github"
+          v-model="dappForm.links.socials.github"
+          label="Github"
+          label-class="$reset calm-voice"
+          placeholder="github.com/yourdapp"
+          validation="url"
+        />
+      </form-field>
+
+      <form-field>
+        <SocialIcon social="reddit" />
+        <FormKit
+          type="url"
+          id="reddit"
+          v-model="dappForm.links.socials.reddit"
+          label="Reddit"
+          label-class="$reset calm-voice"
+          placeholder="https://reddit.com/r/yourdapp"
+          validation="url"
+        />
+      </form-field>
+
+      <form-field>
+        <SocialIcon social="telegram" />
+        <FormKit
+          type="url"
+          validation="url"
+          id="telegram"
+          v-model="dappForm.links.socials.telegram"
+          label="Telegram"
+          label-class="$reset calm-voice"
+          placeholder="https://t.me/yourdapp"
+        />
+      </form-field>
+      <form-field>
+        <SocialIcon social="facebook" />
+        <FormKit
+          type="url"
+          validation="url"
+          id="facebook"
+          v-model="dappForm.links.socials.facebook"
+          label="Facebook"
+          label-class="$reset calm-voice"
+          placeholder="https://facebook.com/yourdapp"
+        />
+      </form-field>
+
+      <form-field>
+        <SocialIcon social="youtube" />
+        <FormKit
+          type="url"
+          validation="url"
+          id="youtube"
+          v-model="dappForm.links.socials.youtube"
+          label="Youtube"
+          label-class="$reset calm-voice"
+          placeholder="https://youtube.com/yourdapp"
+        />
+      </form-field>
+
+      <form-field>
+        <SocialIcon social="blog" />
+        <FormKit
+          type="url"
+          validation="url"
+          id="blog"
+          v-model="dappForm.links.socials.blog"
+          label="Blog"
+          label-class="$reset calm-voice"
+          placeholder="https://yourdapp.com/blog"
+        />
+      </form-field>
+    </div>
   </section>
 </template>
 
@@ -68,5 +143,36 @@ props.dappForm.links = props.dappForm.links ?? {};
   display: grid;
 
   gap: var(--space-m);
+}
+.form-socials {
+  display: grid;
+
+  gap: var(--space-l);
+  @media (min-width: 768px) {
+    //  grid-template-columns: repeat(2, 1fr);
+  }
+
+  form-field {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    justify-content: start;
+
+    :deep(.formkit-outer) {
+      flex-grow: 1;
+    }
+  }
+
+  :deep(.formkit-wrapper) {
+    grid-template-columns: 0.2fr 1fr;
+  }
+
+  :deep(.social-icon) {
+    max-width: 20px;
+  }
+
+  h2 {
+    grid-column: 1 / -1;
+  }
 }
 </style>

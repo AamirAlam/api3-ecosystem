@@ -249,7 +249,7 @@ a.router-link-exact-active::after {
 /* This part is for the scrollbar track / */
 *::-webkit-scrollbar {
   width: var(--line-width);
-  height: var(--line-width);
+  height: calc(var(--line-width) * 4);
 }
 
 /* / This part is for the track (the part that the thumb slides across) / */
@@ -267,4 +267,6 @@ a.router-link-exact-active::after {
 /* / This part is for the thumb when it's being hovered over  */
 ::-webkit-scrollbar-thumb:hover {
   filter: brightness(1.2);
+  width: calc(var(--line-width) * 4);
+  height: calc(var(--line-width) * 4);
 }

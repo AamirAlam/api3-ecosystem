@@ -1,4 +1,6 @@
 <script setup>
+import { CHAINS } from "@api3/chains";
+
 const ecosystem = useEcosystemStore();
 
 const spacings = ref([
@@ -16,8 +18,14 @@ const spacings = ref([
 
 <template>
   <PageTitle heading="test ground" />
-  <SectionColumn> </SectionColumn>
-  <CurvesDecoration2 />
+  <SectionColumn>
+    <ul>
+      <li v-for="chain in CHAINS">
+        {{ chain.name }}
+        <ChainIcon :chain="chain.name" />
+      </li>
+    </ul>
+  </SectionColumn>
 </template>
 
 <style scoped>

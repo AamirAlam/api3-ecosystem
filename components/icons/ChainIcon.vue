@@ -3,23 +3,18 @@ import slug from "slug";
 slug.extend({ "/": "-" });
 
 const props = defineProps(["chain", "fill", "stroke", "strokeWidth"]);
+const isTestnet = computed(() => props.chain?.includes("-testnet"));
 
-const dynamicComponent = defineAsyncComponent(() =>
-  import(`@/components/icons/chains/${slug(props.chain)}.vue`)
-);
+let chain = slug(props.chain);
+chain = chain.replace("-testnet", "");
+chain = chain.replace("-goerli", "");
+chain = chain.replace("-chain", "");
+
+chain = chain === "sepolia" ? "ethereum" : chain;
+chain = chain === "goerli" ? "ethereum" : chain;
+chain = chain === "mainnet" ? "ethereum" : chain;
 </script>
 
 <template>
-  <Component
-    :is="dynamicComponent"
-    :style="`
-   	fill: ${props.fill ? props.fill : 'none'};
-      stroke: ${props.stroke ? props.stroke : 'var(--green)'};
-      ${props.strokeWidth ? `stroke-width: ${props.strokeWidth};` : ''}
-  `"
-    v-tooltip="props.chain"
-    v-if="props.chain"
-  />
+  <img :src="`/images/chains/${chain}.svg`" :alt="chain" />
 </template>
-
-<style scoped></style>

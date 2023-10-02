@@ -2,33 +2,28 @@
 
 <template>
   <nav>
-    <NuxtLink to="mailto:ecosystem@api3.org" class="icon social-icon">
+    <!-- <NuxtLink to="mailto:ecosystem@api3.org" class="icon">
       <SocialIcon fill="none" stroke="var(--ink)" social="Email" />
-    </NuxtLink>
+    </NuxtLink> -->
 
-    <NuxtLink
-      to="https://discord.com/invite/qnRrcfnm5W"
-      class="icon social-icon"
-    >
-      <SocialIcon fill="none" stroke="var(--ink)" social="Discord" />
-    </NuxtLink>
-
-    <NuxtLink class="text" to="/">Home</NuxtLink>
+    <!-- <NuxtLink class="text" to="/">Home</NuxtLink> -->
     <NuxtLink class="text" to="/ecosystem">Ecosystem</NuxtLink>
     <NuxtLink class="text" to="/articles">Articles</NuxtLink>
     <!-- <NuxtLink class="text" to="/guild">Guild</NuxtLink> -->
     <div class="actions">
       <!-- <ConnectButton /> -->
+      <NuxtLink to="https://discord.com/invite/qnRrcfnm5W" class="icon">
+        <SocialIcon fill="none" stroke="var(--ink)" social="Discord" />
+      </NuxtLink>
     </div>
   </nav>
 </template>
 
 <style lang="scss" scoped>
-.social-icon {
-  width: 50px;
+:deep(.social-icon) {
+  max-width: 60px;
   //   padding: var(--space-2xs);
   border: unset;
-  margin-right: var(--space-xs);
 }
 
 :deep(.button) {

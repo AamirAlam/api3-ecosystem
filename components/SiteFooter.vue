@@ -206,9 +206,9 @@ const miscLinks = [
             v-for="social in socials"
             :key="social.name"
             :to="social.link"
-            class="calm-voice social-icon"
+            class="calm-voice"
           >
-            <SocialIcon :social="social.icon" />
+            <SocialIcon :social="social.icon" fill="var(--gray)" />
           </NuxtLink>
         </nav>
         <p class="calm-voice">© 2023 API3 Ecosystem Foundation</p>
@@ -326,7 +326,7 @@ section.other inner-column {
       gap: var(--space-xl);
     }
 
-    .social-icon {
+    :deep(.social-icon) {
       max-width: 25px;
     }
   }

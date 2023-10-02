@@ -101,7 +101,7 @@ const handleFilter = (event) => {
       <div class="filter-header">
         <h4 class="calm-voice">Chain</h4>
         <button
-          class="icon"
+          class="icon caret"
           @click="showAll.chains = !showAll.chains"
           v-if="ecosystem.stats?.chains?.length > defaultPillCount"
         >
@@ -314,5 +314,9 @@ dapp-filter {
     //  gap: calc(var(--space-m));
     padding: 0 var(--space-m);
   }
+}
+
+button.icon.caret {
+  max-width: var(--space-l);
 }
 </style>

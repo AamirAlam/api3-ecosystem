@@ -97,7 +97,7 @@ a {
   /* border: var(--border); */
   border-radius: 50%;
   aspect-ratio: 1 / 1;
-  max-width: 2rem;
+  max-width: 100px;
 }
 
 img.caret {

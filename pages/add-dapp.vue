@@ -165,17 +165,6 @@ onMounted(async () => {
 
         <FormKit type="step" v-auto-animate name="links">
           <LinksStep :dappForm="dappForm" />
-          <template #stepNext="{ handlers }" #stepPrevious>
-            <FormStepButtons
-              :next="handlers.next"
-              :previous="handlers.previous"
-            />
-          </template>
-        </FormKit>
-
-        <FormKit type="step" v-auto-animate name="socialLinks">
-          <SocialsStep :dappForm="dappForm" />
-
           <template #stepNext="{ handlers }">
             <FormStepButtons :isLastStep="true" :previous="handlers.previous" />
             <div class="messages">
@@ -209,24 +198,8 @@ onMounted(async () => {
   </SectionColumn>
 </template>
 
-<style lang="scss">
-body:has(main.add-dapp) {
-  //   overflow: hidden;
-  overflow-x: hidden;
-}
-main.add-dapp {
-  position: relative;
-}
-
+<style lang="scss" scoped>
 form {
-  //   max-height: 100vh;
-  //   overflow-y: scroll;
-  //   overflow-x: hidden;
-  //   scroll-snap-type: mandatory;
-  //   scroll-snap-type: y mandatory;
-  //   scroll-snap-points-y: repeat(calc(100vh - 100px));
-  //   scroll-behavior: smooth;
-
   & > :is(.step) {
     min-height: calc(80vh);
     display: grid;
@@ -250,8 +223,7 @@ div.messages {
   }
 }
 form {
-  .formkit-step-previous,
-  .formkit-step-next {
+  :deep(.formkit-step-previous, .formkit-step-next) {
     display: none;
   }
 }
