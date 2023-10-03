@@ -32,8 +32,8 @@ onMounted(() => {
             :class="{ menuOpen: showMenu }"
             @click="router.push('/')"
           >
-            <LogoFull v-if="!ui.isMobile" />
-            <LogoIcon v-else />
+            <img src="/images/logo-full.svg" v-if="!ui.isMobile" />
+            <img src="/images/logo-icon.svg" v-else />
           </picture>
           <SiteNav v-if="!ui.isMobile" />
           <button

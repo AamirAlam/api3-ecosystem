@@ -15,7 +15,7 @@ const titleClasses = computed(() =>
     <text-content>
       <ClientOnly>
         <picture v-if="ui.isMobile">
-          <DatafeedIcon />
+          <img :src="image" alt="" />
         </picture>
         <h3 :class="titleClasses">
           {{ heading }}
@@ -31,7 +31,7 @@ const titleClasses = computed(() =>
     </text-content>
 
     <picture v-if="!ui.isMobile">
-      <DatafeedIcon />
+      <img :src="image" alt="" />
     </picture>
   </graphic-text>
 </template>

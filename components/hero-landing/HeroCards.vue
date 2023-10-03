@@ -8,7 +8,7 @@ const showcaseCards = ref([
     paragraph: "Discover and explore API3's Ecosystem partners.",
     cta: "Explore Ecosystem",
     link: "/ecosystem",
-    image: "/images/icons/datafeed.svg",
+    image: "/images/icons/dapp.svg",
   },
   {
     heading: "Developers",
@@ -24,7 +24,7 @@ const showcaseCards = ref([
     paragraph: "Stay upto date with the API3 Ecosystem and our partners",
     cta: "Discover Updates",
     link: "/articles",
-    image: "/images/icons/datafeed.svg",
+    image: "/images/icons/article.svg",
   },
 ]);
 </script>

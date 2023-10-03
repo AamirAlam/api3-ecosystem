@@ -5,19 +5,19 @@ const content = ref([
     description:
       "API3 provides secure and reliable first-party data feeds that establish seamless connections between API providers and oracle smart contracts, thereby eliminating the need for third-party intermediaries and bolstering the overall integrity of the data.",
 
-    image: "datafeed",
+    image: "/images/icons/datafeed-first-party.svg",
   },
   {
     title: "DAO Governed",
     description:
       "API3 strongly values decentralization, a foundational principle in the Web3 ecosystem. Its governance relies on a decentralized autonomous organization (DAO), which gives token holders the authority to make decisions and actively shape the platform's future.",
-    image: "dao",
+    image: "/images/icons/dao.svg",
   },
   {
     title: "Developer Experience",
     description:
       "API3 is committed to an open-source, democratized web that empowers individuals from all walks of life. We foster this through a comprehensive ecosystem, designed to equip developers with the tools, resources, and support they need to build exceptional dApps.",
-    image: "developer-tool",
+    image: "/images/icons/datafeed.svg",
   },
 ]);
 </script>

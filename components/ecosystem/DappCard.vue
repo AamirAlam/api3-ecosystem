@@ -120,7 +120,7 @@ dapp-card {
     }
 
     picture {
-      max-width: var(--step-0);
+      max-width: 20px;
     }
 
     .productType {

@@ -28,7 +28,7 @@ props.dappForm.links.socials = props.dappForm.links.socials ?? {};
     </form-field>
 
     <div class="form-socials">
-      <h2 class="solid-voice">Enter the socials you'd like to share.</h2>
+      <h2 class="calm-voice">Enter the socials you'd like to share.</h2>
       <form-field>
         <SocialIcon social="twitter" />
 

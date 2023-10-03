@@ -154,7 +154,7 @@ const miscLinks = [
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
-          <LogoIcon />
+          <img src="/images/logo-icon.svg" />
         </picture>
 
         <section
