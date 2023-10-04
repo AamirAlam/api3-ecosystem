@@ -50,9 +50,12 @@ const submitHandler = async (event) => {
   successData.value.pr_url = "";
 
   // prepare images selected
-  const logo = event?.images?.logo?.[0]?.file;
-  const cover = event?.images?.cover?.[0]?.file;
-  const screenshots = event?.images?.screenshots?.map((el) => el?.file);
+  const eventKey = Object.keys(event);
+  const logo = event?.[eventKey]?.content?.logo?.[0]?.file;
+  const cover = event?.[eventKey]?.images?.cover?.[0]?.file;
+  const screenshots = event?.[eventKey]?.images?.screenshots?.map(
+    (el) => el?.file
+  );
   const images = { logo, cover, screenshots };
 
   // check correct proxy info for datafeed service

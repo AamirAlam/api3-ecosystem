@@ -4,6 +4,18 @@ props.dappForm.date = new Date().toISOString().slice(0, 10);
 
 const yearOptions = ref([]);
 
+const fileSize = function (node) {
+  if (!node.value) return true;
+
+  const maxSize = 3 * 1024 * 1024;
+
+  const fileSizes = node.value.map((file) => file.file.size);
+
+  return fileSizes.every((fileSize) => {
+    return fileSize <= maxSize;
+  });
+};
+
 onMounted(() => {
   const years = ref(getYearRange(2000, new Date().getFullYear()));
 

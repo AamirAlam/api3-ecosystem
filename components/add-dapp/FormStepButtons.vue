@@ -5,8 +5,8 @@ const web3Store = useWeb3Store();
 
 <template>
   <div class="actions">
-    <button class="text" @click="previous()">Previous</button>
-    <button class="button outline" @click="next()" v-if="!isLastStep">
+    <button class="text" @click.prevent="previous()">Previous</button>
+    <button class="button outline" @click.prevent="next()" v-if="!isLastStep">
       Next
     </button>
 
