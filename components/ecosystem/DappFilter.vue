@@ -39,15 +39,6 @@ const years = computed(() => {
   }
 });
 
-function clearFilters() {
-  ecosystem.filterQuery.searchKey = "";
-  ecosystem.filterQuery.productTypes = [];
-  ecosystem.filterQuery.chains = [];
-  ecosystem.filterQuery.categories = [];
-  ecosystem.filterQuery.years = [];
-  ecosystem.filterQuery.page = 1;
-}
-
 onMounted(() => {
   const pageLoad = gsap.timeline();
 
@@ -79,27 +70,22 @@ const handleFilter = (event) => {
 <template>
   <dapp-filter>
     <!-- search bar -->
-    <search-bar>
-      <FormKit
-        type="search"
-        placeholder="Search"
-        v-model="ecosystem.filterQuery.searchKey"
-        prefix-icon="search"
-      />
-    </search-bar>
-
-    <!-- <header>
-      <h3 class="solid-voice">
-        Displaying {{ ecosystem?.list?.length }} of
-        {{ ecosystem.totalProjects }} results
-      </h3>
-      <button class="button" @click="clearFilters">Clear</button>
-    </header> -->
+    <header>
+      <FilterButtons />
+      <search-bar>
+        <FormKit
+          type="search"
+          placeholder="Search"
+          v-model="ecosystem.filterQuery.searchKey"
+          prefix-icon="search"
+        />
+      </search-bar>
+    </header>
 
     <!-- chain filter -->
     <div class="chain filter">
       <div class="filter-header">
-        <h4 class="calm-voice">Chain</h4>
+        <h4 class="calm-voice">Network</h4>
         <button
           class="icon caret"
           @click="showAll.chains = !showAll.chains"
@@ -128,6 +114,46 @@ const handleFilter = (event) => {
               prefix-icon="ethereum"
               :value="chain.value"
               v-model="ecosystem.filterQuery.chains[chain.value]"
+              @change="handleFilter"
+              v-auto-animate
+            />
+          </li>
+        </template>
+      </ul>
+    </div>
+
+    <!-- product type -->
+    <div class="productType filter">
+      <div class="filter-header">
+        <h4 class="calm-voice">Product</h4>
+
+        <button
+          class="icon"
+          @click="showAll.productTypes = !showAll.productTypes"
+          v-if="productTypes?.length > defaultPillCount"
+        >
+          <img
+            class="caret"
+            :class="{ down: showAll.productTypes }"
+            src="@/assets/images/interface/caret.svg"
+            alt=""
+          />
+        </button>
+      </div>
+      <ul class="pills" v-auto-animate>
+        <template v-for="(productType, index) in productTypes">
+          <li
+            class="pill"
+            :key="productType.name"
+            v-if="index < defaultPillCount || showAll.productTypes"
+          >
+            <FormKit
+              type="checkbox"
+              name="productTypes"
+              :label="ecosystem?.productTypeToLabel?.[productType.name]"
+              label-class="$reset whisper-voice"
+              :value="productType.name"
+              v-model="ecosystem.filterQuery.productTypes[productType.name]"
               @change="handleFilter"
               v-auto-animate
             />
@@ -177,46 +203,6 @@ const handleFilter = (event) => {
       </ul>
     </div>
 
-    <!-- product type -->
-    <div class="productType filter">
-      <div class="filter-header">
-        <h4 class="calm-voice">Product</h4>
-
-        <button
-          class="icon"
-          @click="showAll.productTypes = !showAll.productTypes"
-          v-if="productTypes?.length > defaultPillCount"
-        >
-          <img
-            class="caret"
-            :class="{ down: showAll.productTypes }"
-            src="@/assets/images/interface/caret.svg"
-            alt=""
-          />
-        </button>
-      </div>
-      <ul class="pills" v-auto-animate>
-        <template v-for="(productType, index) in productTypes">
-          <li
-            class="pill"
-            :key="productType.name"
-            v-if="index < defaultPillCount || showAll.productTypes"
-          >
-            <FormKit
-              type="checkbox"
-              name="productTypes"
-              :label="ecosystem?.productTypeToLabel?.[productType.name]"
-              label-class="$reset whisper-voice"
-              :value="productType.name"
-              v-model="ecosystem.filterQuery.productTypes[productType.name]"
-              @change="handleFilter"
-              v-auto-animate
-            />
-          </li>
-        </template>
-      </ul>
-    </div>
-
     <!-- year filter -->
     <div class="year filter">
       <div class="filter-header">
@@ -258,7 +244,7 @@ const handleFilter = (event) => {
 
     <div class="actions" v-if="ui.isMobile">
       <button class="button" @click="ui.toggleModal">Apply</button>
-      <button class="button" @click="ui.toggleModal">Cancel</button>
+      <button class="button outline" @click="ui.toggleModal">Cancel</button>
     </div>
   </dapp-filter>
 </template>
@@ -278,16 +264,20 @@ dapp-filter {
   overflow-y: auto;
 
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  search-bar {
+    display: grid;
+    gap: var(--space-m);
     padding: var(--space-s);
+    search-bar {
+    }
+    text-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 
-  div.actions {
+  & > div.actions {
+    padding: var(--space-xl) var(--space-s);
     justify-content: space-between;
   }
 }
