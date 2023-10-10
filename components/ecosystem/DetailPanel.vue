@@ -75,14 +75,12 @@ onMounted(() => {
         <ul>
           <li v-for="chain in dapp.chains" :key="chain.id">
             <!-- {{ chain }} -->
-            <picture class="chain">
-              <ChainIcon
-                :chain="ecosystem.chainNames(chain)"
-                fill="var(--green)"
-                stroke="var(--paper)"
-                strokeWidth="var(--line-width)"
-              />
-            </picture>
+            <ChainIcon
+              :chain="ecosystem.chainNames(chain)"
+              fill="var(--green)"
+              stroke="var(--paper)"
+              strokeWidth="var(--line-width)"
+            />
           </li>
         </ul>
       </div>
@@ -184,7 +182,7 @@ aside {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: var(--space-s);
 
-    picture.chain {
+    picture.chain-icon {
       aspect-ratio: 1/1;
     }
   }

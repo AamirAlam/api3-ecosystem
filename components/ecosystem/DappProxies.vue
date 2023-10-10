@@ -25,14 +25,12 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
       <li class="table-row" v-for="(proxy, index) in proxies">
         <!-- chain -->
         <div class="chain">
-          <picture>
-            <ChainIcon
-              :chain="ecosystem.chainNames(proxy.chainId)"
-              fill="var(--green)"
-              stroke="var(--paper)"
-              strokeWidth="15%"
-            />
-          </picture>
+          <ChainIcon
+            :chain="ecosystem.chainNames(proxy.chainId)"
+            fill="var(--green)"
+            stroke="var(--paper)"
+            strokeWidth="15%"
+          />
           {{ ecosystem.chainNames(proxy.chainId) }}
         </div>
 
@@ -125,7 +123,7 @@ section.proxy-table {
       gap: var(--space-2xs);
     }
 
-    .chain picture {
+    .chain picture.chain-icon {
       max-width: 20px;
     }
 

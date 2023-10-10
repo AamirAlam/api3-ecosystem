@@ -39,13 +39,11 @@ function filterBy(event) {
           :data-chain="chain"
           @click="filterBy"
         >
-          <picture>
-            <ChainIcon
-              :chain="ecosystem.chainNames(chain)"
-              fill="none"
-              stroke="var(--green)"
-            />
-          </picture>
+          <ChainIcon
+            :chain="ecosystem.chainNames(chain)"
+            fill="none"
+            stroke="var(--green)"
+          />
         </li>
       </ul>
 
@@ -119,7 +117,7 @@ dapp-card {
       align-items: center;
     }
 
-    picture {
+    picture.chain-icon {
       max-width: 20px;
     }
 
