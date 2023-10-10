@@ -21,7 +21,6 @@ const spacings = ref([
   <SectionColumn>
     <ul>
       <li v-for="chain in CHAINS">
-        {{ chain.name }}
         <ChainIcon :chain="chain.name" />
       </li>
     </ul>

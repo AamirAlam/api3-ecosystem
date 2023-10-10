@@ -10,7 +10,7 @@ const { data: dapp, error } = await useFetch(
   {
     initialCache: true,
     onResponse({ request, response, options }) {
-      // Process the response data
+      // Process the response data to use for SEO
 
       const dapp = response._data;
 

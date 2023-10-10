@@ -1,8 +1,10 @@
 <script setup>
 import { gsap } from "gsap";
 import { useInterfaceStore } from "@/stores/interface";
+import { useEcosystemStore } from "@/stores/ecosystem";
 
 const ui = useInterfaceStore();
+const ecosystem = useEcosystemStore();
 
 useSeoMeta({
   title: "Ecosystems",
@@ -48,7 +50,7 @@ onMounted(() => {
     <ClientOnly>
       <DappFilter v-if="!ui.isMobile" />
       <div v-else>
-        <button class="button" @click="ui.toggleModal">Filter</button>
+        <FilterButtons />
 
         <ModalSlot>
           <DappFilter />
@@ -72,7 +74,7 @@ onMounted(() => {
     grid-template-columns: 0.7fr 1fr;
   }
   @media (min-width: 1166px) {
-    grid-template-columns: 0.3fr 1fr;
+    grid-template-columns: 0.4fr 1fr;
   }
 }
 .ecosystem-header {

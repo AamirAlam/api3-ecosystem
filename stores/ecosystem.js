@@ -84,6 +84,24 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     }
   });
 
+  const isFilterApplied = computed(() => {
+    return (
+      Object.keys(filterQuery.value.chains).some(
+        (key) => filterQuery.value.chains[key]
+      ) ||
+      Object.keys(filterQuery.value.categories).some(
+        (key) => filterQuery.value.categories[key]
+      ) ||
+      Object.keys(filterQuery.value.productTypes).some(
+        (key) => filterQuery.value.productTypes[key]
+      ) ||
+      Object.keys(filterQuery.value.years).some(
+        (key) => filterQuery.value.years[key]
+      ) ||
+      filterQuery.value.searchKey
+    );
+  });
+
   //stats
   const { data: stats, error: statsError } = useFetch("/api/projects/stats/");
 
@@ -137,6 +155,17 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     return chain ? chain.name : chainId;
   };
 
+  function clearFilters() {
+    filterQuery.value = {
+      searchKey: "",
+      chains: {},
+      categories: {},
+      productTypes: {},
+      years: {},
+      page: 1,
+    };
+  }
+
   return {
     list: projectList,
     totalProjects,
@@ -149,5 +178,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
     productTypeToLabel,
     filterQuery,
     chainNames,
+    clearFilters,
+    isFilterApplied,
   };
 });
