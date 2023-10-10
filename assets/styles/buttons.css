@@ -120,8 +120,8 @@ img.caret.right {
 /* diabled buttons */
 
 button:disabled,
-a.button.disabled,
-button.button.disabled {
+a.disabled,
+button.disabled {
   filter: saturate(0) brightness(0.4);
   cursor: not-allowed;
   pointer-events: none;
