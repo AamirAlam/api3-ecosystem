@@ -43,6 +43,9 @@ onMounted(() => {
   @media (min-width: 768px) {
     margin-top: var(--space-l);
   }
+  h1 {
+    text-wrap: balance;
+  }
 }
 
 main.ecosystem-detail .page-title {
