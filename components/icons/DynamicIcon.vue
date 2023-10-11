@@ -17,9 +17,3 @@ picture {
   filter: hue-rotate(var(--hue-rotate));
 }
 </style>
-
-<style scoped>
-:deep(path, rect, circle, polygon, polyline, line) {
-  vector-effect: none;
-}
-</style>

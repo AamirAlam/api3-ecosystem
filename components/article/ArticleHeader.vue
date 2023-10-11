@@ -13,10 +13,7 @@ const datePublished = computed(() => {
 
 <template>
   <header>
-    <h1
-      class="loud-voice article-heading gradient-text-color-light"
-      :id="article?.title"
-    >
+    <h1 class="loud-voice article-heading" :id="article?.title">
       {{ article?.title }}
     </h1>
     <h2 class="notice-voice">

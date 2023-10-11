@@ -21,10 +21,12 @@ const ecosystem = useEcosystemStore();
     </button>
     <button
       class="text green"
-      :class="{ disabled: !ecosystem.isFilterApplied }"
+      :class="`${!ui.isMobile ? 'whisper-voice' : ''} ${
+        !ecosystem.isFilterApplied ? 'disabled' : ''
+      }`"
       @click="ecosystem.clearFilters"
     >
-      <span :class="!ui.isMobile ? 'whisper-voice' : ''"> Clear all </span>
+      <span> Clear all </span>
     </button>
   </div>
 </template>
