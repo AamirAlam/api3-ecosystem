@@ -27,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <article-card class="background-radial-blue">
+  <article-card class="background-radial-violet">
     <picture>
       <img :src="article?.cover ?? '/images/article-placeholder.jpg'" />
     </picture>
@@ -51,36 +51,13 @@ article-card {
   border-radius: var(--corners);
   overflow: hidden;
   position: relative;
-  background: var(--gradient-dark);
 
   --decoration-size: 100px;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    background: var(--gradient-dark);
-    z-index: 1;
-
-    bottom: -0.5rem;
-    right: -0.5rem;
-
-    width: var(--decoration-size);
-    height: var(--line-width);
-  }
-
-  &::after {
-    width: var(--line-width);
-    height: var(--decoration-size);
-  }
-
-  a.text {
-    padding-bottom: 1em;
-  }
 
   text-content {
     padding: var(--space-2xs) var(--space-s);
     padding-top: var(--space-s);
+    z-index: 2;
 
     .solid-voice {
       margin-bottom: var(--space-2xs);
@@ -90,6 +67,14 @@ article-card {
       margin-top: var(--space-2xs);
     }
   }
+
+  a.text {
+    color: transparent !important;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
   &.card {
     grid-column: 1/-1;
 
@@ -180,16 +165,9 @@ article-card {
       bottom: 0;
       left: 0;
       width: 100%;
-
-      z-index: 2;
     }
 
     a.text {
-      color: transparent !important;
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-
       background: linear-gradient(
         0deg,
         hsla(0, 0%, 1%, 0.7) 20%,

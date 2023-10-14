@@ -101,11 +101,27 @@ html {
     ),
     #040606;
 
+  --gradient-radial-blue-hover: radial-gradient(
+      208.44% 148.88% at 50% 0%,
+      hsla(calc(60 + var(--hue)), 100%, 50%, 0.25) 0%,
+      hsla(0, 0%, 0%, 0) 45.83%,
+      hsla(0, 0%, 96%, 0.1) 100%
+    ),
+    #040606;
+
   --gradient-radial-violet: radial-gradient(
       90% 65% at 50% 0%,
       hsla(calc(90 + var(--hue)), 90%, 70%, 0.25) 0%,
       hsla(0, 0%, 0%, 0) 83.33%,
       hsla(0, 0%, 35%, 0.08) 100%
+    ),
+    #040606;
+
+  --gradient-radial-violet-hover: radial-gradient(
+      208.44% 148.88% at 50% 0%,
+      hsla(calc(90 + var(--hue)), 90%, 70%, 0.25) 0%,
+      hsla(0, 0%, 0%, 0) 45.83%,
+      hsla(0, 0%, 96%, 0.1) 100%
     ),
     #040606;
 

@@ -82,6 +82,7 @@
   ):hover {
   background: var(--background-gradient-hover);
 }
+
 .background-radial-green {
   --background-gradient: var(--gradient-radial-green);
   --background-gradient-hover: var(--gradient-radial-green-hover);
