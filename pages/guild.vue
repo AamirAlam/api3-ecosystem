@@ -3,6 +3,7 @@ import { watchNetwork } from "@wagmi/core";
 import { gsap } from "gsap";
 
 const web3Store = useWeb3Store();
+const ui = useInterfaceStore();
 
 const selected = ref("");
 const selectedProductId = ref(null);
@@ -38,19 +39,35 @@ function buttonHandle(event, text, index) {
 }
 
 function animateHeading() {
-  gsap.fromTo(
-    "div.panel h2",
-    {
-      y: 50,
-      opacity: 0,
-    },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 0.5,
-      ease: "power4.out",
-    }
-  );
+  if (!selected.value) {
+    gsap.fromTo(
+      "div.panel",
+      {
+        y: 50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power4.out",
+      }
+    );
+  } else {
+    gsap.fromTo(
+      "div.panel h2",
+      {
+        y: 50,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power4.out",
+      }
+    );
+  }
 }
 
 watch(selectedProductId, async (productId, prevProductId) => {
@@ -134,15 +151,18 @@ onMounted(() => {
 <template>
   <SectionColumn>
     <aside>
+      <h1 class="firm-voice">
+        {{ content.unselectedHeading }}
+      </h1>
       <button
-        class="text"
+        class="text green hover-underline"
         v-for="(buttonText, index) in content.buttons"
         @click="buttonHandle($event, buttonText, index)"
       >
         {{ buttonText }}
       </button>
     </aside>
-    <div class="panel" v-auto-animate>
+    <div class="panel">
       <h2 class="loud-voice">
         <template v-if="selected">
           Join the
@@ -154,7 +174,7 @@ onMounted(() => {
         </template>
       </h2>
 
-      <p>
+      <p v-if="content.paragraph">
         {{ content.paragraph }}
       </p>
 
@@ -185,24 +205,28 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-section {
+section:not(.heading) {
   :deep(inner-column) {
     display: grid;
     gap: var(--space-xl);
 
-    height: 80vh;
+    min-height: 80vh;
     align-content: center;
 
     @media (min-width: 768px) {
-      grid-template-columns: 0.3fr 1fr;
+      grid-template-columns: 0.5fr 1fr;
     }
   }
 
   aside {
     display: grid;
     align-content: center;
-    gap: var(--space-xl);
-    text-align: left;
+    gap: var(--space-m);
+    //  order: 2;
+
+    button.text {
+      text-align: left;
+    }
   }
 
   .panel {
@@ -211,6 +235,10 @@ section {
 
     place-content: center;
     text-align: center;
+
+    h2 {
+      opacity: 0;
+    }
 
     button {
       justify-self: center;
