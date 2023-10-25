@@ -21,13 +21,11 @@ const sorted = computed(() => {
   }
   if (props.isPopularSort) {
     return blog.list.sort((a, b) => {
-      console.log(a.views, b.views);
       return new Date(b.views) - new Date(a.views);
     });
   }
   if (props.isTrendingSort) {
     return blog.list.sort((a, b) => {
-      console.log(a.upvotes, b.upvotes);
       return new Date(b.upvotes) - new Date(a.upvotes);
     });
   }
