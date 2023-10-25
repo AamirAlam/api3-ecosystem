@@ -122,27 +122,28 @@ export default authenticated(
           slug: slug(payload.name),
         }).save();
 
-        // project json will be stored with active status in pull request for review
-        payload.status = "active";
-        // verify build and create pr
-        const buildResult = await checkBuildStatus(payload, createdProject.id);
+        // // project json will be stored with active status in pull request for review
+        // payload.status = "active";
+        // // verify build and create pr
+        // const buildResult = await checkBuildStatus(payload, createdProject.id);
 
-        if (!buildResult.success) {
-          // remove project data from db when build failed
-          await Project.findByIdAndDelete(createdProject.id);
+        // if (!buildResult.success) {
+        //   // remove project data from db when build failed
+        //   await Project.findByIdAndDelete(createdProject.id);
 
-          event.node.res.statusCode = 400;
-          return {
-            code: "BUILD_FAILED",
-            message: buildResult.message,
-          };
-        }
+        //   event.res.statusCode = 400;
+        //   return {
+        //     code: "BUILD_FAILED",
+        //     message: "Failed to build project!",
+        //   };
+        // }
 
         event.node.res.statusCode = 201;
         return {
           code: "OK",
           message: "Project submitted successfully!",
-          data: buildResult?.data,
+          // data: buildResult?.data,
+          data: "",
         };
       } catch (err: any) {
         console.log("create project error ", err);

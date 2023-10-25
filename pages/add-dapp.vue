@@ -201,9 +201,9 @@ onMounted(async () => {
                   {{ successData.message }}
                 </p>
 
-                <a :href="successData.pr_url" target="_blank">
+                <!-- <a :href="successData.pr_url" target="_blank">
                   View Pull request
-                </a>
+                </a> -->
               </text-content>
             </div>
           </template>
