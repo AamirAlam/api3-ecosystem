@@ -8,11 +8,17 @@ const ecosystem = useEcosystemStore();
 
 useSeoMeta({
   title: "Ecosystems",
+  ogTitle: "Ecosystems",
+  twitterTitle: "Ecosystems",
+
   description:
     "Welcome to the API3 ecosystem. Easily list your dApp or service and join our thriving community",
+
   ogDescription:
     "Welcome to the API3 ecosystem. Easily list your dApp or service and join our thriving community",
-  ogImage: "/images/article-placeholder.jpg",
+
+  twitterDescription:
+    "Welcome to the API3 ecosystem. Easily list your dApp or service and join our thriving community",
 });
 
 onMounted(() => {

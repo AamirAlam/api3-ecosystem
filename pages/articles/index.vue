@@ -1,13 +1,19 @@
 <script setup>
 //random number between 0 and 5
-const random = Math.floor(Math.random() * 6);
 
 useSeoMeta({
+  ogUrl: "https://ecosystem.api3.org/articles",
+
   title: "Blog",
+  ogTitle: "Blog",
+  twitterTitle: "Blog",
+
   description:
-    "Unlock the potential of blockchain oracles for your dApps. Learn more about oracles, understand how to leverage real-world data feeds, and create smarter, more responsive decentralized applications. Dive into our comprehensive developer materials now.",
+    "Unlock the potential of blockchain oracles. Learn more about oracles, understand how to leverage real-world data feeds, and create smarter, more responsive dApps.",
   ogDescription:
-    "Unlock the potential of blockchain oracles for your dApps. Learn more about oracles, understand how to leverage real-world data feeds, and create smarter, more responsive decentralized applications. Dive into our comprehensive developer materials now.",
+    "Unlock the potential of blockchain oracles. Learn more about oracles, understand how to leverage real-world data feeds, and create smarter, more responsive dApps.",
+  twitterDescription:
+    "Unlock the potential of blockchain oracles. Learn more about oracles, understand how to leverage real-world data feeds, and create smarter, more responsive dApps.",
 });
 </script>
 
@@ -15,7 +21,7 @@ useSeoMeta({
   <PageTitle heading="Articles" />
   <SectionColumn>
     <h2 class="attention-voice">Featured</h2>
-    <ArticleGrid :layout="5" />
+    <ArticleGrid :layout="5" isFeaturedSort="true" />
   </SectionColumn>
   <SectionColumn>
     <h2 class="attention-voice">Recent</h2>
