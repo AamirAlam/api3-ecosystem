@@ -10,7 +10,8 @@ inner-column {
   max-width: 1200px; /* could be a variable in settings */
   margin-right: auto;
   margin-left: auto;
-  padding: var(--space-l) var(--space-s); /* a loose default */
+  /* padding: var(--space-l) var(--space-s); a loose default */
+  padding: var(--space-2xl) var(--space-s);
 }
 
 inner-column.none {
@@ -22,11 +23,11 @@ inner-column.none {
   padding: unset;
 }
 
-html:has(main.index) main inner-column {
+body.index main inner-column {
   /* max-width: 1600px; */
 }
 @media (min-width: 1700px) {
-  html:has(main.index) inner-column {
+  body.index inner-column {
     /* max-width: 1750px; */
   }
 }

@@ -74,7 +74,7 @@ hero-landing {
   //   height: 80vh;
   display: grid;
   align-content: center;
-  padding: var(--space-2xl) 0;
+  padding: var(--space-m) 0;
 
   gap: var(--space-2xl);
 

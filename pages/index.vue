@@ -26,32 +26,30 @@ onMounted(() => {
 
   ScrollTrigger.defaults({
     // toggleActions: "restart reset restart none",
-    //  scroller: "main.index",
     // markers: "true",
   });
 });
 </script>
 
 <template>
-  <HeroLanding />
-  <!-- <ScrollingStats /> -->
+  <main>
+    <HeroLanding />
 
-  <MissionComponent />
-  <section class="curves-wrapper">
-    <picture class="curves-decoration-3">
-      <CurvesDecoration3 />
-    </picture>
-  </section>
+    <MissionComponent />
+    <section class="curves-wrapper">
+      <picture class="curves-decoration-3">
+        <CurvesDecoration3 />
+      </picture>
+    </section>
 
-  <CallToAction />
+    <CallToAction />
 
-  <SectionColumn class="home-article-grid">
-    <h2 class="loud-voice">Articles</h2>
-    <ArticleGrid layout="0" cardCount="4" />
-    <NuxtLink class="text blue" to="/articles">See More</NuxtLink>
-  </SectionColumn>
-
-  <!-- <SiteFooter /> -->
+    <SectionColumn class="home-article-grid">
+      <h2 class="loud-voice">Articles</h2>
+      <ArticleGrid layout="0" cardCount="4" isFeaturedSort="true" />
+      <NuxtLink class="text blue" to="/articles">See More</NuxtLink>
+    </SectionColumn>
+  </main>
 </template>
 
 <style lang="scss">
@@ -72,9 +70,8 @@ body:has(main.index) {
 }
 main.index {
   display: grid;
-  gap: var(--space-xl);
+  gap: var(--space-3xs);
   inner-column {
-    //  padding: var(--space-xl) 15px;
   }
   inner-column > h2 {
     margin-bottom: var(--space-l);
@@ -83,29 +80,10 @@ main.index {
     gap: calc(var(--space-3xs) * 10);
   }
   @media (min-width: 1024px) {
-    //  max-height: calc(100vh - 100px);
-    //  overflow-y: scroll;
-    //  scroll-snap-type: mandatory;
-    //  scroll-snap-type: y mandatory;
-    //  scroll-snap-points-y: repeat(calc(100vh - 100px));
-
-    //  display: grid;
-
     & > section:not(.scrolling-stats) {
-      // scroll-snap-align: start;
-      // scroll-padding-top: 15rem;
       inner-column {
-        //   height: calc(100vh - 100px);
       }
-      // padding-bottom:var(--space-2xl) 0;
     }
-    //  & > footer {
-    //    scroll-snap-align: end;
-    //    // scroll-padding-top: 15rem;
-    //    inner-column {
-    //      height: calc(50vh - 50px);
-    //    }
-    //  }
   }
 }
 </style>
@@ -117,6 +95,8 @@ main.index {
   height: 80%;
   width: 100%;
   z-index: -10;
+  top: 0;
+  left: 0;
 
   picture.curves-decoration-3 {
     position: absolute;
@@ -131,7 +111,7 @@ main.index {
       display: block;
       top: 55%;
       left: 45%;
-      transform: translate(-50%, -50%) scaleY(0.8);
+      transform: translate(-50%, -50%) scaleY(0.9);
 
       width: 200vw;
       z-index: -10;

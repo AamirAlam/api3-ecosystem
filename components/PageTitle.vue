@@ -9,7 +9,6 @@ onMounted(() => {
     ".page-title",
     {
       y: 50,
-      opacity: 0,
       duration: 0,
       delay: "0.5",
     },

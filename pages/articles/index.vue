@@ -18,26 +18,23 @@ useSeoMeta({
 </script>
 
 <template>
-  <PageTitle heading="Articles" />
-  <SectionColumn>
-    <h2 class="attention-voice">Featured</h2>
-    <ArticleGrid :layout="0" isFeaturedSort="true" />
-  </SectionColumn>
+  <main>
+    <PageTitle heading="Articles" />
+    <SectionColumn>
+      <h2 class="attention-voice">Featured</h2>
+      <ArticleGrid :layout="0" isFeaturedSort="true" />
+    </SectionColumn>
 
-  <SectionColumn>
-    <h2 class="attention-voice">Popular</h2>
-    <ArticleGrid :layout="1" cardCount="4" isPopularSort="true" />
-  </SectionColumn>
+    <SectionColumn>
+      <h2 class="attention-voice">Popular</h2>
+      <ArticleGrid :layout="1" cardCount="4" isPopularSort="true" />
+    </SectionColumn>
 
-  <SectionColumn>
-    <h2 class="attention-voice">Recent</h2>
-    <ArticleGrid layout="3" cardCount="4" isRecentSort="true" />
-  </SectionColumn>
-
-  <!-- <SectionColumn>
-    <h2 class="attention-voice">Popular</h2>
-    <ArticleGrid :layout="3" cardCount="4" />
-  </SectionColumn> -->
+    <SectionColumn>
+      <h2 class="attention-voice">Recent</h2>
+      <ArticleGrid layout="3" cardCount="4" isRecentSort="true" />
+    </SectionColumn>
+  </main>
 </template>
 
 <style lang="scss" scoped>

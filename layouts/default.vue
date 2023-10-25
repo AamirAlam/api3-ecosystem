@@ -10,13 +10,10 @@ const route = useRoute();
   </div>
 
   <SiteHeader />
-  <main :class="route.name">
-    <slot />
-  </main>
+
+  <slot />
 
   <SiteFooter v-if="route.name != 'add-dapp' || route.name !== 'add-dapp-2'" />
-
-  <!-- <BlobAnimation /> -->
 </template>
 
 <style scoped lang="scss">
@@ -31,10 +28,8 @@ const route = useRoute();
     position: absolute;
     top: 100px;
     left: -200px;
-    //  transform: translate(-50%, -50%) rotate(10deg) scaleY(1.8);
 
     width: 300vw;
-    //   display: none;
 
     @media (min-width: 768px) {
       display: block;

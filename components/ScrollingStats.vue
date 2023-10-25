@@ -23,26 +23,6 @@ const cards = [
 
 const changeImage = (card, index) => {
   const triggerElement = ref(document.querySelector(card.triggerClass));
-
-  gsap.to("scrolling-stats .graph", {
-    scrollTrigger: {
-      scroller: ui.isMobile ? "" : "main.index",
-      trigger: triggerElement.value,
-      toggleActions: "play reset play reset",
-      start: "top 30%",
-      end: "bottom 70%",
-    },
-
-    onStart: () => {
-      graph.value = card.imagePath;
-      gsap.to("scrolling-stats", {
-        "--after-height":
-          index === 0 ? "5%" : index === 1 ? "50%" : index === 2 ? "95%" : "0%",
-        duration: 1,
-        ease: "power2.out",
-      });
-    },
-  });
 };
 
 onMounted(() => {

@@ -10,10 +10,10 @@ export default defineNuxtConfig({
 
   //global default head metadata
   app: {
-    //  pageTransition: {
-    //    name: "page",
-    //    mode: "out-in",
-    //  },
+    pageTransition: {
+      name: "page",
+      mode: "out-in",
+    },
 
     head: {
       title: "API3 Ecosystem",

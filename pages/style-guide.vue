@@ -96,7 +96,7 @@ useSeoMeta({
 }
 </style>
 <style>
-main.style-guide {
+.style-guide main {
   display: grid;
   /* gap: 8rem; */
 }
