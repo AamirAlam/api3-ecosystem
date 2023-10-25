@@ -14,7 +14,7 @@ const titleClasses = computed(() =>
   <graphic-text>
     <text-content>
       <ClientOnly>
-        <picture v-if="ui.isMobile">
+        <picture v-if="!ui.isDesktop">
           <img :src="image" alt="" />
         </picture>
         <h3 :class="titleClasses">
@@ -30,7 +30,7 @@ const titleClasses = computed(() =>
       </NuxtLink>
     </text-content>
 
-    <picture v-if="!ui.isMobile">
+    <picture v-if="ui.isDesktop">
       <img :src="image" alt="" />
     </picture>
   </graphic-text>
@@ -51,20 +51,19 @@ graphic-text {
 
 text-content {
   display: grid;
-  grid-template-columns: 0.2fr 1fr;
 
   p {
     grid-column: 1/-1;
   }
 
-  @media (min-width: 768px) {
-    grid-template-columns: unset;
+  @media (max-width: 1024px) {
+    grid-template-columns: 0.2fr 1fr;
   }
 }
 
 graphic-text.reverse {
   text-content {
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       order: 2;
     }
   }
