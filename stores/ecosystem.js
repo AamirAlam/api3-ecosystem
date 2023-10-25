@@ -62,7 +62,13 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
   const { data, error: listError } = useFetch(
     () => debouncedSearchQuery.value,
     {
-      key: `ecosystem-list-${filterQuery.value.page}`,
+      // key: `ecosystem-list-${filterQuery.value.page}`,
+      onRequestError({ request, options, error }) {
+        console.log("fetch test error", error);
+      },
+      onRequest({ request, options }) {
+        console.log("fetch test request");
+      },
     }
   );
 
