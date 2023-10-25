@@ -154,13 +154,15 @@ onMounted(() => {
       <h1 class="firm-voice">
         {{ content.unselectedHeading }}
       </h1>
-      <button
-        class="text green hover-underline"
-        v-for="(buttonText, index) in content.buttons"
-        @click="buttonHandle($event, buttonText, index)"
-      >
-        {{ buttonText }}
-      </button>
+      <div class="actions">
+        <button
+          class="text green hover-underline"
+          v-for="(buttonText, index) in content.buttons"
+          @click="buttonHandle($event, buttonText, index)"
+        >
+          {{ buttonText }}
+        </button>
+      </div>
     </aside>
     <div class="panel">
       <h2 class="loud-voice">
@@ -213,8 +215,8 @@ section:not(.heading) {
     min-height: 80vh;
     align-content: center;
 
-    @media (min-width: 768px) {
-      grid-template-columns: 0.5fr 1fr;
+    @media (min-width: 1024px) {
+      grid-template-columns: 0.6fr 1fr;
     }
   }
 
@@ -224,8 +226,18 @@ section:not(.heading) {
     gap: var(--space-m);
     //  order: 2;
 
+    div.actions {
+      @media (min-width: 1024px) {
+        display: grid;
+      }
+    }
+
     button.text {
       text-align: left;
+
+      @media (max-width: 420px) {
+        font-size: var(--step--1);
+      }
     }
   }
 
@@ -238,6 +250,15 @@ section:not(.heading) {
 
     h2 {
       opacity: 0;
+      text-wrap: balance;
+
+      span {
+        white-space: nowrap;
+      }
+
+      @media (max-width: 420px) {
+        --font-size: var(--step-2);
+      }
     }
 
     button {
