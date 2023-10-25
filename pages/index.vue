@@ -12,7 +12,7 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Ecosystem Home",
+  title: "API3 Ecosystem Home",
 });
 
 onMounted(() => {
@@ -114,7 +114,7 @@ main.index {
 .curves-wrapper {
   position: absolute;
   overflow-x: hidden;
-  height: 100%;
+  height: 80%;
   width: 100%;
   z-index: -10;
 
@@ -129,7 +129,7 @@ main.index {
 
     @media (min-width: 768px) {
       display: block;
-      top: 45%;
+      top: 55%;
       left: 45%;
       transform: translate(-50%, -50%) scaleY(0.8);
 

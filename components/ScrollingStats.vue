@@ -79,7 +79,8 @@ onMounted(() => {
         </p>
       </stats-card>
       <picture class="graph">
-        <img :src="graph" alt="" />
+        <NuxtImg :src="graph" alt="stats" />
+        <!-- #todo -->
       </picture>
     </scrolling-stats>
   </SectionColumn>

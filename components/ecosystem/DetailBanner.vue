@@ -7,7 +7,11 @@ const props = defineProps(["dapp"]);
 <template>
   <SectionColumn v-if="dapp" class="banner">
     <picture>
-      <img :src="dapp.images.cover" alt="" />
+      <NuxtImg
+        :src="dapp.images.cover"
+        src="/images/landscape.jpg"
+        :alt="`Cover Image of ${dapp.name}`"
+      />
     </picture>
   </SectionColumn>
 </template>

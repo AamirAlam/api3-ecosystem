@@ -196,9 +196,7 @@ onMounted(() => {
             <span>
               {{ isMintChecking ? "Fetching NFT..." : "Visit OpenSea" }}
             </span>
-            <picture class="external-link" v-if="!isMintChecking">
-              <img src="@/assets/images/interface/diagonal-arrow.svg" alt="" />
-            </picture>
+            <ExternalLink v-if="!isMintChecking" />
           </a>
         </button>
       </Transition>
@@ -213,7 +211,6 @@ section:not(.heading) {
     gap: var(--space-xl);
 
     min-height: 80vh;
-    align-content: center;
 
     @media (min-width: 1024px) {
       grid-template-columns: 0.6fr 1fr;
@@ -222,9 +219,12 @@ section:not(.heading) {
 
   aside {
     display: grid;
-    align-content: center;
     gap: var(--space-m);
-    //  order: 2;
+    align-content: center;
+
+    @media (min-width: 1024px) {
+      justify-items: center;
+    }
 
     div.actions {
       @media (min-width: 1024px) {

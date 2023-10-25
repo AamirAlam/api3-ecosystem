@@ -55,10 +55,10 @@ function filterBy(event) {
 
     <text-content>
       <picture class="logo">
-        <img
+        <NuxtImg
           :src="dapp?.images?.logo"
-          src="@/assets/images/background/square.jpg"
-          alt=""
+          src="/images/square.jpg"
+          :alt="`Logo of ${dapp?.name}`"
         />
       </picture>
       <h2 class="firm-voice">{{ dapp?.name ?? "Dapp Name" }}</h2>

@@ -1,11 +1,11 @@
 <template>
   <div class="short-wallet" v-tooltip="showCopyTooltip ? 'Copied!' : 'Copy'">
-    <button class="text green" @click="copyToClipboard">
+    <button class="text green whisper-voice" @click="copyToClipboard">
       {{ shortWallet }}
     </button>
     <button class="icon copy">
       <picture>
-        <img src="@/assets/images/interface/copy.svg" alt="Copy" />
+        <img src="@/assets/images/interface/copy.svg" alt="Copy icon" />
       </picture>
     </button>
   </div>

@@ -38,11 +38,6 @@ const socialsToShare = ref([
   <share-box>
     <header>
       <h4 class="solid-voice">Share</h4>
-      <!-- <button class="icon close" @click="$emit('toggle')">
-        <picture>
-          <img src="@/assets/images/interface/cross.svg" alt="close" />
-        </picture>
-      </button> -->
     </header>
     <ul class="social-list">
       <li v-for="social in socialsToShare" :key="social.label">

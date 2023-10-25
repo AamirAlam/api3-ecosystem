@@ -63,7 +63,7 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
         <!-- is oev -->
         <div class="is-oev">
           <picture v-if="isForm ? proxy.isOEV : proxy?.oev?.enabled">
-            <img src="/images/icons/oev.svg" alt="" />
+            <NuxtImg src="/images/icons/oev.svg" alt="OEV icon" />
           </picture>
         </div>
 
@@ -74,7 +74,7 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
             @click.prevent="dappForm?.proxies?.splice(index, 1)"
           >
             <picture class="cross">
-              <img src="@/assets/images/interface/cross.svg" />
+              <img src="@/assets/images/interface/cross.svg" alt="cross icon" />
             </picture>
           </button>
         </div>

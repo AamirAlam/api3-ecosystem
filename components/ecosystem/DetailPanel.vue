@@ -54,22 +54,7 @@ onMounted(() => {
 
 <template>
   <aside class="panel">
-    <!-- <div class="actions">
-
-      <NuxtLink
-        :to="dapp.links.dapp"
-        :target="`${dapp?.name}-app`"
-        class="button"
-        >Launch</NuxtLink
-      >
-
-    </div> -->
     <article class="rows">
-      <!-- <div class="row status">
-        <p>Status</p>
-        <p>{{ dapp.status ? "Live" : "Beta" }}</p>
-      </div> -->
-
       <div class="row chain">
         <p>Chains</p>
         <ul>
@@ -137,18 +122,22 @@ aside {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-l);
     padding: var(--space-s) 0;
-    align-items: center;
   }
   div.row {
     border-bottom: var(--border-dark);
     li {
       display: flex;
-      align-items: center;
       gap: var(--space-3xs);
 
       :deep(picture) {
-        max-width: 1.25rem;
+        max-width: 2rem;
       }
+    }
+  }
+
+  .row.product-list {
+    li {
+      align-items: center;
     }
   }
 
