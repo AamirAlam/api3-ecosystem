@@ -18,7 +18,7 @@ function onMouseover(event) {
   <SectionColumn class="cta-module">
     <!-- <span class="line"></span> -->
 
-    <cta-module class="" @mouseover="onMouseover">
+    <cta-module @mouseover="onMouseover">
       <text-content>
         <h2
           :class="{
@@ -28,9 +28,7 @@ function onMouseover(event) {
         >
           Join the Web3 API revolution and publish your dapp on our site today!
         </h2>
-        <button class="button" @click="navigateTo('/ecosystem')">
-          Join the Ecosystem
-        </button>
+        <NuxtLink class="button" to="/ecosystem"> Join the Ecosystem </NuxtLink>
       </text-content>
     </cta-module>
   </SectionColumn>

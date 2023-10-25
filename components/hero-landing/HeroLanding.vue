@@ -40,7 +40,9 @@ onMounted(() => {
           feeds.
         </p>
 
-        <button class="button">Join The Ecosystem</button>
+        <button class="button" @click="navigateTo('/ecosystem')">
+          Join The Ecosystem
+        </button>
       </text-content>
       <HeroCards />
     </hero-landing>
