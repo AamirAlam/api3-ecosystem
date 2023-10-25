@@ -103,8 +103,8 @@ file-upload {
   background: var(--gradient-dark);
   --ink: hsla(180, 0%, 95%, 1);
   border-radius: var(--corners);
-  gap: 10px;
-  padding: 1rem;
+  gap: var(--space-2xs);
+  padding: var(--space-s);
   align-items: start;
 }
 </style>

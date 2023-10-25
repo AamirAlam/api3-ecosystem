@@ -1,140 +1,67 @@
 <script setup>
 import { useInterfaceStore } from "~/stores/interface";
+import { gsap } from "gsap";
 
 const ui = useInterfaceStore();
+
+function onMouseover(event) {
+  //   change axis x to 90% and reverse it back to 50% on mouseout
+  gsap.to(event.target, {
+    "--axis-x": "90%",
+    duration: 3,
+    ease: "back.out",
+  });
+}
 </script>
 
 <template>
   <SectionColumn class="cta-module">
     <!-- <span class="line"></span> -->
 
-    <cta-module>
+    <cta-module class="" @mouseover="onMouseover">
       <text-content>
         <h2
-          class="gradient-text-color"
           :class="{
-            'booming-voice': !ui.isMobile,
-            'loud-voice': ui.isMobile,
+            'attention-voice': ui.isMobile,
+            'loud-voice': !ui.isMobile,
           }"
         >
           Join the Web3 API revolution and publish your dapp on our site today!
         </h2>
-        <button
-          class="firm-voice loud-button"
-          @click="navigateTo('/ecosystem')"
-        >
-          Join Now
+        <button class="button" @click="navigateTo('/ecosystem')">
+          Join the Ecosystem
         </button>
       </text-content>
-
-      <!-- partner logo wall -->
-      <picture class="graphic">
-        <img src="@/assets/images/partner-logos.png" alt="" />
-      </picture>
     </cta-module>
-
-    <!-- background decoration -->
-    <picture class="curves-decoration">
-      <CurvesDecoration />
-    </picture>
   </SectionColumn>
 </template>
 
-<style lang="scss">
-.cta-module {
-  overflow-x: hidden;
-
-  @media (min-width: 768px) {
-    overflow-x: unset;
-  }
-}
-.cta-module inner-column {
-  display: grid;
-  align-items: center;
-  position: relative;
-  padding-top: 7rem !important;
-  //   overflow-x: hidden;
-  @media (min-width: 768px) {
-    //  overflow-x: unset;
-    padding-top: unset !important;
-  }
-}
-.cta-module .curves-decoration {
-  position: absolute;
-  max-width: 500px;
-  bottom: -110px;
-
-  left: -50px;
-  transform: rotateY(180deg) rotate(-20deg) scaleX(0.9);
-  z-index: -1;
-
-  @media (min-width: 768px) {
-    bottom: unset;
-    max-width: 100vw;
-    left: -10%;
-    opacity: 0.5;
-    transform: rotateY(180deg) scaleX(1.2) scaleY(1.5);
-  }
-
-  @media (min-width: 1440px) {
-    transform: rotateY(180deg) scaleX(2) scaleY(1.5);
-  }
-
-  @media (min-width: 1920px) {
-    transform: rotateY(180deg) rotate(10deg) scaleX(2.5) scaleY(1.5);
-  }
-}
-</style>
-
 <style scoped lang="scss">
-.cta-module span.line {
-  position: absolute;
-  height: var(--line-width);
-  background: var(--gradient-color);
-  top: 0;
-  right: 0;
-  width: 100%;
-}
 cta-module {
-  display: grid;
-  align-items: start;
-  gap: 2rem;
-  position: relative;
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 0.75fr;
-  }
+  padding: calc(var(--space-xl)) calc(var(--space-m));
+
+  --axis-x: 50%;
+  background: radial-gradient(
+      208.44% 148.88% at var(--axis-x) 0%,
+      rgba(26, 248, 232, 0.25) 0%,
+      rgba(0, 0, 0, 0) 45.83%,
+      rgba(245, 245, 245, 0.15) 100%
+    ),
+    #040606;
+
+  transition: all 0.3s ease-in-out;
+
+  border-radius: var(--corners);
 
   text-content {
     display: grid;
-    gap: 3rem;
-    justify-items: start;
-    order: 2;
-
-    h2 {
-      color: var(--color);
-    }
-
-    @media (min-width: 768px) {
-      order: unset;
-    }
+    gap: var(--space-2xl);
+    place-items: center;
+    text-align: center;
   }
-  picture.graphic {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    z-index: -1;
 
-    opacity: 0.5;
-
-    @media (min-width: 768px) {
-      position: static;
-      opacity: 1;
-      transform: translateX(0);
-
-      // background-color: transparent;
-    }
+  @media (min-width: 768px) {
+    padding: calc(var(--space-m) * 4) calc(var(--space-m) * 7);
   }
 }
 </style>

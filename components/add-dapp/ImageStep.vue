@@ -1,5 +1,6 @@
 <script setup>
 const props = defineProps(["dappForm"]);
+props.dappForm.links = props.dappForm.links ?? {};
 
 const fileSize = function (node) {
   if (!node.value) return true;
@@ -15,77 +16,94 @@ const fileSize = function (node) {
 </script>
 
 <template>
-  <FormKit
-    type="group"
-    #default="{ state: { valid } }"
-    v-auto-animate
-    name="images"
-  >
-    <div class="single-images">
-      <form-field class="file-upload">
-        <FormKit
-          v-auto-animate
-          id="logoForm"
-          type="file"
-          label="Upload your logo*"
-          label-class="$reset notice-voice"
-          name="logo"
-          help="This image should be a square and at least 512px wide. [JPG/PNG/WEBP]"
-          accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP"
-          validation="required|fileSize"
-          :validation-rules="{ fileSize }"
-          :validation-messages="{
-            fileSize: 'File size must be below 3MB',
-          }"
-        />
-      </form-field>
-      <form-field class="file-upload">
-        <FormKit
-          id="coverForm"
-          type="file"
-          label="Upload a branded cover*"
-          label-class="$reset notice-voice"
-          name="cover"
-          help="This image should be at least 1024px wide. [JPG/PNG/WEBP]"
-          accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP"
-          v-auto-animate
-          validation="required|fileSize"
-          :validation-rules="{ fileSize }"
-          :validation-messages="{
-            fileSize: 'File size must be below 3MB',
-          }"
-        />
-      </form-field>
-    </div>
-    <div>
-      <form-field class="file-upload">
-        <FormKit
-          v-auto-animate
-          id="screenShotForm"
-          type="file"
-          multiple="true"
-          label="Upload your screenshots"
-          label-class="$reset notice-voice"
-          name="screenshots"
-          help="Screenshots of your dApp in action. [JPG/PNG/WEBP]"
-          accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP"
-          validation="fileSize"
-          :validation-rules="{ fileSize }"
-          :validation-messages="{
-            fileSize: 'Each file must be below 3MB',
-          }"
-        />
-      </form-field>
-    </div>
-  </FormKit>
+  <section>
+    <text-content>
+      <h2 class="attention-voice">Tell us about your dApp</h2>
+      <p>
+        This information will be displayed for other to learn about your dApp.
+      </p>
+    </text-content>
+    <form-field>
+      <FormKit
+        type="url"
+        validation="required|url"
+        validation-label="dApp URL"
+        id="dapp"
+        v-model="dappForm.links.dapp"
+        label="Where can someone find your dApp?*"
+        label-class="$reset calm-voice"
+        placeholder="https://yourdapp.com"
+      />
+    </form-field>
+
+    <form-field>
+      <FormKit
+        type="url"
+        validation="url"
+        validation-label="Documentation URL"
+        id="docs"
+        v-model="dappForm.links.docs"
+        label="Where can someone find your dApp’s documentation?"
+        label-class="$reset calm-voice"
+        placeholder="https://docs.api3.org/"
+      />
+    </form-field>
+
+    <form-field>
+      <FormKit
+        type="url"
+        validation="url"
+        validation-label="Explorer URL"
+        id="explorer"
+        v-model="dappForm.links.explorer"
+        label="Explorer"
+        label-class="$reset calm-voice"
+        placeholder="https://etherscan.io/"
+      />
+    </form-field>
+    <form-field class="file-upload">
+      <FormKit
+        id="coverForm"
+        type="file"
+        label="Upload a branded cover*"
+        label-class="$reset calm-voice"
+        name="cover"
+        accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP"
+        v-auto-animate
+        validation="required|fileSize"
+        validation-label="Cover image"
+        :validation-rules="{ fileSize }"
+        :validation-messages="{
+          fileSize: 'File size must be below 3MB',
+        }"
+      />
+      <p class="whisper-voice">Accepted file types: jpeg, png, webp</p>
+      <p class="whisper-voice">Minimum width: 1024px</p>
+    </form-field>
+    <form-field class="file-upload">
+      <FormKit
+        v-auto-animate
+        id="screenShotForm"
+        type="file"
+        multiple="true"
+        label="Upload your screenshots"
+        label-class="$reset calm-voice"
+        name="screenshots"
+        accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP"
+        validation="fileSize"
+        validation-label="Screenshots"
+        :validation-rules="{ fileSize }"
+        :validation-messages="{
+          fileSize: 'Each file must be below 3MB',
+        }"
+      />
+      <p class="whisper-voice">Accepted file types: jpeg, png, webp</p>
+    </form-field>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-.single-images {
-  display: grid;
-  gap: 2rem;
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-  }
+section {
+  display: contents;
 }
 </style>

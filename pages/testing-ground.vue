@@ -1,26 +1,43 @@
 <script setup>
+import { CHAINS } from "@api3/chains";
+
 const ecosystem = useEcosystemStore();
+
+const spacings = ref([
+  "--space-3xs",
+  "--space-2xs",
+  "--space-xs",
+  "--space-s",
+  "--space-m",
+  "--space-l",
+  "--space-xl",
+  "--space-2xl",
+  "--space-3xl",
+]);
 </script>
 
 <template>
   <PageTitle heading="test ground" />
   <SectionColumn>
-    <GithubGist
-      gistUrl="https://gist.github.com/vanshwassan/0b50c7b36b1e7ebed85549754578ed79"
-    />
+    <ul>
+      <li v-for="chain in CHAINS">
+        <ChainIcon :chain="chain.name" />
+      </li>
+    </ul>
   </SectionColumn>
 </template>
 
 <style scoped>
 ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: var(--space-m);
 }
 
-.pallete {
-  width: 100%;
-  aspect-ratio: 1 /1;
+div {
+  background: var(--green);
+  aspect-ratio: 1;
+  width: var(--space);
 }
 </style>
 

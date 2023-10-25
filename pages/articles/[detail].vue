@@ -61,14 +61,14 @@ const { data, error } = await useFetch(
 <style lang="scss">
 inner-column.article {
   display: grid;
-  gap: 1rem;
-  padding: 5rem 2rem;
+  gap: var(--space-s);
+  padding: var(--space-2xl) var(--space-l);
   align-items: start;
   position: relative;
 
   & > .article-wrapper {
     display: grid;
-    column-gap: 1rem;
+    column-gap: var(--space-s);
     grid-template-columns: repeat(12, 1fr);
     align-items: start;
 
@@ -76,8 +76,8 @@ inner-column.article {
       grid-column: 1 / -1;
       @media (min-width: 768px) {
         grid-column: 4 / 11;
-        //     padding: 2rem;
-        //     gap: 2rem;
+        //     padding: var(--space-l);
+        //     gap: var(--space-l);
       }
 
       &.cover {
@@ -98,18 +98,18 @@ inner-column.article {
 
   article.body {
     h2 {
-      margin-bottom: 1.5rem;
-      margin-top: 4rem;
+      margin-bottom: var(--space-m);
+      margin-top: var(--space-2xl);
     }
 
     h3 {
-      margin-bottom: 1.5rem;
-      margin-top: 2rem;
+      margin-bottom: var(--space-m);
+      margin-top: var(--space-l);
     }
     ul {
-      margin-top: 1rem;
+      margin-top: var(--space-s);
       display: grid;
-      gap: 0.5rem;
+      gap: var(--space-2xs);
 
       li {
         position: relative;
@@ -133,10 +133,10 @@ inner-column.article {
     }
 
     p {
-      margin-top: 1rem;
+      margin-top: var(--space-s);
 
       &:has(img) {
-        margin-top: 2rem;
+        margin-top: var(--space-l);
       }
 
       &:has(> :is(a, code)) {
@@ -150,10 +150,10 @@ inner-column.article {
     }
 
     figure {
-      margin: 2rem 0;
+      margin: var(--space-l) 0;
       display: grid;
       grid-template-columns: 3fr 1fr;
-      gap: 1rem;
+      gap: var(--space-s);
       justify-items: start;
 
       position: relative;
@@ -168,8 +168,8 @@ inner-column.article {
     }
 
     & > blockquote {
-      margin: 2rem 0;
-      padding: 4rem;
+      margin: var(--space-l) 0;
+      padding: var(--space-2xl);
       background: var(--gradient-dark);
       display: block;
       // max-width: 70ch;
@@ -185,8 +185,8 @@ inner-column.article {
         font-style: italic;
       }
       blockquote {
-        margin-top: 1rem;
-        color: var(--color);
+        margin-top: var(--space-s);
+        color: var(--green);
         text-align: right;
         font-style: normal;
       }
@@ -197,7 +197,7 @@ inner-column.article {
         top: 1rem;
         left: 1rem;
         font-size: 10rem;
-        color: var(--highlight);
+        color: var(--violet);
         z-index: -1;
         opacity: 0.5;
       }

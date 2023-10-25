@@ -13,10 +13,10 @@ const props = defineProps(["image", "alt", "caption"]);
 
 <style scoped lang="scss">
 figure {
-  margin: 2rem 0;
+  margin: var(--space-l) 0;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: 1rem;
+  gap: var(--space-s);
 
   @media (min-width: 768px) {
     grid-column: 4 / -1 !important;

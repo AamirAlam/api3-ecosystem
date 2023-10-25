@@ -31,8 +31,8 @@ console.log(props.language);
 div {
   position: relative;
   border-radius: var(--corners);
-  margin: 2rem 0;
-  padding: 2rem 1rem;
+  margin: var(--space-l) 0;
+  padding: var(--space-l) var(--space-s);
   background: var(--gradient-dark);
   overflow: scroll;
   span {

@@ -95,7 +95,7 @@ onMounted(() => {
 .article-grid {
   display: grid;
 
-  gap: 2rem;
+  gap: var(--space-l);
   align-items: start;
   position: relative;
 

@@ -18,11 +18,11 @@ useHead({
     </h2>
 
     <div class="actions">
-      <button class="loud-button firm-voice" @click.prevent="router.back()">
+      <button class="button firm-voice" @click.prevent="router.back()">
         Go Back
       </button>
       <!-- button to go home -->
-      <a class="loud-button firm-voice" href="/"> Go Home </a>
+      <a class="button firm-voice" href="/"> Go Home </a>
     </div>
 
     <details v-auto-animate>
@@ -46,13 +46,13 @@ useHead({
   }
 
   h2 {
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-l);
   }
 
   :deep(inner-column) {
     display: grid;
     place-items: center;
-    gap: 1rem;
+    gap: var(--space-s);
   }
 }
 summary {

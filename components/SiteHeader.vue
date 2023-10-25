@@ -32,8 +32,8 @@ onMounted(() => {
             :class="{ menuOpen: showMenu }"
             @click="router.push('/')"
           >
-            <LogoFull v-if="!ui.isMobile" />
-            <LogoIcon v-else />
+            <img src="/images/logo-full.svg" v-if="!ui.isMobile" />
+            <img src="/images/logo-icon.svg" v-else />
           </picture>
           <SiteNav v-if="!ui.isMobile" />
           <button
@@ -61,8 +61,9 @@ onMounted(() => {
 
 <style>
 @media (min-width: 768px) {
-  body:not(.index) .site-header inner-column {
-    padding: 64px 16px;
+  .site-header inner-column {
+    padding: var(--space-l) var(--space-s);
+    padding-top: var(--space-2xl);
   }
 }
 </style>

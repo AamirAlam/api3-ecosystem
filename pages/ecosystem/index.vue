@@ -1,8 +1,10 @@
 <script setup>
 import { gsap } from "gsap";
 import { useInterfaceStore } from "@/stores/interface";
+import { useEcosystemStore } from "@/stores/ecosystem";
 
 const ui = useInterfaceStore();
+const ecosystem = useEcosystemStore();
 
 useSeoMeta({
   title: "Ecosystems",
@@ -35,21 +37,20 @@ onMounted(() => {
 </script>
 
 <template>
-  <SectionColumn class="ecosystem-header">
-    <h1 class="loud-voice gradient-text-color-light">
-      Search API3's Ecosystem
-    </h1>
-
-    <NuxtLink to="/add-dapp" class="loud-button firm-voice">
-      <span class=""> Add Your Own </span>
+  <PageTitle
+    heading="API3 Ecosystem Partners"
+    class="loud-voice ecosystem-header"
+  >
+    <NuxtLink to="/add-dapp" class="button solid-voice">
+      <span class=""> Join the Ecosystem </span>
     </NuxtLink>
-  </SectionColumn>
+  </PageTitle>
 
   <SectionColumn innerClass="main-grid">
     <ClientOnly>
       <DappFilter v-if="!ui.isMobile" />
       <div v-else>
-        <button class="button" @click="ui.toggleModal">Filter</button>
+        <FilterButtons />
 
         <ModalSlot>
           <DappFilter />
@@ -65,7 +66,7 @@ onMounted(() => {
 .ecosystem .main-grid {
   position: relative;
   display: grid;
-  grid-gap: 2.5rem;
+  grid-gap: var(--space-l);
 
   align-items: start;
 
@@ -73,7 +74,7 @@ onMounted(() => {
     grid-template-columns: 0.7fr 1fr;
   }
   @media (min-width: 1166px) {
-    grid-template-columns: 0.3fr 1fr;
+    grid-template-columns: 0.4fr 1fr;
   }
 }
 .ecosystem-header {
@@ -81,20 +82,18 @@ onMounted(() => {
 
   inner-column {
     display: grid;
-    gap: 1rem;
+    gap: var(--space-s);
 
     align-items: center;
     justify-content: space-between;
     justify-items: start;
-    padding: 5rem 15px;
+    padding: var(--space-2xl) var(--space-s);
 
     .button {
       justify-self: center;
     }
 
     @media (min-width: 768px) {
-      margin-top: 2rem;
-
       display: flex;
     }
   }
