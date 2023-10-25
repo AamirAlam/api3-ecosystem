@@ -28,26 +28,26 @@
           <clipPath id="_clip1">
             <rect x="3832.19" y="23576.2" width="347.237" height="296.097" />
           </clipPath>
-          <g clip-path="url(#_clip1)">
+          <g>
             <g
               transform="matrix(3.37958,-2.97248e-33,1.08884e-32,1.8845,23041,16496.6)"
             >
               <g transform="matrix(0.177261,0,0,0.309657,-7476.08,-681.082)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-darker)"
+                  style="fill: none; stroke: var(--violet-darker)"
                 />
               </g>
               <g transform="matrix(0.117463,0,0,0.205196,-6854.1,860.496)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-dark)"
+                  style="fill: none; stroke: var(--violet-dark)"
                 />
               </g>
               <g transform="matrix(0.0599381,0,0,0.104706,-6255.77,2342.61)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight)"
+                  style="fill: none; stroke: var(--violet)"
                 />
               </g>
             </g>
@@ -57,19 +57,19 @@
               <g transform="matrix(0.177261,0,0,0.309657,-7476.08,-681.082)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-darker)"
+                  style="fill: none; stroke: var(--violet-darker)"
                 />
               </g>
               <g transform="matrix(0.117463,0,0,0.205196,-6854.1,860.496)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-dark)"
+                  style="fill: none; stroke: var(--violet-dark)"
                 />
               </g>
               <g transform="matrix(0.0599381,0,0,0.104706,-6255.77,2342.61)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight)"
+                  style="fill: none; stroke: var(--violet)"
                 />
               </g>
             </g>
@@ -79,19 +79,19 @@
               <g transform="matrix(0.177261,0,0,0.309657,-7476.08,-681.082)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-darker)"
+                  style="fill: none; stroke: var(--violet-darker)"
                 />
               </g>
               <g transform="matrix(0.117463,0,0,0.205196,-6854.1,860.496)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-dark)"
+                  style="fill: none; stroke: var(--violet-dark)"
                 />
               </g>
               <g transform="matrix(0.0599381,0,0,0.104706,-6255.77,2342.61)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight)"
+                  style="fill: none; stroke: var(--violet)"
                 />
               </g>
             </g>
@@ -101,19 +101,19 @@
               <g transform="matrix(0.177261,0,0,0.309657,-7476.08,-681.082)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-darker)"
+                  style="fill: none; stroke: var(--violet-darker)"
                 />
               </g>
               <g transform="matrix(0.117463,0,0,0.205196,-6854.1,860.496)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-dark)"
+                  style="fill: none; stroke: var(--violet-dark)"
                 />
               </g>
               <g transform="matrix(0.0599381,0,0,0.104706,-6255.77,2342.61)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight)"
+                  style="fill: none; stroke: var(--violet)"
                 />
               </g>
             </g>
@@ -123,19 +123,19 @@
               <g transform="matrix(0.177261,0,0,0.309657,-7476.08,-681.082)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-darker)"
+                  style="fill: none; stroke: var(--violet-darker)"
                 />
               </g>
               <g transform="matrix(0.117463,0,0,0.205196,-6854.1,860.496)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-dark)"
+                  style="fill: none; stroke: var(--violet-dark)"
                 />
               </g>
               <g transform="matrix(0.0599381,0,0,0.104706,-6255.77,2342.61)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight)"
+                  style="fill: none; stroke: var(--violet)"
                 />
               </g>
             </g>
@@ -145,19 +145,19 @@
               <g transform="matrix(0.177261,0,0,0.309657,-7476.08,-681.082)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-darker)"
+                  style="fill: none; stroke: var(--violet-darker)"
                 />
               </g>
               <g transform="matrix(0.117463,0,0,0.205196,-6854.1,860.496)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight-dark)"
+                  style="fill: none; stroke: var(--violet-dark)"
                 />
               </g>
               <g transform="matrix(0.0599381,0,0,0.104706,-6255.77,2342.61)">
                 <path
                   d="M10400.7,14585.1L10545.6,14838.8L10255.9,14838.8L10400.7,14585.1Z"
-                  style="fill: none; stroke: var(--highlight)"
+                  style="fill: none; stroke: var(--violet)"
                 />
               </g>
             </g>

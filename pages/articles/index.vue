@@ -12,8 +12,24 @@ useSeoMeta({
 </script>
 
 <template>
-  <PageHeader heading="Articles" />
+  <PageTitle heading="Articles" />
   <SectionColumn>
-    <ArticleGrid :layout="4" />
+    <h2 class="attention-voice">Featured</h2>
+    <ArticleGrid :layout="5" />
   </SectionColumn>
+  <SectionColumn>
+    <h2 class="attention-voice">Recent</h2>
+    <ArticleGrid layout="3" cardCount="4" isRecentSort="true" />
+  </SectionColumn>
+
+  <!-- <SectionColumn>
+    <h2 class="attention-voice">Popular</h2>
+    <ArticleGrid :layout="3" cardCount="4" />
+  </SectionColumn> -->
 </template>
+
+<style lang="scss" scoped>
+h2 {
+  margin-bottom: var(--space-l);
+}
+</style>

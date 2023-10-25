@@ -3,6 +3,7 @@ import { imageUploadHandler } from "../../utils/imageUpload";
 import { authenticated } from "../../utils/authenticated";
 import { checkBuildStatus } from "~/server/services/build";
 import { ProjectType } from "~/server/types";
+import slug from "slug";
 
 export default authenticated(
   imageUploadHandler(
@@ -21,14 +22,14 @@ export default authenticated(
         } = await (event.node?.req?.body || readBody(event));
 
         if (!event.node.req?.files?.logo?.[0]?.location) {
-          event.res.statusCode = 400;
+          event.node.res.statusCode = 400;
           return {
             code: "REQ_FAILED",
             message: "Failed to upload logo",
           };
         }
         if (!event.node.req?.files?.cover?.[0]?.location) {
-          event.res.statusCode = 400;
+          event.node.res.statusCode = 400;
           return {
             code: "REQ_FAILED",
             message: "Failed to upload cover image",
@@ -50,7 +51,7 @@ export default authenticated(
         }
 
         if (screenshots.length < 2) {
-          event.res.statusCode = 400;
+          event.node.res.statusCode = 400;
           return {
             code: "REQ_FAILED",
             message: "Please upload atleast 2 screenshots",
@@ -67,7 +68,7 @@ export default authenticated(
           productType === "datafeed" &&
           Object.keys(JSON.parse(proxies)).length === 0
         ) {
-          event.res.statusCode = 400;
+          event.node.res.statusCode = 400;
           return {
             code: "REQ_FAILED",
             message: "Please add valid proxy information!",
@@ -102,33 +103,51 @@ export default authenticated(
                 year: parseInt(year),
               };
 
-        const createdProject = await new Project(payload).save();
+        // check if project with same name already active
+        const existingProject = await Project.findOne({
+          name: payload.name,
+        });
 
-        // project json will be stored with active status in pull request for review
-        payload.status = "active";
-        // verify build and create pr
-        const buildResult = await checkBuildStatus(payload, createdProject.id);
-
-        if (!buildResult.success) {
-          // remove project data from db when build failed
-          await Project.findByIdAndDelete(createdProject.id);
-
-          event.res.statusCode = 400;
+        if (existingProject) {
+          event.node.res.statusCode = 400;
           return {
-            code: "BUILD_FAILED",
-            message: "Failed to build project!",
+            code: "REQ_FAILED",
+            message: `Project with name ${payload.name} already submitted`,
           };
         }
 
-        event.res.statusCode = 201;
+        // add slug field in  mongodb project collection to implement find by name slug
+        const createdProject = await new Project({
+          ...payload,
+          slug: slug(payload.name),
+        }).save();
+
+        // // project json will be stored with active status in pull request for review
+        // payload.status = "active";
+        // // verify build and create pr
+        // const buildResult = await checkBuildStatus(payload, createdProject.id);
+
+        // if (!buildResult.success) {
+        //   // remove project data from db when build failed
+        //   await Project.findByIdAndDelete(createdProject.id);
+
+        //   event.res.statusCode = 400;
+        //   return {
+        //     code: "BUILD_FAILED",
+        //     message: "Failed to build project!",
+        //   };
+        // }
+
+        event.node.res.statusCode = 201;
         return {
           code: "OK",
           message: "Project submitted successfully!",
-          data: buildResult?.data,
+          // data: buildResult?.data,
+          data: "",
         };
       } catch (err: any) {
         console.log("create project error ", err);
-        event.res.statusCode = 500;
+        event.node.res.statusCode = 500;
         return {
           code: "ERROR",
           message: "Something went wrong.",

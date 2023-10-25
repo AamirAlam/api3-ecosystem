@@ -32,12 +32,12 @@ onMounted(() => {
             :class="{ menuOpen: showMenu }"
             @click="router.push('/')"
           >
-            <LogoFull v-if="!ui.isMobile" />
-            <LogoIcon v-else />
+            <img src="/images/logo-full.svg" v-if="!ui.isMobile" />
+            <img src="/images/logo-icon.svg" v-else />
           </picture>
           <SiteNav v-if="!ui.isMobile" />
           <button
-            :class="`button menu icon ${showMenu ? 'menuOpen' : ''}`"
+            :class="` menu icon ${showMenu ? 'menuOpen' : ''}`"
             v-if="ui.isMobile"
             @click="showMenu = !showMenu"
           >
@@ -60,8 +60,11 @@ onMounted(() => {
 </template>
 
 <style>
-.site-header inner-column {
-  padding: 15px;
+@media (min-width: 768px) {
+  .site-header inner-column {
+    padding: var(--space-l) var(--space-s);
+    padding-top: var(--space-2xl);
+  }
 }
 </style>
 
@@ -74,11 +77,11 @@ mast-head {
     width: 50px;
     cursor: pointer;
     @media (min-width: 768px) {
-      width: 125px;
+      width: 275px;
     }
   }
 }
-.button.menu {
+button.menu {
   max-width: 50px;
   justify-self: end;
 

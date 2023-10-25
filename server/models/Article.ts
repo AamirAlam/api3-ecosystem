@@ -8,6 +8,10 @@ const AuthorSchema = new mongoose.Schema({
 });
 
 const ArticleSchema = new Schema<ArticleType>({
+  slug: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -32,6 +36,14 @@ const ArticleSchema = new Schema<ArticleType>({
   category: {
     type: String,
     required: true,
+  },
+  views: {
+    type: Number,
+    default: 0,
+  },
+  upvotes: {
+    type: Number,
+    default: 0,
   },
   created_at: {
     type: Date,

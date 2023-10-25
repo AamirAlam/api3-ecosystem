@@ -1,18 +1,52 @@
 <script setup>
 import { useBlogStore } from "@/stores/blog";
+const props = defineProps([
+  "layout",
+  "cardCount",
+  "isRecentSort",
+  "isPopularSort",
+  "isTrendingSort",
+  "isFeaturedSort",
+]);
 
 const blog = useBlogStore();
 const ui = useInterfaceStore();
-const props = defineProps(["layout", "cardCount"]);
+
+const sorted = computed(() => {
+  if (props.isRecentSort) {
+    return blog.list.sort((a, b) => {
+      return new Date(b.created_at) - new Date(a.created_at);
+    });
+  }
+  if (props.isPopularSort) {
+    return blog.list.sort((a, b) => {
+      return new Date(b.views) - new Date(a.views);
+    });
+  }
+  if (props.isTrendingSort) {
+    return blog.list.sort((a, b) => {
+      return new Date(b.upvotes) - new Date(a.upvotes);
+    });
+  }
+  if (props.isFeaturedSort) {
+    return blog.list.sort((a, b) => {
+      return new Date(b.isFeatured) - new Date(a.isFeatured);
+    });
+  }
+  return blog.list;
+});
 
 const layouts = [
+  ["big-card"],
+  ["card"],
+  ["slide"],
+  ["text"],
   ["card", "card", "card", "big-card", "slide", "text", "text", "text", "text"],
   ["big-card", "big-card", "card", "card", "card"],
   ["big-card", "slide", "big-card", "slide", "slide"],
   ["big-card", "slide", "text", "text", "text"],
   ["big-card", "big-card", "slide", "slide", "slide"],
   ["big-card", "card", "text", "text"],
-  ["big-card"],
 ];
 
 const layoutIndex = ref(props.layout ?? 0);
@@ -22,7 +56,6 @@ function cardType(index, layout = layoutIndex.value, article) {
   const cardType = layout[index % layout.length];
 
   if (cardType === "slide" && ui.isMobile) return "big-card";
-
   return cardType;
 }
 
@@ -40,11 +73,11 @@ onMounted(() => {
 
 <template>
   <ul class="article-grid" v-auto-animate>
-    <template v-for="(article, index) in blog.list">
+    <template v-for="(article, index) in sorted">
       <ArticleCard
         :article="article"
         :class="cardType(index, layouts[layoutIndex], article)"
-        v-if="index < (props.cardCount ?? blog.list.length)"
+        v-if="index < (props.cardCount ?? sorted.length)"
       />
     </template>
     <button
@@ -62,7 +95,7 @@ onMounted(() => {
 .article-grid {
   display: grid;
 
-  gap: 2rem;
+  gap: var(--space-l);
   align-items: start;
   position: relative;
 

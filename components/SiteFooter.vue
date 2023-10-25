@@ -154,14 +154,16 @@ const miscLinks = [
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
-          <LogoIcon />
+          <img src="/images/logo-icon.svg" />
         </picture>
+
         <section
           v-for="(footerMenu, index) in footerLinks"
           :key="index"
           class="footer-menu"
         >
           <h5 class="notice-voice">{{ footerMenu.title }}</h5>
+
           <nav>
             <NuxtLink
               v-for="(link, linkIndex) in footerMenu.links"
@@ -204,9 +206,9 @@ const miscLinks = [
             v-for="social in socials"
             :key="social.name"
             :to="social.link"
-            class="calm-voice social-icon"
+            class="calm-voice"
           >
-            <SocialIcon :social="social.icon" />
+            <SocialIcon :social="social.icon" fill="var(--gray)" />
           </NuxtLink>
         </nav>
         <p class="calm-voice">© 2023 API3 Ecosystem Foundation</p>
@@ -217,28 +219,17 @@ const miscLinks = [
 
 <style scoped lang="scss">
 footer {
-  padding: 4rem 0;
+  padding: var(--space-2xl) 0;
   position: relative;
 
   inner-column {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: var(--space-l);
+    padding-right: var(--space-l);
   }
-
-  //   &::before {
-  //     content: "";
-  //     position: absolute;
-  //     inset: 0;
-  //     background: var(--pattern-four);
-  //     background-repeat: no-repeat;
-  //     background-position: right;
-  //     z-index: -1;
-  //     opacity: 0.1;
-  //   }
 }
 .calm-voice {
   font-size: var(--step-0);
-  padding: 0.5rem 0;
+  padding: var(--space-2xs) 0;
   color: var(--ink);
 }
 
@@ -250,19 +241,19 @@ nav {
   justify-self: start;
   position: relative;
 
-  picture {
+  .external-link {
     position: absolute;
-    right: -10px;
-    top: 50%;
-    transform: translateY(-50%);
+    right: -11px;
+    top: 14px;
     max-width: 8px;
+    opacity: 0.5;
   }
 }
 
 .footer-navigation inner-column {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: var(--space-xl);
   justify-content: space-between;
 
   @media (min-width: 768px) {
@@ -291,7 +282,7 @@ nav {
   h5 {
     font-size: var(--step-0);
     //  font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-s);
     text-transform: uppercase;
     @media (min-width: 1024px) {
       font-size: var(--step--1);
@@ -300,49 +291,42 @@ nav {
 }
 
 section.other inner-column {
-  display: grid;
-  justify-items: center;
   text-align: center;
-  gap: 3rem;
-  border-top: 1px solid var(--gray-dark);
+  gap: var(--space-l);
+  border-top: var(--border);
 
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    justify-items: center;
+  display: grid;
+
+  @media (min-width: 1264px) {
+    display: flex;
     justify-content: space-between;
-    text-align: left;
-    align-items: center;
+    flex-wrap: wrap;
   }
 
   .misc-links {
-    gap: 2rem;
+    column-gap: var(--space-l);
+    row-gap: var(--space-2xs);
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
-    @media (min-width: 768px) {
-      gap: 2rem;
-    }
-
-    @media (min-width: 1024px) {
-      // order: 2;
-    }
   }
 
   .social-icons {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 2rem;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-s);
     fill: var(--gray);
-    @media (min-width: 1024px) {
-      // order: 3;
-      justify-content: center;
-      gap: 3rem;
+    @media (min-width: 1264px) {
+      order: 3;
+      gap: var(--space-l);
+      flex-grow: 1;
+    }
+    @media (min-width: 1380px) {
+      gap: var(--space-xl);
     }
 
-    .social-icon {
+    :deep(.social-icon) {
       max-width: 25px;
     }
   }
@@ -352,27 +336,6 @@ section.other inner-column {
     @media (min-width: 1024px) {
       // order: 1;
       grid-column: 1/-1;
-    }
-  }
-}
-
-main.index {
-  footer {
-    .footer-navigation inner-column {
-      @media (min-width: 1024px) {
-        grid-template-columns: repeat(5, 1fr);
-        grid-template-rows: 1fr;
-        picture {
-          grid-column: 1 / -1;
-        }
-      }
-    }
-    .other inner-column {
-      grid-template-columns: unset;
-      grid-template-rows: unset;
-      text-align: center;
-      justify-content: center;
-      align-content: center;
     }
   }
 }

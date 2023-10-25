@@ -27,22 +27,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <article-card>
+  <article-card class="background-radial-violet">
     <picture>
       <img :src="article?.cover ?? '/images/article-placeholder.jpg'" />
     </picture>
     <text-content>
-      <h3 class="firm-voice">
-        {{ article.title }}
+      <h3 class="solid-voice">
+        {{ article?.title ?? "Article Title" }}
       </h3>
       <h4 class="whisper-voice">
-        {{ article.author.name }}
+        {{ article?.author.name ?? "Author Name" }}
       </h4>
-
-      <NuxtLink :to="`/articles/${slug(article._id)}`" class="text">
-        Read more
-      </NuxtLink>
     </text-content>
+    <NuxtLink :to="`/articles/${slug(article?.title ?? '#')}`" class="text">
+      Read more
+    </NuxtLink>
   </article-card>
 </template>
 
@@ -52,50 +51,46 @@ article-card {
   border-radius: var(--corners);
   overflow: hidden;
   position: relative;
-  background: var(--gradient-dark);
 
   --decoration-size: 100px;
 
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    background: var(--gradient-dark);
-    z-index: 1;
-
-    bottom: -0.5rem;
-    right: -0.5rem;
-
-    width: var(--decoration-size);
-    height: 1px;
-  }
-
-  &::after {
-    width: 1px;
-    height: var(--decoration-size);
-  }
-
-  a.text {
-    padding-left: 0;
-  }
-
   text-content {
-    padding: 1rem;
+    padding: var(--space-2xs) var(--space-s);
+    padding-top: var(--space-s);
+    z-index: 2;
 
-    .firm-voice {
-      font-size: var(--step-0);
-      margin-bottom: 0.5rem;
+    .solid-voice {
+      margin-bottom: var(--space-2xs);
     }
 
     .calm-voice {
-      font-size: var(--step--1);
-      margin-top: 0.5rem;
+      margin-top: var(--space-2xs);
     }
   }
+
+  a.text {
+    color: transparent !important;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
   &.card {
     grid-column: 1/-1;
+
     @media (min-width: 768px) {
       grid-column: span 4;
+    }
+
+    picture {
+      height: 100%;
+      aspect-ratio: 16/9;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
     }
   }
 
@@ -125,13 +120,16 @@ article-card {
     }
   }
   &.text {
-    @media (min-width: 840px) {
+    //  aspect-ratio: 1/1;
+    grid-column: span 2;
+
+    @media (min-width: 768px) {
       grid-column: span 3;
+      .firm-voice {
+        //   font-size: var(--step-0);
+      }
     }
 
-    @media (min-width: 1350px) {
-      grid-column: span 2;
-    }
     align-items: center;
     min-height: 150px;
 
@@ -142,6 +140,10 @@ article-card {
 
   &.big-card {
     grid-column: 1/-1;
+
+    .solid-voice {
+      font-size: var(--step-1);
+    }
 
     picture {
       height: 100%;
@@ -163,12 +165,13 @@ article-card {
       bottom: 0;
       left: 0;
       width: 100%;
+    }
 
-      padding-top: 50px;
+    a.text {
       background: linear-gradient(
         0deg,
-        hsla(0, 0%, 1%, 0.7) 70%,
-        hsla(0, 0%, 1%, 0) 100%
+        hsla(0, 0%, 1%, 0.7) 20%,
+        hsla(0, 0%, 1%, 0) 50%
       );
     }
   }

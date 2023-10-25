@@ -110,7 +110,7 @@ function indexTimer() {
 
 function animateBackground() {
   gsap.fromTo(
-    ".decoration-guide path",
+    ".decoration-guide :not(#curve-decoration) path",
     {
       strokeDashoffset: "900",
       strokeDasharray: "900",
@@ -151,7 +151,7 @@ onMounted(() => {});
           :social="socialIcons[index]"
           :chain="chainIcons[index]"
           :key="icon.name"
-          stroke="var(--color)"
+          stroke="var(--green)"
           fill="none"
           v-auto-animate
           v-tooltip="icon.name"
@@ -161,7 +161,7 @@ onMounted(() => {});
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 ul {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));

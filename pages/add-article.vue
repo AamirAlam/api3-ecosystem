@@ -20,11 +20,8 @@ async function submitHandler(event) {
     const parsed = await parseMarkdown({ content });
     parsed.content = content;
 
-    const {
-      success: verificationSuccess,
-      data: verificationData,
-      message: verificationError,
-    } = await verifyWallet();
+    const { success: verificationSuccess, data: verificationPayload } =
+      await verifyWallet();
 
     if (!verificationSuccess) {
       status.value.message = "verificationStatus signature verification failed";
@@ -40,7 +37,7 @@ async function submitHandler(event) {
     }
 
     status.value.loading = true;
-    const submitResult = await submitArticle(formData, verificationData?.token);
+    const submitResult = await submitArticle(formData, verificationPayload);
 
     if (submitResult.success) {
       status.value.success = true;
@@ -58,7 +55,7 @@ async function submitHandler(event) {
 </script>
 
 <template>
-  <PageHeader heading="Add Article" />
+  <PageTitle heading="Add Article" />
   <SectionColumn>
     <file-upload>
       <FormKit type="form" @submit="submitHandler">
@@ -87,7 +84,14 @@ async function submitHandler(event) {
         />
 
         <p v-if="status.loading">Uploading...</p>
-        <p>{{ status.message }}</p>
+        <p
+          :class="{
+            'color-success': status.success,
+            'color-warning': !status.success,
+          }"
+        >
+          {{ status.message }}
+        </p>
       </FormKit>
     </file-upload>
   </SectionColumn>
@@ -99,21 +103,8 @@ file-upload {
   background: var(--gradient-dark);
   --ink: hsla(180, 0%, 95%, 1);
   border-radius: var(--corners);
-  gap: 10px;
-  padding: 1rem;
+  gap: var(--space-2xs);
+  padding: var(--space-s);
   align-items: start;
-
-  :deep([data-type="file"]) {
-    input.formkit-input {
-      color: var(--white) !important;
-      font-size: var(--step--1) !important;
-
-      ul li.formkit-file-item {
-        display: grid !important;
-        grid-template-columns: 0.25fr 1fr 0.25fr !important;
-        align-content: center !important;
-      }
-    }
-  }
 }
 </style>

@@ -13,10 +13,7 @@ const datePublished = computed(() => {
 
 <template>
   <header>
-    <h1
-      class="loud-voice article-heading gradient-text-color-light"
-      :id="article?.title"
-    >
+    <h1 class="loud-voice article-heading" :id="article?.title">
       {{ article?.title }}
     </h1>
     <h2 class="notice-voice">
@@ -25,7 +22,7 @@ const datePublished = computed(() => {
     <article-meta>
       <div class="author">
         <picture>
-          <img src="@/assets/images/author.svg" alt="" />
+          <img src="@/assets/images/icons/author.svg" alt="" />
         </picture>
         <p class="solid-voice">
           {{ article?.author?.name }}
@@ -33,7 +30,7 @@ const datePublished = computed(() => {
       </div>
       <div class="date">
         <picture>
-          <img src="@/assets/images/calendar-icon.svg" alt="" />
+          <img src="@/assets/images/icons/calendar-icon.svg" alt="" />
         </picture>
         <p class="solid-voice">
           {{ datePublished }}
@@ -41,7 +38,7 @@ const datePublished = computed(() => {
       </div>
       <div class="tag">
         <picture>
-          <img src="@/assets/images/bookmark-icon.svg" alt="" />
+          <img src="@/assets/images/icons/bookmark-icon.svg" alt="" />
         </picture>
         <p class="solid-voice">
           {{ article?.category }}
@@ -61,7 +58,7 @@ header {
   align-items: start;
   justify-content: start;
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: var(--space-2xl);
 
   h1.loud-voice {
     position: relative;
@@ -69,7 +66,7 @@ header {
 
     font-size: var(--step-2);
 
-    padding: 5px 0;
+    padding: var(--space-3xs) 0;
 
     @media (min-width: 768px) {
       font-size: var(--step-3);
@@ -95,16 +92,16 @@ header {
 
   article-meta {
     display: grid;
-    gap: 1rem;
+    gap: var(--space-s);
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 0.5rem;
+    margin-top: var(--space-2xs);
     justify-self: start;
     .solid-voice {
       font-size: var(--step--1);
     }
     div {
       display: flex;
-      gap: 0.5rem;
+      gap: var(--space-2xs);
       align-items: center;
       picture {
         max-width: 15px;
