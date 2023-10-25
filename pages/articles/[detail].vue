@@ -1,56 +1,54 @@
 <script setup>
 const route = useRoute();
+const articleSlug = route.params.detail;
 
-const article = useState("article", () => null);
-
-const { data, error } = await useFetch(
-  `/api/articles/article/${route.params.detail}`,
-  {
-    initialCache: true,
-    async onResponse({ request, response, options }) {
-      // Process the response data
-
-      article.value = response._data;
-
-      useSeoMeta({
-        title: () => article.value.title,
-        ogTitle: () => article.value.title,
-        twitterTitle: () => article.value.title,
-        ogType: () => "article",
-
-        ogUrl: () => `https://ecosystem.api3.org/articles/${article.value._id}`,
-
-        description: () => article.value.description,
-        ogDescription: () => article.value.description,
-        twitterDescription: () => article.value.description,
-
-        image: () => article.value.cover,
-        ogImage: () => article.value.cover,
-        twitterImage: () => article.value.cover,
-
-        ogArticlePublishedTime: () => article.value.date,
-
-        twitterCard: "summary_large_image",
-      });
-    },
-  }
+const { data: article } = await useFetch(
+  `/api/articles/article/${articleSlug}`
 );
+
+useSeoMeta({
+  //title
+  title: () => article.value.title,
+  ogTitle: () => article.value.title,
+  twitterTitle: () => article.value.title,
+
+  //website
+  ogType: () => "article",
+  ogUrl: () => `https://ecosystem.api3.org/articles/${articleSlug}`,
+
+  //author
+  author: () => article.value.author,
+  articleAuthor: () => article.value.author,
+
+  //description
+  description: () => article.value.description,
+  ogDescription: () => article.value.description,
+  twitterDescription: () => article.value.description,
+
+  //image
+  image: () => article.value.cover,
+  ogImage: () => article.value.cover,
+  twitterImage: () => article.value.cover,
+
+  articlePublishedTime: () => new Date(article.value.date).toISOString(),
+
+  twitterCard: "summary_large_image",
+});
 </script>
 
 <template>
   <SectionColumn innerClass="article">
     <div class="article-wrapper">
-      <ArticleSide :toc="data?.content?.toc" :title="data?.title" />
+      <ArticleSide :toc="article?.content?.toc" :title="article?.title" />
+      <ArticleHeader :article="article" />
 
-      <ArticleHeader :article="data" />
-
-      <picture class="cover" v-if="data?.cover">
-        <img :src="article?.cover" alt="" />
+      <picture class="cover" v-if="article?.cover">
+        <NuxtImg :src="article?.cover" :alt="`Cover of ${article?.title}`" />
       </picture>
 
       <ContentRendererMarkdown
-        v-if="data?.content"
-        :value="data?.content"
+        v-if="article?.content"
+        :value="article?.content"
         tag="article"
         class="body"
       />
@@ -140,7 +138,7 @@ inner-column.article {
       }
 
       &:has(> :is(a, code)) {
-        overflow: scroll;
+        overflow: auto;
       }
     }
 

@@ -4,38 +4,37 @@ import { useInterfaceStore } from "~/stores/interface";
 
 const route = useRoute();
 const ui = useInterfaceStore();
+const dappSlug = route.params.detail;
 
-const { data: dapp, error } = await useFetch(
-  `/api/projects/project/${route.params.detail}`,
-  {
-    initialCache: true,
-    onResponse({ request, response, options }) {
-      // Process the response data to use for SEO
+const { data: dapp } = await useFetch(`/api/projects/project/${dappSlug}`);
 
-      const dapp = response._data;
+useSeoMeta({
+  //title
+  title: () => dapp.value.name,
+  ogTitle: () => dapp.value.name,
+  twitterTitle: () => dapp.value.name,
 
-      useSeoMeta({
-        title: () => dapp.name,
-        ogTitle: () => dapp.name,
-        twitterTitle: () => dapp.name,
+  //website
+  ogType: () => "article",
+  ogUrl: () => `https://ecosystem.api3.org/ecosystem/${dappSlug}`,
 
-        ogType: () => "article",
-        ogUrl: () => `https://ecosystem.api3.org/ecosystem/${dapp._id}`,
-        ogArticlePublishedTime: () => dapp.year,
+  //author
 
-        description: () => dapp.tagline,
-        ogDescription: () => dapp.tagline,
-        twitterDescription: () => dapp.tagline,
+  //date
+  ogArticlePublishedTime: () => dapp.value.year,
 
-        image: () => dapp.images?.cover,
-        ogImage: () => dapp.images?.cover,
-        twitterImage: () => dapp.images?.cover,
+  //description
+  description: () => dapp.value.tagline,
+  ogDescription: () => dapp.value.tagline,
+  twitterDescription: () => dapp.value.tagline,
 
-        twitterCard: "summary_large_image",
-      });
-    },
-  }
-);
+  //image
+  image: () => dapp.value.images?.cover,
+  ogImage: () => dapp.value.images?.cover,
+  twitterImage: () => dapp.value.images?.cover,
+
+  twitterCard: "summary_large_image",
+});
 
 onMounted(() => {
   const pageLoad = gsap.timeline();
@@ -95,10 +94,10 @@ const formattedProxies = computed(() => {
             :voice="ui.isMobile ? 'attention-voice' : 'loud-voice'"
           >
             <picture class="logo">
-              <img
+              <NuxtImg
                 :src="dapp?.images?.logo"
-                src="@/assets/images/background/square.jpg"
-                alt=""
+                src="/images/square.jpg"
+                :alt="`Logo of ${dapp?.name}`"
               />
             </picture>
           </PageTitle>
