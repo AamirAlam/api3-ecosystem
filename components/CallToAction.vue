@@ -20,12 +20,7 @@ function onMouseover(event) {
 
     <cta-module @mouseover="onMouseover">
       <text-content>
-        <h2
-          :class="{
-            'attention-voice': ui.isMobile,
-            'loud-voice': !ui.isMobile,
-          }"
-        >
+        <h2 class="loud-voice">
           Join the Web3 API revolution and publish your dapp on our site today!
         </h2>
         <NuxtLink class="button" to="/ecosystem"> Join the Ecosystem </NuxtLink>
@@ -56,6 +51,12 @@ cta-module {
     gap: var(--space-2xl);
     place-items: center;
     text-align: center;
+
+    h2 {
+      @media (max-width: 768px) {
+        --font-size: var(--step-2);
+      }
+    }
   }
 
   @media (min-width: 768px) {

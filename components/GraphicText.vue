@@ -4,23 +4,17 @@ import { useInterfaceStore } from "~/stores/interface";
 const props = defineProps(["heading", "paragraph", "cta", "link", "image"]);
 
 const ui = useInterfaceStore();
-
-const titleClasses = computed(() =>
-  ui.isMobile ? "attention-voice" : "loud-voice"
-);
 </script>
 
 <template>
   <graphic-text>
     <text-content>
-      <ClientOnly>
-        <picture v-if="!ui.isDesktop">
-          <img :src="image" alt="" />
-        </picture>
-        <h3 :class="titleClasses">
-          {{ heading }}
-        </h3>
-      </ClientOnly>
+      <picture v-if="!ui.isDesktop">
+        <NuxtImg :src="image" :alt="heading" />
+      </picture>
+      <h3 class="attention-voice">
+        {{ heading }}
+      </h3>
       <p class="calm-voice">
         {{ paragraph }}
       </p>
@@ -31,7 +25,7 @@ const titleClasses = computed(() =>
     </text-content>
 
     <picture v-if="ui.isDesktop">
-      <img :src="image" alt="" />
+      <NuxtImg :src="image" :alt="heading" />
     </picture>
   </graphic-text>
 </template>
@@ -52,12 +46,19 @@ graphic-text {
 text-content {
   display: grid;
 
+  h3 {
+    @media (min-width: 1024px) {
+      --font-size: var(--step-3);
+    }
+  }
+
   p {
     grid-column: 1/-1;
   }
 
   @media (max-width: 1024px) {
     grid-template-columns: 0.2fr 1fr;
+    align-items: center;
   }
 }
 
