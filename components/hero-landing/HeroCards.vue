@@ -21,7 +21,7 @@ const showcaseCards = ref([
 
   {
     heading: "Updates",
-    paragraph: "Stay upto date with the API3 Ecosystem and our partners",
+    paragraph: "Stay up to date with the API3 Ecosystem and our partners",
     cta: "Discover Updates",
     link: "/articles",
     image: "/images/icons/article.svg",
@@ -36,7 +36,7 @@ const showcaseCards = ref([
     >
       <!-- @mouseover="ui.changeHeroImage(card)" -->
       <picture class="">
-        <img :src="card.image" alt="" />
+        <NuxtImg :src="card.image" :alt="card.heading" />
       </picture>
       <text-content>
         <h2 class="firm-voice">
