@@ -52,7 +52,7 @@ onMounted(() => {
       </NuxtLink>
     </PageTitle>
 
-    <SectionColumn innerClass="main-grid">
+    <SectionColumn innerClass="ecosystem-main-grid">
       <ClientOnly>
         <DappFilter v-if="!ui.isMobile" />
         <div v-else>
@@ -91,7 +91,7 @@ onMounted(() => {
   }
 }
 
-.ecosystem .main-grid {
+.ecosystem-main-grid {
   position: relative;
   display: grid;
   grid-gap: var(--space-l);
