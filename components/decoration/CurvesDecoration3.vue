@@ -2,6 +2,24 @@
 import { gsap } from "gsap";
 
 function animateCurvesWaves() {
+  //   const pageLoad = gsap.timeline();
+
+  //   pageLoad.fromTo(
+  //     "#curve-decoration-3 path",
+  //     {
+  //       strokeDashoffset: "1100",
+  //       strokeDasharray: "1100",
+  //       opacity: 0,
+  //     },
+  //     {
+  //       strokeDashoffset: 0,
+  //       duration: 5,
+  //       opacity: 1,
+  //       // clearProps: "all",
+  //       ease: "power1.inOut",
+  //     }
+  //   );
+
   //   animation of the curves making waves
   const tl = gsap.timeline({
     repeat: -1,
@@ -1383,4 +1401,8 @@ onMounted(() => {
   </svg>
 </template>
 
-<style scoped></style>
+<style scoped>
+#curve-decoration-3 path {
+  /* opacity: 0; */
+}
+</style>
