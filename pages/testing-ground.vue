@@ -5,17 +5,19 @@ const ecosystem = useEcosystemStore();
 </script>
 
 <template>
-  <PageTitle heading="test ground" />
-  <SectionColumn>
-    <ul>
-      <li v-for="chain in CHAINS">
-        <ChainIcon :chain="chain.name" />
-        <p class="micro-voice">
-          {{ chain.name }}
-        </p>
-      </li>
-    </ul>
-  </SectionColumn>
+  <main>
+    <PageTitle heading="test ground" />
+    <SectionColumn>
+      <ul>
+        <li v-for="chain in CHAINS">
+          <ChainIcon :chain="chain.name" />
+          <p class="micro-voice">
+            {{ chain.name }}
+          </p>
+        </li>
+      </ul>
+    </SectionColumn>
+  </main>
 </template>
 
 <style scoped>
