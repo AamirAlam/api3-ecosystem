@@ -18,9 +18,6 @@ useHead({
   htmlAttrs: {
     lang: "en",
   },
-  bodyAttrs: {
-    class: route.name,
-  },
 });
 
 useSeoMeta({

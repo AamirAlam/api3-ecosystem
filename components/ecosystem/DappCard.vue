@@ -109,17 +109,17 @@ dapp-card {
 
   header {
     display: grid;
+    align-items: center;
     grid-template-columns: 1fr 0.1fr;
     z-index: 2;
 
     .chain-list {
       display: flex;
       gap: var(--space-2xs);
-      align-items: center;
     }
 
     picture.chain-icon {
-      max-width: 20px;
+      width: 20px;
     }
 
     .productType {

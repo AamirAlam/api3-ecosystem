@@ -70,20 +70,6 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-.ecosystem .main-grid {
-  position: relative;
-  display: grid;
-  grid-gap: var(--space-l);
-
-  align-items: start;
-
-  @media (min-width: 768px) {
-    grid-template-columns: 0.7fr 1fr;
-  }
-  @media (min-width: 1166px) {
-    grid-template-columns: 0.4fr 1fr;
-  }
-}
 .ecosystem-header {
   //   opacity: 0;
 
@@ -102,6 +88,21 @@ onMounted(() => {
     @media (min-width: 768px) {
       display: flex;
     }
+  }
+}
+
+.ecosystem .main-grid {
+  position: relative;
+  display: grid;
+  grid-gap: var(--space-l);
+
+  align-items: start;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 0.7fr 1fr;
+  }
+  @media (min-width: 1166px) {
+    grid-template-columns: 0.4fr 1fr;
   }
 }
 </style>
