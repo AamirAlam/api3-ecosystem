@@ -2,8 +2,16 @@
 const route = useRoute();
 const nuxtApp = useNuxtApp();
 const loading = ref(false);
-const {} = useWeb3Store();
+const { } = useWeb3Store();
 const router = useRouter();
+
+function getClientAppVersion() {
+  return localStorage.getItem('APP_VERSION') ?? 0
+}
+
+function setClientAppVersion(version) {
+  return localStorage.setItem('APP_VERSION', version)
+}
 
 nuxtApp.hook("page:start", () => {
   loading.value = true;
@@ -55,7 +63,18 @@ useSeoMeta({
 });
 
 onMounted(() => {
-  const {} = useWeb3();
+  const { } = useWeb3();
+  fetch("/version.json").then((serverPromise) =>
+    serverPromise.json().then((response) => {
+      const latestVersion = response.version
+      const clientStoredVersion = getClientAppVersion()
+
+      if (clientStoredVersion != latestVersion) {
+        window.location.reload(true)
+        setClientAppVersion(latestVersion)
+      }
+      else return
+    }))
 });
 </script>
 
@@ -68,7 +87,7 @@ onMounted(() => {
 </template>
 
 <style>
-body > div[data-v-app] {
+body>div[data-v-app] {
   display: none;
 }
 </style>
