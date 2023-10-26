@@ -29,7 +29,7 @@ const chain = computed(() => {
     :class="{ testnet: isTestnet }"
     v-tooltip="props.chain"
   >
-    <img :src="`/images/chains/${chain}.svg`" :alt="chain" />
+    <NuxtImg :src="`/images/chains/${chain}.svg`" :alt="chain" />
   </picture>
 </template>
 

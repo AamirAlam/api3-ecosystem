@@ -4,38 +4,37 @@ import { useInterfaceStore } from "~/stores/interface";
 
 const route = useRoute();
 const ui = useInterfaceStore();
+const dappSlug = route.params.detail;
 
-const { data: dapp, error } = await useFetch(
-  `/api/projects/project/${route.params.detail}`,
-  {
-    initialCache: true,
-    onResponse({ request, response, options }) {
-      // Process the response data to use for SEO
+const { data: dapp } = await useFetch(`/api/projects/project/${dappSlug}`);
 
-      const dapp = response._data;
+useSeoMeta({
+  //title
+  title: () => dapp.value.name,
+  ogTitle: () => dapp.value.name,
+  twitterTitle: () => dapp.value.name,
 
-      useSeoMeta({
-        title: () => dapp.name,
-        ogTitle: () => dapp.name,
-        twitterTitle: () => dapp.name,
+  //website
+  ogType: () => "article",
+  ogUrl: () => `https://ecosystem.api3.org/ecosystem/${dappSlug}`,
 
-        ogType: () => "article",
-        ogUrl: () => `https://ecosystem.api3.org/ecosystem/${dapp._id}`,
-        ogArticlePublishedTime: () => dapp.year,
+  //author
 
-        description: () => dapp.tagline,
-        ogDescription: () => dapp.tagline,
-        twitterDescription: () => dapp.tagline,
+  //date
+  ogArticlePublishedTime: () => dapp.value.year,
 
-        image: () => dapp.images?.cover,
-        ogImage: () => dapp.images?.cover,
-        twitterImage: () => dapp.images?.cover,
+  //description
+  description: () => dapp.value.tagline,
+  ogDescription: () => dapp.value.tagline,
+  twitterDescription: () => dapp.value.tagline,
 
-        twitterCard: "summary_large_image",
-      });
-    },
-  }
-);
+  //image
+  image: () => dapp.value.images?.cover,
+  ogImage: () => dapp.value.images?.cover,
+  twitterImage: () => dapp.value.images?.cover,
+
+  twitterCard: "summary_large_image",
+});
 
 onMounted(() => {
   const pageLoad = gsap.timeline();
@@ -82,73 +81,75 @@ const formattedProxies = computed(() => {
 </script>
 
 <template>
-  <article class="detail-page">
-    <DetailBanner :dapp="dapp" />
+  <main>
+    <article class="detail-page">
+      <DetailBanner :dapp="dapp" />
 
-    <SectionColumn class="detail-main">
-      <article class="main">
-        <ClientOnly>
-          <PageTitle
-            class="dapp-title"
-            :heading="dapp?.name"
-            innerClass="none"
-            :voice="ui.isMobile ? 'attention-voice' : 'loud-voice'"
-          >
-            <picture class="logo">
-              <img
-                :src="dapp?.images?.logo"
-                src="@/assets/images/background/square.jpg"
-                alt=""
-              />
-            </picture>
-          </PageTitle>
-        </ClientOnly>
-        <div class="launch-button">
-          <NuxtLink
-            :to="dapp?.links?.dapp"
-            :target="`${dapp?.name}-app`"
-            class="button"
-          >
-            Launch dApp
-          </NuxtLink>
-        </div>
-        <DetailPanel :dapp="dapp" v-if="dapp" />
-        <section class="about">
-          <h2 class="attention-voice">About</h2>
-          <p class="pre-line">
-            {{ dapp?.description?.replace(/\/n/g, "\n") }}
-          </p>
-
-          <div class="actions">
-            <NuxtLink
-              :to="dapp?.links?.website"
-              :target="`${dapp?.name}-website`"
-              class="text green"
+      <SectionColumn class="detail-main">
+        <article class="main">
+          <ClientOnly>
+            <PageTitle
+              class="dapp-title"
+              :heading="dapp?.name"
+              innerClass="none"
+              :voice="ui.isMobile ? 'attention-voice' : 'loud-voice'"
             >
-              {{ dapp?.links?.website }}
+              <picture class="logo">
+                <NuxtImg
+                  :src="dapp?.images?.logo"
+                  src="/images/square.jpg"
+                  :alt="`Logo of ${dapp?.name}`"
+                />
+              </picture>
+            </PageTitle>
+          </ClientOnly>
+          <div class="launch-button">
+            <NuxtLink
+              :to="dapp?.links?.dapp"
+              :target="`${dapp?.name}-app`"
+              class="button"
+            >
+              Launch dApp
             </NuxtLink>
-
-            <ul class="socials">
-              <li v-for="social in dapp?.links?.socials" :key="social.id">
-                <a :href="social.url" :target="social.name">
-                  <picture>
-                    <SocialIcon :social="social.label" />
-                  </picture>
-                </a>
-              </li>
-            </ul>
           </div>
-        </section>
+          <DetailPanel :dapp="dapp" v-if="dapp" />
+          <section class="about">
+            <h2 class="attention-voice">About</h2>
+            <p class="pre-line">
+              {{ dapp?.description?.replace(/\/n/g, "\n") }}
+            </p>
 
-        <DappProxies
-          :proxies="formattedProxies"
-          v-if="dapp?.productType != 'qrng'"
-        />
+            <div class="actions">
+              <NuxtLink
+                :to="dapp?.links?.website"
+                :target="`${dapp?.name}-website`"
+                class="text green"
+              >
+                {{ dapp?.links?.website }}
+              </NuxtLink>
 
-        <DappScreenshots :dapp="dapp" />
-      </article>
-    </SectionColumn>
-  </article>
+              <ul class="socials">
+                <li v-for="social in dapp?.links?.socials" :key="social.id">
+                  <a :href="social.url" :target="social.name">
+                    <picture>
+                      <SocialIcon :social="social.label" />
+                    </picture>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <DappProxies
+            :proxies="formattedProxies"
+            v-if="dapp?.productType != 'qrng'"
+          />
+
+          <DappScreenshots :dapp="dapp" />
+        </article>
+      </SectionColumn>
+    </article>
+  </main>
 </template>
 
 <style lang="scss" scoped>
@@ -169,7 +170,7 @@ const formattedProxies = computed(() => {
 
 .detail-page,
 .banner {
-  opacity: 0;
+  //   opacity: 0;
 }
 
 article.main {

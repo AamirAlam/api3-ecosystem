@@ -95,7 +95,7 @@ const handleFilter = (event) => {
             class="caret"
             :class="{ down: showAll.chains }"
             src="@/assets/images/interface/caret.svg"
-            alt=""
+            alt="caret icon"
           />
         </button>
       </div>
@@ -136,7 +136,7 @@ const handleFilter = (event) => {
             class="caret"
             :class="{ down: showAll.productTypes }"
             src="@/assets/images/interface/caret.svg"
-            alt=""
+            alt="caret icon"
           />
         </button>
       </div>
@@ -176,7 +176,7 @@ const handleFilter = (event) => {
             class="caret"
             :class="{ down: showAll.categories }"
             src="@/assets/images/interface/caret.svg"
-            alt=""
+            alt="caret icon"
           />
         </button>
       </div>
@@ -216,7 +216,7 @@ const handleFilter = (event) => {
             class="caret"
             :class="{ down: showAll.years }"
             src="@/assets/images/interface/caret.svg"
-            alt=""
+            alt="caret icon"
           />
         </button>
       </div>

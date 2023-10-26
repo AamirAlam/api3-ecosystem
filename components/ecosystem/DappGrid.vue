@@ -43,7 +43,6 @@ onMounted(() => {
       "dapp-card",
       {
         y: "10vw",
-        opacity: 0,
         duration: 0,
         delay: "0.5",
       },
@@ -86,7 +85,6 @@ onMounted(() => {
   gap: var(--space-l);
   align-items: start;
   position: relative;
-  opacity: 0;
   /* overflow: auto; */
 }
 

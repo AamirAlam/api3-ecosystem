@@ -2,7 +2,6 @@ export default defineNuxtConfig({
   spaLoadingTemplate: "./app-loading.html",
 
   routeRules: {
-    // Homepage pre-rendered at build time
     "/": { prerender: true },
     "add-dapp": {
       ssr: false,
@@ -11,22 +10,21 @@ export default defineNuxtConfig({
 
   //global default head metadata
   app: {
-    //  pageTransition: {
-    //    name: "page",
-    //    mode: "out-in",
-    //  },
+    pageTransition: {
+      name: "page",
+      mode: "out-in",
+    },
 
     head: {
       title: "API3 Ecosystem",
 
       meta: [
-        // <meta name="viewport" content="width=device-width, initial-scale=1">
         { name: "viewport", content: "width=device-width, initial-scale=1" },
       ],
 
       link: [
-        // favicon icon in assets/images
         { rel: "icon", type: "image/x-icon", href: "/favicon.png" },
+        { rel: "canonical", href: "https://ecosystem.api3.org" },
       ],
     },
   },
@@ -50,23 +48,51 @@ export default defineNuxtConfig({
 
   modules: [
     "@formkit/nuxt",
-    //  "@nuxt/devtools",
-    "@nuxt/content",
+    [
+      "@nuxt/content",
+      {
+        highlight: {
+          // Theme used in all color schemes.
+          theme: "github-dark",
+          preload: ["c", "shell", "solidity"],
+        },
+      },
+    ],
 
+    //devtools
+    [
+      "@nuxt/devtools",
+      {
+        enabled: true, // Enable only in development
+      },
+    ],
+
+    //image
+    [
+      "@nuxt/image",
+      {
+        format: ["webp"],
+      },
+    ],
+
+    //robots
+    [
+      "@nuxtjs/robots",
+      {
+        UserAgent: "*",
+        Disallow: "/testing-ground",
+      },
+    ],
+
+    //pinia
     [
       "@pinia/nuxt",
       {
         autoImports: ["defineStore", "storeToRefs"],
       },
     ],
-    //  [
-    //    "@nuxt/content",
-    //    {
-    //      content: null,
-    //      // https://content.nuxtjs.org/api/configuration
-    //    },
-    //  ],
   ],
+
   plugins: ["~/plugins/gsap.ts", "~/plugins/floating-vue.ts"],
 
   components: [
@@ -78,14 +104,6 @@ export default defineNuxtConfig({
 
   imports: {
     dirs: ["stores"],
-  },
-
-  content: {
-    highlight: {
-      // Theme used in all color schemes.
-      theme: "github-dark",
-      preload: ["c", "shell", "solidity"],
-    },
   },
 
   nitro: {

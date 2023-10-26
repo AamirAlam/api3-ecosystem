@@ -200,13 +200,13 @@
 /* Hover underline */
 
 .hover-underline,
-.router-link-exact-active {
+.router-link-exact-active:not(.site-logo) {
   --underline-width: 0;
   position: relative;
 }
 
 .hover-underline::after,
-.router-link-exact-active::after {
+.router-link-exact-active:not(.site-logo)::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -219,7 +219,7 @@
 }
 
 .hover-underline:is(:hover, :focus-visible)::after,
-a.router-link-exact-active::after {
+a.router-link-exact-active:not(.site-logo)::after {
   --underline-width: 100%;
 }
 

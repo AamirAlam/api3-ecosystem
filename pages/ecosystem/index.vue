@@ -8,11 +8,17 @@ const ecosystem = useEcosystemStore();
 
 useSeoMeta({
   title: "Ecosystems",
+  ogTitle: "Ecosystems",
+  twitterTitle: "Ecosystems",
+
   description:
     "Welcome to the API3 ecosystem. Easily list your dApp or service and join our thriving community",
+
   ogDescription:
     "Welcome to the API3 ecosystem. Easily list your dApp or service and join our thriving community",
-  ogImage: "/images/article-placeholder.jpg",
+
+  twitterDescription:
+    "Welcome to the API3 ecosystem. Easily list your dApp or service and join our thriving community",
 });
 
 onMounted(() => {
@@ -22,7 +28,6 @@ onMounted(() => {
     ".ecosystem-header",
     {
       y: 50,
-      opacity: 0,
       duration: 0,
       delay: "0.5",
     },
@@ -37,29 +42,31 @@ onMounted(() => {
 </script>
 
 <template>
-  <PageTitle
-    heading="API3 Ecosystem Partners"
-    class="loud-voice ecosystem-header"
-  >
-    <NuxtLink to="/add-dapp" class="button solid-voice">
-      <span class=""> Join the Ecosystem </span>
-    </NuxtLink>
-  </PageTitle>
+  <main>
+    <PageTitle
+      heading="API3 Ecosystem Partners"
+      class="loud-voice ecosystem-header"
+    >
+      <NuxtLink to="/add-dapp" class="button solid-voice">
+        <span class=""> Join the Ecosystem </span>
+      </NuxtLink>
+    </PageTitle>
 
-  <SectionColumn innerClass="main-grid">
-    <ClientOnly>
-      <DappFilter v-if="!ui.isMobile" />
-      <div v-else>
-        <FilterButtons />
+    <SectionColumn innerClass="main-grid">
+      <ClientOnly>
+        <DappFilter v-if="!ui.isMobile" />
+        <div v-else>
+          <FilterButtons />
 
-        <ModalSlot>
-          <DappFilter />
-        </ModalSlot>
-      </div>
-    </ClientOnly>
+          <ModalSlot>
+            <DappFilter />
+          </ModalSlot>
+        </div>
+      </ClientOnly>
 
-    <DappGrid />
-  </SectionColumn>
+      <DappGrid />
+    </SectionColumn>
+  </main>
 </template>
 
 <style lang="scss">
@@ -78,7 +85,7 @@ onMounted(() => {
   }
 }
 .ecosystem-header {
-  opacity: 0;
+  //   opacity: 0;
 
   inner-column {
     display: grid;
@@ -87,7 +94,6 @@ onMounted(() => {
     align-items: center;
     justify-content: space-between;
     justify-items: start;
-    padding: var(--space-2xl) var(--space-s);
 
     .button {
       justify-self: center;

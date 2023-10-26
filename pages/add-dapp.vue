@@ -113,104 +113,112 @@ onMounted(async () => {
 </script>
 
 <template>
-  <PageTitle heading="Join the Ecosystem" innerClass="add-dapp-title">
-    <p>
-      Join the API3 ecosystem. Easily list your dApp or service and join our
-      thriving community
-    </p>
-  </PageTitle>
-  <SectionColumn>
-    <FormKit
-      type="form"
-      id="add-form"
-      @submit="submitHandler"
-      @submit-invalid="showErrors"
-      :actions="false"
-      #default="{ state: { valid: isValid } }"
-    >
+  <main>
+    <PageTitle heading="Join the Ecosystem" innerClass="add-dapp-title">
+      <p>
+        Join the API3 ecosystem. Easily list your dApp or service and join our
+        thriving community
+      </p>
+    </PageTitle>
+    <SectionColumn>
       <FormKit
-        type="multi-step"
-        tab-style="progress"
-        :hide-progress-labels="true"
+        type="form"
+        id="add-form"
+        @submit="submitHandler"
+        @submit-invalid="showErrors"
+        :actions="false"
+        #default="{ state: { valid: isValid } }"
       >
-        <FormKit type="step" v-auto-animate name="content">
-          <ContentStep :dappForm="dappForm" />
-          <template #stepNext="{ handlers }" #stepPrevious>
-            <FormStepButtons
-              :next="handlers.next"
-              :previous="handlers.previous"
-            />
-          </template>
-        </FormKit>
-
-        <FormKit type="step" v-auto-animate name="images">
-          <ImageStep :dappForm="dappForm" />
-          <template #stepNext="{ handlers }" #stepPrevious>
-            <FormStepButtons
-              :next="handlers.next"
-              :previous="handlers.previous"
-            />
-          </template>
-        </FormKit>
-
-        <FormKit type="step" v-auto-animate name="tags">
-          <TagStep :dappForm="dappForm" />
-          <template #stepNext="{ handlers }" #stepPrevious>
-            <FormStepButtons
-              :next="handlers.next"
-              :previous="handlers.previous"
-            />
-          </template>
-        </FormKit>
-
         <FormKit
-          type="step"
-          v-auto-animate
-          name="proxy"
-          v-if="dappForm.productType === 'datafeed'"
+          type="multi-step"
+          tab-style="progress"
+          :hide-progress-labels="true"
         >
-          <ProxyStep :dappForm="dappForm" :feedNameOptions="feedNameOptions" />
-          <template #stepNext="{ handlers }" #stepPrevious>
-            <FormStepButtons
-              :next="handlers.next"
-              :previous="handlers.previous"
+          <FormKit type="step" v-auto-animate name="content">
+            <ContentStep :dappForm="dappForm" />
+            <template #stepNext="{ handlers }" #stepPrevious>
+              <FormStepButtons
+                :next="handlers.next"
+                :previous="handlers.previous"
+              />
+            </template>
+          </FormKit>
+
+          <FormKit type="step" v-auto-animate name="images">
+            <ImageStep :dappForm="dappForm" />
+            <template #stepNext="{ handlers }" #stepPrevious>
+              <FormStepButtons
+                :next="handlers.next"
+                :previous="handlers.previous"
+              />
+            </template>
+          </FormKit>
+
+          <FormKit type="step" v-auto-animate name="tags">
+            <TagStep :dappForm="dappForm" />
+            <template #stepNext="{ handlers }" #stepPrevious>
+              <FormStepButtons
+                :next="handlers.next"
+                :previous="handlers.previous"
+              />
+            </template>
+          </FormKit>
+
+          <FormKit
+            type="step"
+            v-auto-animate
+            name="proxy"
+            v-if="dappForm.productType === 'datafeed'"
+          >
+            <ProxyStep
+              :dappForm="dappForm"
+              :feedNameOptions="feedNameOptions"
             />
-          </template>
-        </FormKit>
+            <template #stepNext="{ handlers }" #stepPrevious>
+              <FormStepButtons
+                :next="handlers.next"
+                :previous="handlers.previous"
+              />
+            </template>
+          </FormKit>
 
-        <FormKit type="step" v-auto-animate name="links">
-          <LinksStep :dappForm="dappForm" />
-          <template #stepNext="{ handlers }">
-            <FormStepButtons :isLastStep="true" :previous="handlers.previous" />
-            <div class="messages">
-              <ul class="validation-errors" v-auto-animate>
-                <FormKitMessages v-auto-animate />
-                <template v-if="!isValid">
-                  <li v-for="message in messages" class="whisper-voice">
-                    {{ message }}
-                  </li>
-                </template>
-              </ul>
+          <FormKit type="step" v-auto-animate name="links">
+            <LinksStep :dappForm="dappForm" />
+            <template #stepNext="{ handlers }">
+              <FormStepButtons
+                :isLastStep="true"
+                :previous="handlers.previous"
+              />
+              <div class="messages">
+                <ul class="validation-errors" v-auto-animate>
+                  <FormKitMessages v-auto-animate />
+                  <template v-if="!isValid">
+                    <li v-for="message in messages" class="whisper-voice">
+                      {{ message }}
+                    </li>
+                  </template>
+                </ul>
 
-              <!-- <div v-if="complete"> -->
-              <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
-              <!-- </div> -->
+                <!-- <div v-if="complete"> -->
+                <!-- <AddLoading :isLoading="true" :isWaiting="true" /> -->
+                <!-- </div> -->
 
-              <text-content v-if="submitSuccess">
-                <p class="success-indicator">
-                  {{ successData.message }}
-                </p>
+                <text-content v-if="submitSuccess">
+                  <p class="success-indicator">
+                    {{ successData.message }}
+                  </p>
 
-                <!-- <a :href="successData.pr_url" target="_blank">
+                  <!-- <a :href="successData.pr_url" target="_blank">
                   View Pull request
                 </a> -->
-              </text-content>
-            </div>
-          </template>
+                </text-content>
+              </div>
+            </template>
+          </FormKit>
         </FormKit>
       </FormKit>
-    </FormKit>
-  </SectionColumn>
+    </SectionColumn>
+  </main>
 </template>
 
 <style lang="scss" scoped>

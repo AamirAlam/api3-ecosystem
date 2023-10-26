@@ -27,15 +27,23 @@ onMounted(() => {
     <SectionColumn class="mast-head">
       <ClientOnly>
         <mast-head>
-          <picture
-            class="site-logo"
-            :class="{ menuOpen: showMenu }"
-            @click="router.push('/')"
-          >
-            <img src="/images/logo-full.svg" v-if="!ui.isMobile" />
-            <img src="/images/logo-icon.svg" v-else />
-          </picture>
+          <NuxtLink to="/" class="site-logo">
+            <picture class="site-logo" :class="{ menuOpen: showMenu }">
+              <NuxtImg
+                v-if="!ui.isMobile"
+                src="/images/logo-full.svg"
+                alt="Full API3 Logo"
+              />
+              <NuxtImg
+                v-else
+                src="/images/logo-icon.svg"
+                alt="API3 Logo Icon"
+              />
+            </picture>
+          </NuxtLink>
           <SiteNav v-if="!ui.isMobile" />
+
+          <!-- menu icon -->
           <button
             :class="` menu icon ${showMenu ? 'menuOpen' : ''}`"
             v-if="ui.isMobile"

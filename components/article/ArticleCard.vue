@@ -29,7 +29,10 @@ onMounted(() => {
 <template>
   <article-card class="background-radial-violet">
     <picture>
-      <img :src="article?.cover ?? '/images/article-placeholder.jpg'" />
+      <NuxtImg
+        :src="article?.cover ?? '/images/article-placeholder.jpg'"
+        alt="Article Cover"
+      />
     </picture>
     <text-content>
       <h3 class="solid-voice">

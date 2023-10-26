@@ -24,7 +24,7 @@ const onShow = (index) => {
         :key="image"
         @click="onShow(index)"
       >
-        <img :src="image" :alt="image" />
+        <NuxtImg :src="image" alt="Screenshots" />
       </li>
 
       <VueEasyLightbox

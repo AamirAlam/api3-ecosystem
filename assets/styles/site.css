@@ -40,6 +40,10 @@ body {
   display: contents;
 }
 
+main {
+  /* overflow-y: hidden; */
+}
+
 .hide {
   display: none;
 }
@@ -54,7 +58,6 @@ body {
   filter: blur(1rem);
 }
 
-/* #todo nuxt3 transitions */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;

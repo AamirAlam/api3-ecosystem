@@ -25,10 +25,11 @@ useHead({
 
 useSeoMeta({
   ogUrl: "https://ecosystem.api3.org",
+  ogType: "website",
 
-  title: "API3 Ecosystem",
-  ogTitle: "API3 Ecosystem",
-  twitterTitle: "API3 Ecosystem",
+  title: "API3 Ecosystem Site",
+  ogTitle: "API3 Ecosystem Site",
+  twitterTitle: "API3 Ecosystem Site",
 
   description:
     "Discover the API3 ecosystem and learn more about utilizing real-world data in your smart contracts",
@@ -37,10 +38,23 @@ useSeoMeta({
   twitterDescription:
     "Discover the API3 ecosystem and learn more about utilizing real-world data in your smart contracts",
 
-  ogImage: "/images/api3-ecosystem-meta.jpg",
-  twitterImage: "/images/api3-ecosystem-meta-twitter.jpg",
+  ogImage: {
+    url: "/images/api3-ecosystem-meta.jpg",
+    width: 1200,
+    height: 630,
+    alt: "API3 Ecosystem Logo",
+  },
 
-  twitterCard: "summary",
+  twitterImage: {
+    url: "/images/api3-ecosystem-meta.jpg",
+    width: 1200,
+    height: 630,
+    alt: "API3 Ecosystem Logo",
+  },
+
+  twitterCard: "summary_large_image",
+
+  themeColor: "#7de2cb",
 });
 
 onMounted(() => {
@@ -59,6 +73,5 @@ onMounted(() => {
 <style>
 body > div[data-v-app] {
   display: none;
-
 }
 </style>

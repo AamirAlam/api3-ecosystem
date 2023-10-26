@@ -154,7 +154,7 @@ const miscLinks = [
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
-          <img src="/images/logo-icon.svg" />
+          <NuxtImg src="/images/logo-icon.svg" alt="API3 logo" />
         </picture>
 
         <section
@@ -172,12 +172,7 @@ const miscLinks = [
               class="calm-voice text footer-link"
             >
               <span>{{ link.label }}</span>
-              <picture class="external-link" v-if="link.external">
-                <img
-                  src="@/assets/images/interface/diagonal-arrow.svg"
-                  alt=""
-                />
-              </picture>
+              <ExternalLink v-if="link.external" />
             </NuxtLink>
           </nav>
         </section>
@@ -196,9 +191,8 @@ const miscLinks = [
             <span>
               {{ link.label }}
             </span>
-            <picture class="external-link" v-if="link.external">
-              <img src="@/assets/images/interface/diagonal-arrow.svg" alt="" />
-            </picture>
+
+            <ExternalLink v-if="link.external" />
           </NuxtLink>
         </nav>
         <nav class="social-icons">

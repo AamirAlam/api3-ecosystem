@@ -1,19 +1,9 @@
 <script setup>
-import { useInterfaceStore } from "@/stores/interface";
 import { gsap } from "gsap";
 
-const ui = useInterfaceStore();
-
 // const content = await queryContent("/home").findOne().heroLanding; #todo
-console.log(ui.isMobile);
-const titleClasses = computed(() =>
-  ui.isMobile ? "attention-voice" : "loud-voice"
-);
 
-console.log(titleClasses.value);
 onMounted(() => {
-  //
-
   //hero landing on load animations
   const pageLoad = gsap.timeline({
     //  scrollTrigger: {
@@ -27,12 +17,10 @@ onMounted(() => {
   <SectionColumn class="hero-landing-section">
     <hero-landing>
       <text-content>
-        <ClientOnly>
-          <h1 class="page-title" :class="titleClasses">
-            Connecting the <span>First-Party</span> Oracle Ecosystem
-            <!-- {{ content.title }} -->
-          </h1>
-        </ClientOnly>
+        <h1 class="page-title loud-voice">
+          Connecting the <span>First-Party</span> Oracle Ecosystem
+          <!-- {{ content.title }} -->
+        </h1>
 
         <p class="calm-voice">
           Welcome to the API3 ecosystem a space for blockchain enthusiasts,
@@ -86,7 +74,7 @@ hero-landing {
   //   height: 80vh;
   display: grid;
   align-content: center;
-  padding: var(--space-2xl) 0;
+  padding: var(--space-m) 0;
 
   gap: var(--space-2xl);
 
@@ -99,6 +87,10 @@ hero-landing {
 
     .page-title {
       text-wrap: balance;
+
+      @media (max-width: 768px) {
+        --font-size: var(--step-2);
+      }
 
       span {
         white-space: nowrap;

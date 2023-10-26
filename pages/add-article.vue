@@ -55,18 +55,19 @@ async function submitHandler(event) {
 </script>
 
 <template>
-  <PageTitle heading="Add Article" />
-  <SectionColumn>
-    <file-upload>
-      <FormKit type="form" @submit="submitHandler">
+  <main>
+    <PageTitle heading="Add Article" />
+    <SectionColumn>
+      <FormKit type="form" :actions="false" @submit="submitHandler">
         <FormKit
           v-auto-animate
           id="article-form"
           type="file"
-          label="Article markdown"
-          label-class="$reset notice-voice"
+          label="Upload article as markdown"
+          label-class="$reset calm-voice"
           name="article"
-          help="Upload a markdown formatted file"
+          fileName="article"
+          no-files-icon="fileDocument"
           accept=".md"
           validation="required"
         />
@@ -75,12 +76,19 @@ async function submitHandler(event) {
           v-auto-animate
           id="article-form"
           type="file"
-          label="Cover image"
-          label-class="$reset notice-voice"
+          label="Upload cover image"
+          label-class="$reset calm-voice"
+          no-files-icon="fileImage"
+          fileName="cover"
           name="image"
           validation="optional"
-          help="Upload cover image for article"
           accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP, .gif, .GIF"
+        />
+
+        <FormKit
+          type="submit"
+          label="Add Article"
+          input-class="$reset button"
         />
 
         <p v-if="status.loading">Uploading...</p>
@@ -93,18 +101,13 @@ async function submitHandler(event) {
           {{ status.message }}
         </p>
       </FormKit>
-    </file-upload>
-  </SectionColumn>
+    </SectionColumn>
+  </main>
 </template>
 
 <style scoped lang="scss">
-file-upload {
-  display: grid;
-  background: var(--gradient-dark);
-  --ink: hsla(180, 0%, 95%, 1);
-  border-radius: var(--corners);
-  gap: var(--space-2xs);
-  padding: var(--space-s);
-  align-items: start;
+form {
+  max-width: 70ch;
+  margin: 0 auto;
 }
 </style>

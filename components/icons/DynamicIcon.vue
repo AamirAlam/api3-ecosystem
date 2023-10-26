@@ -8,7 +8,7 @@ const props = defineProps(["icon", "fill", "stroke"]);
 
 <template>
   <picture v-tooltip="ecosystem?.productTypeToLabel?.[dapp?.productType]">
-    <img :src="`/images/icons/${slug(props.icon)}.svg`" alt="" />
+    <NuxtImg :src="`/images/icons/${slug(props.icon)}.svg`" :alt="props.icon" />
   </picture>
 </template>
 
