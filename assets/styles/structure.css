@@ -11,7 +11,7 @@ inner-column {
   margin-right: auto;
   margin-left: auto;
   /* padding: var(--space-l) var(--space-s); a loose default */
-  padding: var(--space-2xl) var(--space-s);
+  padding: var(--space-xl) var(--space-s);
 }
 
 inner-column.none {

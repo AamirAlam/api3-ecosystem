@@ -15,7 +15,7 @@ const chainId = ref(null);
 const isMinted = ref(false);
 
 const content = reactive({
-  buttons: ["Developers", "DAO Members", "Testers"],
+  buttons: ["Developers", "DAO", "Testers"],
   unselectedHeading: "Select The NFT type to Mint",
   paragraph: ``,
 });
@@ -149,70 +149,69 @@ onMounted(() => {
 </script>
 
 <template>
-  <SectionColumn>
-    <aside>
-      <h1 class="firm-voice">
-        {{ content.unselectedHeading }}
-      </h1>
-      <div class="actions">
-        <button
-          class="text green hover-underline"
-          v-for="(buttonText, index) in content.buttons"
-          @click="buttonHandle($event, buttonText, index)"
-        >
-          {{ buttonText }}
-        </button>
+  <main>
+    <SectionColumn v-auto-animate>
+      <div class="wrapper" v-auto-animate>
+        <aside>
+          <h1 class="firm-voice">
+            {{ content.unselectedHeading }}
+          </h1>
+          <div class="actions">
+            <button
+              class="text green hover-underline"
+              v-for="(buttonText, index) in content.buttons"
+              @click="buttonHandle($event, buttonText, index)"
+            >
+              {{ buttonText }}
+            </button>
+          </div>
+        </aside>
+        <div class="panel">
+          <h2 class="loud-voice" v-show="selected">
+            Join the
+            <span class="gradient-text-color">{{ selected }}</span> by minting
+            this NFT
+          </h2>
+
+          <p v-show="content.paragraph">
+            {{ content.paragraph }}
+          </p>
+
+          <Transition name="fade" mode="out-in" v-show="selected && !isMinted">
+            <button class="button" :disabled="loading" @click="handleAction">
+              {{ buttonText }}
+            </button>
+          </Transition>
+
+          <Transition name="fade" mode="out-in" v-if="selected && isMinted">
+            <button class="button" :disabled="loading">
+              <a
+                href="https://opensea.io/collection/api3-guild"
+                target="_blank"
+                class="group"
+              >
+                <span>
+                  {{ isMintChecking ? "Fetching NFT..." : "Visit OpenSea" }}
+                </span>
+                <ExternalLink v-if="!isMintChecking" />
+              </a>
+            </button>
+          </Transition>
+        </div>
       </div>
-    </aside>
-    <div class="panel">
-      <h2 class="loud-voice">
-        <template v-if="selected">
-          Join the
-          <span class="gradient-text-color">{{ selected }}</span> by minting
-          this NFT
-        </template>
-        <template v-else>
-          {{ content.unselectedHeading }}
-        </template>
-      </h2>
-
-      <p v-if="content.paragraph">
-        {{ content.paragraph }}
-      </p>
-
-      <Transition name="fade" mode="out-in" v-if="selected && !isMinted">
-        <button class="button" :disabled="loading" @click="handleAction">
-          {{ buttonText }}
-        </button>
-      </Transition>
-
-      <Transition name="fade" mode="out-in" v-if="selected && isMinted">
-        <button class="button" :disabled="loading">
-          <a
-            href="https://opensea.io/collection/api3-guild"
-            target="_blank"
-            class="group"
-          >
-            <span>
-              {{ isMintChecking ? "Fetching NFT..." : "Visit OpenSea" }}
-            </span>
-            <ExternalLink v-if="!isMintChecking" />
-          </a>
-        </button>
-      </Transition>
-    </div>
-  </SectionColumn>
+    </SectionColumn>
+  </main>
 </template>
 
 <style scoped lang="scss">
 section:not(.heading) {
-  :deep(inner-column) {
+  :deep(inner-column),
+  .wrapper {
     display: grid;
     gap: var(--space-xl);
 
-    min-height: 80vh;
-
     @media (min-width: 1024px) {
+      min-height: 80vh;
       grid-template-columns: 0.6fr 1fr;
     }
   }
@@ -221,9 +220,12 @@ section:not(.heading) {
     display: grid;
     gap: var(--space-m);
     align-content: center;
+    order: 2;
+    justify-items: center;
 
     @media (min-width: 1024px) {
-      justify-items: center;
+      justify-items: unset;
+      order: unset;
     }
 
     div.actions {
