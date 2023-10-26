@@ -111,7 +111,7 @@ dapp-card {
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 0.1fr;
-    z-index: 2;
+    //  z-index: 2;
 
     .chain-list {
       display: flex;
@@ -143,12 +143,12 @@ dapp-card {
 
     h2 {
       white-space: nowrap;
-      z-index: 2;
+      // z-index: 2;
     }
 
     p {
       grid-column: 1/-1;
-      z-index: 2;
+      // z-index: 2;
     }
   }
   footer {

@@ -42,8 +42,8 @@ useHead({
 
     @media (min-width: 768px) {
       display: block;
-      top: -5%;
-      left: -40%;
+      top: -50px;
+      left: -500px;
 
       width: 200vw;
       z-index: -10;
