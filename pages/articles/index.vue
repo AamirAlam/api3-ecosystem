@@ -22,17 +22,22 @@ useSeoMeta({
     <PageTitle heading="Articles" />
     <SectionColumn>
       <h2 class="attention-voice">Featured</h2>
-      <ArticleGrid :layout="0" isFeaturedSort="true" />
+      <ArticleGrid layout="0" cardCount="2" isFeaturedSort="true" />
     </SectionColumn>
 
     <SectionColumn>
       <h2 class="attention-voice">Popular</h2>
-      <ArticleGrid :layout="1" cardCount="4" isPopularSort="true" />
+      <ArticleGrid layout="1" cardCount="3" isPopularSort="true" />
     </SectionColumn>
 
     <SectionColumn>
-      <h2 class="attention-voice">Recent</h2>
-      <ArticleGrid layout="3" cardCount="4" isRecentSort="true" />
+      <h2 class="attention-voice">Trending</h2>
+      <ArticleGrid layout="2" cardCount="4" isTrendingSort="true" />
+    </SectionColumn>
+
+    <SectionColumn>
+      <h2 class="attention-voice">All</h2>
+      <ArticleGrid layout="3" isRecentSort="true" />
     </SectionColumn>
   </main>
 </template>

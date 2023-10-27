@@ -1,5 +1,5 @@
 <script setup>
-import { useBlogStore } from "@/stores/blog";
+import { useBlogStore } from "~/stores/blog";
 const props = defineProps([
   "layout",
   "cardCount",
@@ -21,17 +21,17 @@ const sorted = computed(() => {
   }
   if (props.isPopularSort) {
     return blog.list.sort((a, b) => {
-      return new Date(b.views) - new Date(a.views);
+      return b.views ?? 0 - a?.views ?? 0;
     });
   }
   if (props.isTrendingSort) {
     return blog.list.sort((a, b) => {
-      return new Date(b.upvotes) - new Date(a.upvotes);
+      return b.upvotes ?? 0 - a.upvotes ?? 0;
     });
   }
   if (props.isFeaturedSort) {
     return blog.list.sort((a, b) => {
-      return new Date(b.isFeatured) - new Date(a.isFeatured);
+      return b.isFeatured ?? false - a.isFeatured ?? false;
     });
   }
   return blog.list;
@@ -63,13 +63,8 @@ function cardType(index, layout = layoutIndex.value, article) {
 function handleLoadMore() {
   if (blog.list.length < blog.totalArticles) {
     blog.filterQuery.page += 1;
-    blog.loadArticles(blog.filterQuery.page);
   }
 }
-
-onMounted(() => {
-  blog.loadArticles(1);
-});
 </script>
 
 <template>

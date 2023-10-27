@@ -1,3 +1,4 @@
+import updateArticleView from "~/server/services/updateView";
 import { View } from "../../../models/View";
 import { Article } from "~/server/models/Article";
 
@@ -23,20 +24,8 @@ export default defineEventHandler(async (event) => {
       };
     }
 
-    // Check if the IP has already viewed the article in the last 24 hours
-    const lastView = await View.findOne({
-      ipAddress: clientIp,
-      article: article.id,
-      timestamp: { $gte: new Date(Date.now() - 24 * 60 * 60 * 1000) },
-    });
-
-    if (!lastView) {
-      const newView = new View({
-        ipAddress: clientIp,
-        article: article.id,
-      });
-      await newView.save();
-      await Article.findByIdAndUpdate(article.id, { $inc: { views: 1 } });
+    if (clientIp !== undefined) {
+      await updateArticleView(clientIp, article.id);
     }
 
     event.node.res.statusCode = 200;

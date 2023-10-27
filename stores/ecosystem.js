@@ -74,6 +74,7 @@ export const useEcosystemStore = defineStore("ecosystem", () => {
 
   watch([filterQuery, data], ([newQuery, newData], [oldQuery, prevData]) => {
     if (!newData) return;
+
     totalProjects.value = newData.total;
     if (newQuery.page === 1) {
       projectList.value = newData.projects;

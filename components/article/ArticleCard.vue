@@ -133,8 +133,12 @@ article-card {
       }
     }
 
-    align-items: center;
     min-height: 150px;
+
+    text-content {
+      display: grid;
+      grid-template-rows: 1fr auto;
+    }
 
     picture {
       display: none;

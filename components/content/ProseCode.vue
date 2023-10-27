@@ -12,8 +12,6 @@ const props = withDefaults(
 );
 
 const { copy, copied, text } = useClipboard();
-
-console.log(props.language);
 </script>
 
 <template>

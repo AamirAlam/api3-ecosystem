@@ -53,16 +53,16 @@ onMounted(() => {
     </PageTitle>
 
     <SectionColumn innerClass="ecosystem-main-grid">
-      <ClientOnly>
-        <DappFilter v-if="!ui.isMobile" />
-        <div v-else>
-          <FilterButtons />
+      <!-- <ClientOnly> -->
+      <DappFilter v-if="!ui.isMobile" />
+      <div v-else>
+        <FilterButtons />
 
-          <ModalSlot>
-            <DappFilter />
-          </ModalSlot>
-        </div>
-      </ClientOnly>
+        <ModalSlot>
+          <DappFilter />
+        </ModalSlot>
+      </div>
+      <!-- </ClientOnly> -->
 
       <DappGrid />
     </SectionColumn>

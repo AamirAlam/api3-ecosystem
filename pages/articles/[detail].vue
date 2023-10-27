@@ -30,7 +30,7 @@ useSeoMeta({
   ogImage: () => article.value.cover,
   twitterImage: () => article.value.cover,
 
-  articlePublishedTime: () => new Date(article.value.date).toISOString(),
+  articlePublishedTime: () => new Date(article.value.created_at).toISOString(),
 
   twitterCard: "summary_large_image",
 });
@@ -125,7 +125,6 @@ inner-column.article {
           top: 50%;
           transform: translateY(-50%);
 
-          background: url("/assets/images/triangle.svg");
           background-size: cover;
           background-position: center;
         }
