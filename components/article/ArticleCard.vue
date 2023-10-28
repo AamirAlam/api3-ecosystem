@@ -1,7 +1,13 @@
 <script setup>
 import slug from "slug";
 import { gsap } from "gsap";
-const props = defineProps(["article"]);
+
+const props = defineProps({
+  article: {
+    type: Object,
+    required: true,
+  },
+});
 
 onMounted(() => {
   const pageLoad = gsap.timeline();
@@ -60,7 +66,6 @@ article-card {
   text-content {
     padding: var(--space-2xs) var(--space-s);
     padding-top: var(--space-s);
-    z-index: 2;
 
     .solid-voice {
       margin-bottom: var(--space-2xs);
@@ -172,6 +177,7 @@ article-card {
       bottom: 0;
       left: 0;
       width: 100%;
+      z-index: 2;
     }
 
     a.text {

@@ -16,7 +16,7 @@ const isMinted = ref(false);
 
 const content = reactive({
   buttons: ["Developers", "DAO", "Testers"],
-  unselectedHeading: "Select The NFT type to Mint",
+  unselectedHeading: "Select The NFT to Mint",
   paragraph: ``,
 });
 
@@ -150,74 +150,93 @@ onMounted(() => {
 
 <template>
   <main>
-    <SectionColumn>
-      <aside>
-        <h1 class="firm-voice">
-          {{ content.unselectedHeading }}
-        </h1>
-        <div class="actions">
-          <button
-            class="text green hover-underline"
-            v-for="(buttonText, index) in content.buttons"
-            @click="buttonHandle($event, buttonText, index)"
-          >
-            {{ buttonText }}
-          </button>
-        </div>
-      </aside>
-      <div class="panel">
-        <h2 class="loud-voice" v-show="selected">
-          Join the
-          <span class="gradient-text-color">{{ selected }}</span> by minting
-          this NFT
-        </h2>
-
-        <p v-if="content.paragraph">
-          {{ content.paragraph }}
-        </p>
-
-        <Transition name="fade" mode="out-in" v-if="selected && !isMinted">
-          <button class="button" :disabled="loading" @click="handleAction">
-            {{ buttonText }}
-          </button>
-        </Transition>
-
-        <Transition name="fade" mode="out-in" v-if="selected && isMinted">
-          <button class="button" :disabled="loading">
-            <a
-              href="https://opensea.io/collection/api3-guild"
-              target="_blank"
-              class="group"
+    <section>
+      <inner-column v-auto-animate>
+        <aside>
+          <h1 class="loud-voice">
+            {{ content.unselectedHeading }}
+          </h1>
+          <div class="actions">
+            <button
+              class="text green hover-underline"
+              v-for="(buttonText, index) in content.buttons"
+              @click="buttonHandle($event, buttonText, index)"
             >
-              <span>
-                {{ isMintChecking ? "Fetching NFT..." : "Visit OpenSea" }}
-              </span>
-              <ExternalLink v-if="!isMintChecking" />
-            </a>
-          </button>
-        </Transition>
-      </div>
-    </SectionColumn>
+              {{ buttonText }}
+            </button>
+          </div>
+        </aside>
+        <div class="panel" v-if="selected">
+          <h2 class="loud-voice" v-show="selected">
+            Join the
+            <span class="gradient-text-color">{{ selected }}</span> by minting
+            this NFT
+          </h2>
+
+          <p v-if="content.paragraph">
+            {{ content.paragraph }}
+          </p>
+
+          <Transition name="fade" mode="out-in" v-if="selected && !isMinted">
+            <button class="button" :disabled="loading" @click="handleAction">
+              {{ buttonText }}
+            </button>
+          </Transition>
+
+          <Transition name="fade" mode="out-in" v-if="selected && isMinted">
+            <button class="button" :disabled="loading">
+              <a
+                href="https://opensea.io/collection/api3-guild"
+                target="_blank"
+                class="group"
+              >
+                <span>
+                  {{ isMintChecking ? "Fetching NFT..." : "Visit OpenSea" }}
+                </span>
+                <ExternalLink v-if="!isMintChecking" />
+              </a>
+            </button>
+          </Transition>
+        </div>
+      </inner-column>
+    </section>
   </main>
 </template>
 
 <style scoped lang="scss">
 section:not(.heading) {
-  :deep(inner-column) {
-    display: grid;
+  inner-column {
     gap: var(--space-xl);
 
     @media (min-width: 1024px) {
       min-height: 80vh;
+    }
+  }
+
+  inner-column:has(.panel) {
+    display: grid;
+    @media (min-width: 1024px) {
       grid-template-columns: 0.6fr 1fr;
+    }
+
+    h1 {
+      font-size: var(--step-1);
+      transition: 0.2s;
+    }
+
+    div.actions {
+      @media (min-width: 1024px) {
+        display: grid;
+      }
     }
   }
 
   aside {
     display: grid;
     gap: var(--space-m);
-    align-content: center;
     order: 2;
+    align-content: center;
+
     justify-items: center;
 
     @media (min-width: 1024px) {
@@ -225,10 +244,8 @@ section:not(.heading) {
       order: unset;
     }
 
-    div.actions {
-      @media (min-width: 1024px) {
-        display: grid;
-      }
+    h1 {
+      // text-wrap: balance;
     }
 
     button.text {
@@ -244,7 +261,7 @@ section:not(.heading) {
     text-align: center;
 
     h2 {
-      opacity: 0;
+      // opacity: 0;
       text-wrap: balance;
 
       span {

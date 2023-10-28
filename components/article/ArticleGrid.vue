@@ -14,22 +14,22 @@ const ui = useInterfaceStore();
 const ecosystem = useEcosystemStore();
 
 const sorted = computed(() => {
-  if (props.isRecentSort) {
+  if (blog.list && props.isRecentSort) {
     return blog.list.sort((a, b) => {
       return new Date(b.created_at) - new Date(a.created_at);
     });
   }
-  if (props.isPopularSort) {
+  if (blog.list && props.isPopularSort) {
     return blog.list.sort((a, b) => {
       return b.views ?? 0 - a?.views ?? 0;
     });
   }
-  if (props.isTrendingSort) {
+  if (blog.list && props.isTrendingSort) {
     return blog.list.sort((a, b) => {
       return b.upvotes ?? 0 - a.upvotes ?? 0;
     });
   }
-  if (props.isFeaturedSort) {
+  if (blog.list && props.isFeaturedSort) {
     return blog.list.sort((a, b) => {
       return b.isFeatured ?? false - a.isFeatured ?? false;
     });

@@ -1,26 +1,17 @@
 <script setup>
-const route = useRoute();
-const nuxtApp = useNuxtApp();
-const loading = ref(false);
-const { } = useWeb3Store();
-const router = useRouter();
+const {} = useWeb3Store();
+const blog = useBlogStore();
+const ecosystem = useEcosystemStore();
+const ui = useInterfaceStore();
 
+//client app versioning
 function getClientAppVersion() {
-  return localStorage.getItem('APP_VERSION') ?? 0
+  return localStorage.getItem("APP_VERSION") ?? 0;
 }
 
 function setClientAppVersion(version) {
-  return localStorage.setItem('APP_VERSION', version)
+  return localStorage.setItem("APP_VERSION", version);
 }
-
-nuxtApp.hook("page:start", () => {
-  loading.value = true;
-});
-
-nuxtApp.hook("page:finish", async () => {
-  loading.value = false;
-  await nextTick();
-});
 
 useHead({
   htmlAttrs: {
@@ -63,31 +54,30 @@ useSeoMeta({
 });
 
 onMounted(() => {
-  const { } = useWeb3();
+  const {} = useWeb3();
   fetch("/version.json").then((serverPromise) =>
     serverPromise.json().then((response) => {
-      const latestVersion = response.version
-      const clientStoredVersion = getClientAppVersion()
+      const latestVersion = response.version;
+      const clientStoredVersion = getClientAppVersion();
 
       if (clientStoredVersion != latestVersion) {
-        window.location.reload(true)
-        setClientAppVersion(latestVersion)
-      }
-      else return
-    }))
+        window.location.reload(true);
+        setClientAppVersion(latestVersion);
+      } else return;
+    })
+  );
 });
 </script>
 
 <template>
   <NuxtLayout>
-    <!-- <NuxtLoadingIndicator color="var(--gradient-color)" /> -->
-    <!-- <LoadingScreen v-if="loading" /> -->
     <NuxtPage />
   </NuxtLayout>
 </template>
 
 <style>
-body>div[data-v-app] {
-  display: none;
+/* nuxt dev tools */
+body > div[data-v-app] {
+  /* display: none; */
 }
 </style>
