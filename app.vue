@@ -1,8 +1,5 @@
 <script setup>
 const {} = useWeb3Store();
-const blog = useBlogStore();
-const ecosystem = useEcosystemStore();
-const ui = useInterfaceStore();
 
 //client app versioning
 function getClientAppVersion() {
@@ -78,6 +75,6 @@ onMounted(() => {
 <style>
 /* nuxt dev tools */
 body > div[data-v-app] {
-  /* display: none; */
+  display: none;
 }
 </style>

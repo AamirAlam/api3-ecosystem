@@ -2,10 +2,19 @@ export default defineNuxtConfig({
   spaLoadingTemplate: "./app-loading.html",
 
   routeRules: {
-    "/": { prerender: true },
-    "add-dapp": {
+    "/": { prerender: false },
+    "/add-dapp": {
       ssr: false,
+      prerender: false,
     },
+    "/ecosystem":{
+      ssr: false,
+      prerender: false,
+    },
+    "/articles":{
+      ssr: false,
+      prerender: false,
+    }
   },
 
   //global default head metadata
