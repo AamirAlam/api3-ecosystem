@@ -160,6 +160,7 @@ article-card {
     picture {
       height: 100%;
       aspect-ratio: 16/9;
+
       img {
         width: 100%;
         height: 100%;
@@ -177,15 +178,20 @@ article-card {
       bottom: 0;
       left: 0;
       width: 100%;
-      z-index: 2;
+      // z-index: 2;
+      background: linear-gradient(
+        0deg,
+        hsla(0, 0%, 1%, 0.7) 80%,
+        hsla(0, 0%, 1%, 0) 100%
+      );
     }
 
     a.text {
-      background: linear-gradient(
-        0deg,
-        hsla(0, 0%, 1%, 0.7) 20%,
-        hsla(0, 0%, 1%, 0) 50%
-      );
+      // background: linear-gradient(
+      //   0deg,
+      //   hsla(0, 0%, 1%, 0.7) 20%,
+      //   hsla(0, 0%, 1%, 0) 50%
+      // );
     }
   }
 }

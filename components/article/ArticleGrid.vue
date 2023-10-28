@@ -11,7 +11,6 @@ const props = defineProps([
 
 const blog = useBlogStore();
 const ui = useInterfaceStore();
-const ecosystem = useEcosystemStore();
 
 const sorted = computed(() => {
   if (blog.list && props.isRecentSort) {

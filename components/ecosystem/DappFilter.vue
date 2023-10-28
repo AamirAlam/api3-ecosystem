@@ -23,16 +23,19 @@ const chains = computed(() => {
   });
   return chains;
 });
+
 const categories = computed(() => {
   if (ecosystem.stats) {
     return [...ecosystem.stats.categories];
   }
 });
+
 const productTypes = computed(() => {
   if (ecosystem.stats) {
     return [...ecosystem.stats.productTypes];
   }
 });
+
 const years = computed(() => {
   if (ecosystem.stats) {
     return [...ecosystem.stats.years];
