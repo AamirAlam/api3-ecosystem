@@ -15,7 +15,7 @@ const props = defineProps(["proxies", "isForm", "dappForm"]);
         <div class="whisper-voice chain">Network</div>
         <div class="whisper-voice feedname">Feed Name</div>
         <div class="whisper-voice type">Type</div>
-        <div class="whisper-voice proxy-address">Transaction</div>
+        <div class="whisper-voice proxy-address">Proxy Address</div>
         <div class="whisper-voice address">dAPI ID</div>
         <div class="whisper-voice is-oev">is OEV?</div>
         <div class="" v-if="isForm"></div>
