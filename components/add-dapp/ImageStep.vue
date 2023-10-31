@@ -13,6 +13,20 @@ const fileSize = function (node) {
     return fileSize <= maxSize;
   });
 };
+
+const imageRatio = function (node) {
+  if (!node.value) return true;
+
+  const imageRatios = node.value.map((file) => {
+    const img = new Image();
+    img.src = URL.createObjectURL(file.file);
+    return img;
+  });
+
+  return imageRatios.every((image) => {
+    return image.width / image.height === 16 / 6;
+  });
+};
 </script>
 
 <template>
@@ -72,13 +86,14 @@ const fileSize = function (node) {
         v-auto-animate
         validation="required|fileSize"
         validation-label="Cover image"
-        :validation-rules="{ fileSize }"
+        :validation-rules="{ fileSize, imageRatio }"
         :validation-messages="{
           fileSize: 'File size must be below 3MB',
+          imageRatio: 'Image ratio must be 16:6',
         }"
       />
       <p class="whisper-voice">Accepted file types: jpeg, png, webp</p>
-      <p class="whisper-voice">Minimum width: 1024px</p>
+      <p class="whisper-voice">Minimum width: 1024px. Ratio: 16:6</p>
     </form-field>
     <form-field class="file-upload">
       <FormKit
