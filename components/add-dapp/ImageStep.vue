@@ -14,18 +14,42 @@ const fileSize = function (node) {
   });
 };
 
-const imageRatio = function (node) {
+const imageRatio = async function (node) {
+  // If the node value is falsy, return true.
   if (!node.value) return true;
 
-  const imageRatios = node.value.map((file) => {
-    const img = new Image();
-    img.src = URL.createObjectURL(file.file);
-    return img;
-  });
+  // Map over the array of image files and calculate their aspect ratios.
+  const imageRatios = await Promise.all(
+    node.value.map(async (file) => {
+      // Create a new FileReader object.
+      const reader = new FileReader();
 
-  return imageRatios.every((image) => {
-    return image.width / image.height === 16 / 6;
-  });
+      // Read the file and return a data URL.
+      const dataUrl = await new Promise((resolve, reject) => {
+        reader.onload = (e) => resolve(e.target.result);
+        reader.onerror = (e) => reject(e.target.error);
+        reader.readAsDataURL(file.file);
+      });
+
+      // Create a new Image object.
+      const image = new Image();
+
+      // Set the source of the image to the data URL.
+      image.src = dataUrl;
+
+      // Wait for the image to load.
+      await new Promise((resolve) => (image.onload = resolve));
+
+      // Calculate the aspect ratio of the image.
+      const ratio = (image.naturalWidth / image.naturalHeight).toFixed(2);
+
+      // Return the aspect ratio.
+      return ratio;
+    })
+  );
+
+  // Check if all aspect ratios are equal to 2.66.
+  return imageRatios.every((ratio) => ratio === "2.66");
 };
 </script>
 
@@ -84,7 +108,7 @@ const imageRatio = function (node) {
         name="cover"
         accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP"
         v-auto-animate
-        validation="required|fileSize"
+        validation="required|fileSize|imageRatio"
         validation-label="Cover image"
         :validation-rules="{ fileSize, imageRatio }"
         :validation-messages="{
