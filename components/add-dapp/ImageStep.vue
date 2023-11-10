@@ -5,7 +5,8 @@ props.dappForm.links = props.dappForm.links ?? {};
 const fileSize = function (node) {
   if (!node.value) return true;
 
-  const maxSize = 3 * 1024 * 1024;
+  const mb = 1024 * 1024;
+  const maxSize = 6 * mb;
 
   const fileSizes = node.value.map((file) => file.file.size);
 
@@ -79,6 +80,7 @@ const fileSize = function (node) {
       />
       <p class="whisper-voice">Accepted file types: jpeg, png, webp</p>
       <p class="whisper-voice">Minimum width: 1024px</p>
+      <p class="whisper-voice">Accepted file size: 6MB</p>
     </form-field>
     <form-field class="file-upload">
       <FormKit
@@ -98,6 +100,8 @@ const fileSize = function (node) {
         }"
       />
       <p class="whisper-voice">Accepted file types: jpeg, png, webp</p>
+      <p class="whisper-voice">Accepted file size: 6MB</p>
+      <p class="whisper-voice">Select at least two images</p>
     </form-field>
   </section>
 </template>

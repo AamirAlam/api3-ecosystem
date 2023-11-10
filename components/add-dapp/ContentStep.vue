@@ -72,6 +72,7 @@ onMounted(() => {
       />
       <p class="whisper-voice">Accepted file types: jpeg, png, webp</p>
       <p class="whisper-voice">Minimum width: 512px</p>
+      <p class="whisper-voice">Accepted file size: 3MB</p>
     </form-field>
 
     <!-- short description -->
