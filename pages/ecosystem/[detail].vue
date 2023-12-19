@@ -200,6 +200,10 @@ article.main {
     grid-column: 1;
     color: var(--gray-light);
 
+    .actions {
+      flex-wrap: wrap;
+    }
+
     .text.green {
       padding: 0;
     }
