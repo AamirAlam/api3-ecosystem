@@ -39,7 +39,7 @@ onMounted(() => {
 
     <SectionColumn class="home-article-grid">
       <h2 class="loud-voice">Articles</h2>
-      <ArticleGrid layout="0" cardCount="4" isFeaturedSort="true" />
+      <LazyArticleGrid layout="0" cardCount="4" isFeaturedSort="true" />
       <NuxtLink class="text blue" to="/articles">See More</NuxtLink>
     </SectionColumn>
   </main>

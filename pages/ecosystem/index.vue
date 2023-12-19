@@ -54,17 +54,17 @@ onMounted(() => {
 
     <SectionColumn innerClass="ecosystem-main-grid">
       <!-- <ClientOnly> -->
-      <DappFilter v-if="!ui.isMobile" />
+      <LazyDappFilter v-if="!ui.isMobile" />
       <div v-else>
         <FilterButtons />
 
         <ModalSlot>
-          <DappFilter />
+          <LazyDappFilter />
         </ModalSlot>
       </div>
       <!-- </ClientOnly> -->
 
-      <DappGrid />
+      <LazyDappGrid />
     </SectionColumn>
   </main>
 </template>
