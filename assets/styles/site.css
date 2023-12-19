@@ -48,6 +48,11 @@ main {
   display: none;
 }
 
+.grid-3fr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;

@@ -3,6 +3,20 @@
 @import "forms.css";
 @import "buttons.css";
 
+[data-color] {
+  color: var(--data-color);
+}
+
+[data-color="green"] {
+  --data-color: var(--green);
+}
+[data-color="blue"] {
+  --data-color: var(--blue);
+}
+[data-color="violet"] {
+  --data-color: var(--violet);
+}
+
 /* textures and patterns */
 .checkers {
   background-image: var(--checkers);

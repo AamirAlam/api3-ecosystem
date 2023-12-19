@@ -1,8 +1,23 @@
-<script setup></script>
+<script setup>
+const router = useRouter();
+const children = ref(
+  router.options.routes.filter((route) => {
+    return route.name.includes("resources-");
+  })
+);
+</script>
 
 <template>
   <main>
-    <h1 class="loud-voice">Resources</h1>
+    <PageTitle heading="Resources" />
+
+    <SectionColumn>
+      <ul>
+        <li v-for="child in children">
+          <a :href="child.path" class="text"> {{ child.name }}</a>
+        </li>
+      </ul>
+    </SectionColumn>
   </main>
 </template>
 
