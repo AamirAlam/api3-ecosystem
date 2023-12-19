@@ -5,13 +5,52 @@ props.dappForm.links = props.dappForm.links ?? {};
 const fileSize = function (node) {
   if (!node.value) return true;
 
-  const maxSize = 3 * 1024 * 1024;
+  const mb = 1024 * 1024;
+  const maxSize = 6 * mb;
 
   const fileSizes = node.value.map((file) => file.file.size);
 
   return fileSizes.every((fileSize) => {
     return fileSize <= maxSize;
   });
+};
+
+const imageRatio = async function (node) {
+  // If the node value is falsy, return true.
+  if (!node.value) return true;
+
+  // Map over the array of image files and calculate their aspect ratios.
+  const imageRatios = await Promise.all(
+    node.value.map(async (file) => {
+      // Create a new FileReader object.
+      const reader = new FileReader();
+
+      // Read the file and return a data URL.
+      const dataUrl = await new Promise((resolve, reject) => {
+        reader.onload = (e) => resolve(e.target.result);
+        reader.onerror = (e) => reject(e.target.error);
+        reader.readAsDataURL(file.file);
+      });
+
+      // Create a new Image object.
+      const image = new Image();
+
+      // Set the source of the image to the data URL.
+      image.src = dataUrl;
+
+      // Wait for the image to load.
+      await new Promise((resolve) => (image.onload = resolve));
+
+      // Calculate the aspect ratio of the image.
+      const ratio = (image.naturalWidth / image.naturalHeight).toFixed(2);
+
+      // Return the aspect ratio.
+      return ratio;
+    })
+  );
+
+  // Check if all aspect ratios are equal to 2.66.
+  return imageRatios.every((ratio) => ratio === "2.66");
 };
 </script>
 
@@ -70,15 +109,19 @@ const fileSize = function (node) {
         name="cover"
         accept=".jpg, .JPG, .jpeg, .JPEG, .png, .PNG, .webp, .WEBP"
         v-auto-animate
-        validation="required|fileSize"
+        validation="required|fileSize|imageRatio"
         validation-label="Cover image"
-        :validation-rules="{ fileSize }"
+        :validation-rules="{ fileSize, imageRatio }"
         :validation-messages="{
           fileSize: 'File size must be below 3MB',
+          imageRatio: 'Image ratio must be 16:6',
         }"
       />
       <p class="whisper-voice">Accepted file types: jpeg, png, webp</p>
-      <p class="whisper-voice">Minimum width: 1024px</p>
+
+      <p class="whisper-voice">Minimum width: 1024px. Ratio: 16:6</p>
+      <p class="whisper-voice">Accepted file size: 6MB</p>
+
     </form-field>
     <form-field class="file-upload">
       <FormKit
@@ -98,6 +141,8 @@ const fileSize = function (node) {
         }"
       />
       <p class="whisper-voice">Accepted file types: jpeg, png, webp</p>
+      <p class="whisper-voice">Accepted file size: 6MB</p>
+      <p class="whisper-voice">Select at least two images</p>
     </form-field>
   </section>
 </template>

@@ -45,7 +45,7 @@ onMounted(() => {
         label-class="$reset calm-voice"
         name="dappName"
         placeholder="dApp Name"
-        validation="required"
+        validation="required|length:0,30"
         validation-label="Name"
         id="dappName"
         v-model="dappForm.name"
@@ -72,6 +72,7 @@ onMounted(() => {
       />
       <p class="whisper-voice">Accepted file types: jpeg, png, webp</p>
       <p class="whisper-voice">Minimum width: 512px</p>
+      <p class="whisper-voice">Accepted file size: 3MB</p>
     </form-field>
 
     <!-- short description -->
