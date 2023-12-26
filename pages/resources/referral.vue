@@ -7,9 +7,20 @@ const listClass = ref("grid-3fr");
 
 const cards = ref([
   {
+    id: "intro",
+    color: "green",
+    heading: "Welcome",
+    fullHeading: "Introduction",
+    points: [
+      "At the heart of API3's success is a collaborative network of contributors, clients, and influencers, each playing a pivotal role in expanding the reach and impact of our Oracle Stack.",
+      "API3 DAO seeks to incentivise growth of dAPIs through the introduction of a referral scheme. ",
+      "This programme rewards affiliates for successfully introducing a DeFi protocol that leads to an integration of a dAPI price feed.",
+    ],
+  },
+  {
     id: "how",
-    color: "violet",
-    heading: "How?",
+    color: "green",
+    heading: "How",
     fullHeading: "How does the referral scheme work?",
     points: [
       "Introduction to a qualified dApp: $500 API3",
@@ -18,22 +29,28 @@ const cards = ref([
   },
   {
     id: "who",
-    color: "green",
-    heading: "Who?",
-    fullHeading: "Who can qualify?",
+    color: "violet",
+    heading: "Qualify",
+    fullHeading: "For a dApp to qualify they will need to be:",
     points: [
       "A DeFi protocol requiring oracles with over $500k TVL",
       "Actively building and have a team",
       "Open to basic ecosystem marketing such as adding API3 into docs and listing on ecosystem.api3.org",
+      "An integration is defined as a DeFi protocol that is reading a dAPI within their contracts and can be verified on-chain.",
     ],
   },
   {
-    id: "when",
+    id: "started",
     color: "blue",
-    heading: "When?",
+    heading: "Get Started",
     fullHeading: "How can I get started?",
     points: [
       "Resources have been created to ensure affiliates of API3 DAO are set up to succeed with referrals.",
+      "Understanding Your Role: A clear outline of what it means to be a referee in our program and how to get started.",
+      "Target Audience Identification: Insights on identifying who you can successfully refer to our network.",
+      "Support Materials: Access to a wealth of resources designed to aid you in your referral efforts.",
+      "Effective Promotion Tactics: Strategies and tips for efficiently spreading the word and making impactful referrals.",
+      "Onboard dApps For Rewards: Within this space you report and validate your integrations to access payments.",
     ],
   },
 ]);
@@ -85,9 +102,11 @@ function scrollAnimate(section) {
 }
 
 onMounted(() => {
-  scrollAnimate("how");
-  scrollAnimate("who");
-  scrollAnimate("when");
+  const sections = ["intro", "how", "who", "started"];
+
+  sections.forEach((section) => {
+    scrollAnimate(section);
+  });
 });
 </script>
 
@@ -95,12 +114,9 @@ onMounted(() => {
   <main>
     <PageTitle heading="Ecosystem Referral Scheme">
       <p class="notice-voice">
-        At the heart of API3's success is a collaborative network of
-        contributors, clients, and influencers, each playing a pivotal role in
-        expanding the reach and impact of our Oracle Stack. API3 DAO seeks to
-        incentivise growth of dAPIs through the introduction of a referral
-        scheme. This programme rewards affiliates for successfully introducing a
-        DeFi protocol that leads to an integration of a dAPI price feed.
+        The API3 referral scheme has been created to harness the potential of
+        our robust ecosystem and community partners to support the growth
+        objectives of the DAO.
       </p>
     </PageTitle>
 
