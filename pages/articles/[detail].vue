@@ -37,6 +37,7 @@ useSeoMeta({
 </script>
 
 <template>
+  <main>
     <SectionColumn innerClass="article">
       <div class="article-wrapper">
         <ArticleSide :toc="article?.content?.toc" :title="article?.title" />
@@ -58,6 +59,7 @@ useSeoMeta({
         />
       </div>
     </SectionColumn>
+  </main>
 </template>
 
 <style lang="scss">

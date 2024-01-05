@@ -25,22 +25,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <HeroLanding />
+  <main>
+    <HeroLanding />
 
-  <MissionComponent />
-  <section class="curves-wrapper">
-    <picture class="curves-decoration-3">
-      <CurvesDecoration3 />
-    </picture>
-  </section>
+    <MissionComponent />
+    <section class="curves-wrapper">
+      <picture class="curves-decoration-3">
+        <CurvesDecoration3 />
+      </picture>
+    </section>
 
-  <CallToAction />
+    <CallToAction />
 
-  <SectionColumn class="home-article-grid">
-    <h2 class="loud-voice">Articles</h2>
-    <LazyArticleGrid layout="0" cardCount="4" isFeaturedSort="true" />
-    <NuxtLink class="text blue" to="/articles">See More</NuxtLink>
-  </SectionColumn>
+    <SectionColumn class="home-article-grid">
+      <h2 class="loud-voice">Articles</h2>
+      <LazyArticleGrid layout="0" cardCount="4" isFeaturedSort="true" />
+      <NuxtLink class="text blue" to="/articles">See More</NuxtLink>
+    </SectionColumn>
+  </main>
 </template>
 
 <style lang="scss">

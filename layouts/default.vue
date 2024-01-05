@@ -20,9 +20,7 @@ useHead({
 
   <SiteHeader />
 
-  <main>
-    <slot />
-  </main>
+  <slot />
 
   <SiteFooter v-if="route.name != 'add-dapp' || route.name !== 'add-dapp-2'" />
 </template>

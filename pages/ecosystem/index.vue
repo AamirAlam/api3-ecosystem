@@ -42,29 +42,31 @@ onMounted(() => {
 </script>
 
 <template>
-  <PageTitle
-    heading="API3 Ecosystem Partners"
-    class="loud-voice ecosystem-header"
-  >
-    <NuxtLink to="/add-dapp" class="button solid-voice">
-      <span class=""> Join the Ecosystem </span>
-    </NuxtLink>
-  </PageTitle>
+  <main>
+    <PageTitle
+      heading="API3 Ecosystem Partners"
+      class="loud-voice ecosystem-header"
+    >
+      <NuxtLink to="/add-dapp" class="button solid-voice">
+        <span class=""> Join the Ecosystem </span>
+      </NuxtLink>
+    </PageTitle>
 
-  <SectionColumn innerClass="ecosystem-main-grid">
-    <!-- <ClientOnly> -->
-    <LazyDappFilter v-if="!ui.isMobile" />
-    <div v-else>
-      <FilterButtons />
+    <SectionColumn innerClass="ecosystem-main-grid">
+      <!-- <ClientOnly> -->
+      <LazyDappFilter v-if="!ui.isMobile" />
+      <div v-else>
+        <FilterButtons />
 
-      <ModalSlot>
-        <LazyDappFilter />
-      </ModalSlot>
-    </div>
-    <!-- </ClientOnly> -->
+        <ModalSlot>
+          <LazyDappFilter />
+        </ModalSlot>
+      </div>
+      <!-- </ClientOnly> -->
 
-    <LazyDappGrid />
-  </SectionColumn>
+      <LazyDappGrid />
+    </SectionColumn>
+  </main>
 </template>
 
 <style lang="scss">
