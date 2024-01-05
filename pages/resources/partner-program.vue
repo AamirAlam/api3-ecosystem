@@ -1,4 +1,5 @@
 <script setup>
+import { useStorage } from "@vueuse/core";
 const content = ref({
   hero: {
     title: "Become an API3 Partner",
@@ -90,20 +91,30 @@ const content = ref({
   contact: {
     title: "Questions?",
     description:
-      "We look forward to hearing from you, please share any questions with ecosystem@api3.org.",
+      "We look forward to hearing from you, please share any questions.",
 
     email: "ecosystem@api3.org",
   },
 });
 
-const form = ref({
+const form = useStorage("referral-email-form", {
   name: "",
   email: "",
   message: "",
 });
 
-function submitForm() {
+async function submitForm() {
+  await new Promise((r) => setTimeout(r, 2000));
   console.log("submitForm", form.value);
+
+  //   send email
+
+  //   clear form
+  //   form.value = {
+  // 	 name: "",
+  // 	 email: "",
+  // 	 message: "",
+  //   };
 }
 </script>
 
@@ -213,7 +224,12 @@ function submitForm() {
         </p>
       </text-content>
 
-      <FormKit type="form" id="contact-form" :actions="false">
+      <FormKit
+        type="form"
+        id="contact-form"
+        :actions="false"
+        @submit="submitForm"
+      >
         <form-field>
           <FormKit
             type="text"
@@ -258,7 +274,6 @@ function submitForm() {
             id="submit"
             label="Submit"
             input-class="$reset button"
-            @click.prevent="submitForm"
           />
         </form-field>
       </FormKit>
