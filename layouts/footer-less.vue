@@ -23,8 +23,6 @@ useHead({
   <main>
     <slot />
   </main>
-
-  <SiteFooter />
 </template>
 
 <style scoped lang="scss">
