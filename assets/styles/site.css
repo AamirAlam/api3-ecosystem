@@ -53,6 +53,10 @@ main {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.display-contents {
+  display: contents;
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: all 0.4s;
