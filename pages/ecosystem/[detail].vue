@@ -81,7 +81,6 @@ const formattedProxies = computed(() => {
 </script>
 
 <template>
-  <main>
     <article class="detail-page">
       <DetailBanner :dapp="dapp" />
 
@@ -148,7 +147,6 @@ const formattedProxies = computed(() => {
         </article>
       </SectionColumn>
     </article>
-  </main>
 </template>
 
 <style lang="scss" scoped>
