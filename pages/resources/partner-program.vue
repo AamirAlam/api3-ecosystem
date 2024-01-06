@@ -2,6 +2,10 @@
 import { useStorage } from "@vueuse/core";
 const content = await queryContent("resources/partner-program").findOne();
 
+definePageMeta({
+  layout: "footer-less",
+});
+
 useSeoMeta({
   title: content.seo.title,
   ogTitle: content.seo.title,
@@ -143,7 +147,7 @@ async function submitForm() {
     </SectionColumn>
 
     <!--  -->
-    <SectionColumn class="contact">
+    <SectionColumn class="contact pattern-seven">
       <text-content>
         <h2 class="loud-voice">
           {{ content.contact.title }}
