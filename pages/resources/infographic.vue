@@ -7,7 +7,7 @@ const content = ref({});
     <SectionColumn innerClass="wide">
       <article class="infographic">
         <header>
-          <h1 class="attention-voice">API3 Hacker Pack -- ETHXXX --</h1>
+          <h1 class="loud-voice">API3 Hacker Pack -- ETHXXX --</h1>
           <div class="card"><p>Learn more about API3 & our bounties</p></div>
           <div class="card">card</div>
         </header>
@@ -21,15 +21,16 @@ const content = ref({});
           </text-content>
           <div class="qr-card">
             <text-content>
-              <h3 class="notice-voice">API3 docs</h3>
+              <h3 class="attention-voice">API3 docs</h3>
             </text-content>
             <picture class="qr-code">
               <QrCode />
+              <!-- <img src="/link/to/qrcode.jpg" alt=""> -->
             </picture>
           </div>
           <div class="qr-card reverse">
             <text-content>
-              <p class="whisper-voice">
+              <p class="calm-voice">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Voluptates, enim laborum? Doloremque, laboriosam. Consectetur
                 obcaecati eveniet, mollitia impedit quasi placeat voluptas quod,
@@ -43,7 +44,7 @@ const content = ref({});
           </div>
           <div class="qr-card">
             <text-content>
-              <h3 class="notice-voice">Demo projects</h3>
+              <h3 class="attention-voice">Demo projects</h3>
             </text-content>
 
             <picture class="qr-code reverse">
@@ -64,44 +65,6 @@ const content = ref({});
             repudiandae!"
           />
         </div>
-        <div class="right">
-          <text-content>
-            <h2 class="attention-voice">OEV-share</h2>
-            <p>
-              Price feeds for contracts to access a maintained on-chain value
-            </p>
-          </text-content>
-          <div class="qr-card">
-            <text-content>
-              <h3 class="notice-voice">API3 docs</h3>
-            </text-content>
-            <picture class="qr-code">
-              <QrCode />
-            </picture>
-          </div>
-          <div class="">
-            <text-content>
-              <!-- <picture class="qr-code">
-                <QrCode />
-              </picture> -->
-
-              <h3 class="notice-voice">Video Tutorial</h3>
-            </text-content>
-
-            <picture>
-              <img src="/images/article-placeholder.jpg" alt="" />
-            </picture>
-          </div>
-          <div class="qr-card">
-            <text-content>
-              <h3 class="notice-voice">Demo projects</h3>
-            </text-content>
-
-            <picture class="qr-code">
-              <QrCode />
-            </picture>
-          </div>
-        </div>
       </article>
     </SectionColumn>
   </main>
@@ -114,7 +77,7 @@ article {
   align-items: start;
 
   @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+    //  grid-template-columns: 1fr 1fr;
   }
 
   & > div {
@@ -143,15 +106,15 @@ header {
   flex-wrap: wrap;
   //   justify-content: start;
   gap: var(--space-s);
-  //   align-items: center;
+  align-items: center;
 
   .card {
     padding: var(--space-s);
     border-radius: var(--corners);
-    //  border: var(--border);
+    border: var(--border);
     min-width: 100px;
     color: transparent;
-    background: var(--green);
+    //  background: var(--green);
   }
 }
 
@@ -178,7 +141,7 @@ header {
 
 picture.qr-code {
   aspect-ratio: 1;
-  max-width: 125px;
+  max-width: 200px;
 }
 
 :deep(blockquote) {
