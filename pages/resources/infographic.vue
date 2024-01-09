@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+const content = ref({});
+</script>
 
 <template>
   <main>
@@ -55,6 +57,12 @@
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             </li>
           </ol>
+          <BlockquoteBlock
+            quote="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
+            animi officia cumque saepe, nulla harum quasi, at quo id voluptate
+            quod distinctio fuga optio voluptates odio quae? Ex, maiores
+            repudiandae!"
+          />
         </div>
         <div class="right">
           <text-content>
@@ -93,13 +101,6 @@
               <QrCode />
             </picture>
           </div>
-
-          <BlockquoteBlock
-            quote="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
-            animi officia cumque saepe, nulla harum quasi, at quo id voluptate
-            quod distinctio fuga optio voluptates odio quae? Ex, maiores
-            repudiandae!"
-          />
         </div>
       </article>
     </SectionColumn>
