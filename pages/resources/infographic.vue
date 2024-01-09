@@ -5,101 +5,64 @@
     <SectionColumn innerClass="wide">
       <article class="infographic">
         <header>
-          <h1 class="attention-voice">API3 Hacker Pack -- ETHXXX --</h1>
-          <div class="card"><p>Learn more about API3 & our bounties</p></div>
+          <h1 class="attention-voice">Hacker Cheat Sheet</h1>
+          <div class="card"><p>API3 x LightLink Gasless Hackathon</p></div>
           <div class="card">card</div>
         </header>
 
         <div class="left">
           <text-content>
-            <h2 class="attention-voice">dAPIs</h2>
+            <h2 class="attention-voice">Access Quantum Random Numbers with API3 QRNG.</h2>
             <p>
-              Price feeds for contracts to access a maintained on-chain value
+              API3 QRNG is a free-to-use service to provide quantum randomness on-chain. It is powered by Airnode, the serverless first-part oracle that is operated directly by the QRNG API providers.
             </p>
           </text-content>
           <div class="qr-card">
             <text-content>
-              <h3 class="notice-voice">API3 docs</h3>
+              <h3 class="notice-voice">Start by spending time understanding Quantum Randomness and understanding an overview of how API3 QRNG works.</h3>
             </text-content>
             <picture class="qr-code">
-              <QrCode />
+             <img src="/images/QRNG_EXPLORE.png" 
+            /> <!--[https://docs.api3.org/explore/qrng/]-->
             </picture>
           </div>
           <div class="qr-card reverse">
             <text-content>
               <p class="whisper-voice">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptates, enim laborum? Doloremque, laboriosam. Consectetur
-                obcaecati eveniet, mollitia impedit quasi placeat voluptas quod,
-                sapiente sit autem doloribus enim, dolorum nostrum deleniti!
+                If you're a developer looking to get started, follow our simple guide on how to request random numbers to your LightLink smart contracts. These have been designed to take you from 0-1 and action your learning through building your own demo projects.
               </p>
             </text-content>
 
             <picture class="qr-code">
-              <QrCode />
+              <img src="/images/QRNG_Guides.png" 
+            /> <!--[https://docs.api3.org/guides/qrng/]-->
             </picture>
           </div>
           <div class="qr-card">
             <text-content>
-              <h3 class="notice-voice">Demo projects</h3>
+              <h3 class="notice-voice">Hackathon Referneces</h3>
             </text-content>
-
+            The API3 Ecosystem has a range of resources available for developers to utilize within hackathons, alongside the API3 guides. 
             <picture class="qr-code reverse">
-              <QrCode />
+             <img src="/images/Ecosystem_github.png"/> <!--https://github.com/api3-ecosystem/References-For-Hackathon-->
             </picture>
           </div>
 
           <ol>
-            <h3 class="firm-voice">This is some List</h3>
-            <li v-for="i in 4" :data-list-number="i">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            <h3 class="firm-voice">Hacker getting started list</h3>
+            <li>
+              Start by reading the QRNG explore materials 
+            </li>
+            <li> 
+              Follow the quickstart guide to call QRNG using the Lightlink ChainID 
+            </li>
+            <li>
+              Explore the QRNG Demo Projects to utilize QRNG in a dApp
+            </li>
+            <li>
+              Build and utilize QRNG within your hackathon project to win the bounty
             </li>
           </ol>
-        </div>
-        <div class="right">
-          <text-content>
-            <h2 class="attention-voice">OEV-share</h2>
-            <p>
-              Price feeds for contracts to access a maintained on-chain value
-            </p>
-          </text-content>
-          <div class="qr-card">
-            <text-content>
-              <h3 class="notice-voice">API3 docs</h3>
-            </text-content>
-            <picture class="qr-code">
-              <QrCode />
-            </picture>
-          </div>
-          <div class="">
-            <text-content>
-              <!-- <picture class="qr-code">
-                <QrCode />
-              </picture> -->
-
-              <h3 class="notice-voice">Video Tutorial</h3>
-            </text-content>
-
-            <picture>
-              <img src="/images/article-placeholder.jpg" alt="" />
-            </picture>
-          </div>
-          <div class="qr-card">
-            <text-content>
-              <h3 class="notice-voice">Demo projects</h3>
-            </text-content>
-
-            <picture class="qr-code">
-              <QrCode />
-            </picture>
-          </div>
-
-          <BlockquoteBlock
-            quote="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
-            animi officia cumque saepe, nulla harum quasi, at quo id voluptate
-            quod distinctio fuga optio voluptates odio quae? Ex, maiores
-            repudiandae!"
-          />
         </div>
       </article>
     </SectionColumn>
@@ -113,7 +76,7 @@ article {
   align-items: start;
 
   @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   & > div {
