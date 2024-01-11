@@ -3,6 +3,7 @@ const content = await queryContent("resources/cheatsheet").findOne();
 
 definePageMeta({
   layout: "footer-less",
+  //   alias: "qrng-cheatsheet",
 });
 
 useSeoMeta({
@@ -62,7 +63,13 @@ useSeoMeta({
 
               <picture class="qr-code" :class="{ reverse: card.reverse }">
                 <img :src="card.image" />
-                <NuxtLink :target="card.link" :to="card.link" />
+                <NuxtLink
+                  class="text blue whisper-voice"
+                  :target="card.link"
+                  :to="card.link"
+                >
+                  {{ card.title }}
+                </NuxtLink>
               </picture>
             </div>
           </template>
@@ -151,18 +158,29 @@ header {
   h3 + p {
     margin-top: 0;
   }
+
+  h3 {
+    text-transform: uppercase;
+    font-weight: var(--weight-heavy);
+  }
 }
 
 picture.qr-code {
-  aspect-ratio: 1;
+  //   aspect-ratio: 1;
   max-width: 250px;
 
   position: relative;
+  transition: 0.2s ease-in-out;
+
+  &:has(a:hover) {
+    //  scale: 1.1;
+  }
 
   a {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
+    //  position: absolute;
+    //  inset: 0;
+    //  z-index: 1;
+    padding-left: 0;
   }
 }
 
