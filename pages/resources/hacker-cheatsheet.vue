@@ -32,24 +32,26 @@ useSeoMeta({
     <SectionColumn>
       <article class="infographic">
         <header>
-          <h1 class="attention-voice">
-            {{ content.header.title }}
-          </h1>
+          <div>
+            <h1 class="loud-voice gradient-text-color">
+              {{ content.header.title }}
+            </h1>
 
-          <div class="card">
-            <p class="solid-voice gradient-text-color">
-              {{ content.header.subtitle }}
-            </p>
+            <div class="card">
+              <p class="solid-voice gradient-text">
+                {{ content.header.subtitle }}
+              </p>
+            </div>
+            <div class="card">
+              <p class="solid-voice gradient-text">
+                {{ content.header.tag }}
+              </p>
+            </div>
           </div>
-          <div class="card">
-            <p class="solid-voice gradient-text">
-              {{ content.header.tag }}
-            </p>
-          </div>
+          <p class="notice-voice intro">
+            {{ content.introPara }}
+          </p>
         </header>
-        <p class="notice-voice intro">
-          {{ content.introPara }}
-        </p>
 
         <div class="left">
           <template v-for="card in content.left.qrCards">
@@ -64,7 +66,7 @@ useSeoMeta({
               <picture class="qr-code" :class="{ reverse: card.reverse }">
                 <img :src="card.image" />
                 <NuxtLink
-                  class="text blue whisper-voice"
+                  class="text whisper-voice"
                   :target="card.link"
                   :to="card.link"
                 >
@@ -95,7 +97,7 @@ useSeoMeta({
 <style scoped lang="scss">
 article {
   display: grid;
-  row-gap: var(--space-xl);
+  row-gap: var(--space-2xl);
   align-items: start;
 
   @media (min-width: 768px) {
@@ -118,20 +120,24 @@ text-content {
 }
 
 header {
-  grid-column: 1/-1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
+  display: grid;
   gap: var(--space-2xs);
-  align-items: center;
 
-  .card {
-    padding: var(--space-s);
-    border-radius: var(--corners);
-    border: var(--border);
-    min-width: 100px;
-    color: transparent;
-    background: var(--paper);
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: var(--space-2xs);
+    align-items: center;
+
+    .card {
+      padding: var(--space-s);
+      border-radius: var(--corners);
+      border: var(--border-dark);
+      min-width: 100px;
+      color: transparent;
+      background: var(--paper);
+    }
   }
 }
 
@@ -139,7 +145,7 @@ header {
   display: flex;
 
   gap: var(--space-s);
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 
   &.reverse {
@@ -209,7 +215,7 @@ ol {
     @media (min-width: 768px) {
       font-size: var(--step-1);
 
-      --left: 70px;
+      --left: 60px;
     }
 
     &::before {

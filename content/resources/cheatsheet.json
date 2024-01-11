@@ -6,8 +6,8 @@
     "description": "API3 QRNG is a free-to-use service to provide quantum randomness on-chain. It is powered by Airnode, the serverless first-part oracle that is operated directly by the QRNG API providers."
   },
   "header": {
-    "title": "Access Quantum Random Numbers with API3 QRNG",
-    "subtitle": "API3 x LightLink Gasless Hackathon",
+    "title": "API3 x LightLink Gasless Hackathon",
+    "subtitle": "Access Quantum Random Numbers",
     "tag": "Hacker Cheatsheet"
   },
   "introPara": "API3 QRNG is a free-to-use service to provide quantum randomness on-chain. It is powered by Airnode, the serverless first-part oracle that is operated directly by the QRNG API providers.",

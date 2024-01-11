@@ -73,6 +73,10 @@ const footerLinks = [
     title: "Resources",
     links: [
       {
+        label: "Partner Program",
+        path: "/resources/partner-program",
+      },
+      {
         label: "Guides",
         path: "https://docs.api3.org/guides/",
         external: true,
@@ -81,6 +85,10 @@ const footerLinks = [
         label: "Articles",
         path: "https://api3.org/goto/medium?source=ao-menu",
         external: true,
+      },
+      {
+        label: "QRNG Cheatsheet",
+        path: "/resources/hacker-cheatsheet",
       },
       // Add more links here
     ],
@@ -169,7 +177,7 @@ const miscLinks = [
               v-for="(link, linkIndex) in footerMenu.links"
               :key="linkIndex"
               :to="link.path"
-              class="calm-voice text footer-link"
+              class="calm-voice text footer-link hover-underline"
             >
               <span>{{ link.label }}</span>
               <ExternalLink v-if="link.external" />
