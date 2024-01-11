@@ -150,7 +150,7 @@ const miscLinks = [
 </script>
 
 <template>
-  <footer class="">
+  <footer class="pattern-seven">
     <section class="footer-navigation">
       <inner-column>
         <picture class="site-logo">
@@ -215,15 +215,6 @@ const miscLinks = [
 footer {
   padding: var(--space-2xl) 0;
   position: relative;
-  background: url("@/assets/images/background/footer-pattern.svg");
-  background-position: bottom right;
-  background-repeat: no-repeat;
-
-  @media (max-width: 768px) {
-    background: url("@/assets/images/background/footer-pattern-mobile.svg");
-    background-position: bottom right;
-    background-repeat: no-repeat;
-  }
 
   inner-column {
     padding-left: var(--space-l);

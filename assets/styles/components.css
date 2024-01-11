@@ -82,6 +82,18 @@
   opacity: 0.15;
 }
 
+.pattern-seven {
+  background: url("@/assets/images/background/footer-pattern.svg");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    background: url("@/assets/images/background/footer-pattern-mobile.svg");
+    background-position: bottom right;
+    background-repeat: no-repeat;
+  }
+}
+
 :is(
     .background-radial-green,
     .background-radial-blue,

@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+const content = ref({});
+</script>
 
 <template>
   <main>
@@ -105,15 +107,15 @@ header {
   flex-wrap: wrap;
   //   justify-content: start;
   gap: var(--space-s);
-  //   align-items: center;
+  align-items: center;
 
   .card {
     padding: var(--space-s);
     border-radius: var(--corners);
-    //  border: var(--border);
+    border: var(--border);
     min-width: 100px;
     color: transparent;
-    background: var(--green);
+    //  background: var(--green);
   }
 }
 
@@ -140,7 +142,7 @@ header {
 
 picture.qr-code {
   aspect-ratio: 1;
-  max-width: 125px;
+  max-width: 200px;
 }
 
 :deep(blockquote) {

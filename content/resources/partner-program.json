@@ -1,0 +1,96 @@
+{
+  "seo": {
+    "title": "API3 DAO Referral Scheme",
+    "type": "article",
+    "url": "https://ecosystem.api3.org/resources/partner-program",
+    "description": "The API3 referral scheme has been created to harness the potential of our robust ecosystem and community partners to support the growth objectives of the DAO.",
+    "image": "/images/article-placeholder.jpg",
+
+    "cardSize": "summary_large_image",
+
+    "keywords": "API3, DAO, Referral, Scheme, Affiliate, Partner, dAPI, DeFi, Oracle, API, Ecosystem, Community, Growth, Incentive, Rewards, Program, Integration, Protocol, TVL, Team, Marketing, Docs, Listing, API3 DAO Referral Scheme"
+  },
+
+  "hero": {
+    "title": "Become an API3 Partner",
+    "image": "/images/icons/dao.svg",
+    "description": "The API3 referral scheme has been created to harness the potential of our robust ecosystem and community partners to support the growth objectives of the DAO."
+  },
+
+  "about": {
+    "title": "About the Program",
+    "description": "At the heart of API3's success is a collaborative network of contributors, clients, and influencers, each playing a pivotal role in expanding the reach and impact of our Oracle Stack. API3 DAO seeks to incentivise growth of dAPIs through the introduction of a referral scheme. This programme rewards affiliates for successfully introducing a DeFi protocol that leads to an integration of a dAPI price feed."
+  },
+
+  "getStarted": {
+    "title": "How can I get started?",
+    "description": "Resources have been created to ensure affiliates of API3 DAO are set up to succeed with referrals. Within this space you will find information on:",
+    "cards": [
+      {
+        "title": "Understanding Your Role",
+        "image": "/images/icons/dao.svg",
+        "description": "A clear outline of what it means to be a referee in our program and how to get started."
+      },
+      {
+        "title": "Target Audience Identification",
+        "image": "/images/icons/dao.svg",
+        "description": "Insights on identifying who you can successfully refer to our network."
+      },
+      {
+        "title": "Support Materials",
+        "image": "/images/icons/dao.svg",
+        "description": "Access to a wealth of resources designed to aid you in your referral efforts."
+      },
+      {
+        "title": "Effective Promotion Tactics",
+        "image": "/images/icons/dao.svg",
+        "description": "Strategies and tips for efficiently spreading the word and making impactful referrals."
+      },
+      {
+        "title": "Onboard dApps For Rewards",
+        "image": "/images/icons/dao.svg",
+        "description": "Within this space you report and validate your integrations to access payments."
+      }
+    ]
+  },
+
+  "rewards": {
+    "title": "How does the referral scheme work?",
+    "cards": [
+      {
+        "title": "Introduction to a qualified dApp",
+        "description": "$500 API3"
+      },
+      {
+        "title": "Integration of qualified dApp",
+        "description": "$2500 API3"
+      }
+    ]
+  },
+
+  "qualifications": {
+    "title": "What does a qualified dApp look like?",
+    "description": "An integration is defined as a DeFi protocol that is reading a dAPI within their contracts and can be verified on-chain.",
+    "cards": [
+      {
+        "title": "A DeFi protocol requiring oracles with over $500k TVL",
+        "description": "A DeFi protocol requiring oracles with over $500k TVL"
+      },
+      {
+        "title": "Actively building and have a team",
+        "description": "Actively building and have a team"
+      },
+      {
+        "title": "Open to basic ecosystem marketing such as adding API3 into docs and listing on ecosystem.api3.org",
+        "description": "Open to basic ecosystem marketing such as adding API3 into docs and listing on ecosystem.api3.org"
+      }
+    ]
+  },
+
+  "contact": {
+    "title": "Questions?",
+    "description": "We look forward to hearing from you, please share any questions.",
+
+    "email": "ecosystem@api3.org"
+  }
+}
