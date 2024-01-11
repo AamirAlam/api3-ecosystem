@@ -1,68 +1,82 @@
 <script setup>
-const content = ref({});
+const content = await queryContent("resources/cheatsheet").findOne();
+
+definePageMeta({
+  layout: "footer-less",
+});
+
+useSeoMeta({
+  title: content.meta.title,
+  ogTitle: content.meta.title,
+  twitterTitle: content.meta.title,
+
+  description: content.meta.description,
+  ogDescription: content.meta.description,
+  twitterDescription: content.meta.description,
+
+  //   image: content.meta.image,
+  //   ogImage: content.meta.image,
+  //   twitterImage: content.meta.image,
+
+  ogUrl: content.meta.url,
+  twitterUrl: content.meta.url,
+
+  ogType: content.meta.type,
+  twitterType: content.meta.type,
+});
 </script>
 
 <template>
   <main>
-    <SectionColumn innerClass="wide">
+    <SectionColumn>
       <article class="infographic">
         <header>
-          <h1 class="attention-voice">Hacker Cheat Sheet</h1>
-          <div class="card"><p>API3 x LightLink Gasless Hackathon</p></div>
-          <div class="card">card</div>
+          <h1 class="attention-voice">
+            {{ content.header.title }}
+          </h1>
+
+          <div class="card">
+            <p class="solid-voice gradient-text-color">
+              {{ content.header.subtitle }}
+            </p>
+          </div>
+          <div class="card">
+            <p class="solid-voice gradient-text">
+              {{ content.header.tag }}
+            </p>
+          </div>
         </header>
+        <p class="notice-voice intro">
+          {{ content.introPara }}
+        </p>
 
         <div class="left">
-          <text-content>
-            <h2 class="attention-voice">Access Quantum Random Numbers with API3 QRNG.</h2>
-            <p>
-              API3 QRNG is a free-to-use service to provide quantum randomness on-chain. It is powered by Airnode, the serverless first-part oracle that is operated directly by the QRNG API providers.
-            </p>
-          </text-content>
-          <div class="qr-card">
-            <text-content>
-              <h3 class="notice-voice">Start by spending time understanding Quantum Randomness and understanding an overview of how API3 QRNG works.</h3>
-            </text-content>
-            <picture class="qr-code">
-             <img src="/images/QRNG_EXPLORE.png" 
-            /> <!--[https://docs.api3.org/explore/qrng/]-->
-            </picture>
-          </div>
-          <div class="qr-card reverse">
-            <text-content>
-              <p class="whisper-voice">
-                If you're a developer looking to get started, follow our simple guide on how to request random numbers to your LightLink smart contracts. These have been designed to take you from 0-1 and action your learning through building your own demo projects.
-              </p>
-            </text-content>
+          <template v-for="card in content.left.qrCards">
+            <div class="qr-card" :class="{ reverse: card.reverse }">
+              <text-content>
+                <h3 class="teaser-voice">{{ card.title }}</h3>
+                <p class="notice-voice">
+                  {{ card.description }}
+                </p>
+              </text-content>
 
-            <picture class="qr-code">
-              <img src="/images/QRNG_Guides.png" 
-            /> <!--[https://docs.api3.org/guides/qrng/]-->
-            </picture>
-          </div>
-          <div class="qr-card">
-            <text-content>
-              <h3 class="notice-voice">Hackathon Referneces</h3>
-            </text-content>
-            The API3 Ecosystem has a range of resources available for developers to utilize within hackathons, alongside the API3 guides. 
-            <picture class="qr-code reverse">
-             <img src="/images/Ecosystem_github.png"/> <!--https://github.com/api3-ecosystem/References-For-Hackathon-->
-            </picture>
-          </div>
+              <picture class="qr-code" :class="{ reverse: card.reverse }">
+                <img :src="card.image" />
+                <NuxtLink :target="card.link" :to="card.link" />
+              </picture>
+            </div>
+          </template>
 
           <ol>
-            <h3 class="firm-voice">Hacker getting started list</h3>
-            <li>
-              Start by reading the QRNG explore materials 
-            </li>
-            <li> 
-              Follow the quickstart guide to call QRNG using the Lightlink ChainID 
-            </li>
-            <li>
-              Explore the QRNG Demo Projects to utilize QRNG in a dApp
-            </li>
-            <li>
-              Build and utilize QRNG within your hackathon project to win the bounty
+            <h3 class="firm-voice">
+              {{ content.left.gettingStarted.heading }}
+            </h3>
+            <li
+              v-for="(item, index) in content.left.gettingStarted.list"
+              :data-list-number="index + 1"
+              :key="index"
+            >
+              {{ item }}
             </li>
           </ol>
         </div>
@@ -83,16 +97,11 @@ article {
 
   & > div {
     display: grid;
-    gap: var(--space-3xl);
-    @media (min-width: 768px) {
-      padding: 0 var(--space-xl);
-    }
+    gap: var(--space-2xl);
   }
 
-  div.right {
-    @media (min-width: 768px) {
-      border-left: 5px solid var(--green);
-    }
+  p.notice-voice.intro {
+    color: var(--ink);
   }
 }
 
@@ -105,8 +114,8 @@ header {
   grid-column: 1/-1;
   display: flex;
   flex-wrap: wrap;
-  //   justify-content: start;
-  gap: var(--space-s);
+  justify-content: start;
+  gap: var(--space-2xs);
   align-items: center;
 
   .card {
@@ -115,7 +124,7 @@ header {
     border: var(--border);
     min-width: 100px;
     color: transparent;
-    //  background: var(--green);
+    background: var(--paper);
   }
 }
 
@@ -138,11 +147,23 @@ header {
   & > *:nth-of-type(2) {
     flex-basis: 40%;
   }
+
+  h3 + p {
+    margin-top: 0;
+  }
 }
 
 picture.qr-code {
   aspect-ratio: 1;
-  max-width: 200px;
+  max-width: 250px;
+
+  position: relative;
+
+  a {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
 }
 
 :deep(blockquote) {
@@ -152,7 +173,7 @@ picture.qr-code {
 ol {
   display: grid;
   gap: var(--space-s);
-  background: var(--violet);
+  background: var(--gradient-dark);
   padding: var(--space-m);
   border-bottom-left-radius: calc(var(--corners) * 4);
   overflow-x: hidden;
