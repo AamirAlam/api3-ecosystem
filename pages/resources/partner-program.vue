@@ -31,6 +31,7 @@ const form = useStorage("referral-email-form", {
   email: "",
   message: "",
   level: "",
+  telegram: "",
 });
 
 async function submitForm() {
@@ -187,6 +188,37 @@ async function submitForm() {
             validation="required|email"
             v-model="form.email"
           />
+        </form-field>
+
+        <form-field>
+          <FormKit
+            type="url"
+            id="telegram"
+            name="Telegram"
+            label="Telegram"
+            label-class="$reset calm-voice"
+            placeholder="t.me/your-username"
+            validation="required|url"
+            v-model="form.telegram"
+          />
+        </form-field>
+
+        <form-field>
+          <FormKit
+            type="select"
+            id="level"
+            name="level"
+            label="Level"
+            label-class="$reset calm-voice"
+            placeholder="Level"
+            validation="required"
+            v-model="form.level"
+          >
+            <option value="novice">Novice</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="expert">Expert</option>
+            <option value="master">Master</option>
+          </FormKit>
         </form-field>
 
         <form-field>
