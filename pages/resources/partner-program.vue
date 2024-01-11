@@ -35,7 +35,6 @@ const form = useStorage("referral-email-form", {
 });
 
 async function submitForm() {
-  await new Promise((r) => setTimeout(r, 2000));
   console.log("submitForm", form.value);
 
   //   send email to form.email
