@@ -7,31 +7,30 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: content.seo.title,
-  ogTitle: content.seo.title,
-  twitterTitle: content.seo.title,
+  title: content.meta.title,
+  ogTitle: content.meta.title,
+  twitterTitle: content.meta.title,
 
-  description: content.seo.description,
-  ogDescription: content.seo.description,
-  twitterDescription: content.seo.description,
+  description: content.meta.description,
+  ogDescription: content.meta.description,
+  twitterDescription: content.meta.description,
 
-  image: content.seo.image,
-  ogImage: content.seo.image,
-  twitterImage: content.seo.image,
+  //   image: content.meta.image,
+  //   ogImage: content.meta.image,
+  //   twitterImage: content.meta.image,
 
-  ogUrl: content.seo.url,
-  twitterUrl: content.seo.url,
+  ogUrl: content.meta.url,
+  twitterUrl: content.meta.url,
 
-  ogType: content.seo.type,
-  twitterType: content.seo.type,
-
-  twitterCard: content.seo.cardSize,
+  ogType: content.meta.type,
+  twitterType: content.meta.type,
 });
 
 const form = useStorage("referral-email-form", {
   name: "",
   email: "",
   message: "",
+  level: "",
 });
 
 async function submitForm() {

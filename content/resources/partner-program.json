@@ -1,14 +1,9 @@
 {
-  "seo": {
+  "meta": {
     "title": "API3 DAO Referral Scheme",
     "type": "article",
     "url": "https://ecosystem.api3.org/resources/partner-program",
-    "description": "The API3 referral scheme has been created to harness the potential of our robust ecosystem and community partners to support the growth objectives of the DAO.",
-    "image": "/images/article-placeholder.jpg",
-
-    "cardSize": "summary_large_image",
-
-    "keywords": "API3, DAO, Referral, Scheme, Affiliate, Partner, dAPI, DeFi, Oracle, API, Ecosystem, Community, Growth, Incentive, Rewards, Program, Integration, Protocol, TVL, Team, Marketing, Docs, Listing, API3 DAO Referral Scheme"
+    "description": "The API3 referral scheme has been created to harness the potential of our robust ecosystem and community partners to support the growth objectives of the DAO."
   },
 
   "hero": {
