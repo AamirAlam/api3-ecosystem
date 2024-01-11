@@ -113,7 +113,7 @@ async function submitForm() {
         </li>
       </ul>
 
-      <p class="solid-voice" v-if="content.qualifications.description">
+      <p class="whisper-voice" v-if="content.qualifications.description">
         {{ content.qualifications.description }}
       </p>
     </SectionColumn>
@@ -197,7 +197,7 @@ async function submitForm() {
             label="Telegram"
             label-class="$reset calm-voice"
             placeholder="t.me/your-username"
-            validation="required|url"
+            validation="url"
             v-model="form.telegram"
           />
         </form-field>
@@ -304,12 +304,17 @@ async function submitForm() {
     padding: var(--space-l) 0;
 
     @media (min-width: 768px) {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
   }
 
   li {
     padding: var(--space-m);
+    grid-column: span 2;
+
+    &:nth-last-child(1) {
+      grid-column: 2 / span 2;
+    }
   }
 }
 
