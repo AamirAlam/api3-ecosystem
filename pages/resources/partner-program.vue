@@ -133,7 +133,7 @@ async function submitForm() {
           v-for="card in content.getStarted.cards"
           class="border-gradient-blue"
         >
-          <picture>
+          <picture v-if="false">
             <img :src="card.image" alt="" />
           </picture>
           <h3 class="solid-voice">
@@ -303,14 +303,14 @@ async function submitForm() {
     display: grid;
     gap: var(--space-m);
     padding: var(--space-l) 0;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
   }
 
   li {
     padding: var(--space-m);
-
-    @media (min-width: 768px) {
-      border-radius: 100px;
-    }
   }
 }
 
@@ -319,10 +319,6 @@ async function submitForm() {
 
   display: grid;
   gap: var(--space-m);
-
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
 
   li {
     padding: var(--space-m);
