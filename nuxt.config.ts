@@ -150,6 +150,11 @@ export default defineNuxtConfig({
     gitAppInstallationId: process.env.NUXT_GIT_APP_INSTALLATION_ID,
     gitAppClientId: process.env.NUXT_GIT_APP_CLIENT_ID,
     gitAppClientSecret: process.env.NUXT_GIT_APP_CLIENT_SECRET,
+    mailtripHost: process.env.NUXT_MAILTRIP_HOST,
+    mailtripUser: process.env.NUXT_MAILTRIP_USER,
+    mailtripPass: process.env.NUXT_MAILTRIP_PASS,
+    ecosystemMail: process.env.NUXT_ECOSYSTEM_MAIL,
+    emailDomain: process.env.NUXT_EMAIL_DOMAIN,
     public: {
       walletConnectProjectId: "8ea05c2c45ce1000d51a7364ce317dc5",
     },
