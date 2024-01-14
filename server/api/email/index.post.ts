@@ -104,7 +104,7 @@ export default defineEventHandler(async (event: any) => {
     console.log("email response ", result);
 
     event.node.res.statusCode = 201;
-    return { code: "OK", message: "Email sent" };
+    return { code: "OK", message: "Email sent", success: true };
   } catch (err: any) {
     console.log("send mail error ", err);
     event.node.res.statusCode = 500;
