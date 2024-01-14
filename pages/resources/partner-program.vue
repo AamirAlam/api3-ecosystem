@@ -4,6 +4,7 @@ const content = await queryContent("resources/partner-program").findOne();
 
 definePageMeta({
   layout: "footer-less",
+  alias: "/affiliate-program",
 });
 
 useSeoMeta({
@@ -29,24 +30,53 @@ useSeoMeta({
 const form = useStorage("referral-email-form", {
   name: "",
   email: "",
-  message: "",
-  level: "",
   telegram: "",
+  level: "",
+  message: "",
 });
+
+const serverMessages = ref([]);
 
 async function submitForm() {
   console.log("submitForm", form.value);
+  serverMessages.value = [];
 
-  //   send email to form.email
+  //   send email using api from server/api/email/index.js
+  const response = await fetch("/api/email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(form.value),
+  });
 
-  //   show success message
+  const data = await response.json();
 
-  //   clear form
-  //   form.value = {
-  // 	 name: "",
-  // 	 email: "",
-  // 	 message: "",
-  //   };
+  console.log("data", data);
+
+  if (data.success) {
+    // reset form
+    form.value = {
+      name: "",
+      email: "",
+      telegram: "",
+      level: "",
+      message: "",
+    };
+
+    // show success message
+    const message = {
+      success: data.success,
+      message:
+        data.message +
+        ". Thank you for your interest in the API3 Affiliate Program. We will be in touch soon.",
+    };
+    serverMessages.value.push(message);
+  } else {
+    serverMessages.value.push({
+      message: data.message,
+    });
+  }
 }
 </script>
 
@@ -160,8 +190,8 @@ async function submitForm() {
         type="form"
         id="contact-form"
         :actions="false"
-        @submit="submitForm"
         v-auto-animate
+        @submit="submitForm"
       >
         <form-field>
           <FormKit
@@ -240,6 +270,18 @@ async function submitForm() {
             input-class="$reset button"
           />
         </form-field>
+        <ul class="validation-errors" v-auto-animate v-if="serverMessages">
+          <li
+            v-for="message in serverMessages"
+            class="solid-voice"
+            :class="{
+              success: message.success,
+              error: !message.success,
+            }"
+          >
+            {{ message.message }}
+          </li>
+        </ul>
       </FormKit>
     </SectionColumn>
   </article>
@@ -343,10 +385,18 @@ async function submitForm() {
 .contact :deep(inner-column) {
   display: grid;
   gap: var(--space-xl);
-  align-items: center;
 
   @media (min-width: 768px) {
     grid-template-columns: 0.7fr 1fr;
+  }
+
+  .validation-errors li {
+    &.sucess {
+      color: var(--success);
+    }
+    &.error {
+      color: var(--error);
+    }
   }
 }
 </style>
