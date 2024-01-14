@@ -73,8 +73,8 @@ const footerLinks = [
     title: "Resources",
     links: [
       {
-        label: "Partner Program",
-        path: "/resources/partner-program",
+        label: "Affiliate Program",
+        path: "/resources/affiliate-program",
       },
       {
         label: "Guides",
