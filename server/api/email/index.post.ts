@@ -78,7 +78,7 @@ export default defineEventHandler(async (event: any) => {
     const payload = { heading, name, email, telegram, level, message };
 
     const msg = {
-      to: "burooj.bj@gmail.com", // Change to your recipient
+      to: "ecosystem@api3.org", // Change to your recipient
       from: "ecosystem.api3.org", // Change to your verified sender
       subject: heading,
       text: "",
