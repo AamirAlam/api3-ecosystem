@@ -66,9 +66,6 @@ export default defineEventHandler(async (event: any) => {
       };
     }
 
-    const heading = "Referral partner program";
-    const payload = { heading, name, email, telegram, level, message };
-
     if (!config.mailtripUser || !config.mailtripPass || !config.mailtripHost) {
       event.node.res.statusCode = 401;
       return {
@@ -77,8 +74,11 @@ export default defineEventHandler(async (event: any) => {
       };
     }
 
+    const heading = "Referral partner program";
+    const payload = { heading, name, email, telegram, level, message };
+
     const msg = {
-      to: "ecosystem@api3.org", // Change to your recipient
+      to: "burooj.bj@gmail.com", // Change to your recipient
       from: "ecosystem.api3.org", // Change to your verified sender
       subject: heading,
       text: "",
