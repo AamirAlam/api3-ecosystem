@@ -1,5 +1,6 @@
 <script setup>
 import { useStorage } from "@vueuse/core";
+import { reset } from "@formkit/core";
 const content = await queryContent("resources/partner-program").findOne();
 
 definePageMeta({
@@ -55,14 +56,8 @@ async function submitForm() {
   console.log("data", data);
 
   if (data.success) {
-    // reset form
-    form.value = {
-      name: "",
-      email: "",
-      telegram: "",
-      level: "",
-      message: "",
-    };
+    // reset form by id
+    reset("contact-form");
 
     // show success message
     const message = {
@@ -71,6 +66,7 @@ async function submitForm() {
         data.message +
         ". Thank you for your interest in the API3 Affiliate Program. We will be in touch soon.",
     };
+    console.log(message);
     serverMessages.value.push(message);
   } else {
     serverMessages.value.push({
@@ -391,8 +387,8 @@ async function submitForm() {
   }
 
   .validation-errors li {
-    &.sucess {
-      color: var(--success);
+    &.success {
+      color: var(--green-lighter);
     }
     &.error {
       color: var(--error);
