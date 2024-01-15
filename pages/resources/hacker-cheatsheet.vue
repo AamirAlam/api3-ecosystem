@@ -151,6 +151,14 @@ header {
   &.reverse {
     //  grid-template-columns: 0.4fr 0.8fr;
     flex-direction: row-reverse;
+
+    text-content * {
+      text-align: right;
+    }
+
+    a {
+      text-align: left;
+    }
   }
 
   & > *:nth-of-type(1) {
@@ -173,10 +181,14 @@ header {
 
 picture.qr-code {
   //   aspect-ratio: 1;
-  max-width: 250px;
+  max-width: 100px;
 
   position: relative;
   transition: 0.2s ease-in-out;
+
+  @media (min-width: 768px) {
+    max-width: 250px;
+  }
 
   &:has(a:hover) {
     //  scale: 1.1;
@@ -187,6 +199,7 @@ picture.qr-code {
     //  inset: 0;
     //  z-index: 1;
     padding-left: 0;
+    text-align: right;
   }
 }
 
