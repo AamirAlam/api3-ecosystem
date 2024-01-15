@@ -180,6 +180,11 @@ async function submitForm() {
         <p class="notice-voice">
           {{ content.contact.description }}
         </p>
+        <p>
+          Please email
+          <a href="mailto:ecosystem@api3.org"> ecosystem@api3.org </a> to get
+          started.
+        </p>
       </text-content>
 
       <FormKit
@@ -188,6 +193,7 @@ async function submitForm() {
         :actions="false"
         v-auto-animate
         @submit="submitForm"
+        v-if="false"
       >
         <form-field>
           <FormKit
@@ -383,7 +389,7 @@ async function submitForm() {
   gap: var(--space-xl);
 
   @media (min-width: 768px) {
-    grid-template-columns: 0.7fr 1fr;
+    //  grid-template-columns: 0.7fr 1fr;
   }
 
   .validation-errors li {
