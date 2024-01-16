@@ -8,6 +8,8 @@ definePageMeta({
   alias: "/affiliate-program",
 });
 
+const formEnabled = ref(false);
+
 useSeoMeta({
   title: content.meta.title,
   ogTitle: content.meta.title,
@@ -39,7 +41,6 @@ const form = useStorage("referral-email-form", {
 const serverMessages = ref([]);
 
 async function submitForm() {
-  console.log("submitForm", form.value);
   serverMessages.value = [];
 
   //   send email using api from server/api/email/index.js
@@ -149,7 +150,7 @@ async function submitForm() {
       <h2 class="attention-voice">
         {{ content.getStarted.title }}
       </h2>
-      <p class="notice-voice">
+      <p class="whisper-voice">
         {{ content.getStarted.description }}
       </p>
 
@@ -161,10 +162,10 @@ async function submitForm() {
           <picture v-if="false">
             <img :src="card.image" alt="" />
           </picture>
-          <h3 class="solid-voice">
+          <h3 class="teaser-voice">
             {{ card.title }}
           </h3>
-          <p>
+          <p class="notice-voice">
             {{ card.description }}
           </p>
         </li>
@@ -180,7 +181,7 @@ async function submitForm() {
         <p class="notice-voice">
           {{ content.contact.description }}
         </p>
-        <p>
+        <p v-if="!formEnabled">
           Please email
           <a href="mailto:ecosystem@api3.org"> ecosystem@api3.org </a> to get
           started.
@@ -193,7 +194,7 @@ async function submitForm() {
         :actions="false"
         v-auto-animate
         @submit="submitForm"
-        v-if="false"
+        v-if="formEnabled"
       >
         <form-field>
           <FormKit
@@ -372,7 +373,7 @@ async function submitForm() {
     padding: var(--space-m);
 
     display: grid;
-    gap: var(--space-2xs);
+    gap: var(--space-3xs);
 
     picture {
       max-width: 80px;
