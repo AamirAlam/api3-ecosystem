@@ -1,7 +1,6 @@
 <script setup>
 definePageMeta({
-  title: "Add Your dApp",
-  layout: "home",
+  layout: "footer-less",
 });
 
 useSeoMeta({
