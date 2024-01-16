@@ -1,10 +1,10 @@
-import nodemailer from "nodemailer";
 import {
   emailMarkup,
   isValidTelegramUrl,
   isValidEmail,
 } from "~/server/services/helper";
 import { Referral } from "~/server/models/Referral";
+import { sendEmail } from "~/server/services/email";
 
 export default defineEventHandler(async (event: any) => {
   const config = useRuntimeConfig();
@@ -66,42 +66,25 @@ export default defineEventHandler(async (event: any) => {
       };
     }
 
-    if (!config.mailtripUser || !config.mailtripPass || !config.mailtripHost) {
-      event.node.res.statusCode = 401;
-      return {
-        code: "ERROR",
-        message: "Invalid email config at server",
-      };
-    }
-
     const heading = "Referral partner program";
     const payload = { heading, name, email, telegram, level, message };
 
-    const msg = {
-      to: "ecosystem@api3.org", // Change to your recipient
-      from: "ecosystem.api3.org", // Change to your verified sender
+    const emailPayload = {
       subject: heading,
-      text: "",
       html: emailMarkup(payload),
     };
 
-    var transport = nodemailer.createTransport({
-      host: config.mailtripHost?.toString(),
-      port: 2525,
-      auth: {
-        user: config.mailtripUser?.toString(),
-        pass: config.mailtripPass?.toString(),
-      },
-    });
+    const result = await sendEmail(emailPayload);
 
-    const result = await transport.sendMail({
-      ...msg,
-      html: emailMarkup(payload),
-    });
+    if (!result) {
+      event.node.res.statusCode = 401;
+      return {
+        code: "ERROR",
+        message: "Failed to send email! Please try again",
+      };
+    }
 
     await new Referral(payload).save();
-
-    console.log("email response ", result);
 
     event.node.res.statusCode = 201;
     return { code: "OK", message: "Email sent", success: true };
