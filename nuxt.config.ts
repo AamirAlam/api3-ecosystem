@@ -112,7 +112,7 @@ export default defineNuxtConfig({
     ],
   ],
 
-  plugins: ["~/plugins/gsap.ts", "~/plugins/floating-vue.ts"],
+  //   plugins: ["~/plugins/gsap.ts", "~/plugins/floating-vue.ts"],
 
   components: [
     {
