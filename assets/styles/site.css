@@ -48,6 +48,11 @@ main {
   display: none;
 }
 
+.grid-3fr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .display-contents {
   display: contents;
 }

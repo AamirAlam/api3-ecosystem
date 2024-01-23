@@ -2,7 +2,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 definePageMeta({
-  //   layout: "home",
+  layout: "home",
   meta: [
     {
       hid: "home",
@@ -28,6 +28,7 @@ onMounted(() => {
   <HeroLanding />
 
   <MissionComponent />
+
   <section class="curves-wrapper">
     <picture class="curves-decoration-3">
       <CurvesDecoration3 />
